@@ -3,8 +3,8 @@
  * Plugin Name: CreaBootstrapBlocks
  * Plugin URI: https://github.com/creationell-dev/crea-bootstrap-blocks
  * Description: Rückwärtskompatibler Ersatz für All Bootstrap Blocks auf Basis von Blockstudio.
- * Version: 1.0.0
- * Stable tag: 1.0.0
+ * Version: 1.0.1
+ * Stable tag: 1.0.1
  * Author: creationell® – die Werbeagentur
  * Author URI: https://www.creationell.de/
  * Requires at least: 6.9
@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
  * ausschliesslich aus der wp-config.php stammen. Ihre Standardwerte stehen in
  * crea_bootstrap_blocks_default_settings().
  */
-define( 'CREA_BOOTSTRAP_BLOCKS_VERSION', '1.0.0' );
+define( 'CREA_BOOTSTRAP_BLOCKS_VERSION', '1.0.1' );
 define( 'CREA_BOOTSTRAP_BLOCKS_FILE', __FILE__ );
 define( 'CREA_BOOTSTRAP_BLOCKS_BASENAME', plugin_basename( __FILE__ ) );
 define( 'CREA_BOOTSTRAP_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );

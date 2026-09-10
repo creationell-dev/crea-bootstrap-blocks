@@ -18,6 +18,28 @@
  * jeder Diff gruen. Deshalb wird die Klassenreihenfolge ausdruecklich NICHT
  * angefasst: Sie ist Teil des Kompatibilitaetsvertrags.
  *
+ * DIE DRITTE GRENZE: DIESE KLASSE KENNT DIE RAUSCHGRENZE DER SEITE NICHT
+ *
+ * Am 2026-09-10 auf einer Bestandsinstanz gemessen: 904 Markup-Befunde
+ * zwischen zwei Aufnahmen desselben, UNVERAENDERTEN Zustands. Ursache waren
+ * Zufalls-IDs eines E-Mail-Verschleierers und eine Kaskade ab dem
+ * `<form>`-Tag einer Formularseite. Beides ist Eigenschaft der Installation,
+ * nicht des Nachbaus — und diese Klasse kann die beiden nicht unterscheiden,
+ * weil ihr dazu jede Bezugsgroesse fehlt.
+ *
+ * Die Konsequenz ist bewusst KEINE weitere Normalisierung: Ein Muster, das
+ * `eeb-<zahl>-<zahl>` wegraeumt, raeumt auch eine echte Abweichung an dieser
+ * Stelle weg. Die Bezugsgroesse wird stattdessen GEMESSEN — zwei Aufnahmen
+ * desselben Zustands gegeneinander, vor der Migration. Eine nackte
+ * Fehlerzahl aus `summary_line()` ist ohne sie kein Urteil.
+ *
+ * ZWEI VORAUSSETZUNGEN DES VERGLEICHS, die derselbe Lauf gefunden hat:
+ * Beide Aufnahmen brauchen denselben Cache-Zustand — eine gecachte gegen eine
+ * frisch gerenderte Seite erzeugt Befunde, die niemand verursacht hat. Und der
+ * CSS-Teil traegt nur, solange das Alt-Plugin aktiv und der Inhalt noch
+ * `areoi/*` ist; danach meldet `css_reference_findings()` selbst
+ * `css-reference-missing`, und die Regelbefunde daneben sind dessen Folge.
+ *
  * WARUM JEDER REGEX-AUFRUF BEWACHT IST
  *
  * `preg_replace()` gibt bei einem Abbruch der Engine — Backtrack- oder

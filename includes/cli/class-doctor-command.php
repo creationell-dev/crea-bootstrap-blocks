@@ -166,7 +166,8 @@ class Doctor_Command {
                 $backup_directory,
                 is_dir( $backup_directory ),
                 // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable -- Begruendung im Block darueber.
-                is_writable( $backup_directory )
+                is_writable( $backup_directory ),
+                self::path_inside_public_root( $backup_directory, self::public_roots() )
             ),
         ];
 
@@ -999,7 +1000,87 @@ class Doctor_Command {
     }
 
     /**
-     * Check 8 — the backup target is writable.
+     * Resolves `.` and `..` in a path WITHOUT touching the file system.
+     *
+     * `realpath()` waere hier falsch: Das Backup-Verzeichnis muss nicht
+     * existieren, wenn `doctor` laeuft, und `realpath()` gibt fuer einen
+     * nicht existierenden Pfad `false` zurueck. Ein Cast daraus waere der
+     * Leerstring — und ein Leerstring liegt unter JEDER Wurzel.
+     *
+     * @param string $path Absolute or relative path.
+     */
+    public static function normalize_path( string $path ): string {
+        $absolute = str_starts_with( $path, '/' );
+        $out      = [];
+
+        foreach ( explode( '/', str_replace( '\\', '/', $path ) ) as $segment ) {
+            if ( '' === $segment || '.' === $segment ) {
+                continue;
+            }
+
+            if ( '..' === $segment ) {
+                if ( [] !== $out && '..' !== end( $out ) ) {
+                    array_pop( $out );
+
+                    continue;
+                }
+
+                if ( $absolute ) {
+                    continue;
+                }
+            }
+
+            $out[] = $segment;
+        }
+
+        return ( $absolute ? '/' : '' ) . implode( '/', $out );
+    }
+
+    /**
+     * Whether a directory lies at or below one of the publicly served roots.
+     *
+     * WARUM DAS GEPRUEFT WIRD: `default_backup_path()` legt den Dump nach
+     * `wp_upload_dir()['basedir']`, und der Rueckfall zeigt sogar auf
+     * `ABSPATH`. Beide werden vom Webserver ausgeliefert. Am 2026-09-10 auf
+     * einer echten Instanz nachgemessen: Eine Datei
+     * `wp-content/uploads/probe.sql.gz` antwortete anonym mit HTTP 200 und
+     * gab ihren Inhalt heraus. Ein Migrationsbackup ist ein VOLLSTAENDIGER
+     * Datenbankabzug — Benutzer, Passworthashes, Bestellungen. Sein Name ist
+     * dazu vorhersagbar, weil die Anleitung `backup-JJJJ-MM-TT.sql.gz`
+     * vorschlaegt.
+     *
+     * Der Vergleich ist LEXIKALISCH und beruehrt das Dateisystem nicht
+     * (siehe `normalize_path()`). Ein Symlink, der aus dem Baum hinausfuehrt,
+     * wird deshalb nicht erkannt — die Prueflinie faellt damit auf die
+     * sichere Seite: Sie meldet eher zu viel als zu wenig.
+     *
+     * @param string             $directory    Directory that would receive the dump.
+     * @param array<int, string> $public_roots Directories the web server serves.
+     */
+    public static function path_inside_public_root( string $directory, array $public_roots ): bool {
+        $needle = self::normalize_path( $directory );
+
+        if ( '' === $needle ) {
+            return false;
+        }
+
+        foreach ( $public_roots as $root ) {
+            $haystack = self::normalize_path( (string) $root );
+
+            if ( '' === $haystack ) {
+                continue;
+            }
+
+            if ( $needle === $haystack || str_starts_with( $needle . '/', $haystack . '/' ) ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check 8 — the backup target is writable, and not served to the public.
      *
      * KEIN LAUF OHNE RUECKWEG. Diese Zeile steht am Ende der Liste, weil sie
      * die einzige ist, die nichts ueber die Installation aussagt — sie sichert
@@ -1007,12 +1088,24 @@ class Doctor_Command {
      * faellt der fehlende Schreibzugriff erst auf, wenn die Ersetzung bereits
      * laeuft.
      *
-     * @param string $directory          Directory that would receive the dump.
-     * @param bool   $directory_exists   Result of `is_dir()`.
-     * @param bool   $directory_writable Result of `is_writable()`.
+     * WARUM ES NICHT BEIM SCHREIBRECHT BLEIBT: Ein beschreibbares Verzeichnis
+     * ist nicht schon ein geeignetes. Bis zum 2026-09-10 meldete diese Zeile
+     * `ok — beschreibbar: …/wp-content/uploads` und empfahl damit ein
+     * Verzeichnis, aus dem jeder Fremde den Dump herunterladen kann.
+     *
+     * WARUM `warn` UND NICHT `error`: Auf geteiltem Webspace gibt es haeufig
+     * gar kein beschreibbares Verzeichnis ausserhalb des Webbaums. Ein `error`
+     * hielte den Lauf dort auf und draengte zu `--skip-backup` — also dazu,
+     * den Rueckweg ganz wegzulassen. Ein Backup an schlechter Stelle ist
+     * besser als keines; es muss nur hinterher weg.
+     *
+     * @param string $directory            Directory that would receive the dump.
+     * @param bool   $directory_exists     Result of `is_dir()`.
+     * @param bool   $directory_writable   Result of `is_writable()`.
+     * @param bool   $publicly_reachable   Whether the web server serves that directory.
      * @return array{check: string, status: string, message: string}
      */
-    public static function backup_target_check( string $directory, bool $directory_exists, bool $directory_writable ): array {
+    public static function backup_target_check( string $directory, bool $directory_exists, bool $directory_writable, bool $publicly_reachable ): array {
         $label = __( 'Backup target', 'crea-bootstrap-blocks' );
 
         if ( ! $directory_exists ) {
@@ -1039,15 +1132,73 @@ class Doctor_Command {
             ];
         }
 
+        if ( $publicly_reachable ) {
+            return [
+                'check'   => $label,
+                'status'  => 'warn',
+                'message' => sprintf(
+                    /* translators: %s: directory path. */
+                    __( 'writable, but the web server serves %s — a database dump placed there can be downloaded by anyone who guesses its name. Choose a directory outside the web root, or delete the dump the moment the migration is accepted.', 'crea-bootstrap-blocks' ),
+                    $directory
+                ),
+            ];
+        }
+
         return [
             'check'   => $label,
             'status'  => 'ok',
             'message' => sprintf(
                 /* translators: %s: directory path. */
-                __( 'writable: %s', 'crea-bootstrap-blocks' ),
+                __( 'writable, outside the web root: %s', 'crea-bootstrap-blocks' ),
                 $directory
             ),
         ];
+    }
+
+    /**
+     * The directories this installation serves over HTTP.
+     *
+     * Beide Konstanten, nicht nur `ABSPATH`: `wp-content` darf ausserhalb des
+     * WordPress-Verzeichnisses liegen (`WP_CONTENT_DIR`), und genau dort steht
+     * das Upload-Verzeichnis, in das der Vorgabepfad zeigt. Wer nur `ABSPATH`
+     * prueft, uebersieht die verschobene Installation — also gerade die, bei
+     * der jemand ueber den Aufbau nachgedacht hat.
+     *
+     * @return array<int, string>
+     */
+    public static function public_roots(): array {
+        return self::public_roots_from(
+            defined( 'ABSPATH' ) ? (string) constant( 'ABSPATH' ) : null,
+            defined( 'WP_CONTENT_DIR' ) ? (string) constant( 'WP_CONTENT_DIR' ) : null
+        );
+    }
+
+    /**
+     * The pure half of `public_roots()`.
+     *
+     * E-135: Eine Entscheidung, die nur Konstanten liest, fuehrt keine Suite
+     * aus — jede Mutation daran ueberlebt `composer test`. Genau das ist am
+     * 2026-09-10 passiert: Die Mutation, die `WP_CONTENT_DIR` aus der Liste
+     * strich, blieb am Leben, weil die Konstante im Pruefstand gar nicht
+     * definiert ist. Die Entscheidung steht deshalb hier, die Erhebung
+     * darueber.
+     *
+     * @param string|null $abspath     Value of `ABSPATH`, or null when undefined.
+     * @param string|null $content_dir Value of `WP_CONTENT_DIR`, or null when undefined.
+     * @return array<int, string>
+     */
+    public static function public_roots_from( ?string $abspath, ?string $content_dir ): array {
+        $roots = [];
+
+        if ( null !== $abspath && '' !== $abspath ) {
+            $roots[] = $abspath;
+        }
+
+        if ( null !== $content_dir && '' !== $content_dir ) {
+            $roots[] = $content_dir;
+        }
+
+        return $roots;
     }
 
     /**

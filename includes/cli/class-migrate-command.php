@@ -852,6 +852,28 @@ class Migrate_Command {
         }
 
         /*
+         * EIN BACKUP IM WEBBAUM IST EIN VEROEFFENTLICHTER DATENBANKABZUG.
+         *
+         * `doctor` meldet denselben Zustand schon als `warn` — aber `doctor`
+         * laeuft in Schritt 1, und wer die Zeile dort ueberliest, bekommt sie
+         * nie wieder zu sehen. Sie wird deshalb an der Stelle wiederholt, an
+         * der die Datei WIRKLICH entsteht.
+         *
+         * Kein Abbruch: Auf geteiltem Webspace gibt es oft kein beschreibbares
+         * Verzeichnis ausserhalb des Webbaums, und ein Abbruch draengte dort zu
+         * `--skip-backup` — also dazu, den Rueckweg ganz wegzulassen.
+         */
+        if ( Doctor_Command::path_inside_public_root( $directory, Doctor_Command::public_roots() ) ) {
+            WP_CLI::warning(
+                sprintf(
+                    /* translators: %s: backup path. */
+                    __( 'The backup %s is written into a directory the web server serves. Anyone who guesses the name can download the full database. Move it out of the web root when the run is done, and delete it once the migration is accepted.', 'crea-bootstrap-blocks' ),
+                    $path
+                )
+            );
+        }
+
+        /*
          * EIN VORHANDENES BACKUP WIRD NICHT UEBERSCHRIEBEN.
          *
          * Der Fall, um den es geht: Der erste Lauf bricht ab, NACHDEM

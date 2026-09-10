@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-10T12:18:19+00:00\n"
+"POT-Creation-Date: 2026-09-10T14:45:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: crea-bootstrap-blocks\n"
@@ -99,7 +99,7 @@ msgid "Bootstrap JavaScript"
 msgstr ""
 
 #: includes/admin-diagnose.php:226
-#: includes/cli/class-doctor-command.php:764
+#: includes/cli/class-doctor-command.php:765
 msgid "Bootstrap Icons"
 msgstr ""
 
@@ -400,240 +400,246 @@ msgstr ""
 msgid "%d legacy options removed."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:213
+#: includes/cli/class-doctor-command.php:214
 msgid "Blockstudio"
 msgstr ""
 
 #. translators: %s: required minimum Blockstudio version.
-#: includes/cli/class-doctor-command.php:221
+#: includes/cli/class-doctor-command.php:222
 #, php-format
 msgid "Blockstudio is not active. Version %s or newer is required — without it not a single block is registered."
 msgstr ""
 
 #. translators: 1: installed Blockstudio version, 2: required minimum version.
-#: includes/cli/class-doctor-command.php:233
+#: includes/cli/class-doctor-command.php:234
 #, php-format
 msgid "Blockstudio %1$s is installed, %2$s or newer is required."
 msgstr ""
 
 #. translators: %s: installed Blockstudio version.
-#: includes/cli/class-doctor-command.php:245
+#: includes/cli/class-doctor-command.php:246
 #, php-format
 msgid "active, version %s"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:278
+#: includes/cli/class-doctor-command.php:279
 msgid "Old plugin (all-bootstrap-blocks)"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:284
+#: includes/cli/class-doctor-command.php:285
 msgid "active — this is the state migration and the before/after captures are meant to run in. After the last step it has to be switched off."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:294
+#: includes/cli/class-doctor-command.php:295
 msgid "NOT active — a \"before\" capture taken now renders through the areoi/* alias blocks of THIS plugin and would compare the rebuild against itself."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:314
+#: includes/cli/class-doctor-command.php:315
 msgid "Block counterparts"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:328
+#: includes/cli/class-doctor-command.php:329
 msgid "no areoi/* block found in the content"
 msgstr ""
 
 #. translators: %d: number of distinct areoi/* block types found.
-#: includes/cli/class-doctor-command.php:358
+#: includes/cli/class-doctor-command.php:359
 #, php-format
 msgid "all %d areoi/* block types found in the content have a registered creabb/* counterpart"
 msgstr ""
 
 #. translators: %s: comma separated list of missing block names.
-#: includes/cli/class-doctor-command.php:369
+#: includes/cli/class-doctor-command.php:370
 #, php-format
 msgid "no registered counterpart for: %s. Migrating now would leave those blocks without a block type (partial migration)."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:394
+#: includes/cli/class-doctor-command.php:395
 msgid "Field types (contract rule 1.4)"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:422
+#: includes/cli/class-doctor-command.php:423
 msgid "Rule 1.4 is UNCHECKED on this installation: not a single block.json could be read. This says nothing about the field types — it says the check did not run."
 msgstr ""
 
 #. translators: 1: number of block.json files read, 2: number of contract files found.
-#: includes/cli/class-doctor-command.php:435
+#: includes/cli/class-doctor-command.php:436
 #, php-format
 msgid "Only %1$d of %2$d block.json could be read — the rest was skipped silently and is unchecked."
 msgstr ""
 
 #. translators: 1: number of blocks read, 2: number of attributes found.
-#: includes/cli/class-doctor-command.php:462
+#: includes/cli/class-doctor-command.php:463
 #, php-format
 msgid "%1$d blocks were inspected but only %2$d attributes were resolved. A field resolver is losing fields."
 msgstr ""
 
 #. translators: 1: block name, 2: number of missing attributes for that block alone.
-#: includes/cli/class-doctor-command.php:499
+#: includes/cli/class-doctor-command.php:500
 #, php-format
 msgid "%1$s alone is missing %2$d attributes compared to its own contract. A field resolver may have collapsed for this one block."
 msgstr ""
 
 #. translators: 1: number of block.json files read, 2: number of contract attributes compared.
-#: includes/cli/class-doctor-command.php:512
+#: includes/cli/class-doctor-command.php:513
 #, php-format
 msgid "no locked field type points at a contract attribute — %1$d block.json, %2$d attributes compared"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:532
+#: includes/cli/class-doctor-command.php:533
 msgid "numeric field on a non-numeric contract attribute"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:533
+#: includes/cli/class-doctor-command.php:534
 msgid "locked field type"
 msgstr ""
 
 #. translators: %s: list of offending block.json fields.
-#: includes/cli/class-doctor-command.php:546
+#: includes/cli/class-doctor-command.php:547
 #, php-format
 msgid "These fields change the stored value form and break the data contract: %s. Fix the block.json before migrating."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:565
+#: includes/cli/class-doctor-command.php:566
 msgid "Theme render overrides"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:579
+#: includes/cli/class-doctor-command.php:580
 msgid "no all-bootstrap-blocks/ directory in the active theme"
 msgstr ""
 
 #. translators: %s: list of directory paths.
-#: includes/cli/class-doctor-command.php:590
+#: includes/cli/class-doctor-command.php:591
 #, php-format
 msgid "The theme overrides render files of the old plugin: %s. Those overrides stop taking effect once the blocks are named creabb/*. Port them first."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:635
+#: includes/cli/class-doctor-command.php:636
 msgid "Legacy options"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:658
+#: includes/cli/class-doctor-command.php:659
 msgid "default: off"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:677
+#: includes/cli/class-doctor-command.php:678
 msgid "default:"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:688
+#: includes/cli/class-doctor-command.php:689
 msgid "all four render-relevant legacy options are on their defaults"
 msgstr ""
 
 #. translators: %s: list of legacy options the rebuild honours.
-#: includes/cli/class-doctor-command.php:716
+#: includes/cli/class-doctor-command.php:717
 #, php-format
 msgid "These options deviate from the default, and the rebuild reads them: %s. Nothing to do — but expect the pages to render in that mode."
 msgstr ""
 
 #. translators: 1: list of deviating options, 2: options the rebuild honours, or a dash.
-#: includes/cli/class-doctor-command.php:727
+#: includes/cli/class-doctor-command.php:728
 #, php-format
 msgid "These options deviate from the default the rebuild hard-codes: %1$s. Adjust them before migrating; the way out is named per line. Read and honoured by the rebuild: %2$s."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:770
+#: includes/cli/class-doctor-command.php:771
 msgid "no bi- class and no icon attribute in the content"
 msgstr ""
 
 #. translators: 1: number of bi- class occurrences, 2: number of button blocks with an icon attribute.
-#: includes/cli/class-doctor-command.php:776
+#: includes/cli/class-doctor-command.php:777
 #, php-format
 msgid "%1$d bi- class occurrence(s), %2$d button block(s) with an icon attribute"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:785
+#: includes/cli/class-doctor-command.php:786
 msgid "plugin switch"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:789
+#: includes/cli/class-doctor-command.php:790
 msgid "active theme"
 msgstr ""
 
 #. translators: 1: finding summary, 2: comma separated list of icon sources.
-#: includes/cli/class-doctor-command.php:797
+#: includes/cli/class-doctor-command.php:798
 #, php-format
 msgid "%1$s — the icon font is delivered by: %2$s. Check the rendering of those blocks after the migration."
 msgstr ""
 
 #. translators: %s: finding summary.
-#: includes/cli/class-doctor-command.php:809
+#: includes/cli/class-doctor-command.php:810
 #, php-format
 msgid "%s — but neither the plugin switch (Appearance → CreaBootstrapBlocks, tab Assets) nor the active theme delivers the icon font. Turn the switch on or add the font to the theme before migrating."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:872
+#: includes/cli/class-doctor-command.php:873
 msgid "read by the rebuild; override with the filter crea_bootstrap_blocks_css_grid"
 msgstr ""
 
 #. translators: %s: filter hook name.
-#: includes/cli/class-doctor-command.php:878
+#: includes/cli/class-doctor-command.php:879
 #, php-format
 msgid "filter: %s"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:883
+#: includes/cli/class-doctor-command.php:884
 msgid "no filter — the rebuild has no equivalent; this option shifts the default of the is_flex attribute, so set is_flex explicitly on the affected blocks or accept the change"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:953
+#: includes/cli/class-doctor-command.php:954
 msgid "Legacy CSS classes"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:959
+#: includes/cli/class-doctor-command.php:960
 msgid "the active theme carries no areoi selector"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:967
+#: includes/cli/class-doctor-command.php:968
 msgid "the active theme styles against areoi-* and the legacy classes are being emitted"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:974
+#: includes/cli/class-doctor-command.php:975
 msgid "The active theme styles against areoi-* selectors, but the legacy classes are switched off. Turn CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES back on (or the matching option) and only switch it off once the theme has been ported to creabb-*."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:1016
+#: includes/cli/class-doctor-command.php:1109
 msgid "Backup target"
 msgstr ""
 
 #. translators: %s: directory path.
-#: includes/cli/class-doctor-command.php:1024
+#: includes/cli/class-doctor-command.php:1117
 #, php-format
 msgid "The backup directory %s does not exist. Create it — there is no migration run without a way back."
 msgstr ""
 
 #. translators: %s: directory path.
-#: includes/cli/class-doctor-command.php:1036
+#: includes/cli/class-doctor-command.php:1129
 #, php-format
 msgid "The backup directory %s is not writable. Fix the permissions — there is no migration run without a way back."
 msgstr ""
 
 #. translators: %s: directory path.
-#: includes/cli/class-doctor-command.php:1047
+#: includes/cli/class-doctor-command.php:1141
 #, php-format
-msgid "writable: %s"
+msgid "writable, but the web server serves %s — a database dump placed there can be downloaded by anyone who guesses its name. Choose a directory outside the web root, or delete the dump the moment the migration is accepted."
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:1191
+#. translators: %s: directory path.
+#: includes/cli/class-doctor-command.php:1152
+#, php-format
+msgid "writable, outside the web root: %s"
+msgstr ""
+
+#: includes/cli/class-doctor-command.php:1321
 msgid "Theme block templates"
 msgstr ""
 
-#: includes/cli/class-doctor-command.php:1205
+#: includes/cli/class-doctor-command.php:1335
 msgid "no areoi/ block in templates/*.html or parts/*.html of the active theme"
 msgstr ""
 
 #. translators: %s: comma separated list of file paths.
-#: includes/cli/class-doctor-command.php:1216
+#: includes/cli/class-doctor-command.php:1346
 #, php-format
 msgid "These theme files carry areoi/ blocks and are NOT in the database — no migration run touches them: %s. Rename the blocks in the theme repository and roll the theme out."
 msgstr ""
@@ -736,7 +742,7 @@ msgid "Reconciliation failed with %1$d findings. Restore the backup: %2$s"
 msgstr ""
 
 #: includes/cli/class-migrate-command.php:455
-#: includes/cli/class-migrate-command.php:1329
+#: includes/cli/class-migrate-command.php:1351
 msgid "(none taken)"
 msgstr ""
 
@@ -811,35 +817,41 @@ msgid "The backup directory %s is missing or not writable."
 msgstr ""
 
 #. translators: %s: backup path.
-#: includes/cli/class-migrate-command.php:871
+#: includes/cli/class-migrate-command.php:870
+#, php-format
+msgid "The backup %s is written into a directory the web server serves. Anyone who guesses the name can download the full database. Move it out of the web root when the run is done, and delete it once the migration is accepted."
+msgstr ""
+
+#. translators: %s: backup path.
+#: includes/cli/class-migrate-command.php:893
 #, php-format
 msgid "The backup %s already exists. Choose a different path — overwriting it would destroy the way back from an earlier run."
 msgstr ""
 
 #. translators: %s: path of the uncompressed dump.
-#: includes/cli/class-migrate-command.php:885
+#: includes/cli/class-migrate-command.php:907
 #, php-format
 msgid "The uncompressed dump %s already exists. Remove it or choose a different path."
 msgstr ""
 
-#: includes/cli/class-migrate-command.php:930
+#: includes/cli/class-migrate-command.php:952
 msgid "The dump could not be compressed."
 msgstr ""
 
 #. translators: %s: backup path.
-#: includes/cli/class-migrate-command.php:951
+#: includes/cli/class-migrate-command.php:973
 #, php-format
 msgid "The dump could not be compressed completely — %s is truncated. The uncompressed dump is kept."
 msgstr ""
 
 #. translators: 1: backup path, 2: expected byte count, 3: byte count read back.
-#: includes/cli/class-migrate-command.php:978
+#: includes/cli/class-migrate-command.php:1000
 #, php-format
 msgid "The backup %1$s does not read back completely: %2$d bytes written, %3$d bytes read. The uncompressed dump is kept."
 msgstr ""
 
 #. translators: 1: number of findings, 2: backup path.
-#: includes/cli/class-migrate-command.php:1327
+#: includes/cli/class-migrate-command.php:1349
 #, php-format
 msgid "%1$d carriers could not be rewritten. Restore the backup: %2$s"
 msgstr ""
