@@ -1,0 +1,1413 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/content-grid-item",
+	"title": "Content Grid Item",
+	"category": "creabb-strips",
+	"description": "A single item within a content grid.",
+	"icon": "grid-view",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"strip"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_xs",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_xs",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xs"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_xs",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_xs",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-0",
+												"label": "0"
+											},
+											{
+												"value": "col-1",
+												"label": "1"
+											},
+											{
+												"value": "col-2",
+												"label": "2"
+											},
+											{
+												"value": "col-3",
+												"label": "3"
+											},
+											{
+												"value": "col-4",
+												"label": "4"
+											},
+											{
+												"value": "col-5",
+												"label": "5"
+											},
+											{
+												"value": "col-6",
+												"label": "6"
+											},
+											{
+												"value": "col-7",
+												"label": "7"
+											},
+											{
+												"value": "col-8",
+												"label": "8"
+											},
+											{
+												"value": "col-9",
+												"label": "9"
+											},
+											{
+												"value": "col-10",
+												"label": "10"
+											},
+											{
+												"value": "col-11",
+												"label": "11"
+											},
+											{
+												"value": "col-12",
+												"label": "12"
+											},
+											{
+												"value": "col-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xs"
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_sm",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-sm-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-sm-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-sm-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_sm",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-sm-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-sm-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-sm-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-sm-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-sm-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-sm-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_sm"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_sm",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_sm",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-sm-0",
+												"label": "0"
+											},
+											{
+												"value": "col-sm-1",
+												"label": "1"
+											},
+											{
+												"value": "col-sm-2",
+												"label": "2"
+											},
+											{
+												"value": "col-sm-3",
+												"label": "3"
+											},
+											{
+												"value": "col-sm-4",
+												"label": "4"
+											},
+											{
+												"value": "col-sm-5",
+												"label": "5"
+											},
+											{
+												"value": "col-sm-6",
+												"label": "6"
+											},
+											{
+												"value": "col-sm-7",
+												"label": "7"
+											},
+											{
+												"value": "col-sm-8",
+												"label": "8"
+											},
+											{
+												"value": "col-sm-9",
+												"label": "9"
+											},
+											{
+												"value": "col-sm-10",
+												"label": "10"
+											},
+											{
+												"value": "col-sm-11",
+												"label": "11"
+											},
+											{
+												"value": "col-sm-12",
+												"label": "12"
+											},
+											{
+												"value": "col-sm-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_sm"
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_md",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-md-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-md-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-md-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_md",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-md-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-md-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-md-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-md-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-md-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-md-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_md"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_md",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_md",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-md-0",
+												"label": "0"
+											},
+											{
+												"value": "col-md-1",
+												"label": "1"
+											},
+											{
+												"value": "col-md-2",
+												"label": "2"
+											},
+											{
+												"value": "col-md-3",
+												"label": "3"
+											},
+											{
+												"value": "col-md-4",
+												"label": "4"
+											},
+											{
+												"value": "col-md-5",
+												"label": "5"
+											},
+											{
+												"value": "col-md-6",
+												"label": "6"
+											},
+											{
+												"value": "col-md-7",
+												"label": "7"
+											},
+											{
+												"value": "col-md-8",
+												"label": "8"
+											},
+											{
+												"value": "col-md-9",
+												"label": "9"
+											},
+											{
+												"value": "col-md-10",
+												"label": "10"
+											},
+											{
+												"value": "col-md-11",
+												"label": "11"
+											},
+											{
+												"value": "col-md-12",
+												"label": "12"
+											},
+											{
+												"value": "col-md-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_md"
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_lg",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-lg-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-lg-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-lg-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_lg",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-lg-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-lg-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-lg-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-lg-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-lg-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-lg-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_lg"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_lg",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_lg",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-lg-0",
+												"label": "0"
+											},
+											{
+												"value": "col-lg-1",
+												"label": "1"
+											},
+											{
+												"value": "col-lg-2",
+												"label": "2"
+											},
+											{
+												"value": "col-lg-3",
+												"label": "3"
+											},
+											{
+												"value": "col-lg-4",
+												"label": "4"
+											},
+											{
+												"value": "col-lg-5",
+												"label": "5"
+											},
+											{
+												"value": "col-lg-6",
+												"label": "6"
+											},
+											{
+												"value": "col-lg-7",
+												"label": "7"
+											},
+											{
+												"value": "col-lg-8",
+												"label": "8"
+											},
+											{
+												"value": "col-lg-9",
+												"label": "9"
+											},
+											{
+												"value": "col-lg-10",
+												"label": "10"
+											},
+											{
+												"value": "col-lg-11",
+												"label": "11"
+											},
+											{
+												"value": "col-lg-12",
+												"label": "12"
+											},
+											{
+												"value": "col-lg-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_lg"
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_xl",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-xl-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-xl-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-xl-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_xl",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-xl-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-xl-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-xl-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-xl-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-xl-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-xl-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xl"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_xl",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_xl",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-xl-0",
+												"label": "0"
+											},
+											{
+												"value": "col-xl-1",
+												"label": "1"
+											},
+											{
+												"value": "col-xl-2",
+												"label": "2"
+											},
+											{
+												"value": "col-xl-3",
+												"label": "3"
+											},
+											{
+												"value": "col-xl-4",
+												"label": "4"
+											},
+											{
+												"value": "col-xl-5",
+												"label": "5"
+											},
+											{
+												"value": "col-xl-6",
+												"label": "6"
+											},
+											{
+												"value": "col-xl-7",
+												"label": "7"
+											},
+											{
+												"value": "col-xl-8",
+												"label": "8"
+											},
+											{
+												"value": "col-xl-9",
+												"label": "9"
+											},
+											{
+												"value": "col-xl-10",
+												"label": "10"
+											},
+											{
+												"value": "col-xl-11",
+												"label": "11"
+											},
+											{
+												"value": "col-xl-12",
+												"label": "12"
+											},
+											{
+												"value": "col-xl-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xl"
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "vertical_align_xxl",
+										"type": "creabb/select",
+										"label": "Vertical alignment",
+										"help": "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "align-items-xxl-start",
+												"label": "Start"
+											},
+											{
+												"value": "align-items-xxl-center",
+												"label": "Center"
+											},
+											{
+												"value": "align-items-xxl-end",
+												"label": "End"
+											}
+										]
+									},
+									{
+										"id": "horizontal_align_xxl",
+										"type": "creabb/select",
+										"label": "Horizontal alignment",
+										"help": "Aligns the item content from left to right inside the card body, from this breakpoint upwards.",
+										"options": [
+											{
+												"value": "",
+												"label": "Default"
+											},
+											{
+												"value": "justify-content-xxl-start",
+												"label": "Start"
+											},
+											{
+												"value": "justify-content-xxl-center",
+												"label": "Center"
+											},
+											{
+												"value": "justify-content-xxl-end",
+												"label": "End"
+											},
+											{
+												"value": "justify-content-xxl-around",
+												"label": "Around"
+											},
+											{
+												"value": "justify-content-xxl-between",
+												"label": "Between"
+											},
+											{
+												"value": "justify-content-xxl-evenly",
+												"label": "Evenly"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xxl"
+							},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "background_hide_xxl",
+										"type": "toggle",
+										"label": "Hide background at this breakpoint",
+										"help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+									},
+									{
+										"id": "background_col_xxl",
+										"type": "creabb/select",
+										"label": "Background columns",
+										"help": "Width of the background layer's grid column at this breakpoint.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "col-xxl-0",
+												"label": "0"
+											},
+											{
+												"value": "col-xxl-1",
+												"label": "1"
+											},
+											{
+												"value": "col-xxl-2",
+												"label": "2"
+											},
+											{
+												"value": "col-xxl-3",
+												"label": "3"
+											},
+											{
+												"value": "col-xxl-4",
+												"label": "4"
+											},
+											{
+												"value": "col-xxl-5",
+												"label": "5"
+											},
+											{
+												"value": "col-xxl-6",
+												"label": "6"
+											},
+											{
+												"value": "col-xxl-7",
+												"label": "7"
+											},
+											{
+												"value": "col-xxl-8",
+												"label": "8"
+											},
+											{
+												"value": "col-xxl-9",
+												"label": "9"
+											},
+											{
+												"value": "col-xxl-10",
+												"label": "10"
+											},
+											{
+												"value": "col-xxl-11",
+												"label": "11"
+											},
+											{
+												"value": "col-xxl-12",
+												"label": "12"
+											},
+											{
+												"value": "col-xxl-auto",
+												"label": "Auto"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xxl"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Item media",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "media_fit",
+						"type": "creabb/select",
+						"label": "Media fit",
+						"help": "How the media fills its container: Cover, Contain, or the dimensions set below.",
+						"options": [
+							{
+								"value": "cover",
+								"label": "Cover"
+							},
+							{
+								"value": "contain",
+								"label": "Contain"
+							},
+							{
+								"value": "set",
+								"label": "Set dimensions"
+							}
+						]
+					},
+					{
+						"id": "media_height",
+						"type": "text",
+						"label": "Media height",
+						"help": "Maximum height of the media in pixels. Only used with Media fit set to Set dimensions; an empty value falls back to 50."
+					},
+					{
+						"id": "media_width",
+						"type": "text",
+						"label": "Media width",
+						"help": "Maximum width of the media in pixels. Only used with Media fit set to Set dimensions; an empty value falls back to 100."
+					},
+					{
+						"id": "media_align",
+						"type": "creabb/select",
+						"label": "Media alignment",
+						"help": "Alignment of the media inside its container. An empty value falls back to Center.",
+						"options": [
+							{
+								"value": "start",
+								"label": "Start"
+							},
+							{
+								"value": "center",
+								"label": "Center"
+							},
+							{
+								"value": "end",
+								"label": "End"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Background",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "background_display",
+						"type": "toggle",
+						"label": "Show background",
+						"help": "Turns on the background layer below — its color, overlay and alignment fields only take effect while this is on."
+					},
+					{
+						"id": "background_color",
+						"type": "creabb/color",
+						"label": "Background color",
+						"help": "Only the rgb values are used for rendering. The remaining keys are kept for compatibility with the previous plugin.",
+						"conditions": [
+							[
+								{
+									"id": "background_display",
+									"operator": "==",
+									"value": true
+								}
+							]
+						]
+					},
+					{
+						"id": "background_display_overlay",
+						"type": "toggle",
+						"label": "Show overlay",
+						"help": "Turns on the overlay layer, drawn above the background color. The overlay color below only takes effect while this is on.",
+						"conditions": [
+							[
+								{
+									"id": "background_display",
+									"operator": "==",
+									"value": true
+								}
+							]
+						]
+					},
+					{
+						"id": "background_overlay",
+						"type": "creabb/color",
+						"label": "Overlay color",
+						"help": "Drawn as a layer above the background color. Like the background color, only the rgb values are used for rendering.",
+						"conditions": [
+							[
+								{
+									"id": "background_display_overlay",
+									"operator": "==",
+									"value": true
+								}
+							]
+						]
+					},
+					{
+						"id": "background_horizontal_align",
+						"type": "creabb/select",
+						"label": "Horizontal background alignment",
+						"help": "Aligns the background layer within its row when the background column width is narrower than the full row. Has no visible effect at full width.",
+						"options": [
+							{
+								"value": "justify-content-start",
+								"label": "Left"
+							},
+							{
+								"value": "justify-content-center",
+								"label": "Center"
+							},
+							{
+								"value": "justify-content-end",
+								"label": "Right"
+							}
+						],
+						"conditions": [
+							[
+								{
+									"id": "background_display",
+									"operator": "==",
+									"value": true
+								}
+							]
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Utility classes",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"type": "message",
+						"value": "Stored for compatibility with the previous plugin. This block does not render utility classes."
+					},
+					{
+						"id": "utilities_bg",
+						"type": "creabb/select",
+						"label": "Background utilities",
+						"help": "Bootstrap background-color utility class.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "bg-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "bg-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "bg-success",
+								"label": "Success"
+							},
+							{
+								"value": "bg-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "bg-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "bg-info",
+								"label": "Info"
+							},
+							{
+								"value": "bg-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "bg-light",
+								"label": "Light"
+							},
+							{
+								"value": "bg-body",
+								"label": "Body"
+							}
+						]
+					},
+					{
+						"id": "utilities_text",
+						"type": "creabb/select",
+						"label": "Text utilities",
+						"help": "Bootstrap text-color utility class.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "text-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "text-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "text-success",
+								"label": "Success"
+							},
+							{
+								"value": "text-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "text-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "text-info",
+								"label": "Info"
+							},
+							{
+								"value": "text-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "text-light",
+								"label": "Light"
+							},
+							{
+								"value": "text-white",
+								"label": "White"
+							}
+						]
+					},
+					{
+						"id": "utilities_border",
+						"type": "creabb/select",
+						"label": "Border utilities",
+						"help": "Bootstrap border-color utility class.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "border-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "border-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "border-success",
+								"label": "Success"
+							},
+							{
+								"value": "border-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "border-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "border-info",
+								"label": "Info"
+							},
+							{
+								"value": "border-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "border-light",
+								"label": "Light"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Link",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "url",
+						"type": "text",
+						"label": "Link URL",
+						"help": "Turns the whole grid item into a link. The anchor is rendered behind the content and covers the item."
+					},
+					{
+						"id": "url_title",
+						"type": "text",
+						"label": "Link title",
+						"help": "Title attribute of the link created by the URL above. Shown as a tooltip by most browsers."
+					},
+					{
+						"id": "linkTarget",
+						"type": "creabb/select",
+						"label": "Link target",
+						"help": "Controls whether the link created by the URL above opens in the same tab or a new one.",
+						"options": [
+							{
+								"value": "",
+								"label": "Default"
+							},
+							{
+								"value": "_blank",
+								"label": "New tab"
+							}
+						]
+					},
+					{
+						"id": "rel",
+						"type": "text",
+						"label": "Link relationship",
+						"help": "Value of the rel attribute on the link created by the URL above, for example nofollow or noopener."
+					},
+					{
+						"id": "title",
+						"type": "text",
+						"label": "Title attribute",
+						"help": "Kept for compatibility. The rendered title attribute comes from the link title above."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					},
+					{
+						"id": "parent_id",
+						"type": "text",
+						"label": "Parent block ID",
+						"help": "Block ID of the surrounding content grid. It supplies the item style."
+					},
+					{
+						"id": "style",
+						"type": "creabb/select",
+						"label": "Item style",
+						"help": "Stored copy of the item style. The rendering takes this value from the surrounding content grid instead, through the parent block ID above.",
+						"options": [
+							{
+								"value": "flush",
+								"label": "Flush"
+							},
+							{
+								"value": "card",
+								"label": "Card"
+							},
+							{
+								"value": "full",
+								"label": "Full"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"parent": [
+		"creabb/content-grid"
+	]
+}

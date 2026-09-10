@@ -1,0 +1,144 @@
+/*
+ * Block CSS of `creabb/banner`.
+ *
+ * Uebernommen aus `blocks/banner/style.css` des Alt-Plugins, Zeichen fuer
+ * Zeichen, einschliesslich der beiden `@media`-Bloecke bei 576px und 992px.
+ *
+ * Hier haengt die gesamte Geometrie des Blocks: `.areoi-banner-grid` traegt die
+ * Hoehe (`100vh`, mit `small` und `medium` als Abstufungen), das Rasterlayout
+ * der Spalten und die Positionierung von Medium und Inhalt. Fehlt die Datei,
+ * faellt der Banner auf Inhaltshoehe zusammen und die Spalten stapeln sich —
+ * bei zeichengleichem Markup.
+ *
+ * Jeder Selektor steht doppelt, solange der Schalter `legacy_classes` an ist
+ * (Vertragsregel 2.2).
+ */
+
+.creabb-banner-grid,
+.areoi-banner-grid {
+    height: 200vh;
+}
+.creabb-banner-grid.creabb-small,
+.areoi-banner-grid.areoi-small {
+    height: 100vh;
+}
+.creabb-banner-grid.creabb-medium,
+.areoi-banner-grid.areoi-medium {
+    height: 150vh;
+}
+.creabb-banner-grid > div,
+.areoi-banner-grid > div {
+    height: 100%;
+}
+.creabb-banner-grid > div > .row,
+.areoi-banner-grid > div > .row {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+.creabb-banner-grid > div > .row > .col:first-of-type,
+.areoi-banner-grid > div > .row > .col:first-of-type {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+      grid-row-end: 3;
+}
+.creabb-banner-grid .creabb-banner-item,
+.areoi-banner-grid .areoi-banner-item {
+    height: 100%;
+    align-items: flex-end;
+}
+.creabb-banner-grid .creabb-banner-content,
+.areoi-banner-grid .areoi-banner-content {
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: calc(2rem + var(--bs-gutter-x) * .5);
+}
+.creabb-banner-grid .creabb-banner-content :last-child,
+.areoi-banner-grid .areoi-banner-content :last-child {
+    margin-bottom: 0;
+}
+
+@media only screen and ( min-width: 576px ) {
+    .creabb-banner-grid,
+    .areoi-banner-grid {
+        height: 100vh;
+    }
+    .creabb-banner-grid.creabb-small,
+    .areoi-banner-grid.areoi-small {
+        height: 50vh;
+    }
+    .creabb-banner-grid.creabb-medium,
+    .areoi-banner-grid.areoi-medium {
+        height: 75vh;
+    }
+    .creabb-banner-grid > div > .row,
+    .areoi-banner-grid > div > .row {
+        grid-template-columns: 1fr 1fr;
+    }
+    .creabb-banner-grid > div > .row > .col:first-of-type,
+    .areoi-banner-grid > div > .row > .col:first-of-type {
+        grid-column-end: 3;
+    }
+    .creabb-banner-grid .creabb-banner-content,
+    .areoi-banner-grid .areoi-banner-content {
+        max-width: 540px;
+        padding: 2rem calc(var(--bs-gutter-x) * .5);
+        margin: 0;
+    }
+}
+
+@media only screen and ( min-width: 992px ) {
+    .creabb-banner-grid > div > .row,
+    .areoi-banner-grid > div > .row {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .creabb-banner-grid .creabb-banner-content,
+    .areoi-banner-grid .areoi-banner-content {
+        max-width: 500px;
+        padding: calc(2rem + var(--bs-gutter-x) * .5) 2rem;
+    }
+}
+
+
+
+.creabb-banner-stacked .creabb-banner-item,
+.areoi-banner-stacked .areoi-banner-item {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.creabb-banner-stacked.creabb-small .creabb-banner-item,
+.areoi-banner-stacked.areoi-small .areoi-banner-item {
+    min-height: 50vh;
+}
+.creabb-banner-stacked.creabb-medium .creabb-banner-item,
+.areoi-banner-stacked.areoi-medium .areoi-banner-item {
+    min-height: 75vh;
+}
+.creabb-banner-stacked .creabb-banner-item .creabb-banner-media,
+.areoi-banner-stacked .areoi-banner-item .areoi-banner-media {
+    margin: 1rem 0;
+}
+
+
+
+.creabb-banner-carousel .creabb-banner-item,
+.areoi-banner-carousel .areoi-banner-item {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
+}
+.creabb-banner-carousel.creabb-small .creabb-banner-item,
+.areoi-banner-carousel.areoi-small .areoi-banner-item {
+    height: 50vh;
+}
+.creabb-banner-carousel.creabb-medium .creabb-banner-item,
+.areoi-banner-carousel.areoi-medium .areoi-banner-item {
+    height: 75vh;
+}
+.creabb-banner-carousel .creabb-banner-item .creabb-banner-media,
+.areoi-banner-carousel .areoi-banner-item .areoi-banner-media {
+    margin: 1rem 0;
+}

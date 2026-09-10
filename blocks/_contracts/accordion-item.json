@@ -1,0 +1,58 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "anchor": {
+        "type": "string",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "parent_id": {
+        "type": "string",
+        "default": null
+    },
+    "heading": {
+        "type": "string",
+        "default": "h3"
+    },
+    "title": {
+        "type": "string",
+        "default": true
+    },
+    "open": {
+        "type": "boolean",
+        "default": false
+    },
+    "always_open": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_xs": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_sm": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_md": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_lg": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_xl": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_xxl": {
+        "type": "boolean",
+        "default": false
+    }
+}

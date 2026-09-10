@@ -1,0 +1,773 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/button",
+	"title": "Button",
+	"category": "creabb-components",
+	"description": "Custom button styles for actions in forms, dialogs, and more, with support for multiple sizes and states.",
+	"icon": "button",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"button",
+		"link"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_xs",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xs"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xs"
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_sm",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_sm"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_sm"
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_md",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_md"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_md"
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_lg",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_lg"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_lg"
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_xl",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xl"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xl"
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Display at this breakpoint",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "block_xxl",
+										"type": "toggle",
+										"label": "Full width at this breakpoint",
+										"help": "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+									}
+								]
+							},
+							{
+								"type": "custom/creabb-spacing",
+								"idStructure": "{id}_xxl"
+							},
+							{
+								"type": "custom/creabb-visibility",
+								"idStructure": "{id}_xxl"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Button",
+				"initialOpen": true,
+				"attributes": [
+					{"type": "message", "value": "Set the text here — you cannot type it directly into the block."},
+					{
+						"id": "text",
+						"type": "text",
+						"label": "Button text",
+						"help": "Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+					},
+					{
+						"id": "type",
+						"type": "creabb/select",
+						"label": "Tag name",
+						"help": "Only these four tag names are rendered; anything else falls back to a.",
+						"options": [
+							{
+								"value": "a",
+								"label": "Link"
+							},
+							{
+								"value": "button",
+								"label": "Button"
+							},
+							{
+								"value": "div",
+								"label": "Div"
+							},
+							{
+								"value": "span",
+								"label": "Span"
+							}
+						]
+					},
+					{
+						"id": "style",
+						"type": "creabb/select",
+						"label": "Button style",
+						"help": "Adds one of Bootstrap's predefined button classes, for example .btn-primary or .btn-outline-primary.",
+						"options": [
+							{
+								"value": "btn-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "btn-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "btn-success",
+								"label": "Success"
+							},
+							{
+								"value": "btn-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "btn-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "btn-info",
+								"label": "Info"
+							},
+							{
+								"value": "btn-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "btn-light",
+								"label": "Light"
+							},
+							{
+								"value": "btn-link",
+								"label": "Link"
+							},
+							{
+								"value": "btn-outline-primary",
+								"label": "Outline primary"
+							},
+							{
+								"value": "btn-outline-secondary",
+								"label": "Outline secondary"
+							},
+							{
+								"value": "btn-outline-dark",
+								"label": "Outline dark"
+							},
+							{
+								"value": "btn-outline-light",
+								"label": "Outline light"
+							}
+						]
+					},
+					{
+						"id": "size",
+						"type": "creabb/select",
+						"label": "Button size",
+						"help": "Adds .btn-lg or .btn-sm for a larger or smaller button.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "btn-sm",
+								"label": "Small"
+							},
+							{
+								"value": "btn-lg",
+								"label": "Large"
+							}
+						]
+					},
+					{
+						"id": "text_wrap",
+						"type": "creabb/select",
+						"label": "Text wrapping",
+						"help": "Adds .text-nowrap so the button text is kept on one line.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "text-nowrap",
+								"label": "No wrapping"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Link",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "url",
+						"type": "text",
+						"label": "Link URL",
+						"help": "Rendered as the href attribute of the button."
+					},
+					{
+						"id": "url_title",
+						"type": "text",
+						"label": "Link title",
+						"help": "Rendered as the title attribute."
+					},
+					{
+						"id": "title",
+						"type": "text",
+						"label": "Title attribute",
+						"help": "Kept for compatibility. The rendered title attribute comes from the link title above."
+					},
+					{
+						"id": "linkTarget",
+						"type": "creabb/select",
+						"label": "Link target",
+						"help": "Rendered as the target attribute. New tab writes _blank.",
+						"options": [
+							{
+								"value": "",
+								"label": "Default"
+							},
+							{
+								"value": "_blank",
+								"label": "New tab"
+							}
+						]
+					},
+					{
+						"id": "rel",
+						"type": "text",
+						"label": "Link relationship",
+						"help": "Rendered as the rel attribute, for example nofollow or noopener."
+					},
+					{
+						"id": "link_to_modal",
+						"type": "toggle",
+						"label": "Link opens a modal",
+						"help": "Adds Bootstrap's modal data attributes with the link URL as the target. Only rendered when a URL is set and the filter crea_bootstrap_blocks_button_modal returns true."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Icon",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "include_icon",
+						"type": "toggle",
+						"label": "Show icon",
+						"help": "Shows the icon configured below. The icon is only rendered when an icon class and an icon size are set as well."
+					},
+					{
+						"id": "icon",
+						"type": "text",
+						"label": "Icon class",
+						"help": "A Bootstrap Icons class such as bi-activity. Bootstrap Icons must be enabled under Appearance, CreaBootstrapBlocks, Assets — or come from the theme."
+					},
+					{
+						"id": "icon_size",
+						"type": "text",
+						"label": "Icon size",
+						"help": "Numeric value without a unit; pixels are added on output."
+					},
+					{
+						"id": "icon_position",
+						"type": "creabb/select",
+						"label": "Icon position",
+						"help": "Places the icon before or after the button text.",
+						"options": [
+							{
+								"value": "prepend",
+								"label": "Before the text"
+							},
+							{
+								"value": "append",
+								"label": "After the text"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Badge",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "badge",
+						"type": "toggle",
+						"label": "Show badge",
+						"help": "Adds a Bootstrap badge inside the button, after the text and the icon."
+					},
+					{
+						"id": "badge_content",
+						"type": "text",
+						"label": "Badge content",
+						"help": "Content of the badge, usually a number. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+					},
+					{
+						"id": "badge_style",
+						"type": "creabb/select",
+						"label": "Badge style",
+						"help": "Adds .rounded-pill to give the badge a larger border radius.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "rounded-pill",
+								"label": "Pill"
+							}
+						]
+					},
+					{
+						"id": "badge_background",
+						"type": "creabb/select",
+						"label": "Badge background",
+						"help": "Adds a Bootstrap background-color utility class to the badge.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "bg-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "bg-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "bg-success",
+								"label": "Success"
+							},
+							{
+								"value": "bg-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "bg-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "bg-info",
+								"label": "Info"
+							},
+							{
+								"value": "bg-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "bg-light",
+								"label": "Light"
+							}
+						]
+					},
+					{
+						"id": "badge_text_color",
+						"type": "creabb/select",
+						"label": "Badge text color",
+						"help": "Adds a Bootstrap text-color utility class to the badge.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "text-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "text-light",
+								"label": "Light"
+							},
+							{
+								"value": "text-white",
+								"label": "White"
+							}
+						]
+					},
+					{
+						"id": "badge_classes",
+						"type": "text",
+						"label": "Badge classes",
+						"help": "Further classes for the badge, added after the three fields above — for example Bootstrap's position utilities."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Popover",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "popover",
+						"type": "toggle",
+						"label": "Show popover",
+						"help": "Wraps the button in a popover container. Bootstrap's JavaScript is required for the popover to open."
+					},
+					{
+						"id": "popover_title",
+						"type": "text",
+						"label": "Popover title",
+						"help": "Heading of the popover, rendered as the title attribute of the popover container."
+					},
+					{
+						"id": "popover_content",
+						"type": "text",
+						"label": "Popover content",
+						"help": "Body text of the popover."
+					},
+					{
+						"id": "popover_direction",
+						"type": "creabb/select",
+						"label": "Popover direction",
+						"help": "Side of the button on which the popover opens. Directions are mirrored in right-to-left languages.",
+						"options": [
+							{
+								"value": "top",
+								"label": "Top"
+							},
+							{
+								"value": "bottom",
+								"label": "Bottom"
+							},
+							{
+								"value": "left",
+								"label": "Left"
+							},
+							{
+								"value": "right",
+								"label": "Right"
+							}
+						]
+					},
+					{
+						"id": "popover_trigger",
+						"type": "creabb/select",
+						"label": "Popover trigger",
+						"help": "Event that opens the popover. Default is a click; the popover opens on focus in either case.",
+						"options": [
+							{
+								"value": "",
+								"label": "Default"
+							},
+							{
+								"value": "click",
+								"label": "Click"
+							},
+							{
+								"value": "hover",
+								"label": "Hover"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Tooltip",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "tooltip",
+						"type": "toggle",
+						"label": "Show tooltip",
+						"help": "Adds Bootstrap's tooltip attributes to the button. Bootstrap's JavaScript is required for the tooltip to appear."
+					},
+					{
+						"id": "tooltip_content",
+						"type": "text",
+						"label": "Tooltip content",
+						"help": "Text shown in the tooltip. It is rendered as the button's title attribute."
+					},
+					{
+						"id": "tooltip_direction",
+						"type": "creabb/select",
+						"label": "Tooltip direction",
+						"help": "Side of the button on which the tooltip appears. Directions are mirrored in right-to-left languages.",
+						"options": [
+							{
+								"value": "top",
+								"label": "Top"
+							},
+							{
+								"value": "bottom",
+								"label": "Bottom"
+							},
+							{
+								"value": "left",
+								"label": "Left"
+							},
+							{
+								"value": "right",
+								"label": "Right"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Dropdown",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "dropdown",
+						"type": "toggle",
+						"label": "Show dropdown",
+						"help": "Turns the button into a dropdown toggle. The child blocks of this button are only rendered inside the dropdown menu — with the dropdown switched off they do not appear at all."
+					},
+					{
+						"id": "dropdown_style",
+						"type": "creabb/select",
+						"label": "Dropdown style",
+						"help": "Adds .dropdown-menu-dark for a dark dropdown menu.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "dropdown-menu-dark",
+								"label": "Dark"
+							}
+						]
+					},
+					{
+						"id": "dropdown_auto_close",
+						"type": "creabb/select",
+						"label": "Dropdown auto close",
+						"help": "Controls whether a click inside the menu, outside it, both or neither closes the open dropdown.",
+						"options": [
+							{
+								"value": "true",
+								"label": "Always"
+							},
+							{
+								"value": "inside",
+								"label": "Inside"
+							},
+							{
+								"value": "outside",
+								"label": "Outside"
+							},
+							{
+								"value": "false",
+								"label": "Never"
+							}
+						]
+					},
+					{
+						"id": "dropdown_direction",
+						"type": "creabb/select",
+						"label": "Dropdown direction",
+						"help": "Direction in which the dropdown menu opens. Directions are mirrored in right-to-left languages.",
+						"options": [
+							{
+								"value": "dropdown",
+								"label": "Down"
+							},
+							{
+								"value": "dropup",
+								"label": "Up"
+							},
+							{
+								"value": "dropend",
+								"label": "End"
+							},
+							{
+								"value": "dropstart",
+								"label": "Start"
+							}
+						]
+					},
+					{
+						"id": "dropdown_menu_alignment",
+						"type": "creabb/select",
+						"label": "Dropdown alignment",
+						"help": "Adds .dropdown-menu-end to align the menu with the end of the button.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "dropdown-menu-end",
+								"label": "End"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

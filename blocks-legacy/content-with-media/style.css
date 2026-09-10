@@ -1,0 +1,22 @@
+/*
+ * Block CSS of `creabb/content-with-media`.
+ *
+ * Uebernommen aus `blocks/content-with-media/style.css` des Alt-Plugins. Das
+ * Original haengt es ueber `class.areoi.styles.php:183` je Block ein, sobald
+ * der Block im Inhalt vorkommt; Blockstudio macht dasselbe von sich aus, sobald
+ * eine `style.css` neben der `block.json` liegt.
+ *
+ * Ohne diese drei Deklarationen stehen die beiden Spalten des Blocks nicht auf
+ * gleicher Hoehe — das Markup ist dabei zeichengleich mit dem des Originals.
+ * Genau deshalb konnte der Mangel keiner Markup-Pruefung auffallen.
+ *
+ * Jeder Selektor steht doppelt, solange der Schalter `legacy_classes` an ist
+ * (Vertragsregel 2.2). Die Bloecke geben beide Klassensaetze aus; das
+ * Stylesheet kann den Schalter nicht kennen und deckt deshalb beide ab.
+ */
+
+.creabb-content-with-media,
+.areoi-content-with-media {
+    display: flex;
+    align-items: stretch;
+}

@@ -1,0 +1,50 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "anchor": {
+        "type": "string",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "type": {
+        "type": "string",
+        "default": "dropdown-item"
+    },
+    "active": {
+        "type": "boolean",
+        "default": false
+    },
+    "disabled": {
+        "type": "boolean",
+        "default": false
+    },
+    "url": {
+        "type": "string",
+        "default": null
+    },
+    "url_title": {
+        "type": "string",
+        "default": null
+    },
+    "title": {
+        "type": "string",
+        "default": null
+    },
+    "text": {
+        "type": "string",
+        "default": null
+    },
+    "linkTarget": {
+        "type": "string",
+        "default": null
+    },
+    "rel": {
+        "type": "string",
+        "default": null
+    }
+}

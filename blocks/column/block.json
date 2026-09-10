@@ -1,0 +1,292 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/column",
+	"title": "Column",
+	"category": "creabb-layout",
+	"description": "Modify columns with a handful of options for alignment, ordering, and offsetting thanks to the flexbox grid system.",
+	"icon": "table-col-after",
+	"keywords": ["areoi", "creabb", "bootstrap", "layout", "column"],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {"anchor": true, "align": false, "html": false},
+	"usesContext": ["creabb/isFlex"],
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{"type": "message", "value": "Extra small · no Bootstrap infix (default size)"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_xs", "type": "creabb/select", "label": "Column width · col-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-0", "label": "0"}, {"value": "col-1", "label": "1"}, {"value": "col-2", "label": "2"}, {"value": "col-3", "label": "3"}, {"value": "col-4", "label": "4"}, {"value": "col-5", "label": "5"}, {"value": "col-6", "label": "6"}, {"value": "col-7", "label": "7"}, {"value": "col-8", "label": "8"}, {"value": "col-9", "label": "9"}, {"value": "col-10", "label": "10"}, {"value": "col-11", "label": "11"}, {"value": "col-12", "label": "12"}, {"value": "col-auto", "label": "Auto"}]},
+									{"id": "offset_xs", "type": "creabb/select", "label": "Offset · offset-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-0", "label": "0"}, {"value": "offset-1", "label": "1"}, {"value": "offset-2", "label": "2"}, {"value": "offset-3", "label": "3"}, {"value": "offset-4", "label": "4"}, {"value": "offset-5", "label": "5"}, {"value": "offset-6", "label": "6"}, {"value": "offset-7", "label": "7"}, {"value": "offset-8", "label": "8"}, {"value": "offset-9", "label": "9"}, {"value": "offset-10", "label": "10"}, {"value": "offset-11", "label": "11"}, {"value": "offset-12", "label": "12"}, {"value": "offset-auto", "label": "Auto"}]},
+									{"id": "order_xs", "type": "creabb/select", "label": "Order · order-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-0", "label": "0"}, {"value": "order-1", "label": "1"}, {"value": "order-2", "label": "2"}, {"value": "order-3", "label": "3"}, {"value": "order-4", "label": "4"}, {"value": "order-5", "label": "5"}, {"value": "order-6", "label": "6"}, {"value": "order-7", "label": "7"}, {"value": "order-8", "label": "8"}, {"value": "order-9", "label": "9"}, {"value": "order-10", "label": "10"}, {"value": "order-11", "label": "11"}, {"value": "order-12", "label": "12"}, {"value": "order-auto", "label": "Auto"}]},
+									{"id": "vertical_align_xs", "type": "creabb/select", "label": "Vertical alignment · align-self-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-start", "label": "Start"}, {"value": "align-self-center", "label": "Center"}, {"value": "align-self-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xs"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_xs", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_xs", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-0", "label": "0"}, {"value": "col-1", "label": "1"}, {"value": "col-2", "label": "2"}, {"value": "col-3", "label": "3"}, {"value": "col-4", "label": "4"}, {"value": "col-5", "label": "5"}, {"value": "col-6", "label": "6"}, {"value": "col-7", "label": "7"}, {"value": "col-8", "label": "8"}, {"value": "col-9", "label": "9"}, {"value": "col-10", "label": "10"}, {"value": "col-11", "label": "11"}, {"value": "col-12", "label": "12"}, {"value": "col-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_xs", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xs"}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{"type": "message", "value": "Small · Bootstrap infix sm"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_sm", "type": "creabb/select", "label": "Column width · col-sm-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-sm-0", "label": "0"}, {"value": "col-sm-1", "label": "1"}, {"value": "col-sm-2", "label": "2"}, {"value": "col-sm-3", "label": "3"}, {"value": "col-sm-4", "label": "4"}, {"value": "col-sm-5", "label": "5"}, {"value": "col-sm-6", "label": "6"}, {"value": "col-sm-7", "label": "7"}, {"value": "col-sm-8", "label": "8"}, {"value": "col-sm-9", "label": "9"}, {"value": "col-sm-10", "label": "10"}, {"value": "col-sm-11", "label": "11"}, {"value": "col-sm-12", "label": "12"}, {"value": "col-sm-auto", "label": "Auto"}]},
+									{"id": "offset_sm", "type": "creabb/select", "label": "Offset · offset-sm-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-sm-0", "label": "0"}, {"value": "offset-sm-1", "label": "1"}, {"value": "offset-sm-2", "label": "2"}, {"value": "offset-sm-3", "label": "3"}, {"value": "offset-sm-4", "label": "4"}, {"value": "offset-sm-5", "label": "5"}, {"value": "offset-sm-6", "label": "6"}, {"value": "offset-sm-7", "label": "7"}, {"value": "offset-sm-8", "label": "8"}, {"value": "offset-sm-9", "label": "9"}, {"value": "offset-sm-10", "label": "10"}, {"value": "offset-sm-11", "label": "11"}, {"value": "offset-sm-12", "label": "12"}, {"value": "offset-sm-auto", "label": "Auto"}]},
+									{"id": "order_sm", "type": "creabb/select", "label": "Order · order-sm-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-sm-0", "label": "0"}, {"value": "order-sm-1", "label": "1"}, {"value": "order-sm-2", "label": "2"}, {"value": "order-sm-3", "label": "3"}, {"value": "order-sm-4", "label": "4"}, {"value": "order-sm-5", "label": "5"}, {"value": "order-sm-6", "label": "6"}, {"value": "order-sm-7", "label": "7"}, {"value": "order-sm-8", "label": "8"}, {"value": "order-sm-9", "label": "9"}, {"value": "order-sm-10", "label": "10"}, {"value": "order-sm-11", "label": "11"}, {"value": "order-sm-12", "label": "12"}, {"value": "order-sm-auto", "label": "Auto"}]},
+									{"id": "vertical_align_sm", "type": "creabb/select", "label": "Vertical alignment · align-self-sm-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-sm-start", "label": "Start"}, {"value": "align-self-sm-center", "label": "Center"}, {"value": "align-self-sm-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_sm"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_sm", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_sm", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-sm-0", "label": "0"}, {"value": "col-sm-1", "label": "1"}, {"value": "col-sm-2", "label": "2"}, {"value": "col-sm-3", "label": "3"}, {"value": "col-sm-4", "label": "4"}, {"value": "col-sm-5", "label": "5"}, {"value": "col-sm-6", "label": "6"}, {"value": "col-sm-7", "label": "7"}, {"value": "col-sm-8", "label": "8"}, {"value": "col-sm-9", "label": "9"}, {"value": "col-sm-10", "label": "10"}, {"value": "col-sm-11", "label": "11"}, {"value": "col-sm-12", "label": "12"}, {"value": "col-sm-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_sm", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_sm"}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{"type": "message", "value": "Medium · Bootstrap infix md"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_md", "type": "creabb/select", "label": "Column width · col-md-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-md-0", "label": "0"}, {"value": "col-md-1", "label": "1"}, {"value": "col-md-2", "label": "2"}, {"value": "col-md-3", "label": "3"}, {"value": "col-md-4", "label": "4"}, {"value": "col-md-5", "label": "5"}, {"value": "col-md-6", "label": "6"}, {"value": "col-md-7", "label": "7"}, {"value": "col-md-8", "label": "8"}, {"value": "col-md-9", "label": "9"}, {"value": "col-md-10", "label": "10"}, {"value": "col-md-11", "label": "11"}, {"value": "col-md-12", "label": "12"}, {"value": "col-md-auto", "label": "Auto"}]},
+									{"id": "offset_md", "type": "creabb/select", "label": "Offset · offset-md-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-md-0", "label": "0"}, {"value": "offset-md-1", "label": "1"}, {"value": "offset-md-2", "label": "2"}, {"value": "offset-md-3", "label": "3"}, {"value": "offset-md-4", "label": "4"}, {"value": "offset-md-5", "label": "5"}, {"value": "offset-md-6", "label": "6"}, {"value": "offset-md-7", "label": "7"}, {"value": "offset-md-8", "label": "8"}, {"value": "offset-md-9", "label": "9"}, {"value": "offset-md-10", "label": "10"}, {"value": "offset-md-11", "label": "11"}, {"value": "offset-md-12", "label": "12"}, {"value": "offset-md-auto", "label": "Auto"}]},
+									{"id": "order_md", "type": "creabb/select", "label": "Order · order-md-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-md-0", "label": "0"}, {"value": "order-md-1", "label": "1"}, {"value": "order-md-2", "label": "2"}, {"value": "order-md-3", "label": "3"}, {"value": "order-md-4", "label": "4"}, {"value": "order-md-5", "label": "5"}, {"value": "order-md-6", "label": "6"}, {"value": "order-md-7", "label": "7"}, {"value": "order-md-8", "label": "8"}, {"value": "order-md-9", "label": "9"}, {"value": "order-md-10", "label": "10"}, {"value": "order-md-11", "label": "11"}, {"value": "order-md-12", "label": "12"}, {"value": "order-md-auto", "label": "Auto"}]},
+									{"id": "vertical_align_md", "type": "creabb/select", "label": "Vertical alignment · align-self-md-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-md-start", "label": "Start"}, {"value": "align-self-md-center", "label": "Center"}, {"value": "align-self-md-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_md"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_md", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_md", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-md-0", "label": "0"}, {"value": "col-md-1", "label": "1"}, {"value": "col-md-2", "label": "2"}, {"value": "col-md-3", "label": "3"}, {"value": "col-md-4", "label": "4"}, {"value": "col-md-5", "label": "5"}, {"value": "col-md-6", "label": "6"}, {"value": "col-md-7", "label": "7"}, {"value": "col-md-8", "label": "8"}, {"value": "col-md-9", "label": "9"}, {"value": "col-md-10", "label": "10"}, {"value": "col-md-11", "label": "11"}, {"value": "col-md-12", "label": "12"}, {"value": "col-md-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_md", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_md"}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{"type": "message", "value": "Large · Bootstrap infix lg"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_lg", "type": "creabb/select", "label": "Column width · col-lg-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-lg-0", "label": "0"}, {"value": "col-lg-1", "label": "1"}, {"value": "col-lg-2", "label": "2"}, {"value": "col-lg-3", "label": "3"}, {"value": "col-lg-4", "label": "4"}, {"value": "col-lg-5", "label": "5"}, {"value": "col-lg-6", "label": "6"}, {"value": "col-lg-7", "label": "7"}, {"value": "col-lg-8", "label": "8"}, {"value": "col-lg-9", "label": "9"}, {"value": "col-lg-10", "label": "10"}, {"value": "col-lg-11", "label": "11"}, {"value": "col-lg-12", "label": "12"}, {"value": "col-lg-auto", "label": "Auto"}]},
+									{"id": "offset_lg", "type": "creabb/select", "label": "Offset · offset-lg-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-lg-0", "label": "0"}, {"value": "offset-lg-1", "label": "1"}, {"value": "offset-lg-2", "label": "2"}, {"value": "offset-lg-3", "label": "3"}, {"value": "offset-lg-4", "label": "4"}, {"value": "offset-lg-5", "label": "5"}, {"value": "offset-lg-6", "label": "6"}, {"value": "offset-lg-7", "label": "7"}, {"value": "offset-lg-8", "label": "8"}, {"value": "offset-lg-9", "label": "9"}, {"value": "offset-lg-10", "label": "10"}, {"value": "offset-lg-11", "label": "11"}, {"value": "offset-lg-12", "label": "12"}, {"value": "offset-lg-auto", "label": "Auto"}]},
+									{"id": "order_lg", "type": "creabb/select", "label": "Order · order-lg-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-lg-0", "label": "0"}, {"value": "order-lg-1", "label": "1"}, {"value": "order-lg-2", "label": "2"}, {"value": "order-lg-3", "label": "3"}, {"value": "order-lg-4", "label": "4"}, {"value": "order-lg-5", "label": "5"}, {"value": "order-lg-6", "label": "6"}, {"value": "order-lg-7", "label": "7"}, {"value": "order-lg-8", "label": "8"}, {"value": "order-lg-9", "label": "9"}, {"value": "order-lg-10", "label": "10"}, {"value": "order-lg-11", "label": "11"}, {"value": "order-lg-12", "label": "12"}, {"value": "order-lg-auto", "label": "Auto"}]},
+									{"id": "vertical_align_lg", "type": "creabb/select", "label": "Vertical alignment · align-self-lg-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-lg-start", "label": "Start"}, {"value": "align-self-lg-center", "label": "Center"}, {"value": "align-self-lg-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_lg"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_lg", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_lg", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-lg-0", "label": "0"}, {"value": "col-lg-1", "label": "1"}, {"value": "col-lg-2", "label": "2"}, {"value": "col-lg-3", "label": "3"}, {"value": "col-lg-4", "label": "4"}, {"value": "col-lg-5", "label": "5"}, {"value": "col-lg-6", "label": "6"}, {"value": "col-lg-7", "label": "7"}, {"value": "col-lg-8", "label": "8"}, {"value": "col-lg-9", "label": "9"}, {"value": "col-lg-10", "label": "10"}, {"value": "col-lg-11", "label": "11"}, {"value": "col-lg-12", "label": "12"}, {"value": "col-lg-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_lg", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_lg"}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{"type": "message", "value": "Extra large · Bootstrap infix xl"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_xl", "type": "creabb/select", "label": "Column width · col-xl-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-xl-0", "label": "0"}, {"value": "col-xl-1", "label": "1"}, {"value": "col-xl-2", "label": "2"}, {"value": "col-xl-3", "label": "3"}, {"value": "col-xl-4", "label": "4"}, {"value": "col-xl-5", "label": "5"}, {"value": "col-xl-6", "label": "6"}, {"value": "col-xl-7", "label": "7"}, {"value": "col-xl-8", "label": "8"}, {"value": "col-xl-9", "label": "9"}, {"value": "col-xl-10", "label": "10"}, {"value": "col-xl-11", "label": "11"}, {"value": "col-xl-12", "label": "12"}, {"value": "col-xl-auto", "label": "Auto"}]},
+									{"id": "offset_xl", "type": "creabb/select", "label": "Offset · offset-xl-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-xl-0", "label": "0"}, {"value": "offset-xl-1", "label": "1"}, {"value": "offset-xl-2", "label": "2"}, {"value": "offset-xl-3", "label": "3"}, {"value": "offset-xl-4", "label": "4"}, {"value": "offset-xl-5", "label": "5"}, {"value": "offset-xl-6", "label": "6"}, {"value": "offset-xl-7", "label": "7"}, {"value": "offset-xl-8", "label": "8"}, {"value": "offset-xl-9", "label": "9"}, {"value": "offset-xl-10", "label": "10"}, {"value": "offset-xl-11", "label": "11"}, {"value": "offset-xl-12", "label": "12"}, {"value": "offset-xl-auto", "label": "Auto"}]},
+									{"id": "order_xl", "type": "creabb/select", "label": "Order · order-xl-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-xl-0", "label": "0"}, {"value": "order-xl-1", "label": "1"}, {"value": "order-xl-2", "label": "2"}, {"value": "order-xl-3", "label": "3"}, {"value": "order-xl-4", "label": "4"}, {"value": "order-xl-5", "label": "5"}, {"value": "order-xl-6", "label": "6"}, {"value": "order-xl-7", "label": "7"}, {"value": "order-xl-8", "label": "8"}, {"value": "order-xl-9", "label": "9"}, {"value": "order-xl-10", "label": "10"}, {"value": "order-xl-11", "label": "11"}, {"value": "order-xl-12", "label": "12"}, {"value": "order-xl-auto", "label": "Auto"}]},
+									{"id": "vertical_align_xl", "type": "creabb/select", "label": "Vertical alignment · align-self-xl-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-xl-start", "label": "Start"}, {"value": "align-self-xl-center", "label": "Center"}, {"value": "align-self-xl-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xl"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_xl", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_xl", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-xl-0", "label": "0"}, {"value": "col-xl-1", "label": "1"}, {"value": "col-xl-2", "label": "2"}, {"value": "col-xl-3", "label": "3"}, {"value": "col-xl-4", "label": "4"}, {"value": "col-xl-5", "label": "5"}, {"value": "col-xl-6", "label": "6"}, {"value": "col-xl-7", "label": "7"}, {"value": "col-xl-8", "label": "8"}, {"value": "col-xl-9", "label": "9"}, {"value": "col-xl-10", "label": "10"}, {"value": "col-xl-11", "label": "11"}, {"value": "col-xl-12", "label": "12"}, {"value": "col-xl-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_xl", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xl"}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{"type": "message", "value": "Extra extra large · Bootstrap infix xxl"},
+							{
+								"type": "group",
+								"title": "Column",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "col_xxl", "type": "creabb/select", "label": "Column width · col-xxl-*", "help": "Number of the twelve grid columns this block occupies from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-xxl-0", "label": "0"}, {"value": "col-xxl-1", "label": "1"}, {"value": "col-xxl-2", "label": "2"}, {"value": "col-xxl-3", "label": "3"}, {"value": "col-xxl-4", "label": "4"}, {"value": "col-xxl-5", "label": "5"}, {"value": "col-xxl-6", "label": "6"}, {"value": "col-xxl-7", "label": "7"}, {"value": "col-xxl-8", "label": "8"}, {"value": "col-xxl-9", "label": "9"}, {"value": "col-xxl-10", "label": "10"}, {"value": "col-xxl-11", "label": "11"}, {"value": "col-xxl-12", "label": "12"}, {"value": "col-xxl-auto", "label": "Auto"}]},
+									{"id": "offset_xxl", "type": "creabb/select", "label": "Offset · offset-xxl-*", "help": "Empty grid columns to the left of this block.", "options": [{"value": "Default", "label": "Default"}, {"value": "offset-xxl-0", "label": "0"}, {"value": "offset-xxl-1", "label": "1"}, {"value": "offset-xxl-2", "label": "2"}, {"value": "offset-xxl-3", "label": "3"}, {"value": "offset-xxl-4", "label": "4"}, {"value": "offset-xxl-5", "label": "5"}, {"value": "offset-xxl-6", "label": "6"}, {"value": "offset-xxl-7", "label": "7"}, {"value": "offset-xxl-8", "label": "8"}, {"value": "offset-xxl-9", "label": "9"}, {"value": "offset-xxl-10", "label": "10"}, {"value": "offset-xxl-11", "label": "11"}, {"value": "offset-xxl-12", "label": "12"}, {"value": "offset-xxl-auto", "label": "Auto"}]},
+									{"id": "order_xxl", "type": "creabb/select", "label": "Order · order-xxl-*", "help": "Visual position within the row, independent of the source order.", "options": [{"value": "Default", "label": "Default"}, {"value": "order-xxl-0", "label": "0"}, {"value": "order-xxl-1", "label": "1"}, {"value": "order-xxl-2", "label": "2"}, {"value": "order-xxl-3", "label": "3"}, {"value": "order-xxl-4", "label": "4"}, {"value": "order-xxl-5", "label": "5"}, {"value": "order-xxl-6", "label": "6"}, {"value": "order-xxl-7", "label": "7"}, {"value": "order-xxl-8", "label": "8"}, {"value": "order-xxl-9", "label": "9"}, {"value": "order-xxl-10", "label": "10"}, {"value": "order-xxl-11", "label": "11"}, {"value": "order-xxl-12", "label": "12"}, {"value": "order-xxl-auto", "label": "Auto"}]},
+									{"id": "vertical_align_xxl", "type": "creabb/select", "label": "Vertical alignment · align-self-xxl-*", "help": "Alignment of this block within the row.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-self-xxl-start", "label": "Start"}, {"value": "align-self-xxl-center", "label": "Center"}, {"value": "align-self-xxl-end", "label": "End"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xxl"},
+							{
+								"type": "group",
+								"title": "Background at this breakpoint",
+								"initialOpen": false,
+								"attributes": [
+									{"id": "background_hide_xxl", "type": "toggle", "label": "Hide background at this breakpoint", "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."},
+									{"id": "background_col_xxl", "type": "creabb/select", "label": "Background columns", "help": "Width of the background layer's grid column, independent of the block's own column width.", "options": [{"value": "Default", "label": "Default"}, {"value": "col-xxl-0", "label": "0"}, {"value": "col-xxl-1", "label": "1"}, {"value": "col-xxl-2", "label": "2"}, {"value": "col-xxl-3", "label": "3"}, {"value": "col-xxl-4", "label": "4"}, {"value": "col-xxl-5", "label": "5"}, {"value": "col-xxl-6", "label": "6"}, {"value": "col-xxl-7", "label": "7"}, {"value": "col-xxl-8", "label": "8"}, {"value": "col-xxl-9", "label": "9"}, {"value": "col-xxl-10", "label": "10"}, {"value": "col-xxl-11", "label": "11"}, {"value": "col-xxl-12", "label": "12"}, {"value": "col-xxl-auto", "label": "Auto"}]}
+								]
+							},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+									{"id": "grid_row_xxl", "type": "text", "label": "Grid row", "help": "Number for the CSS grid-row property, for example 2."}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xxl"}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Background",
+				"initialOpen": false,
+				"attributes": [
+					{"id": "background_display", "type": "toggle", "label": "Show background", "help": "Turns on the background layer below — its color, overlay and alignment fields only take effect while this is on."},
+					{"id": "background_color", "type": "creabb/color", "label": "Background color", "help": "Only the rgb values are used for rendering. The remaining keys are kept for compatibility with the previous plugin.", "conditions": [[{"id": "background_display", "operator": "==", "value": true}]]},
+					{"id": "background_display_overlay", "type": "toggle", "label": "Show overlay", "help": "Turns on the overlay layer, drawn above the background color. The overlay color below only takes effect while this is on.", "conditions": [[{"id": "background_display", "operator": "==", "value": true}]]},
+					{"id": "background_overlay", "type": "creabb/color", "label": "Overlay color", "help": "Drawn as a layer above the background color. Like the background color, only the rgb values are used for rendering.", "conditions": [[{"id": "background_display_overlay", "operator": "==", "value": true}]]},
+					{"id": "background_horizontal_align", "type": "creabb/select", "label": "Horizontal background alignment", "help": "Aligns the background layer within its row when the background column width is narrower than the full row. Has no visible effect at full width.", "options": [{"value": "justify-content-start", "label": "Left"}, {"value": "justify-content-center", "label": "Center"}, {"value": "justify-content-end", "label": "Right"}], "conditions": [[{"id": "background_display", "operator": "==", "value": true}]]}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Utility classes",
+				"initialOpen": false,
+				"attributes": [
+					{"id": "utilities_bg", "type": "creabb/select", "label": "Background utilities", "help": "Applies a Bootstrap background-color utility class to this block. If the background layer is switched on, it is drawn on top and hides this utility.", "options": [{"value": "Default", "label": "Default"}, {"value": "bg-primary", "label": "Primary"}, {"value": "bg-secondary", "label": "Secondary"}, {"value": "bg-success", "label": "Success"}, {"value": "bg-warning", "label": "Warning"}, {"value": "bg-danger", "label": "Danger"}, {"value": "bg-info", "label": "Info"}, {"value": "bg-dark", "label": "Dark"}, {"value": "bg-light", "label": "Light"}, {"value": "bg-body", "label": "Body"}]},
+					{"id": "utilities_text", "type": "creabb/select", "label": "Text utilities", "help": "Applies a Bootstrap text-color utility class to this block, inherited by its content unless a nested block sets its own color.", "options": [{"value": "Default", "label": "Default"}, {"value": "text-primary", "label": "Primary"}, {"value": "text-secondary", "label": "Secondary"}, {"value": "text-success", "label": "Success"}, {"value": "text-warning", "label": "Warning"}, {"value": "text-danger", "label": "Danger"}, {"value": "text-info", "label": "Info"}, {"value": "text-dark", "label": "Dark"}, {"value": "text-light", "label": "Light"}, {"value": "text-white", "label": "White"}]},
+					{"id": "utilities_border", "type": "creabb/select", "label": "Border utilities", "help": "Applies a Bootstrap border-color utility class to this block. Bootstrap's border utilities only show a border when a border width is also set, which this field does not add.", "options": [{"value": "Default", "label": "Default"}, {"value": "border-primary", "label": "Primary"}, {"value": "border-secondary", "label": "Secondary"}, {"value": "border-success", "label": "Success"}, {"value": "border-warning", "label": "Warning"}, {"value": "border-danger", "label": "Danger"}, {"value": "border-info", "label": "Info"}, {"value": "border-dark", "label": "Dark"}, {"value": "border-light", "label": "Light"}]}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Link",
+				"initialOpen": false,
+				"attributes": [
+					{"id": "url", "type": "text", "label": "Link URL", "help": "Turns the whole column into a link. The anchor is rendered behind the content and covers the column."},
+					{"id": "url_title", "type": "text", "label": "Link title", "help": "Title attribute of the link created by the URL above. Shown as a tooltip by most browsers."},
+					{"id": "linkTarget", "type": "creabb/select", "label": "Link target", "help": "Controls whether the link created by the URL above opens in the same tab or a new one.", "options": [{"value": "", "label": "Default"}, {"value": "_blank", "label": "New tab"}]},
+					{"id": "rel", "type": "text", "label": "Link relationship", "help": "Value of the rel attribute on the link created by the URL above, for example nofollow or noopener."}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{"id": "block_id", "type": "text", "label": "Block ID", "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."}
+				]
+			}
+		]
+	}
+}

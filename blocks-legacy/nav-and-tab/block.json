@@ -1,0 +1,584 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/nav-and-tab",
+    "title": "Nav and Tab",
+    "category": "creabb-components",
+    "description": "Navigation available in Bootstrap share general markup and styles, from the base .nav class to the active and disabled states.",
+    "icon": "menu-alt",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-sm-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-md-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-md-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-md-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-md-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-md-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-md-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-md-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-lg-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-xl-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "horizontal_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal Align",
+                                        "help": "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "vertical_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Vertical Align",
+                                        "help": "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column).",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "flex-xxl-column",
+                                                "label": "Vertical"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Settings",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "id": "style",
+                        "type": "creabb/select",
+                        "label": "Style",
+                        "help": "Bootstrap nav style, added as a class: nav-tabs draws the items as tabs, nav-pills as pills.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "nav-tabs",
+                                "label": "Tabs"
+                            },
+                            {
+                                "value": "nav-pills",
+                                "label": "Pills"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "fill",
+                        "type": "creabb/select",
+                        "label": "Fill & Justify",
+                        "help": "Force your .nav’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your .nav-items, use .nav-fill. Notice that all horizontal space is occupied, but not every nav item has the same width.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "nav-fill",
+                                "label": "Fill"
+                            },
+                            {
+                                "value": "nav-justified",
+                                "label": "Justify"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    }
+                ]
+            }
+        ]
+    }
+}

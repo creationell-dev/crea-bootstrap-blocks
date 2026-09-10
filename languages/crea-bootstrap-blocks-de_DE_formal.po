@@ -1,0 +1,5061 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CreaBootstrapBlocks\n"
+"Report-Msgid-Bugs-To: https://www.creationell.de/\n"
+"Last-Translator: creationell® – die Werbeagentur <marketing@creationell.de>\n"
+"Language-Team: creationell® – die Werbeagentur <marketing@creationell.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-17T14:25:17+00:00\n"
+"PO-Revision-Date: 2026-08-17T14:25:17+00:00\n"
+"Language: de_DE_formal\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: crea-bootstrap-blocks\n"
+
+#. Plugin Name of the plugin
+#: crea-bootstrap-blocks.php
+#: includes/admin-page.php:53
+#: includes/admin-page.php:54
+#: includes/admin-page.php:79
+#: includes/class-abilities.php:79
+msgid "CreaBootstrapBlocks"
+msgstr "CreaBootstrapBlocks"
+
+#. Plugin URI of the plugin
+#: crea-bootstrap-blocks.php
+msgid "https://github.com/creationell-dev/crea-bootstrap-blocks"
+msgstr "https://github.com/creationell-dev/crea-bootstrap-blocks"
+
+#. Description of the plugin
+#: crea-bootstrap-blocks.php
+msgid "Rückwärtskompatibler Ersatz für All Bootstrap Blocks auf Basis von Blockstudio."
+msgstr "Rückwärtskompatibler Ersatz für All Bootstrap Blocks auf Basis von Blockstudio."
+
+#. Author of the plugin
+#: crea-bootstrap-blocks.php
+msgid "creationell® – die Werbeagentur"
+msgstr "creationell® – die Werbeagentur"
+
+#. Author URI of the plugin
+#: crea-bootstrap-blocks.php
+msgid "https://www.creationell.de/"
+msgstr "https://www.creationell.de/"
+
+#: crea-bootstrap-blocks.php:114
+msgid "CreaBootstrapBlocks:"
+msgstr "CreaBootstrapBlocks:"
+
+#: includes/admin-diagnose.php:124
+msgid "not determinable (no database handle)"
+msgstr "nicht ermittelbar (keine Verbindung zur Datenbank)"
+
+#: includes/admin-diagnose.php:143
+#: includes/admin-diagnose.php:318
+msgid "not set"
+msgstr "nicht gesetzt"
+
+#: includes/admin-diagnose.php:148
+#: includes/admin-diagnose.php:233
+msgid "on"
+msgstr "an"
+
+#: includes/admin-diagnose.php:149
+#: includes/admin-diagnose.php:234
+msgid "off"
+msgstr "aus"
+
+#: includes/admin-diagnose.php:156
+msgid "set, but not a scalar value"
+msgstr "gesetzt, jedoch kein einfacher Wert"
+
+#: includes/admin-diagnose.php:202
+msgid "Plugin version"
+msgstr "Plugin-Version"
+
+#: includes/admin-diagnose.php:207
+msgid "Blockstudio version"
+msgstr "Blockstudio-Version"
+
+#: includes/admin-diagnose.php:210
+msgid "not active"
+msgstr "nicht aktiv"
+
+#: includes/admin-diagnose.php:214
+msgid "Required Blockstudio version"
+msgstr "Benötigte Blockstudio-Version"
+
+#: includes/admin-diagnose.php:220
+msgid "PHP version"
+msgstr "PHP-Version"
+
+#: includes/admin-diagnose.php:224
+msgid "Bootstrap CSS"
+msgstr "Bootstrap CSS"
+
+#: includes/admin-diagnose.php:225
+msgid "Bootstrap JavaScript"
+msgstr "Bootstrap JavaScript"
+
+#: includes/admin-diagnose.php:226
+#: includes/cli/class-doctor-command.php:764
+msgid "Bootstrap Icons"
+msgstr "Bootstrap Icons"
+
+#: includes/admin-diagnose.php:227
+msgid "Legacy classes areoi-*"
+msgstr "Alt-Klassen areoi-*"
+
+#: includes/admin-diagnose.php:228
+msgid "Legacy blocks areoi/*"
+msgstr "Alt-Blöcke areoi/*"
+
+#: includes/admin-diagnose.php:237
+msgid "set by constant"
+msgstr "durch Konstante festgelegt"
+
+#: includes/admin-diagnose.php:244
+msgid "Posts with areoi/* blocks"
+msgstr "Beiträge mit areoi/*-Blöcken"
+
+#: includes/admin-diagnose.php:279
+msgid "Posts using Bootstrap Icons classes"
+msgstr "Beiträge mit Bootstrap-Icons-Klassen"
+
+#: includes/admin-diagnose.php:287
+msgid "Legacy option"
+msgstr "Alt-Option"
+
+#: includes/admin-diagnose.php:325
+msgid "Legacy theme override folder"
+msgstr "Ordner mit Alt-Vorlagen im Theme"
+
+#: includes/admin-diagnose.php:327
+msgid "none"
+msgstr "keiner"
+
+#: includes/admin-page.php:25
+msgid "Assets"
+msgstr "Assets"
+
+#: includes/admin-page.php:26
+msgid "Compatibility"
+msgstr "Kompatibilität"
+
+#: includes/admin-page.php:27
+msgid "Diagnostics"
+msgstr "Diagnose"
+
+#: includes/class-settings.php:40
+msgid "Load Bootstrap CSS"
+msgstr "Bootstrap CSS laden"
+
+#: includes/class-settings.php:41
+msgid "Off by default. Leave it off when your theme already loads Bootstrap."
+msgstr "Standardmäßig ausgeschaltet. Bitte lassen Sie den Schalter aus, wenn Ihr Theme Bootstrap bereits lädt."
+
+#: includes/class-settings.php:47
+msgid "Load Bootstrap JavaScript bundle"
+msgstr "Bootstrap-JavaScript-Bundle laden"
+
+#: includes/class-settings.php:48
+msgid "The bundle includes Popper, which dropdowns, tooltips and popovers require."
+msgstr "Das Bundle enthält Popper, das Dropdowns, Tooltips und Popovers benötigen."
+
+#: includes/class-settings.php:54
+msgid "Load Bootstrap Icons"
+msgstr "Bootstrap Icons laden"
+
+#: includes/class-settings.php:55
+msgid "Switchable separately: many themes ship Bootstrap but no icon font."
+msgstr "Getrennt schaltbar: Viele Themes liefern Bootstrap, jedoch keine Icon-Schrift."
+
+#: includes/class-settings.php:61
+msgid "Also output the legacy areoi-* classes"
+msgstr "Zusätzlich die alten areoi-*-Klassen ausgeben"
+
+#: includes/class-settings.php:62
+msgid "Turn this off only once the theme of this site no longer styles against areoi-* selectors."
+msgstr "Bitte schalten Sie dies erst ab, wenn das Theme dieser Website nicht mehr gegen areoi-*-Selektoren stylt."
+
+#: includes/class-settings.php:68
+msgid "Register areoi/* blocks as aliases"
+msgstr "areoi/*-Blöcke als Aliasse registrieren"
+
+#: includes/class-settings.php:69
+msgid "Keeps content that has not been migrated yet renderable. Alias blocks are hidden from the inserter."
+msgstr "Hält noch nicht migrierte Inhalte darstellbar. Die Aliasblöcke sind in der Blockauswahl ausgeblendet."
+
+#: includes/class-settings.php:230
+msgid "Bootstrap assets"
+msgstr "Bootstrap-Assets"
+
+#: includes/class-settings.php:237
+msgid "Backwards compatibility"
+msgstr "Rückwärtskompatibilität"
+
+#: includes/class-settings.php:265
+msgid "All three switches are off by default. Bootstrap then comes from the theme, exactly as before."
+msgstr "Alle drei Schalter sind standardmäßig ausgeschaltet. Bootstrap kommt dann wie bisher von Ihrem Theme."
+
+#: includes/class-settings.php:275
+msgid "These switches keep existing pages working. A constant of the same name in wp-config.php overrides the setting."
+msgstr "Diese Schalter halten bestehende Seiten funktionsfähig. Eine gleichnamige Konstante in Ihrer wp-config.php übersteuert die Einstellung."
+
+#: includes/class-settings.php:312
+msgid "Overridden:"
+msgstr "Übersteuert:"
+
+#. translators: %s: name of a PHP constant.
+#: includes/class-settings.php:316
+#, php-format
+msgid "The constant %s in wp-config.php takes precedence over this setting."
+msgstr "Die Konstante %s in Ihrer wp-config.php hat Vorrang vor dieser Einstellung."
+
+#: includes/class-blocks.php:360
+#: includes/i18n-strings.php:49
+msgid "Bootstrap Layout"
+msgstr "Bootstrap Layout"
+
+#: includes/class-blocks.php:361
+#: includes/i18n-strings.php:50
+msgid "Bootstrap Components"
+msgstr "Bootstrap Komponenten"
+
+#: includes/class-blocks.php:362
+#: includes/i18n-strings.php:51
+msgid "Bootstrap Strips"
+msgstr "Bootstrap Strips"
+
+#: includes/i18n-strings.php:54
+msgid "Strip"
+msgstr "Strip"
+
+#: includes/i18n-strings.php:55
+msgid "Container"
+msgstr "Container"
+
+#: includes/i18n-strings.php:56
+msgid "Row"
+msgstr "Zeile"
+
+#: includes/i18n-strings.php:57
+msgid "Column"
+msgstr "Spalte"
+
+#: includes/i18n-strings.php:58
+msgid "Div"
+msgstr "Div"
+
+#: includes/i18n-strings.php:59
+msgid "Button"
+msgstr "Schaltfläche"
+
+#: includes/i18n-strings.php:60
+msgid "Button Group"
+msgstr "Schaltflächengruppe"
+
+#: includes/i18n-strings.php:61
+msgid "Card"
+msgstr "Karte"
+
+#: includes/i18n-strings.php:62
+msgid "Card Body"
+msgstr "Kartenkörper"
+
+#: includes/i18n-strings.php:63
+msgid "Card Header"
+msgstr "Kartenkopf"
+
+#: includes/i18n-strings.php:64
+msgid "Card Footer"
+msgstr "Kartenfuß"
+
+#: includes/i18n-strings.php:65
+msgid "Card Group"
+msgstr "Kartengruppe"
+
+#: includes/i18n-strings.php:66
+msgid "Media Grid"
+msgstr "Mediengalerie"
+
+#: includes/i18n-strings.php:67
+msgid "Image"
+msgstr "Bild"
+
+#: includes/i18n-strings.php:74
+msgid "Full width strip allowing background colors, images and videos."
+msgstr "Vollbreiter Streifen mit Hintergrundfarben, -bildern und -videos."
+
+#: includes/i18n-strings.php:75
+msgid "Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within a given device or viewport."
+msgstr "Container sind ein Grundbaustein von Bootstrap. Sie fassen Inhalte zusammen, geben ihnen Innenabstand und richten sie am jeweiligen Gerät oder Viewport aus."
+
+#: includes/i18n-strings.php:76
+msgid "Rows are wrappers for columns. Each column has horizontal padding (called a gutter) for controlling the space between them. This padding is then counteracted on the rows."
+msgstr "Zeilen umschließen Spalten. Jede Spalte hat einen waagerechten Innenabstand (Gutter), der den Abstand zwischen den Spalten steuert; die Zeile gleicht ihn außen wieder aus."
+
+#: includes/i18n-strings.php:77
+msgid "Modify columns with a handful of options for alignment, ordering, and offsetting thanks to the flexbox grid system."
+msgstr "Spalten lassen sich über das Flexbox-Raster in Ausrichtung, Reihenfolge und Versatz anpassen."
+
+#: includes/i18n-strings.php:78
+msgid "Creates a div element with the ability to add whatever classes you want. Useful for custom layouts built from Bootstrap utility and helper classes."
+msgstr "Erzeugt ein div-Element, dem sich beliebige Klassen zuweisen lassen. Gut geeignet für eigene Layouts aus Bootstrap-Hilfsklassen."
+
+#: includes/i18n-strings.php:79
+msgid "Custom button styles for actions in forms, dialogs, and more, with support for multiple sizes and states."
+msgstr "Schaltflächen im Bootstrap-Stil für Formulare, Dialoge und mehr, mit mehreren Größen und Zuständen."
+
+#: includes/i18n-strings.php:80
+msgid "Group a series of buttons together on a single line or stack them in a vertical column."
+msgstr "Fasst mehrere Schaltflächen in einer Zeile oder in einer senkrechten Spalte zusammen."
+
+#: includes/i18n-strings.php:81
+msgid "A flexible and extensible content container with multiple variants and options."
+msgstr "Ein flexibler, erweiterbarer Inhaltscontainer mit mehreren Varianten und Optionen."
+
+#: includes/i18n-strings.php:82
+msgid "The building block of a card. Use it whenever you need a padded section within a card."
+msgstr "Der Grundbaustein einer Karte. Er umschließt Inhalte innerhalb einer Karte mit Innenabstand."
+
+#: includes/i18n-strings.php:83
+msgid "Add an optional header within a card."
+msgstr "Fügt einer Karte einen optionalen Kopfbereich hinzu."
+
+#: includes/i18n-strings.php:84
+msgid "Add an optional footer within a card."
+msgstr "Fügt einer Karte einen optionalen Fußbereich hinzu."
+
+#: includes/i18n-strings.php:85
+msgid "Render cards as a single, attached element with equal width and height columns. Card groups start off stacked and become attached at the small breakpoint."
+msgstr "Stellt Karten als zusammenhängendes Element mit gleicher Breite und Höhe dar. Ab dem Breakpoint „klein“ liegen sie nebeneinander, darunter gestapelt."
+
+#: includes/i18n-strings.php:86
+msgid "Display multiple media items in a rich gallery."
+msgstr "Zeigt mehrere Medien in einer Galerie."
+
+#: includes/i18n-strings.php:87
+msgid "Insert an image to make a visual statement."
+msgstr "Fügt ein Bild ein."
+
+#: includes/i18n-strings.php:117
+msgid "Extra small"
+msgstr "Sehr klein"
+
+#: includes/i18n-strings.php:118
+msgid "Small"
+msgstr "Klein"
+
+#: includes/i18n-strings.php:119
+msgid "Medium"
+msgstr "Mittel"
+
+#: includes/i18n-strings.php:120
+msgid "Large"
+msgstr "Groß"
+
+#: includes/i18n-strings.php:121
+msgid "Extra large"
+msgstr "Sehr groß"
+
+#: includes/i18n-strings.php:122
+msgid "Extra extra large"
+msgstr "Besonders groß"
+
+#: includes/i18n-strings.php:125
+msgid "Block ID"
+msgstr "Block-ID"
+
+#: includes/i18n-strings.php:126
+msgid "Anchor"
+msgstr "HTML-Anker"
+
+#: includes/i18n-strings.php:127
+msgid "Preview"
+msgstr "Vorschau"
+
+#: includes/i18n-strings.php:128
+msgid "Alignment"
+msgstr "Ausrichtung"
+
+#: includes/i18n-strings.php:129
+msgid "Container width"
+msgstr "Containerbreite"
+
+#: includes/i18n-strings.php:130
+msgid "Background utilities"
+msgstr "Hilfsklassen Hintergrund"
+
+#: includes/i18n-strings.php:131
+msgid "Text utilities"
+msgstr "Hilfsklassen Text"
+
+#: includes/i18n-strings.php:132
+msgid "Border utilities"
+msgstr "Hilfsklassen Rahmen"
+
+#: includes/i18n-strings.php:133
+msgid "Show background"
+msgstr "Hintergrund anzeigen"
+
+#: includes/i18n-strings.php:134
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: includes/i18n-strings.php:135
+msgid "Background image"
+msgstr "Hintergrundbild"
+
+#: includes/i18n-strings.php:136
+msgid "Background video"
+msgstr "Hintergrundvideo"
+
+#: includes/i18n-strings.php:137
+msgid "Show overlay"
+msgstr "Overlay anzeigen"
+
+#: includes/i18n-strings.php:138
+msgid "Overlay color"
+msgstr "Overlay-Farbe"
+
+#: includes/i18n-strings.php:139
+msgid "Pattern color"
+msgstr "Musterfarbe"
+
+#: includes/i18n-strings.php:140
+msgid "Horizontal background alignment"
+msgstr "Waagerechte Hintergrundausrichtung"
+
+#: includes/i18n-strings.php:169
+msgid "Height"
+msgstr "Höhe"
+
+#: includes/i18n-strings.php:171
+msgid "Height unit"
+msgstr "Einheit der Höhe"
+
+#: includes/i18n-strings.php:172
+msgid "Padding top"
+msgstr "Innenabstand oben"
+
+#: includes/i18n-strings.php:173
+msgid "Padding right"
+msgstr "Innenabstand rechts"
+
+#: includes/i18n-strings.php:174
+msgid "Padding bottom"
+msgstr "Innenabstand unten"
+
+#: includes/i18n-strings.php:175
+msgid "Padding left"
+msgstr "Innenabstand links"
+
+#: includes/i18n-strings.php:176
+msgid "Margin top"
+msgstr "Außenabstand oben"
+
+#: includes/i18n-strings.php:177
+msgid "Margin right"
+msgstr "Außenabstand rechts"
+
+#: includes/i18n-strings.php:178
+msgid "Margin bottom"
+msgstr "Außenabstand unten"
+
+#: includes/i18n-strings.php:179
+msgid "Margin left"
+msgstr "Außenabstand links"
+
+#: includes/i18n-strings.php:180
+msgid "Hide at this breakpoint"
+msgstr "An diesem Breakpoint ausblenden"
+
+#: includes/i18n-strings.php:181
+msgid "Hide background at this breakpoint"
+msgstr "Hintergrund an diesem Breakpoint ausblenden"
+
+#: includes/i18n-strings.php:182
+msgid "Background columns"
+msgstr "Hintergrundspalten"
+
+#: includes/i18n-strings.php:183
+msgid "Column width"
+msgstr "Spaltenbreite"
+
+#: includes/i18n-strings.php:184
+msgid "Offset"
+msgstr "Versatz"
+
+#: includes/i18n-strings.php:185
+msgid "Order"
+msgstr "Reihenfolge"
+
+#: includes/i18n-strings.php:186
+msgid "Vertical alignment"
+msgstr "Senkrechte Ausrichtung"
+
+#: includes/i18n-strings.php:187
+msgid "Grid row"
+msgstr "Rasterzeile"
+
+#: includes/i18n-strings.php:190
+msgid "Link URL"
+msgstr "Link-URL"
+
+#: includes/i18n-strings.php:191
+msgid "Link title"
+msgstr "Linktitel"
+
+#: includes/i18n-strings.php:192
+msgid "Title attribute"
+msgstr "Titel-Attribut"
+
+#: includes/i18n-strings.php:193
+msgid "Link target"
+msgstr "Linkziel"
+
+#: includes/i18n-strings.php:194
+msgid "Link relationship"
+msgstr "Linkbeziehung"
+
+#: includes/i18n-strings.php:195
+msgid "Flex row"
+msgstr "Flex-Zeile"
+
+#: includes/i18n-strings.php:196
+msgid "Button text"
+msgstr "Text der Schaltfläche"
+
+#: includes/i18n-strings.php:197
+msgid "Button style"
+msgstr "Stil der Schaltfläche"
+
+#: includes/i18n-strings.php:198
+msgid "Button size"
+msgstr "Größe der Schaltfläche"
+
+#: includes/i18n-strings.php:199
+msgid "Image URL"
+msgstr "Bild-URL"
+
+#: includes/i18n-strings.php:200
+msgid "Attachment ID"
+msgstr "ID der Mediendatei"
+
+#: includes/i18n-strings.php:201
+msgid "Image size"
+msgstr "Bildgröße"
+
+#: includes/i18n-strings.php:202
+msgid "Link destination"
+msgstr "Linkziel des Bildes"
+
+#: includes/i18n-strings.php:203
+msgid "Parent block ID"
+msgstr "ID des übergeordneten Blocks"
+
+#: includes/i18n-strings.php:206
+msgid "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+msgstr "Eindeutige Kennung dieses Blocks. Sie verbindet den Block mit dem erzeugten Inline-CSS; bitte ändern Sie sie nicht."
+
+#: includes/i18n-strings.php:210
+msgid "Hiding a breakpoint also removes the column, offset, order and alignment classes for that breakpoint."
+msgstr "Wenn Sie einen Breakpoint ausblenden, entfallen für ihn auch die Klassen für Spaltenbreite, Versatz, Reihenfolge und Ausrichtung."
+
+#: includes/i18n-strings.php:211
+msgid "Only the rgb values are used for rendering. The remaining keys are kept for compatibility with the previous plugin."
+msgstr "Für die Ausgabe werden ausschließlich die rgb-Werte genutzt. Die übrigen Schlüssel bleiben aus Gründen der Kompatibilität zum Vorgängerplugin erhalten."
+
+#: includes/i18n-strings.php:212
+msgid "Applies from this breakpoint upwards."
+msgstr "Die Einstellung gilt ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:213
+msgid "Bootstrap utility classes, separated by spaces."
+msgstr "Bitte geben Sie Bootstrap-Hilfsklassen durch Leerzeichen getrennt an."
+
+#: includes/i18n-strings.php:214
+msgid "Rendered as the id attribute of the outer element."
+msgstr "Der Wert wird als id-Attribut des äußeren Elements ausgegeben."
+
+#. translators: Label of the option whose stored value is the literal string "Default".
+#: includes/i18n-strings.php:225
+msgid "Default"
+msgstr "Standard"
+
+#: includes/i18n-strings.php:226
+msgid "None"
+msgstr "Keine"
+
+#: includes/i18n-strings.php:227
+msgid "Auto"
+msgstr "Automatisch"
+
+#: includes/i18n-strings.php:228
+msgid "Start"
+msgstr "Anfang"
+
+#: includes/i18n-strings.php:229
+msgid "Center"
+msgstr "Mitte"
+
+#: includes/i18n-strings.php:230
+msgid "End"
+msgstr "Ende"
+
+#: includes/i18n-strings.php:231
+msgid "Top"
+msgstr "Oben"
+
+#: includes/i18n-strings.php:232
+msgid "Middle"
+msgstr "Mittig"
+
+#: includes/i18n-strings.php:233
+msgid "Bottom"
+msgstr "Unten"
+
+#: includes/i18n-strings.php:234
+msgid "Pixels"
+msgstr "Pixel"
+
+#: includes/i18n-strings.php:235
+msgid "Percent"
+msgstr "Prozent"
+
+#: includes/i18n-strings.php:236
+msgid "Viewport height"
+msgstr "Viewport-Höhe"
+
+#: includes/i18n-strings.php:237
+msgid "Rem"
+msgstr "Rem"
+
+#: includes/class-abilities.php:80
+msgid "Read-only insight into the blocks, their attribute contract and their markup."
+msgstr "Schreibgeschützter Einblick in die Blöcke, deren Attributvertrag und deren Markup."
+
+#: includes/class-abilities.php:98
+msgid "List blocks"
+msgstr "Blöcke auflisten"
+
+#: includes/class-abilities.php:99
+msgid "Lists every registered creabb/ block with its category, parent and attribute count."
+msgstr "Listet jeden registrierten creabb/-Block mit Kategorie, übergeordnetem Block und Attributzahl auf."
+
+#: includes/class-abilities.php:113
+msgid "Get block schema"
+msgstr "Blockschema abrufen"
+
+#: includes/class-abilities.php:114
+msgid "Returns the complete attribute contract of one block: name, type, default."
+msgstr "Liefert den vollständigen Attributvertrag eines Blocks: Name, Typ, Standardwert."
+
+#: includes/class-abilities.php:122
+msgid "Full block name, for example creabb/container."
+msgstr "Der vollständige Blockname, zum Beispiel creabb/container."
+
+#. translators: %s: block name.
+#: includes/class-abilities.php:242
+#: includes/class-abilities.php:294
+#, php-format
+msgid "No block of this plugin is registered under the name %s."
+msgstr "Unter dem Namen %s ist kein Block dieses Plugins hinterlegt."
+
+#: includes/class-abilities.php:134
+msgid "Build block markup"
+msgstr "Blockmarkup erstellen"
+
+#: includes/class-abilities.php:135
+msgid "Turns flat attribute values into valid block markup with the required blockstudio container."
+msgstr "Wandelt flache Attributwerte in gültiges Blockmarkup mit dem benötigten Blockstudio-Container um."
+
+#. translators: %s: attribute name.
+#: includes/class-abilities.php:695
+#: includes/class-abilities.php:797
+#, php-format
+msgid "The attribute %s is not part of this block's contract."
+msgstr "Das Attribut %s gehört nicht zum Datenvertrag dieses Blocks."
+
+#. translators: 1: attribute name, 2: expected type.
+#: includes/class-abilities.php:667
+#: includes/class-abilities.php:811
+#, php-format
+msgid "The attribute %1$s must be of type %2$s."
+msgstr "Das Attribut %1$s muss den Typ %2$s haben."
+
+#: includes/class-abilities.php:153
+msgid "Validate block markup"
+msgstr "Blockmarkup prüfen"
+
+#: includes/class-abilities.php:355
+msgid "The WordPress core function serialize_block() is not available in this environment."
+msgstr "Die WordPress-Kernfunktion serialize_block() ist in dieser Umgebung nicht verfügbar."
+
+#: includes/class-abilities.php:394
+msgid "No markup was passed in."
+msgstr "Es wurde kein Markup übermittelt."
+
+#. translators: 1: legacy block name, 2: own namespace.
+#: includes/class-abilities.php:530
+#, php-format
+msgid "%1$s uses the old namespace. New markup belongs in %2$s."
+msgstr "%1$s nutzt noch den alten Namensraum. Neues Markup gehört in %2$s."
+
+#: includes/class-abilities.php:568
+msgid "Attribute values sit at the top level. They are dropped at render time and replaced by defaults."
+msgstr "Die Attributwerte liegen auf der obersten Ebene. Sie werden beim Rendern verworfen und durch die Standardwerte ersetzt."
+
+#: includes/class-abilities.php:169
+msgid "Get agent documentation"
+msgstr "Agentendokumentation abrufen"
+
+#: includes/class-abilities.php:170
+msgid "Returns the index or the full text of the bundled agent documentation."
+msgstr "Gibt den Index oder den Volltext der mitgelieferten Agentendokumentation zurück."
+
+#: includes/class-abilities.php:190
+msgid "Diagnose"
+msgstr "Diagnose"
+
+#: includes/class-abilities.php:191
+msgid "Reports the Blockstudio version, the state of the legacy switches and how many blocks and contracts are present."
+msgstr "Nennt die Blockstudio-Version, den Zustand der Legacy-Schalter und die Anzahl der vorhandenen Blöcke und Verträge."
+
+#: includes/class-abilities.php:439
+msgid "Only \"index\" and \"full\" are available."
+msgstr "Es stehen nur \"index\" und \"full\" zur Verfügung."
+
+#: includes/class-abilities.php:449
+msgid "The documentation is not part of this installation."
+msgstr "Die Dokumentation gehört nicht zu dieser Installation."
+
+#: includes/class-abilities.php:154
+msgid "Checks existing markup for a missing blockstudio container, attribute values stranded at the top level, unknown attributes, wrong types and leftover areoi/ blocks."
+msgstr "Prüft bestehendes Markup auf einen fehlenden blockstudio-Container, auf Attributwerte, die auf der obersten Ebene verblieben sind, auf unbekannte Attribute, falsche Typen und verbliebene areoi/-Blöcke."
+
+#: includes/class-abilities.php:402
+msgid "The WordPress core function parse_blocks() is not available in this environment."
+msgstr "Die WordPress-Kernfunktion parse_blocks() ist in dieser Umgebung nicht verfügbar."
+
+#. translators: stands in for the block name when the caller passed none.
+#: includes/class-abilities.php:861
+msgid "(empty)"
+msgstr "(leer)"
+
+#: includes/i18n-strings.php:240
+msgid "Em"
+msgstr "Em"
+
+#: includes/i18n-strings.php:266
+msgid "Fixed"
+msgstr "Fest"
+
+#: includes/i18n-strings.php:267
+msgid "Fluid"
+msgstr "Fließend"
+
+#: includes/i18n-strings.php:268
+msgid "Wide"
+msgstr "Breit"
+
+#: includes/i18n-strings.php:269
+msgid "Full"
+msgstr "Voll"
+
+#: includes/i18n-strings.php:270
+msgid "Primary"
+msgstr "Primär"
+
+#: includes/i18n-strings.php:271
+msgid "Secondary"
+msgstr "Sekundär"
+
+#: includes/i18n-strings.php:272
+msgid "Success"
+msgstr "Erfolg"
+
+#: includes/i18n-strings.php:273
+msgid "Warning"
+msgstr "Warnung"
+
+#: includes/i18n-strings.php:274
+msgid "Danger"
+msgstr "Gefahr"
+
+#: includes/i18n-strings.php:275
+msgid "Info"
+msgstr "Info"
+
+#: includes/i18n-strings.php:276
+msgid "Dark"
+msgstr "Dunkel"
+
+#: includes/i18n-strings.php:277
+msgid "Light"
+msgstr "Hell"
+
+#: includes/i18n-strings.php:278
+msgid "Body"
+msgstr "Seitenhintergrund"
+
+#: includes/i18n-strings.php:279
+msgid "White"
+msgstr "Weiß"
+
+#: includes/i18n-strings.php:280
+msgid "Left"
+msgstr "Links"
+
+#: includes/i18n-strings.php:281
+msgid "Right"
+msgstr "Rechts"
+
+#: blocks-legacy/container/block.json
+#: blocks/container/block.json
+msgctxt "block title"
+msgid "Container"
+msgstr "Container"
+
+#: blocks-legacy/container/block.json
+#: blocks/container/block.json
+msgctxt "block description"
+msgid "Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within a given device or viewport."
+msgstr "Container sind ein Grundbaustein von Bootstrap. Sie fassen Inhalte zusammen, geben ihnen Innenabstand und richten sie am jeweiligen Gerät oder Viewport aus."
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks-legacy/accordion/block.json
+#: blocks-legacy/alert/block.json
+#: blocks-legacy/banner-item/block.json
+#: blocks-legacy/banner/block.json
+#: blocks-legacy/breadcrumb/block.json
+#: blocks-legacy/button-group/block.json
+#: blocks-legacy/button/block.json
+#: blocks-legacy/card-body/block.json
+#: blocks-legacy/card-footer/block.json
+#: blocks-legacy/card-group/block.json
+#: blocks-legacy/card-header/block.json
+#: blocks-legacy/card/block.json
+#: blocks-legacy/carousel-item/block.json
+#: blocks-legacy/carousel/block.json
+#: blocks-legacy/collapse/block.json
+#: blocks-legacy/column-break/block.json
+#: blocks-legacy/column/block.json
+#: blocks-legacy/container/block.json
+#: blocks-legacy/content-grid-item/block.json
+#: blocks-legacy/content-grid/block.json
+#: blocks-legacy/content-with-media/block.json
+#: blocks-legacy/div/block.json
+#: blocks-legacy/dropdown-item/block.json
+#: blocks-legacy/icon/block.json
+#: blocks-legacy/list-group-item/block.json
+#: blocks-legacy/list-group/block.json
+#: blocks-legacy/media-grid/block.json
+#: blocks-legacy/modal-body/block.json
+#: blocks-legacy/modal-footer/block.json
+#: blocks-legacy/modal-header/block.json
+#: blocks-legacy/modal/block.json
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks-legacy/offcanvas/block.json
+#: blocks-legacy/post-grid/block.json
+#: blocks-legacy/progress/block.json
+#: blocks-legacy/row/block.json
+#: blocks-legacy/spinner/block.json
+#: blocks-legacy/strip/block.json
+#: blocks-legacy/tabs/block.json
+#: blocks-legacy/toast-body/block.json
+#: blocks-legacy/toast-header/block.json
+#: blocks-legacy/toast/block.json
+#: blocks/accordion-item/block.json
+#: blocks/accordion/block.json
+#: blocks/alert/block.json
+#: blocks/banner-item/block.json
+#: blocks/banner/block.json
+#: blocks/breadcrumb/block.json
+#: blocks/button-group/block.json
+#: blocks/button/block.json
+#: blocks/card-body/block.json
+#: blocks/card-footer/block.json
+#: blocks/card-group/block.json
+#: blocks/card-header/block.json
+#: blocks/card/block.json
+#: blocks/carousel-item/block.json
+#: blocks/carousel/block.json
+#: blocks/collapse/block.json
+#: blocks/column-break/block.json
+#: blocks/column/block.json
+#: blocks/container/block.json
+#: blocks/content-grid-item/block.json
+#: blocks/content-grid/block.json
+#: blocks/content-with-media/block.json
+#: blocks/div/block.json
+#: blocks/dropdown-item/block.json
+#: blocks/icon/block.json
+#: blocks/list-group-item/block.json
+#: blocks/list-group/block.json
+#: blocks/media-grid/block.json
+#: blocks/modal-body/block.json
+#: blocks/modal-footer/block.json
+#: blocks/modal-header/block.json
+#: blocks/modal/block.json
+#: blocks/nav-and-tab-item/block.json
+#: blocks/nav-and-tab/block.json
+#: blocks/offcanvas-body/block.json
+#: blocks/offcanvas-header/block.json
+#: blocks/offcanvas/block.json
+#: blocks/post-grid/block.json
+#: blocks/progress/block.json
+#: blocks/row/block.json
+#: blocks/spinner/block.json
+#: blocks/strip/block.json
+#: blocks/tabs/block.json
+#: blocks/toast-body/block.json
+#: blocks/toast-header/block.json
+#: blocks/toast/block.json
+msgctxt "block keyword"
+msgid "creabb"
+msgstr "creabb"
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks-legacy/accordion/block.json
+#: blocks-legacy/alert/block.json
+#: blocks-legacy/banner-item/block.json
+#: blocks-legacy/banner/block.json
+#: blocks-legacy/breadcrumb/block.json
+#: blocks-legacy/button-group/block.json
+#: blocks-legacy/button/block.json
+#: blocks-legacy/card-body/block.json
+#: blocks-legacy/card-footer/block.json
+#: blocks-legacy/card-group/block.json
+#: blocks-legacy/card-header/block.json
+#: blocks-legacy/card/block.json
+#: blocks-legacy/carousel-item/block.json
+#: blocks-legacy/carousel/block.json
+#: blocks-legacy/collapse/block.json
+#: blocks-legacy/column-break/block.json
+#: blocks-legacy/column/block.json
+#: blocks-legacy/container/block.json
+#: blocks-legacy/content-grid-item/block.json
+#: blocks-legacy/content-grid/block.json
+#: blocks-legacy/content-with-media/block.json
+#: blocks-legacy/div/block.json
+#: blocks-legacy/dropdown-item/block.json
+#: blocks-legacy/icon/block.json
+#: blocks-legacy/list-group-item/block.json
+#: blocks-legacy/list-group/block.json
+#: blocks-legacy/media-grid/block.json
+#: blocks-legacy/modal-body/block.json
+#: blocks-legacy/modal-footer/block.json
+#: blocks-legacy/modal-header/block.json
+#: blocks-legacy/modal/block.json
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks-legacy/offcanvas/block.json
+#: blocks-legacy/post-grid/block.json
+#: blocks-legacy/progress/block.json
+#: blocks-legacy/row/block.json
+#: blocks-legacy/spinner/block.json
+#: blocks-legacy/strip/block.json
+#: blocks-legacy/tabs/block.json
+#: blocks-legacy/toast-body/block.json
+#: blocks-legacy/toast-header/block.json
+#: blocks-legacy/toast/block.json
+#: blocks/accordion-item/block.json
+#: blocks/accordion/block.json
+#: blocks/alert/block.json
+#: blocks/banner-item/block.json
+#: blocks/banner/block.json
+#: blocks/breadcrumb/block.json
+#: blocks/button-group/block.json
+#: blocks/button/block.json
+#: blocks/card-body/block.json
+#: blocks/card-footer/block.json
+#: blocks/card-group/block.json
+#: blocks/card-header/block.json
+#: blocks/card/block.json
+#: blocks/carousel-item/block.json
+#: blocks/carousel/block.json
+#: blocks/collapse/block.json
+#: blocks/column-break/block.json
+#: blocks/column/block.json
+#: blocks/container/block.json
+#: blocks/content-grid-item/block.json
+#: blocks/content-grid/block.json
+#: blocks/content-with-media/block.json
+#: blocks/div/block.json
+#: blocks/dropdown-item/block.json
+#: blocks/icon/block.json
+#: blocks/list-group-item/block.json
+#: blocks/list-group/block.json
+#: blocks/media-grid/block.json
+#: blocks/modal-body/block.json
+#: blocks/modal-footer/block.json
+#: blocks/modal-header/block.json
+#: blocks/modal/block.json
+#: blocks/nav-and-tab-item/block.json
+#: blocks/nav-and-tab/block.json
+#: blocks/offcanvas-body/block.json
+#: blocks/offcanvas-header/block.json
+#: blocks/offcanvas/block.json
+#: blocks/post-grid/block.json
+#: blocks/progress/block.json
+#: blocks/row/block.json
+#: blocks/spinner/block.json
+#: blocks/strip/block.json
+#: blocks/tabs/block.json
+#: blocks/toast-body/block.json
+#: blocks/toast-header/block.json
+#: blocks/toast/block.json
+msgctxt "block keyword"
+msgid "bootstrap"
+msgstr "bootstrap"
+
+#: blocks-legacy/column-break/block.json
+#: blocks-legacy/column/block.json
+#: blocks-legacy/container/block.json
+#: blocks-legacy/div/block.json
+#: blocks-legacy/row/block.json
+#: blocks-legacy/strip/block.json
+#: blocks/column-break/block.json
+#: blocks/column/block.json
+#: blocks/container/block.json
+#: blocks/div/block.json
+#: blocks/row/block.json
+#: blocks/strip/block.json
+msgctxt "block keyword"
+msgid "layout"
+msgstr "Layout"
+
+#: blocks-legacy/container/block.json
+#: blocks/container/block.json
+msgctxt "block keyword"
+msgid "container"
+msgstr "container"
+
+#: includes/i18n-strings.php:284
+msgid "Force flexbox"
+msgstr "Flexbox erzwingen"
+
+#: includes/i18n-strings.php:285
+msgid "Keeps this row on the Bootstrap flexbox grid even when the CSS grid mode is switched on. Passed to the columns inside."
+msgstr "Hält diese Zeile auf dem Flexbox-Raster von Bootstrap, auch wenn der CSS-Grid-Modus eingeschaltet ist. Wird an die enthaltenen Spalten weitergegeben."
+
+#: includes/i18n-strings.php:286
+msgid "Horizontal alignment"
+msgstr "Horizontale Ausrichtung"
+
+#: includes/i18n-strings.php:287
+msgid "Around"
+msgstr "Umlaufend"
+
+#: includes/i18n-strings.php:288
+msgid "Between"
+msgstr "Dazwischen"
+
+#: includes/i18n-strings.php:289
+msgid "Evenly"
+msgstr "Gleichmäßig"
+
+#: includes/i18n-strings.php:290
+msgid "Columns per row"
+msgstr "Spalten pro Zeile"
+
+#: includes/i18n-strings.php:291
+msgid "Grid column gap"
+msgstr "Spaltenabstand im Grid"
+
+#: includes/i18n-strings.php:292
+msgid "Grid column gap unit"
+msgstr "Einheit des Spaltenabstands"
+
+#: includes/i18n-strings.php:293
+msgid "Grid row gap"
+msgstr "Zeilenabstand im Grid"
+
+#: includes/i18n-strings.php:294
+msgid "Grid row gap unit"
+msgstr "Einheit des Zeilenabstands"
+
+#: includes/i18n-strings.php:295
+msgid "Grid rows"
+msgstr "Grid-Zeilen"
+
+#: includes/i18n-strings.php:296
+msgid "Only used in CSS grid mode."
+msgstr "Wird nur im CSS-Grid-Modus verwendet."
+
+#: blocks-legacy/row/block.json
+#: blocks/row/block.json
+msgctxt "block title"
+msgid "Row"
+msgstr "Zeile"
+
+#: blocks-legacy/row/block.json
+#: blocks/row/block.json
+msgctxt "block description"
+msgid "Rows are wrappers for columns. Each column has horizontal padding (called a gutter) for controlling the space between them. This padding is then counteracted on the rows."
+msgstr "Zeilen sind Hüllen für Spalten. Jede Spalte hat einen horizontalen Innenabstand (Gutter genannt), der den Raum zwischen den Spalten steuert. Auf der Zeile wird dieser Abstand wieder ausgeglichen."
+
+#: blocks-legacy/row/block.json
+#: blocks/row/block.json
+msgctxt "block keyword"
+msgid "row"
+msgstr "row"
+
+#: includes/i18n-strings.php:299
+msgid "New tab"
+msgstr "Neuer Tab"
+
+#: includes/i18n-strings.php:300
+msgid "Columns"
+msgstr "Spalten"
+
+#: includes/i18n-strings.php:301
+msgid "Turns the whole column into a link. The anchor is rendered behind the content and covers the column."
+msgstr "Macht die ganze Spalte zu einem Link. Der Anker wird hinter dem Inhalt gerendert und deckt die Spalte ab."
+
+#: blocks-legacy/column/block.json
+#: blocks/column/block.json
+msgctxt "block title"
+msgid "Column"
+msgstr "Spalte"
+
+#: blocks-legacy/column/block.json
+#: blocks/column/block.json
+msgctxt "block description"
+msgid "Modify columns with a handful of options for alignment, ordering, and offsetting thanks to the flexbox grid system."
+msgstr "Spalten lassen sich dank des Flexbox-Rastersystems mit einer Handvoll Optionen für Ausrichtung, Reihenfolge und Versatz anpassen."
+
+#: blocks-legacy/column/block.json
+#: blocks/column/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr "column"
+
+#: blocks-legacy/div/block.json
+#: blocks/div/block.json
+msgctxt "block title"
+msgid "Div"
+msgstr "Div"
+
+#: blocks-legacy/div/block.json
+#: blocks/div/block.json
+msgctxt "block description"
+msgid "Creates a div element with the ability to add whatever classes you want. Useful for custom layouts built from Bootstrap utility and helper classes."
+msgstr "Erzeugt ein div-Element, dem sich beliebige Klassen hinzufügen lassen. Nützlich für eigene Layouts aus den Utility- und Hilfsklassen von Bootstrap."
+
+#: blocks-legacy/card/block.json
+#: blocks/card/block.json
+msgctxt "block title"
+msgid "Card"
+msgstr "Karte"
+
+#: blocks-legacy/card/block.json
+#: blocks/card/block.json
+msgctxt "block description"
+msgid "A flexible and extensible content container with multiple variants and options."
+msgstr "Ein flexibler und erweiterbarer Inhaltscontainer mit mehreren Varianten und Optionen."
+
+#: blocks-legacy/card-body/block.json
+#: blocks-legacy/card-footer/block.json
+#: blocks-legacy/card-group/block.json
+#: blocks-legacy/card-header/block.json
+#: blocks-legacy/card/block.json
+#: blocks/card-body/block.json
+#: blocks/card-footer/block.json
+#: blocks/card-group/block.json
+#: blocks/card-header/block.json
+#: blocks/card/block.json
+msgctxt "block keyword"
+msgid "card"
+msgstr "card"
+
+#: blocks-legacy/card-body/block.json
+#: blocks/card-body/block.json
+msgctxt "block title"
+msgid "Card Body"
+msgstr "Kartenkörper"
+
+#: blocks-legacy/card-body/block.json
+#: blocks/card-body/block.json
+msgctxt "block description"
+msgid "The building block of a card. Use it whenever you need a padded section within a card."
+msgstr "Der Grundbaustein einer Karte. Zu verwenden, wo innerhalb einer Karte ein Abschnitt mit Innenabstand gebraucht wird."
+
+#: blocks-legacy/card-header/block.json
+#: blocks/card-header/block.json
+msgctxt "block title"
+msgid "Card Header"
+msgstr "Kartenkopf"
+
+#: blocks-legacy/card-header/block.json
+#: blocks/card-header/block.json
+msgctxt "block description"
+msgid "Add an optional header within a card."
+msgstr "Fügt innerhalb einer Karte einen optionalen Kopfbereich hinzu."
+
+#: blocks-legacy/card-footer/block.json
+#: blocks/card-footer/block.json
+msgctxt "block title"
+msgid "Card Footer"
+msgstr "Kartenfuß"
+
+#: blocks-legacy/card-footer/block.json
+#: blocks/card-footer/block.json
+msgctxt "block description"
+msgid "Add an optional footer within a card."
+msgstr "Fügt innerhalb einer Karte einen optionalen Fußbereich hinzu."
+
+#: blocks-legacy/card-group/block.json
+#: blocks/card-group/block.json
+msgctxt "block title"
+msgid "Card Group"
+msgstr "Kartengruppe"
+
+#: blocks-legacy/card-group/block.json
+#: blocks/card-group/block.json
+msgctxt "block description"
+msgid "Render cards as a single, attached element with equal width and height columns. Card groups start off stacked and become attached at the small breakpoint."
+msgstr "Stellt Karten als ein einziges, zusammenhängendes Element mit gleich breiten und gleich hohen Spalten dar. Kartengruppen beginnen gestapelt und wachsen ab dem Breakpoint „Klein\" zusammen."
+
+#: includes/i18n-strings.php:353
+msgid "Tag name"
+msgstr "Tag-Name"
+
+#: includes/i18n-strings.php:354
+msgid "Only these four tag names are rendered; anything else falls back to a."
+msgstr "Nur diese vier Tag-Namen werden gerendert; alles andere fällt auf a zurück."
+
+#: includes/i18n-strings.php:355
+msgid "Link"
+msgstr "Link"
+
+#: includes/i18n-strings.php:356
+msgid "Span"
+msgstr "Span"
+
+#: includes/i18n-strings.php:357
+msgid "Outline primary"
+msgstr "Umriss primär"
+
+#: includes/i18n-strings.php:358
+msgid "Outline secondary"
+msgstr "Umriss sekundär"
+
+#: includes/i18n-strings.php:359
+msgid "Outline dark"
+msgstr "Umriss dunkel"
+
+#: includes/i18n-strings.php:360
+msgid "Outline light"
+msgstr "Umriss hell"
+
+#: includes/i18n-strings.php:361
+msgid "Text wrapping"
+msgstr "Textumbruch"
+
+#: includes/i18n-strings.php:362
+msgid "No wrapping"
+msgstr "Kein Umbruch"
+
+#: includes/i18n-strings.php:363
+msgid "Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+msgstr "Wird über wp_kses_post() ausgegeben; Inline-Markup ist erlaubt, Skripte nicht."
+
+#: includes/i18n-strings.php:364
+msgid "Rendered as the title attribute."
+msgstr "Wird als title-Attribut ausgegeben."
+
+#: includes/i18n-strings.php:365
+msgid "Kept for compatibility. The rendered title attribute comes from the link title above."
+msgstr "Bleibt aus Kompatibilitätsgründen erhalten. Das ausgegebene title-Attribut stammt aus dem Link-Titel darüber."
+
+#: includes/i18n-strings.php:366
+msgid "Link opens a modal"
+msgstr "Link öffnet ein Modal"
+
+#: includes/i18n-strings.php:367
+msgid "Only rendered when the filter crea_bootstrap_blocks_button_modal returns true."
+msgstr "Wird nur ausgegeben, wenn der Filter crea_bootstrap_blocks_button_modal true liefert."
+
+#: includes/i18n-strings.php:368
+msgid "Show icon"
+msgstr "Icon anzeigen"
+
+#: includes/i18n-strings.php:369
+msgid "Icon class"
+msgstr "Icon-Klasse"
+
+#: includes/i18n-strings.php:370
+msgid "A Bootstrap Icons class such as bi-activity. Bootstrap Icons must be enabled under Appearance, CreaBootstrapBlocks, Assets — or come from the theme."
+msgstr "Eine Bootstrap-Icons-Klasse wie bi-activity. Bootstrap Icons müssen unter Design, CreaBootstrapBlocks, Assets eingeschaltet sein — oder vom Theme kommen."
+
+#: includes/i18n-strings.php:371
+msgid "Icon size"
+msgstr "Icon-Größe"
+
+#: includes/i18n-strings.php:372
+msgid "Numeric value without a unit; pixels are added on output."
+msgstr "Zahlenwert ohne Einheit; Pixel werden bei der Ausgabe ergänzt."
+
+#: includes/i18n-strings.php:373
+msgid "Icon position"
+msgstr "Icon-Position"
+
+#: includes/i18n-strings.php:374
+msgid "Before the text"
+msgstr "Vor dem Text"
+
+#: includes/i18n-strings.php:375
+msgid "After the text"
+msgstr "Nach dem Text"
+
+#: includes/i18n-strings.php:376
+msgid "Show popover"
+msgstr "Popover anzeigen"
+
+#: includes/i18n-strings.php:377
+msgid "Popover title"
+msgstr "Popover-Titel"
+
+#: includes/i18n-strings.php:378
+msgid "Popover content"
+msgstr "Popover-Inhalt"
+
+#: includes/i18n-strings.php:379
+msgid "Popover direction"
+msgstr "Popover-Richtung"
+
+#: includes/i18n-strings.php:380
+msgid "Popover trigger"
+msgstr "Popover-Auslöser"
+
+#: includes/i18n-strings.php:381
+msgid "Click"
+msgstr "Klick"
+
+#: includes/i18n-strings.php:382
+msgid "Hover"
+msgstr "Mauszeiger"
+
+#: includes/i18n-strings.php:383
+msgid "Show tooltip"
+msgstr "Tooltip anzeigen"
+
+#: includes/i18n-strings.php:384
+msgid "Tooltip content"
+msgstr "Tooltip-Inhalt"
+
+#: includes/i18n-strings.php:385
+msgid "Tooltip direction"
+msgstr "Tooltip-Richtung"
+
+#: includes/i18n-strings.php:386
+msgid "Show dropdown"
+msgstr "Dropdown anzeigen"
+
+#: includes/i18n-strings.php:387
+msgid "Dropdown auto close"
+msgstr "Dropdown automatisch schließen"
+
+#: includes/i18n-strings.php:388
+msgid "Always"
+msgstr "Immer"
+
+#: includes/i18n-strings.php:389
+msgid "Inside"
+msgstr "Innerhalb"
+
+#: includes/i18n-strings.php:390
+msgid "Outside"
+msgstr "Außerhalb"
+
+#: includes/i18n-strings.php:391
+msgid "Never"
+msgstr "Nie"
+
+#: includes/i18n-strings.php:392
+msgid "Dropdown style"
+msgstr "Dropdown-Stil"
+
+#: includes/i18n-strings.php:393
+msgid "Dropdown direction"
+msgstr "Dropdown-Richtung"
+
+#: includes/i18n-strings.php:394
+msgid "Down"
+msgstr "Nach unten"
+
+#: includes/i18n-strings.php:395
+msgid "Up"
+msgstr "Nach oben"
+
+#: includes/i18n-strings.php:396
+msgid "Dropdown alignment"
+msgstr "Dropdown-Ausrichtung"
+
+#: includes/i18n-strings.php:397
+msgid "Show badge"
+msgstr "Badge anzeigen"
+
+#: includes/i18n-strings.php:398
+msgid "Badge content"
+msgstr "Badge-Inhalt"
+
+#: includes/i18n-strings.php:399
+msgid "Badge style"
+msgstr "Badge-Stil"
+
+#: includes/i18n-strings.php:400
+msgid "Pill"
+msgstr "Pille"
+
+#: includes/i18n-strings.php:401
+msgid "Badge background"
+msgstr "Badge-Hintergrund"
+
+#: includes/i18n-strings.php:402
+msgid "Badge text color"
+msgstr "Badge-Textfarbe"
+
+#: includes/i18n-strings.php:403
+msgid "Badge classes"
+msgstr "Badge-Klassen"
+
+#: includes/i18n-strings.php:404
+msgid "Full width at this breakpoint"
+msgstr "Volle Breite bei diesem Breakpoint"
+
+#: blocks-legacy/button/block.json
+#: blocks/button/block.json
+msgctxt "block title"
+msgid "Button"
+msgstr "Button"
+
+#: blocks-legacy/button/block.json
+#: blocks/button/block.json
+msgctxt "block description"
+msgid "Custom button styles for actions in forms, dialogs, and more, with support for multiple sizes and states."
+msgstr "Eigene Button-Stile für Aktionen in Formularen, Dialogen und mehr, mit Unterstützung für mehrere Größen und Zustände."
+
+#: blocks-legacy/button-group/block.json
+#: blocks-legacy/button/block.json
+#: blocks/button-group/block.json
+#: blocks/button/block.json
+msgctxt "block keyword"
+msgid "button"
+msgstr "button"
+
+#: blocks-legacy/button/block.json
+#: blocks/button/block.json
+msgctxt "block keyword"
+msgid "link"
+msgstr "link"
+
+#: includes/i18n-strings.php:407
+msgid "Group style"
+msgstr "Gruppenstil"
+
+#: includes/i18n-strings.php:408
+msgid "Group size"
+msgstr "Gruppengröße"
+
+#: includes/i18n-strings.php:409
+msgid "Horizontal"
+msgstr "Waagerecht"
+
+#: includes/i18n-strings.php:410
+msgid "Vertical"
+msgstr "Senkrecht"
+
+#: blocks-legacy/button-group/block.json
+#: blocks/button-group/block.json
+msgctxt "block title"
+msgid "Button Group"
+msgstr "Buttongruppe"
+
+#: blocks-legacy/button-group/block.json
+#: blocks/button-group/block.json
+msgctxt "block description"
+msgid "Group a series of buttons together on a single line or stack them in a vertical column."
+msgstr "Fasst mehrere Buttons in einer Zeile zusammen oder stapelt sie in einer senkrechten Spalte."
+
+#: includes/i18n-strings.php:413
+msgid "Exclude divider"
+msgstr "Trenner ausschließen"
+
+#: includes/i18n-strings.php:414
+msgid "Kept from the previous plugin. Only the Lightspeed theme evaluates it; this plugin stores the value and renders nothing from it."
+msgstr "Aus dem vorherigen Plugin übernommen. Nur das Lightspeed-Theme wertet den Wert aus; dieses Plugin speichert ihn und gibt nichts daraus aus."
+
+#: includes/i18n-strings.php:415
+msgid "Exclude pattern"
+msgstr "Muster ausschließen"
+
+#: includes/i18n-strings.php:416
+msgid "Kept from the previous plugin. A pattern is only rendered when the filter crea_bootstrap_blocks_background_pattern supplies one."
+msgstr "Aus dem vorherigen Plugin übernommen. Ein Muster wird nur ausgegeben, wenn der Filter crea_bootstrap_blocks_background_pattern eines liefert."
+
+#: includes/i18n-strings.php:417
+msgid "Change pattern color"
+msgstr "Musterfarbe ändern"
+
+#: includes/i18n-strings.php:418
+msgid "Exclude transition"
+msgstr "Übergang ausschließen"
+
+#: includes/i18n-strings.php:419
+msgid "Exclude parallax"
+msgstr "Parallax ausschließen"
+
+#: blocks-legacy/strip/block.json
+#: blocks/strip/block.json
+msgctxt "block title"
+msgid "Strip"
+msgstr "Streifen"
+
+#: blocks-legacy/strip/block.json
+#: blocks/strip/block.json
+msgctxt "block description"
+msgid "Full width strip allowing background colors, images and videos."
+msgstr "Ein Streifen über die volle Breite, der Hintergrundfarben, -bilder und -videos zulässt."
+
+#: blocks-legacy/banner-item/block.json
+#: blocks-legacy/banner/block.json
+#: blocks-legacy/content-grid-item/block.json
+#: blocks-legacy/content-grid/block.json
+#: blocks-legacy/content-with-media/block.json
+#: blocks-legacy/post-grid/block.json
+#: blocks-legacy/strip/block.json
+#: blocks/banner-item/block.json
+#: blocks/banner/block.json
+#: blocks/content-grid-item/block.json
+#: blocks/content-grid/block.json
+#: blocks/content-with-media/block.json
+#: blocks/post-grid/block.json
+#: blocks/strip/block.json
+msgctxt "block keyword"
+msgid "strip"
+msgstr "strip"
+
+#: includes/i18n-strings.php:422
+msgid "Layout"
+msgstr "Layout"
+
+#: includes/i18n-strings.php:423
+msgid "Grid"
+msgstr "Raster"
+
+#: includes/i18n-strings.php:424
+msgid "Masonry"
+msgstr "Mauerwerk"
+
+#: includes/i18n-strings.php:425
+msgid "Item style"
+msgstr "Elementstil"
+
+#: includes/i18n-strings.php:426
+msgid "Flush"
+msgstr "Bündig"
+
+#: includes/i18n-strings.php:427
+msgid "Item size"
+msgstr "Elementgröße"
+
+#: includes/i18n-strings.php:428
+msgid "Card size"
+msgstr "Kartengröße"
+
+#: includes/i18n-strings.php:429
+msgid "Media size"
+msgstr "Mediengröße"
+
+#: includes/i18n-strings.php:430
+msgid "Media fit"
+msgstr "Medienanpassung"
+
+#: includes/i18n-strings.php:431
+msgid "Media height"
+msgstr "Medienhöhe"
+
+#: includes/i18n-strings.php:432
+msgid "Media width"
+msgstr "Medienbreite"
+
+#: includes/i18n-strings.php:433
+msgid "Media alignment"
+msgstr "Medienausrichtung"
+
+#: includes/i18n-strings.php:434
+msgid "Cover"
+msgstr "Ausfüllen"
+
+#: includes/i18n-strings.php:435
+msgid "Contain"
+msgstr "Einpassen"
+
+#: includes/i18n-strings.php:436
+msgid "Set dimensions"
+msgstr "Maße festlegen"
+
+#: includes/i18n-strings.php:437
+msgid "Link to"
+msgstr "Verlinken auf"
+
+#: includes/i18n-strings.php:438
+msgid "Media file"
+msgstr "Mediendatei"
+
+#: includes/i18n-strings.php:439
+msgid "Attachment page"
+msgstr "Anhangseite"
+
+#: includes/i18n-strings.php:440
+msgid "Thumbnail"
+msgstr "Vorschaubild"
+
+#: includes/i18n-strings.php:441
+msgid "Full size"
+msgstr "Volle Größe"
+
+#: includes/i18n-strings.php:442
+msgid "Crop images"
+msgstr "Bilder zuschneiden"
+
+#: includes/i18n-strings.php:443
+msgid "Fixed height"
+msgstr "Feste Höhe"
+
+#: includes/i18n-strings.php:444
+msgid "Allow resizing"
+msgstr "Größenänderung zulassen"
+
+#: includes/i18n-strings.php:445
+msgid "Show heading"
+msgstr "Überschrift anzeigen"
+
+#: includes/i18n-strings.php:446
+msgid "Heading level"
+msgstr "Überschriftsebene"
+
+#: includes/i18n-strings.php:447
+msgid "Heading"
+msgstr "Überschrift"
+
+#: includes/i18n-strings.php:448
+msgid "Heading color"
+msgstr "Überschriftsfarbe"
+
+#: includes/i18n-strings.php:449
+msgid "Show intro"
+msgstr "Einleitung anzeigen"
+
+#: includes/i18n-strings.php:450
+msgid "Intro"
+msgstr "Einleitung"
+
+#: includes/i18n-strings.php:451
+msgid "Intro color"
+msgstr "Einleitungsfarbe"
+
+#: includes/i18n-strings.php:452
+msgid "Heading columns"
+msgstr "Spalten der Überschrift"
+
+#: includes/i18n-strings.php:453
+msgid "Heading horizontal alignment"
+msgstr "Horizontale Ausrichtung der Überschrift"
+
+#: includes/i18n-strings.php:454
+msgid "Heading text alignment"
+msgstr "Textausrichtung der Überschrift"
+
+#: includes/i18n-strings.php:455
+msgid "H1"
+msgstr "H1"
+
+#: includes/i18n-strings.php:456
+msgid "H2"
+msgstr "H2"
+
+#: includes/i18n-strings.php:457
+msgid "H3"
+msgstr "H3"
+
+#: includes/i18n-strings.php:458
+msgid "H4"
+msgstr "H4"
+
+#: includes/i18n-strings.php:459
+msgid "H5"
+msgstr "H5"
+
+#: includes/i18n-strings.php:460
+msgid "H6"
+msgstr "H6"
+
+#: includes/i18n-strings.php:461
+msgid "Applied by the editor to every image in this grid."
+msgstr "Wird vom Editor auf jedes Bild dieses Rasters angewendet."
+
+#: includes/i18n-strings.php:462
+msgid "Passed on to the images: Full removes their padding."
+msgstr "Wird an die Bilder weitergegeben: Bündig entfernt ihren Innenabstand."
+
+#: includes/i18n-strings.php:463
+msgid "Stored for compatibility. This block does not render utility classes — neither does the previous plugin."
+msgstr "Wird aus Kompatibilitätsgründen gespeichert. Dieser Block gibt keine Utility-Klassen aus — das vorherige Plugin ebenso wenig."
+
+#: blocks-legacy/media-grid/block.json
+#: blocks/media-grid/block.json
+msgctxt "block title"
+msgid "Media Grid"
+msgstr "Medienraster"
+
+#: blocks-legacy/media-grid/block.json
+#: blocks/media-grid/block.json
+msgctxt "block description"
+msgid "Display multiple media items in a rich gallery."
+msgstr "Zeigt mehrere Medienelemente in einer reichhaltigen Galerie."
+
+#: blocks-legacy/media-grid/block.json
+#: blocks/media-grid/block.json
+msgctxt "block keyword"
+msgid "gallery"
+msgstr "gallery"
+
+#: blocks-legacy/media-grid/block.json
+#: blocks/media-grid/block.json
+msgctxt "block keyword"
+msgid "grid"
+msgstr "grid"
+
+#: includes/i18n-strings.php:466
+msgid "Alt text"
+msgstr "Alternativtext"
+
+#: includes/i18n-strings.php:467
+msgid "Image width"
+msgstr "Bildbreite"
+
+#: includes/i18n-strings.php:468
+msgid "Image height"
+msgstr "Bildhöhe"
+
+#: includes/i18n-strings.php:469
+msgid "Block ID of the surrounding media grid. It supplies the item style and the link target."
+msgstr "Block-ID des umgebenden Medienrasters. Von dort kommen der Elementstil und das Linkziel."
+
+#: includes/i18n-strings.php:470
+msgid "The image is rendered from this attachment, not from the URL below."
+msgstr "Das Bild wird aus diesem Anhang ausgegeben, nicht aus der URL darunter."
+
+#: includes/i18n-strings.php:471
+msgid "Leave empty for decorative images."
+msgstr "Bei dekorativen Bildern leer lassen."
+
+#: includes/i18n-strings.php:472
+msgid "The rendered link uses the target of the surrounding media grid."
+msgstr "Der ausgegebene Link verwendet das Ziel des umgebenden Medienrasters."
+
+#: includes/i18n-strings.php:473
+msgid "Only used with Set dimensions. Numeric value without a unit; pixels are added on output."
+msgstr "Wird nur bei „Maße festlegen\" verwendet. Zahlenwert ohne Einheit; Pixel werden bei der Ausgabe ergänzt."
+
+#: blocks-legacy/media-grid-image/block.json
+#: blocks/media-grid-image/block.json
+msgctxt "block title"
+msgid "Image"
+msgstr "Bild"
+
+#: blocks-legacy/media-grid-image/block.json
+#: blocks/media-grid-image/block.json
+msgctxt "block description"
+msgid "Insert an image to make a visual statement."
+msgstr "Fügt ein Bild ein, das für sich spricht."
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks-legacy/accordion/block.json
+#: blocks-legacy/alert/block.json
+#: blocks-legacy/banner-item/block.json
+#: blocks-legacy/banner/block.json
+#: blocks-legacy/breadcrumb/block.json
+#: blocks-legacy/button-group/block.json
+#: blocks-legacy/button/block.json
+#: blocks-legacy/card-body/block.json
+#: blocks-legacy/card-footer/block.json
+#: blocks-legacy/card-group/block.json
+#: blocks-legacy/card-header/block.json
+#: blocks-legacy/card/block.json
+#: blocks-legacy/carousel-item/block.json
+#: blocks-legacy/carousel/block.json
+#: blocks-legacy/collapse/block.json
+#: blocks-legacy/column-break/block.json
+#: blocks-legacy/column/block.json
+#: blocks-legacy/container/block.json
+#: blocks-legacy/content-grid-item/block.json
+#: blocks-legacy/content-grid/block.json
+#: blocks-legacy/content-with-media/block.json
+#: blocks-legacy/div/block.json
+#: blocks-legacy/dropdown-item/block.json
+#: blocks-legacy/icon/block.json
+#: blocks-legacy/list-group-item/block.json
+#: blocks-legacy/list-group/block.json
+#: blocks-legacy/media-grid-image/block.json
+#: blocks-legacy/media-grid/block.json
+#: blocks-legacy/modal-body/block.json
+#: blocks-legacy/modal-footer/block.json
+#: blocks-legacy/modal-header/block.json
+#: blocks-legacy/modal/block.json
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks-legacy/offcanvas/block.json
+#: blocks-legacy/post-grid/block.json
+#: blocks-legacy/progress/block.json
+#: blocks-legacy/row/block.json
+#: blocks-legacy/spinner/block.json
+#: blocks-legacy/strip/block.json
+#: blocks-legacy/tabs/block.json
+#: blocks-legacy/toast-body/block.json
+#: blocks-legacy/toast-header/block.json
+#: blocks-legacy/toast/block.json
+#: blocks/accordion-item/block.json
+#: blocks/accordion/block.json
+#: blocks/alert/block.json
+#: blocks/banner-item/block.json
+#: blocks/banner/block.json
+#: blocks/breadcrumb/block.json
+#: blocks/button-group/block.json
+#: blocks/button/block.json
+#: blocks/card-body/block.json
+#: blocks/card-footer/block.json
+#: blocks/card-group/block.json
+#: blocks/card-header/block.json
+#: blocks/card/block.json
+#: blocks/carousel-item/block.json
+#: blocks/carousel/block.json
+#: blocks/collapse/block.json
+#: blocks/column-break/block.json
+#: blocks/column/block.json
+#: blocks/container/block.json
+#: blocks/content-grid-item/block.json
+#: blocks/content-grid/block.json
+#: blocks/content-with-media/block.json
+#: blocks/div/block.json
+#: blocks/dropdown-item/block.json
+#: blocks/icon/block.json
+#: blocks/list-group-item/block.json
+#: blocks/list-group/block.json
+#: blocks/media-grid-image/block.json
+#: blocks/media-grid/block.json
+#: blocks/modal-body/block.json
+#: blocks/modal-footer/block.json
+#: blocks/modal-header/block.json
+#: blocks/modal/block.json
+#: blocks/nav-and-tab-item/block.json
+#: blocks/nav-and-tab/block.json
+#: blocks/offcanvas-body/block.json
+#: blocks/offcanvas-header/block.json
+#: blocks/offcanvas/block.json
+#: blocks/post-grid/block.json
+#: blocks/progress/block.json
+#: blocks/row/block.json
+#: blocks/spinner/block.json
+#: blocks/strip/block.json
+#: blocks/tabs/block.json
+#: blocks/toast-body/block.json
+#: blocks/toast-header/block.json
+#: blocks/toast/block.json
+msgctxt "block keyword"
+msgid "areoi"
+msgstr "areoi"
+
+#: blocks-legacy/media-grid-image/block.json
+#: blocks/media-grid-image/block.json
+msgctxt "block keyword"
+msgid "img"
+msgstr "img"
+
+#: blocks-legacy/media-grid-image/block.json
+#: blocks/media-grid-image/block.json
+msgctxt "block keyword"
+msgid "photo"
+msgstr "photo"
+
+#: blocks-legacy/media-grid-image/block.json
+#: blocks/media-grid-image/block.json
+msgctxt "block keyword"
+msgid "picture"
+msgstr "picture"
+
+#: includes/i18n-strings.php:70
+msgid "Column Break"
+msgstr "Spaltenumbruch"
+
+#: includes/i18n-strings.php:73
+msgid "Breaking columns to a new line in flexbox requires a small hack: add an element with width: 100% wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple .rows, but not every implementation method can account for this."
+msgstr "Ein Spaltenumbruch in Flexbox erfordert einen kleinen Kniff: Setzen Sie an der gewuenschten Umbruchstelle ein Element mit width: 100% ein. Normalerweise wird dies ueber mehrere .rows geloest; nicht jede Umsetzungsvariante laesst dies jedoch zu."
+
+#: blocks-legacy/column-break/block.json
+#: blocks/column-break/block.json
+msgctxt "block title"
+msgid "Column Break"
+msgstr "Spaltenumbruch"
+
+#: blocks-legacy/column-break/block.json
+#: blocks/column-break/block.json
+msgctxt "block description"
+msgid "Breaking columns to a new line in flexbox requires a small hack: add an element with width: 100% wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple .rows, but not every implementation method can account for this."
+msgstr "Ein Spaltenumbruch in Flexbox erfordert einen kleinen Kniff: Setzen Sie an der gewuenschten Umbruchstelle ein Element mit width: 100% ein. Normalerweise wird dies ueber mehrere .rows geloest; nicht jede Umsetzungsvariante laesst dies jedoch zu."
+
+#: includes/i18n-strings.php:476
+msgid "Alert"
+msgstr "Hinweis"
+
+#: includes/i18n-strings.php:477
+msgid "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
+msgstr "Geben Sie Rueckmeldung zu typischen Benutzeraktionen, mit den verfuegbaren und flexibel einsetzbaren Hinweismeldungen."
+
+#: includes/i18n-strings.php:478
+msgid "Style"
+msgstr "Stil"
+
+#: includes/i18n-strings.php:479
+msgid "Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., .alert-success)."
+msgstr "Hinweise eignen sich fuer Texte jeder Laenge und koennen einen Schliessen-Knopf enthalten. Nutzen Sie fuer die Gestaltung eine der acht Kontextklassen (z. B. .alert-success)."
+
+#: includes/i18n-strings.php:480
+msgid "Display Close Button"
+msgstr "Schliessen-Knopf anzeigen"
+
+#: includes/i18n-strings.php:481
+msgid "Add a close button and the .alert-dismissible class, which adds extra padding to the right of the alert and positions the close button."
+msgstr "Ergaenzt einen Schliessen-Knopf und die Klasse .alert-dismissible, die rechts zusaetzlichen Innenabstand erzeugt und den Knopf positioniert."
+
+#: includes/i18n-strings.php:482
+msgid "Collapse"
+msgstr "Aufklappbereich"
+
+#: includes/i18n-strings.php:483
+msgid "Toggle the visibility of content across your project with a few classes and our JavaScript plugins."
+msgstr "Blenden Sie Inhalte ueber wenige Klassen und die JavaScript-Erweiterungen ein und aus."
+
+#: includes/i18n-strings.php:484
+msgid "Open"
+msgstr "Geoeffnet"
+
+#: includes/i18n-strings.php:485
+msgid "Set the collapsible content visible as a default."
+msgstr "Stellt den aufklappbaren Inhalt von Beginn an sichtbar dar."
+
+#: includes/i18n-strings.php:486
+msgid "Spinner"
+msgstr "Ladeanzeige"
+
+#: includes/i18n-strings.php:487
+msgid "Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript."
+msgstr "Zeigen Sie den Ladezustand einer Komponente oder Seite an, umgesetzt allein mit HTML und CSS, ohne JavaScript."
+
+#: includes/i18n-strings.php:488
+msgid "The border spinner uses currentColor for its border-color, meaning you can customize the color with text color utilities. You can use any of our text color utilities on the standard spinner."
+msgstr "Die Rahmen-Ladeanzeige verwendet currentColor als Rahmenfarbe; Sie bestimmen die Farbe deshalb ueber die Textfarbklassen. Auf der Standardanzeige ist jede davon einsetzbar."
+
+#: includes/i18n-strings.php:489
+msgid "Border"
+msgstr "Rahmen"
+
+#: includes/i18n-strings.php:490
+msgid "Grow"
+msgstr "Wachsend"
+
+#: includes/i18n-strings.php:491
+msgid "Color"
+msgstr "Farbe"
+
+#: includes/i18n-strings.php:492
+msgid "Size"
+msgstr "Groesse"
+
+#: includes/i18n-strings.php:493
+msgid "Add .spinner-border-sm and .spinner-grow-sm to make a smaller spinner that can quickly be used within other components."
+msgstr "Ueber .spinner-border-sm und .spinner-grow-sm erhalten Sie eine kleinere Anzeige, die sich in andere Komponenten einbetten laesst."
+
+#: includes/i18n-strings.php:494
+msgid "Icon"
+msgstr "Icon"
+
+#: includes/i18n-strings.php:495
+msgid "Display a Bootstrap icon in any of the available theme colours and sizes."
+msgstr "Stellen Sie ein Bootstrap-Symbol in einer der verfuegbaren Themefarben und Groessen dar."
+
+#: includes/i18n-strings.php:496
+msgid "Extra Small"
+msgstr "Sehr klein"
+
+#: includes/i18n-strings.php:497
+msgid "Extra Large"
+msgstr "Sehr gross"
+
+#: includes/i18n-strings.php:498
+msgid "Extra Extra Large"
+msgstr "Besonders gross"
+
+#: includes/i18n-strings.php:499
+msgid "Horizontal Align"
+msgstr "Horizontale Ausrichtung"
+
+#: includes/i18n-strings.php:500
+msgid "List Group"
+msgstr "Listengruppe"
+
+#: includes/i18n-strings.php:501
+msgid "List groups are a flexible and powerful component for displaying a series of content."
+msgstr "Listengruppen sind eine vielseitige Komponente fuer die Darstellung aufeinanderfolgender Inhalte."
+
+#: includes/i18n-strings.php:502
+msgid "Add .list-group-flush to remove some borders and rounded corners to render list group items edge-to-edge in a parent container (e.g., cards)."
+msgstr "Ueber .list-group-flush entfallen Rahmen und runde Ecken, sodass die Eintraege buendig im umgebenden Element stehen (etwa in Karten)."
+
+#: includes/i18n-strings.php:503
+msgid "Add .list-group-horizontal to change the layout of list group items from vertical to horizontal across all breakpoints."
+msgstr "Ueber .list-group-horizontal ordnen sich die Eintraege auf allen Breakpoints nebeneinander statt untereinander an."
+
+#: includes/i18n-strings.php:504
+msgid "List Group Item"
+msgstr "Listeneintrag"
+
+#: includes/i18n-strings.php:505
+msgid "A single item within a list group."
+msgstr "Ein einzelner Eintrag in einer Listengruppe."
+
+#: includes/i18n-strings.php:506
+msgid "Identifier of the surrounding block. It is set automatically and must not be changed."
+msgstr "Kennung des umgebenden Blocks. Sie wird selbsttaetig vergeben und darf nicht veraendert werden."
+
+#: includes/i18n-strings.php:507
+msgid "Active"
+msgstr "Aktiv"
+
+#: includes/i18n-strings.php:508
+msgid "Add .active to a .list-group-item to indicate the current active selection."
+msgstr "Ueber .active kennzeichnen Sie den derzeit ausgewaehlten Eintrag."
+
+#: includes/i18n-strings.php:509
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: includes/i18n-strings.php:510
+msgid "Add .disabled to a .list-group-item to make it appear disabled. Note that some elements with .disabled will also require custom JavaScript to fully disable their click events (e.g., links)."
+msgstr "Ueber .disabled wirkt der Eintrag deaktiviert. Beachten Sie, dass einzelne Elemente zusaetzliches JavaScript benoetigen, damit Klicks tatsaechlich unterbunden werden (etwa Links)."
+
+#: includes/i18n-strings.php:511
+msgid "Action"
+msgstr "Aktion"
+
+#: includes/i18n-strings.php:512
+msgid "Contextual classes also work with .list-group-item-action. Note the addition of the hover styles."
+msgstr "Die Kontextklassen greifen auch zusammen mit .list-group-item-action; ergaenzend kommen die Hover-Stile hinzu."
+
+#: includes/i18n-strings.php:513
+msgid "Contextual classes"
+msgstr "Kontextklassen"
+
+#: includes/i18n-strings.php:514
+msgid "Use contextual classes to style list items with a stateful background and color."
+msgstr "Ueber die Kontextklassen erhalten Eintraege je nach Zustand Hintergrund und Farbe."
+
+#: includes/i18n-strings.php:515
+msgid "Text"
+msgstr "Text"
+
+#: includes/i18n-strings.php:516
+msgid "URL"
+msgstr "URL"
+
+#: includes/i18n-strings.php:517
+msgid "Title"
+msgstr "Titel"
+
+#: includes/i18n-strings.php:518
+msgid "Open the link in a new tab."
+msgstr "Oeffnet den Link in einem neuen Browsertab."
+
+#: includes/i18n-strings.php:519
+msgid "Dropdown Item"
+msgstr "Auswahleintrag"
+
+#: includes/i18n-strings.php:520
+msgid "A single entry within a dropdown menu."
+msgstr "Ein einzelner Eintrag innerhalb eines Auswahlmenues."
+
+#: includes/i18n-strings.php:521
+msgid "Type"
+msgstr "Typ"
+
+#: includes/i18n-strings.php:522
+msgid "Choose how you would like the item to be displayed."
+msgstr "Bestimmen Sie, wie der Eintrag dargestellt wird."
+
+#: includes/i18n-strings.php:523
+msgid "Header"
+msgstr "Ueberschrift"
+
+#: includes/i18n-strings.php:524
+msgid "Divider"
+msgstr "Trennlinie"
+
+#: includes/i18n-strings.php:525
+msgid "Add .active to items in the dropdown to style them as active."
+msgstr "Ueber .active werden Eintraege im Menue als aktiv dargestellt."
+
+#: includes/i18n-strings.php:526
+msgid "Add .disabled to items in the dropdown to style them as disabled."
+msgstr "Ueber .disabled werden Eintraege im Menue als deaktiviert dargestellt."
+
+#: blocks-legacy/alert/block.json
+#: blocks/alert/block.json
+msgctxt "block title"
+msgid "Alert"
+msgstr "Hinweis"
+
+#: blocks-legacy/alert/block.json
+#: blocks/alert/block.json
+msgctxt "block description"
+msgid "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
+msgstr "Geben Sie Rueckmeldung zu typischen Benutzeraktionen, mit den verfuegbaren und flexibel einsetzbaren Hinweismeldungen."
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks-legacy/accordion/block.json
+#: blocks-legacy/alert/block.json
+#: blocks-legacy/breadcrumb/block.json
+#: blocks-legacy/carousel-item/block.json
+#: blocks-legacy/carousel/block.json
+#: blocks-legacy/collapse/block.json
+#: blocks-legacy/dropdown-item/block.json
+#: blocks-legacy/icon/block.json
+#: blocks-legacy/list-group-item/block.json
+#: blocks-legacy/list-group/block.json
+#: blocks-legacy/modal-body/block.json
+#: blocks-legacy/modal-footer/block.json
+#: blocks-legacy/modal-header/block.json
+#: blocks-legacy/modal/block.json
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks-legacy/offcanvas/block.json
+#: blocks-legacy/progress/block.json
+#: blocks-legacy/spinner/block.json
+#: blocks-legacy/tabs/block.json
+#: blocks-legacy/toast-body/block.json
+#: blocks-legacy/toast-header/block.json
+#: blocks-legacy/toast/block.json
+#: blocks/accordion-item/block.json
+#: blocks/accordion/block.json
+#: blocks/alert/block.json
+#: blocks/breadcrumb/block.json
+#: blocks/carousel-item/block.json
+#: blocks/carousel/block.json
+#: blocks/collapse/block.json
+#: blocks/dropdown-item/block.json
+#: blocks/icon/block.json
+#: blocks/list-group-item/block.json
+#: blocks/list-group/block.json
+#: blocks/modal-body/block.json
+#: blocks/modal-footer/block.json
+#: blocks/modal-header/block.json
+#: blocks/modal/block.json
+#: blocks/nav-and-tab-item/block.json
+#: blocks/nav-and-tab/block.json
+#: blocks/offcanvas-body/block.json
+#: blocks/offcanvas-header/block.json
+#: blocks/offcanvas/block.json
+#: blocks/progress/block.json
+#: blocks/spinner/block.json
+#: blocks/tabs/block.json
+#: blocks/toast-body/block.json
+#: blocks/toast-header/block.json
+#: blocks/toast/block.json
+msgctxt "block keyword"
+msgid "component"
+msgstr "Komponente"
+
+#: blocks-legacy/collapse/block.json
+#: blocks/collapse/block.json
+msgctxt "block title"
+msgid "Collapse"
+msgstr "Aufklappbereich"
+
+#: blocks-legacy/collapse/block.json
+#: blocks/collapse/block.json
+msgctxt "block description"
+msgid "Toggle the visibility of content across your project with a few classes and our JavaScript plugins."
+msgstr "Blenden Sie Inhalte ueber wenige Klassen und die JavaScript-Erweiterungen ein und aus."
+
+#: blocks-legacy/dropdown-item/block.json
+#: blocks/dropdown-item/block.json
+msgctxt "block title"
+msgid "Dropdown Item"
+msgstr "Auswahleintrag"
+
+#: blocks-legacy/dropdown-item/block.json
+#: blocks/dropdown-item/block.json
+msgctxt "block description"
+msgid "A single entry within a dropdown menu."
+msgstr "Ein einzelner Eintrag innerhalb eines Auswahlmenues."
+
+#: blocks-legacy/icon/block.json
+#: blocks/icon/block.json
+msgctxt "block title"
+msgid "Icon"
+msgstr "Icon"
+
+#: blocks-legacy/icon/block.json
+#: blocks/icon/block.json
+msgctxt "block description"
+msgid "Display a Bootstrap icon in any of the available theme colours and sizes."
+msgstr "Stellen Sie ein Bootstrap-Symbol in einer der verfuegbaren Themefarben und Groessen dar."
+
+#: blocks-legacy/list-group-item/block.json
+#: blocks/list-group-item/block.json
+msgctxt "block title"
+msgid "List Group Item"
+msgstr "Listeneintrag"
+
+#: blocks-legacy/list-group-item/block.json
+#: blocks/list-group-item/block.json
+msgctxt "block description"
+msgid "A single item within a list group."
+msgstr "Ein einzelner Eintrag in einer Listengruppe."
+
+#: blocks-legacy/list-group/block.json
+#: blocks/list-group/block.json
+msgctxt "block title"
+msgid "List Group"
+msgstr "Listengruppe"
+
+#: blocks-legacy/list-group/block.json
+#: blocks/list-group/block.json
+msgctxt "block description"
+msgid "List groups are a flexible and powerful component for displaying a series of content."
+msgstr "Listengruppen sind eine vielseitige Komponente fuer die Darstellung aufeinanderfolgender Inhalte."
+
+#: blocks-legacy/spinner/block.json
+#: blocks/spinner/block.json
+msgctxt "block title"
+msgid "Spinner"
+msgstr "Ladeanzeige"
+
+#: blocks-legacy/spinner/block.json
+#: blocks/spinner/block.json
+msgctxt "block description"
+msgid "Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript."
+msgstr "Zeigen Sie den Ladezustand einer Komponente oder Seite an, umgesetzt allein mit HTML und CSS, ohne JavaScript."
+
+#: includes/i18n-strings.php:529
+msgid "Accordion"
+msgstr "Akkordeon"
+
+#: includes/i18n-strings.php:530
+msgid "Build vertically collapsing accordions in combination with our Collapse JavaScript plugin."
+msgstr "Erstellen Sie senkrecht aufklappbare Akkordeons in Verbindung mit der Collapse-Erweiterung."
+
+#: includes/i18n-strings.php:531
+msgid "Add .accordion-flush to remove the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
+msgstr "Ueber .accordion-flush entfallen Hintergrundfarbe, Rahmen und abgerundete Ecken, sodass das Akkordeon buendig im umgebenden Element steht."
+
+#: includes/i18n-strings.php:532
+msgid "Accordion Item"
+msgstr "Akkordeon-Abschnitt"
+
+#: includes/i18n-strings.php:533
+msgid "A single collapsible section within an accordion."
+msgstr "Ein einzelner aufklappbarer Abschnitt innerhalb eines Akkordeons."
+
+#: includes/i18n-strings.php:534
+msgid "Specify the element type to apply to the accordion header."
+msgstr "Bestimmen Sie, welches Element die Akkordeon-Ueberschrift bildet."
+
+#: includes/i18n-strings.php:535
+msgid "p"
+msgstr "p"
+
+#: includes/i18n-strings.php:536
+msgid "The accordion uses collapse internally to make it collapsible. To render an accordion that’s expanded, add the .open class on the .accordion."
+msgstr "Das Akkordeon verwendet intern Collapse. Damit ein Abschnitt aufgeklappt dargestellt wird, setzen Sie die Klasse .open auf .accordion."
+
+#: includes/i18n-strings.php:537
+msgid "Always Open"
+msgstr "Immer geoeffnet"
+
+#: includes/i18n-strings.php:538
+msgid "Omit the data-bs-parent attribute on each .accordion-collapse to make accordion items stay open when another item is opened."
+msgstr "Laesst das Attribut data-bs-parent entfallen, sodass ein Abschnitt geoeffnet bleibt, wenn ein weiterer aufgeklappt wird."
+
+#: includes/i18n-strings.php:539
+msgid "Tabs"
+msgstr "Reiter"
+
+#: includes/i18n-strings.php:540
+msgid "Wrap navigation and its tab panes so they can be shown and hidden together."
+msgstr "Klammert Navigation und Reiterinhalte, damit beide gemeinsam ein- und ausgeblendet werden."
+
+#: includes/i18n-strings.php:541
+msgid "Nav and Tab"
+msgstr "Navigation und Reiter"
+
+#: includes/i18n-strings.php:542
+msgid "Navigation available in Bootstrap share general markup and styles, from the base .nav class to the active and disabled states."
+msgstr "Die Navigationsvarianten in Bootstrap nutzen dasselbe Markup und dieselben Stile, von der Grundklasse .nav bis zu den Zustaenden aktiv und deaktiviert."
+
+#: includes/i18n-strings.php:543
+msgid "Pills"
+msgstr "Pillen"
+
+#: includes/i18n-strings.php:544
+msgid "Fill & Justify"
+msgstr "Fuellen und verteilen"
+
+#: includes/i18n-strings.php:545
+msgid "Force your .nav’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your .nav-items, use .nav-fill. Notice that all horizontal space is occupied, but not every nav item has the same width."
+msgstr "Zwei Zusatzklassen dehnen die Navigation auf die gesamte Breite. Ueber .nav-fill verteilen sich die Eintraege anteilig; der Raum ist dann ausgefuellt, die Eintraege bleiben jedoch unterschiedlich breit."
+
+#: includes/i18n-strings.php:546
+msgid "Fill"
+msgstr "Fuellen"
+
+#: includes/i18n-strings.php:547
+msgid "Justify"
+msgstr "Verteilen"
+
+#: includes/i18n-strings.php:548
+msgid "Change the horizontal alignment of your nav with flexbox utilities. By default, navs are left-aligned, but you can easily change them to center or right aligned."
+msgstr "Passen Sie die waagerechte Ausrichtung ueber die Flexbox-Klassen an. Voreingestellt steht die Navigation links; Sie koennen sie mittig oder rechts ausrichten."
+
+#: includes/i18n-strings.php:549
+msgid "Vertical Align"
+msgstr "Vertikale Ausrichtung"
+
+#: includes/i18n-strings.php:550
+msgid "Stack your navigation by changing the flex item direction with the .flex-column utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., .flex-sm-column)."
+msgstr "Stapeln Sie die Navigation ueber .flex-column. Soll dies nur auf bestimmten Geraetebreiten gelten, verwenden Sie die Breakpoint-Varianten (etwa .flex-sm-column)."
+
+#: includes/i18n-strings.php:551
+msgid "Nav and Tab Item"
+msgstr "Navigationseintrag"
+
+#: includes/i18n-strings.php:552
+msgid "A single link within a nav or tab list."
+msgstr "Ein einzelner Link innerhalb einer Navigation oder Reiterleiste."
+
+#: includes/i18n-strings.php:553
+msgid "Add .active to a .nav-item to indicate the current active selection."
+msgstr "Ueber .active kennzeichnen Sie den derzeit ausgewaehlten Eintrag."
+
+#: includes/i18n-strings.php:554
+msgid "Add .disabled to a .nav-item to make it appear disabled. Note that some elements with .disabled will also require custom JavaScript to fully disable their click events (e.g., links)."
+msgstr "Ueber .disabled wirkt der Eintrag deaktiviert. Beachten Sie, dass einzelne Elemente zusaetzliches JavaScript benoetigen, damit Klicks tatsaechlich unterbunden werden (etwa Links)."
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks/accordion-item/block.json
+msgctxt "block title"
+msgid "Accordion Item"
+msgstr "Akkordeon-Abschnitt"
+
+#: blocks-legacy/accordion-item/block.json
+#: blocks/accordion-item/block.json
+msgctxt "block description"
+msgid "A single collapsible section within an accordion."
+msgstr "Ein einzelner aufklappbarer Abschnitt innerhalb eines Akkordeons."
+
+#: blocks-legacy/accordion/block.json
+#: blocks/accordion/block.json
+msgctxt "block title"
+msgid "Accordion"
+msgstr "Akkordeon"
+
+#: blocks-legacy/accordion/block.json
+#: blocks/accordion/block.json
+msgctxt "block description"
+msgid "Build vertically collapsing accordions in combination with our Collapse JavaScript plugin."
+msgstr "Erstellen Sie senkrecht aufklappbare Akkordeons in Verbindung mit der Collapse-Erweiterung."
+
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks/nav-and-tab-item/block.json
+msgctxt "block title"
+msgid "Nav and Tab Item"
+msgstr "Navigationseintrag"
+
+#: blocks-legacy/nav-and-tab-item/block.json
+#: blocks/nav-and-tab-item/block.json
+msgctxt "block description"
+msgid "A single link within a nav or tab list."
+msgstr "Ein einzelner Link innerhalb einer Navigation oder Reiterleiste."
+
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks/nav-and-tab/block.json
+msgctxt "block title"
+msgid "Nav and Tab"
+msgstr "Navigation und Reiter"
+
+#: blocks-legacy/nav-and-tab/block.json
+#: blocks/nav-and-tab/block.json
+msgctxt "block description"
+msgid "Navigation available in Bootstrap share general markup and styles, from the base .nav class to the active and disabled states."
+msgstr "Die Navigationsvarianten in Bootstrap nutzen dasselbe Markup und dieselben Stile, von der Grundklasse .nav bis zu den Zustaenden aktiv und deaktiviert."
+
+#: blocks-legacy/tabs/block.json
+#: blocks/tabs/block.json
+msgctxt "block title"
+msgid "Tabs"
+msgstr "Reiter"
+
+#: blocks-legacy/tabs/block.json
+#: blocks/tabs/block.json
+msgctxt "block description"
+msgid "Wrap navigation and its tab panes so they can be shown and hidden together."
+msgstr "Klammert Navigation und Reiterinhalte, damit beide gemeinsam ein- und ausgeblendet werden."
+
+#: includes/i18n-strings.php:557
+msgid "Modal"
+msgstr "Dialog"
+
+#: includes/i18n-strings.php:558
+msgid "Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content."
+msgstr "Ergaenzen Sie ueber die Modal-Erweiterung Dialoge, etwa fuer Lightboxen, Benutzermeldungen oder frei gestaltete Inhalte."
+
+#: includes/i18n-strings.php:559
+msgid "Backdrop"
+msgstr "Hintergrundflaeche"
+
+#: includes/i18n-strings.php:560
+msgid "When backdrop is set to static, the modal will not close when clicking outside of it."
+msgstr "Ist die Hintergrundflaeche auf static gesetzt, bleibt der Dialog bei einem Klick daneben geoeffnet."
+
+#: includes/i18n-strings.php:561
+msgid "Static"
+msgstr "Statisch"
+
+#: includes/i18n-strings.php:562
+msgid "Scrollable Dialog"
+msgstr "Scrollbarer Dialog"
+
+#: includes/i18n-strings.php:563
+msgid "When modals become too long for the user’s viewport or device, they scroll independent of the page itself."
+msgstr "Ist ein Dialog fuer den Bildschirm zu lang, laesst er sich unabhaengig von der Seite scrollen."
+
+#: includes/i18n-strings.php:564
+msgid "Scrollable"
+msgstr "Scrollbar"
+
+#: includes/i18n-strings.php:565
+msgid "Vertically Centered Dialog"
+msgstr "Senkrecht zentrierter Dialog"
+
+#: includes/i18n-strings.php:566
+msgid "Add .modal-dialog-centered to .modal-dialog to vertically center the modal."
+msgstr "Ueber .modal-dialog-centered wird der Dialog senkrecht mittig ausgerichtet."
+
+#: includes/i18n-strings.php:567
+msgid "Centered"
+msgstr "Zentriert"
+
+#: includes/i18n-strings.php:568
+msgid "Dialog Size"
+msgstr "Dialoggroesse"
+
+#: includes/i18n-strings.php:569
+msgid "Modals have optional sizes, available via modifier classes to be placed on a .modal-dialog. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports."
+msgstr "Dialoge lassen sich ueber Zusatzklassen auf .modal-dialog in der Groesse bestimmen. Diese greifen ab festgelegten Breakpoints, damit auf schmalen Bildschirmen keine waagerechten Scrollbalken auftreten."
+
+#: includes/i18n-strings.php:570
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: includes/i18n-strings.php:571
+msgid "Modal Header"
+msgstr "Dialogkopf"
+
+#: includes/i18n-strings.php:572
+msgid "The header of a modal dialog."
+msgstr "Der Kopfbereich eines Dialogfensters."
+
+#: includes/i18n-strings.php:573
+msgid "Add a close button to the modal header."
+msgstr "Ergaenzt den Dialogkopf um einen Schliessen-Knopf."
+
+#: includes/i18n-strings.php:574
+msgid "Modal Body"
+msgstr "Dialogkoerper"
+
+#: includes/i18n-strings.php:575
+msgid "The body of a modal dialog."
+msgstr "Der Inhaltsbereich eines Dialogfensters."
+
+#: includes/i18n-strings.php:576
+msgid "Modal Footer"
+msgstr "Dialogfuss"
+
+#: includes/i18n-strings.php:577
+msgid "The footer of a modal dialog."
+msgstr "Der Fussbereich eines Dialogfensters."
+
+#: includes/i18n-strings.php:578
+msgid "Offcanvas"
+msgstr "Seitenpanel"
+
+#: includes/i18n-strings.php:579
+msgid "Build hidden sidebars into your project for navigation, shopping carts, and more."
+msgstr "Ergaenzen Sie ausgeblendete Seitenleisten, etwa fuer Navigation oder Warenkorb."
+
+#: includes/i18n-strings.php:580
+msgid "Choose whether a backdrop is shown behind the offcanvas panel."
+msgstr "Bestimmen Sie, ob hinter dem Panel eine Hintergrundflaeche erscheint."
+
+#: includes/i18n-strings.php:581
+msgid "Include Backdrop"
+msgstr "Mit Hintergrundflaeche"
+
+#: includes/i18n-strings.php:582
+msgid "No Backdrop"
+msgstr "Ohne Hintergrundflaeche"
+
+#: includes/i18n-strings.php:583
+msgid "Choose whether the page behind the offcanvas panel can be scrolled."
+msgstr "Bestimmen Sie, ob die Seite hinter dem Panel scrollbar bleibt."
+
+#: includes/i18n-strings.php:584
+msgid "Disable Scrolling"
+msgstr "Scrollen sperren"
+
+#: includes/i18n-strings.php:585
+msgid "Allow Scrolling"
+msgstr "Scrollen erlauben"
+
+#: includes/i18n-strings.php:586
+msgid "Placement"
+msgstr "Platzierung"
+
+#: includes/i18n-strings.php:587
+msgid "Choose the edge the offcanvas panel slides in from."
+msgstr "Bestimmen Sie die Kante, von der das Panel einfaehrt."
+
+#: includes/i18n-strings.php:588
+msgid "Offcanvas Header"
+msgstr "Panelkopf"
+
+#: includes/i18n-strings.php:589
+msgid "The header of an offcanvas panel."
+msgstr "Der Kopfbereich eines eingeblendeten Seitenpanels."
+
+#: includes/i18n-strings.php:590
+msgid "Offcanvas Body"
+msgstr "Panelkoerper"
+
+#: includes/i18n-strings.php:591
+msgid "The body of an offcanvas panel."
+msgstr "Der Inhaltsbereich eines eingeblendeten Seitenpanels."
+
+#: includes/i18n-strings.php:592
+msgid "Toast"
+msgstr "Kurzmeldung"
+
+#: includes/i18n-strings.php:593
+msgid "Push notifications to your visitors with a toast, a lightweight and easily customizable alert message."
+msgstr "Blenden Sie Besuchern kurze Meldungen ein, leichtgewichtig und frei gestaltbar."
+
+#: includes/i18n-strings.php:594
+msgid "Choose the corner the toast is shown in."
+msgstr "Bestimmen Sie die Ecke, in der die Meldung eingeblendet wird."
+
+#: includes/i18n-strings.php:595
+msgid "Top Left"
+msgstr "Oben links"
+
+#: includes/i18n-strings.php:596
+msgid "Top Right"
+msgstr "Oben rechts"
+
+#: includes/i18n-strings.php:597
+msgid "Bottom Right"
+msgstr "Unten rechts"
+
+#: includes/i18n-strings.php:598
+msgid "Bottom Left"
+msgstr "Unten links"
+
+#: includes/i18n-strings.php:599
+msgid "Toast Header"
+msgstr "Meldungskopf"
+
+#: includes/i18n-strings.php:600
+msgid "The header of a toast notification."
+msgstr "Der Kopfbereich einer eingeblendeten Kurzmeldung."
+
+#: includes/i18n-strings.php:601
+msgid "Toast Body"
+msgstr "Meldungskoerper"
+
+#: includes/i18n-strings.php:602
+msgid "The body of a toast notification."
+msgstr "Der Inhaltsbereich einer eingeblendeten Kurzmeldung."
+
+#: blocks-legacy/modal-body/block.json
+#: blocks/modal-body/block.json
+msgctxt "block title"
+msgid "Modal Body"
+msgstr "Dialogkoerper"
+
+#: blocks-legacy/modal-body/block.json
+#: blocks/modal-body/block.json
+msgctxt "block description"
+msgid "The body of a modal dialog."
+msgstr "Der Inhaltsbereich eines Dialogfensters."
+
+#: blocks-legacy/modal-footer/block.json
+#: blocks/modal-footer/block.json
+msgctxt "block title"
+msgid "Modal Footer"
+msgstr "Dialogfuss"
+
+#: blocks-legacy/modal-footer/block.json
+#: blocks/modal-footer/block.json
+msgctxt "block description"
+msgid "The footer of a modal dialog."
+msgstr "Der Fussbereich eines Dialogfensters."
+
+#: blocks-legacy/modal-header/block.json
+#: blocks/modal-header/block.json
+msgctxt "block title"
+msgid "Modal Header"
+msgstr "Dialogkopf"
+
+#: blocks-legacy/modal-header/block.json
+#: blocks/modal-header/block.json
+msgctxt "block description"
+msgid "The header of a modal dialog."
+msgstr "Der Kopfbereich eines Dialogfensters."
+
+#: blocks-legacy/modal/block.json
+#: blocks/modal/block.json
+msgctxt "block title"
+msgid "Modal"
+msgstr "Dialog"
+
+#: blocks-legacy/modal/block.json
+#: blocks/modal/block.json
+msgctxt "block description"
+msgid "Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content."
+msgstr "Ergaenzen Sie ueber die Modal-Erweiterung Dialoge, etwa fuer Lightboxen, Benutzermeldungen oder frei gestaltete Inhalte."
+
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks/offcanvas-body/block.json
+msgctxt "block title"
+msgid "Offcanvas Body"
+msgstr "Panelkoerper"
+
+#: blocks-legacy/offcanvas-body/block.json
+#: blocks/offcanvas-body/block.json
+msgctxt "block description"
+msgid "The body of an offcanvas panel."
+msgstr "Der Inhaltsbereich eines eingeblendeten Seitenpanels."
+
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks/offcanvas-header/block.json
+msgctxt "block title"
+msgid "Offcanvas Header"
+msgstr "Panelkopf"
+
+#: blocks-legacy/offcanvas-header/block.json
+#: blocks/offcanvas-header/block.json
+msgctxt "block description"
+msgid "The header of an offcanvas panel."
+msgstr "Der Kopfbereich eines eingeblendeten Seitenpanels."
+
+#: blocks-legacy/offcanvas/block.json
+#: blocks/offcanvas/block.json
+msgctxt "block title"
+msgid "Offcanvas"
+msgstr "Seitenpanel"
+
+#: blocks-legacy/offcanvas/block.json
+#: blocks/offcanvas/block.json
+msgctxt "block description"
+msgid "Build hidden sidebars into your project for navigation, shopping carts, and more."
+msgstr "Ergaenzen Sie ausgeblendete Seitenleisten, etwa fuer Navigation oder Warenkorb."
+
+#: blocks-legacy/toast-body/block.json
+#: blocks/toast-body/block.json
+msgctxt "block title"
+msgid "Toast Body"
+msgstr "Meldungskoerper"
+
+#: blocks-legacy/toast-body/block.json
+#: blocks/toast-body/block.json
+msgctxt "block description"
+msgid "The body of a toast notification."
+msgstr "Der Inhaltsbereich einer eingeblendeten Kurzmeldung."
+
+#: blocks-legacy/toast-header/block.json
+#: blocks/toast-header/block.json
+msgctxt "block title"
+msgid "Toast Header"
+msgstr "Meldungskopf"
+
+#: blocks-legacy/toast-header/block.json
+#: blocks/toast-header/block.json
+msgctxt "block description"
+msgid "The header of a toast notification."
+msgstr "Der Kopfbereich einer eingeblendeten Kurzmeldung."
+
+#: blocks-legacy/toast/block.json
+#: blocks/toast/block.json
+msgctxt "block title"
+msgid "Toast"
+msgstr "Kurzmeldung"
+
+#: blocks-legacy/toast/block.json
+#: blocks/toast/block.json
+msgctxt "block description"
+msgid "Push notifications to your visitors with a toast, a lightweight and easily customizable alert message."
+msgstr "Blenden Sie Besuchern kurze Meldungen ein, leichtgewichtig und frei gestaltbar."
+
+#: includes/i18n-strings.php:605
+msgid "Carousel"
+msgstr "Karussell"
+
+#: includes/i18n-strings.php:606
+msgid "A slideshow component for cycling through elements — images or slides of text — like a carousel."
+msgstr "Eine Diaschau, die Elemente der Reihe nach einblendet, etwa Bilder oder Textfolien."
+
+#: includes/i18n-strings.php:607
+msgid "Display Controls"
+msgstr "Steuerung anzeigen"
+
+#: includes/i18n-strings.php:608
+msgid "Show the previous and next buttons."
+msgstr "Blendet die Knoepfe fuer vorwaerts und rueckwaerts ein."
+
+#: includes/i18n-strings.php:609
+msgid "Display Indicators"
+msgstr "Indikatoren anzeigen"
+
+#: includes/i18n-strings.php:610
+msgid "Show the slide indicators below the carousel."
+msgstr "Blendet die Folienindikatoren unterhalb des Karussells ein."
+
+#: includes/i18n-strings.php:611
+msgid "Touch Enabled"
+msgstr "Wischgesten erlauben"
+
+#: includes/i18n-strings.php:612
+msgid "Allow swiping left and right on touch devices."
+msgstr "Ermoeglicht Wischgesten nach links und rechts auf Touchgeraeten."
+
+#: includes/i18n-strings.php:613
+msgid "Pause"
+msgstr "Pausieren"
+
+#: includes/i18n-strings.php:614
+msgid "Choose whether the carousel pauses when the pointer hovers over it."
+msgstr "Bestimmen Sie, ob das Karussell pausiert, solange der Zeiger darauf ruht."
+
+#: includes/i18n-strings.php:615
+msgid "False"
+msgstr "Nein"
+
+#: includes/i18n-strings.php:616
+msgid "Auto Scroll"
+msgstr "Automatisch weiterschalten"
+
+#: includes/i18n-strings.php:617
+msgid "Cycle through the slides automatically."
+msgstr "Wechselt die Folien selbsttaetig."
+
+#: includes/i18n-strings.php:618
+msgid "Auto Scroll Interval"
+msgstr "Intervall"
+
+#: includes/i18n-strings.php:619
+msgid "Time in milliseconds between two slides."
+msgstr "Abstand in Millisekunden zwischen zwei Folien."
+
+#: includes/i18n-strings.php:620
+msgid "Choose the colour scheme of the carousel controls and indicators."
+msgstr "Bestimmen Sie das Farbschema von Steuerung und Indikatoren."
+
+#: includes/i18n-strings.php:621
+msgid "Transition"
+msgstr "Uebergang"
+
+#: includes/i18n-strings.php:622
+msgid "Choose how one slide is replaced by the next."
+msgstr "Bestimmen Sie, wie eine Folie in die naechste uebergeht."
+
+#: includes/i18n-strings.php:623
+msgid "Crossfade"
+msgstr "Ueberblenden"
+
+#: includes/i18n-strings.php:624
+msgid "Carousel Item"
+msgstr "Karussellfolie"
+
+#: includes/i18n-strings.php:625
+msgid "A single slide within a carousel."
+msgstr "Eine einzelne Folie innerhalb eines Karussells."
+
+#: includes/i18n-strings.php:626
+msgid "Interval"
+msgstr "Intervall"
+
+#: includes/i18n-strings.php:627
+msgid "Time in milliseconds this slide is shown before the next one."
+msgstr "Dauer in Millisekunden, die diese Folie sichtbar bleibt, bevor die naechste folgt."
+
+#: includes/i18n-strings.php:628
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: includes/i18n-strings.php:629
+msgid "Document the progress of a task or an action with a progress bar."
+msgstr "Stellen Sie den Fortschritt einer Aufgabe oder Aktion als Balken dar."
+
+#: includes/i18n-strings.php:630
+msgid "Width"
+msgstr "Breite"
+
+#: includes/i18n-strings.php:631
+msgid "Width of the bar in percent."
+msgstr "Breite des Balkens in Prozent."
+
+#: includes/i18n-strings.php:632
+msgid "Include Label"
+msgstr "Beschriftung anzeigen"
+
+#: includes/i18n-strings.php:633
+msgid "Show the width value as text inside the bar."
+msgstr "Blendet den Wert der Breite als Text im Balken ein."
+
+#: includes/i18n-strings.php:634
+msgid "Include Stripes"
+msgstr "Streifen anzeigen"
+
+#: includes/i18n-strings.php:635
+msgid "Add a striped pattern to the bar."
+msgstr "Ergaenzt den Balken um ein Streifenmuster."
+
+#: includes/i18n-strings.php:636
+msgid "Include Animation"
+msgstr "Animation anzeigen"
+
+#: includes/i18n-strings.php:637
+msgid "Animate the striped pattern."
+msgstr "Setzt das Streifenmuster in Bewegung."
+
+#: includes/i18n-strings.php:638
+msgid "Background"
+msgstr "Hintergrund"
+
+#: includes/i18n-strings.php:639
+msgid "Choose the colour of the bar."
+msgstr "Bestimmen Sie die Farbe des Balkens."
+
+#: blocks-legacy/carousel-item/block.json
+#: blocks/carousel-item/block.json
+msgctxt "block title"
+msgid "Carousel Item"
+msgstr "Karussellfolie"
+
+#: blocks-legacy/carousel-item/block.json
+#: blocks/carousel-item/block.json
+msgctxt "block description"
+msgid "A single slide within a carousel."
+msgstr "Eine einzelne Folie innerhalb eines Karussells."
+
+#: blocks-legacy/carousel/block.json
+#: blocks/carousel/block.json
+msgctxt "block title"
+msgid "Carousel"
+msgstr "Karussell"
+
+#: blocks-legacy/carousel/block.json
+#: blocks/carousel/block.json
+msgctxt "block description"
+msgid "A slideshow component for cycling through elements — images or slides of text — like a carousel."
+msgstr "Eine Diaschau, die Elemente der Reihe nach einblendet, etwa Bilder oder Textfolien."
+
+#: blocks-legacy/progress/block.json
+#: blocks/progress/block.json
+msgctxt "block title"
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: blocks-legacy/progress/block.json
+#: blocks/progress/block.json
+msgctxt "block description"
+msgid "Document the progress of a task or an action with a progress bar."
+msgstr "Stellen Sie den Fortschritt einer Aufgabe oder Aktion als Balken dar."
+
+#: includes/i18n-strings.php:642
+msgid "Banner"
+msgstr "Banner"
+
+#: includes/i18n-strings.php:643
+msgid "A banner area holding one or more banner items."
+msgstr "Ein Bannerbereich, der ein oder mehrere Banner aufnimmt."
+
+#: includes/i18n-strings.php:644
+msgid "Banner Item"
+msgstr "Bannerelement"
+
+#: includes/i18n-strings.php:645
+msgid "A single banner within a banner area."
+msgstr "Ein einzelnes Banner innerhalb eines Bannerbereichs."
+
+#: includes/i18n-strings.php:646
+msgid "Content with Media"
+msgstr "Inhalt mit Medium"
+
+#: includes/i18n-strings.php:647
+msgid "A content section with an image or video beside it."
+msgstr "Ein Inhaltsabschnitt, dem ein Bild oder Video zur Seite steht."
+
+#: includes/i18n-strings.php:648
+msgid "Choose which side the content sits on."
+msgstr "Bestimmen Sie, auf welcher Seite der Inhalt angeordnet wird."
+
+#: includes/i18n-strings.php:649
+msgid "Content Grid"
+msgstr "Inhaltsraster"
+
+#: includes/i18n-strings.php:650
+msgid "A grid of content items with an optional heading and intro."
+msgstr "Ein Raster aus Inhaltselementen, optional mit Ueberschrift und Einleitung."
+
+#: includes/i18n-strings.php:651
+msgid "Content Grid Item"
+msgstr "Rastereintrag"
+
+#: includes/i18n-strings.php:652
+msgid "A single item within a content grid."
+msgstr "Ein einzelner Eintrag innerhalb eines Inhaltsrasters."
+
+#: blocks-legacy/banner-item/block.json
+#: blocks/banner-item/block.json
+msgctxt "block title"
+msgid "Banner Item"
+msgstr "Bannerelement"
+
+#: blocks-legacy/banner-item/block.json
+#: blocks/banner-item/block.json
+msgctxt "block description"
+msgid "A single banner within a banner area."
+msgstr "Ein einzelnes Banner innerhalb eines Bannerbereichs."
+
+#: blocks-legacy/banner/block.json
+#: blocks/banner/block.json
+msgctxt "block title"
+msgid "Banner"
+msgstr "Banner"
+
+#: blocks-legacy/banner/block.json
+#: blocks/banner/block.json
+msgctxt "block description"
+msgid "A banner area holding one or more banner items."
+msgstr "Ein Bannerbereich, der ein oder mehrere Banner aufnimmt."
+
+#: blocks-legacy/content-grid-item/block.json
+#: blocks/content-grid-item/block.json
+msgctxt "block title"
+msgid "Content Grid Item"
+msgstr "Rastereintrag"
+
+#: blocks-legacy/content-grid-item/block.json
+#: blocks/content-grid-item/block.json
+msgctxt "block description"
+msgid "A single item within a content grid."
+msgstr "Ein einzelner Eintrag innerhalb eines Inhaltsrasters."
+
+#: blocks-legacy/content-grid/block.json
+#: blocks/content-grid/block.json
+msgctxt "block title"
+msgid "Content Grid"
+msgstr "Inhaltsraster"
+
+#: blocks-legacy/content-grid/block.json
+#: blocks/content-grid/block.json
+msgctxt "block description"
+msgid "A grid of content items with an optional heading and intro."
+msgstr "Ein Raster aus Inhaltselementen, optional mit Ueberschrift und Einleitung."
+
+#: blocks-legacy/content-with-media/block.json
+#: blocks/content-with-media/block.json
+msgctxt "block title"
+msgid "Content with Media"
+msgstr "Inhalt mit Medium"
+
+#: blocks-legacy/content-with-media/block.json
+#: blocks/content-with-media/block.json
+msgctxt "block description"
+msgid "A content section with an image or video beside it."
+msgstr "Ein Inhaltsabschnitt, dem ein Bild oder Video zur Seite steht."
+
+#: includes/helpers.php:954
+msgid "Home"
+msgstr "Startseite"
+
+#: includes/i18n-strings.php:655
+msgid "Breadcrumb"
+msgstr "Brotkrumennavigation"
+
+#: includes/i18n-strings.php:656
+msgid "Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS."
+msgstr "Weist aus, an welcher Stelle der Hierarchie die aktuelle Seite steht; die Trenner erzeugt CSS."
+
+#: includes/i18n-strings.php:657
+msgid "Dividers are automatically added in CSS through ::before and content. They can be changed by modifying a local CSS custom property --bs-breadcrumb-divider, or through the $breadcrumb-divider Sass variable — and $breadcrumb-divider-flipped for its RTL counterpart, if needed. We default to our Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
+msgstr "Die Trenner erzeugt CSS ueber ::before und content. Anpassen laesst sich das ueber die CSS-Eigenschaft --bs-breadcrumb-divider oder die Sass-Variable $breadcrumb-divider — bei RTL zusaetzlich $breadcrumb-divider-flipped. Voreingestellt ist die Sass-Variable als Rueckfall der CSS-Eigenschaft; damit steht Ihnen ein globaler Trenner zur Verfuegung, den Sie jederzeit ohne erneute Uebersetzung ueberschreiben."
+
+#: includes/i18n-strings.php:658
+msgid "Use Front Page Title"
+msgstr "Titel der Startseite verwenden"
+
+#: includes/i18n-strings.php:659
+msgid "If checked the title of the front page will be used in place of Home."
+msgstr "Bei gesetztem Schalter erscheint anstelle von „Home\" der Titel der Startseite."
+
+#: includes/i18n-strings.php:660
+msgid "Post Grid"
+msgstr "Beitragsraster"
+
+#: includes/i18n-strings.php:661
+msgid "A grid of posts or pages, queried automatically, with an optional heading, intro and pagination."
+msgstr "Ein Raster aus Beitraegen oder Seiten, selbsttaetig abgefragt, optional mit Ueberschrift, Einleitung und Seitenzahlen."
+
+#: includes/i18n-strings.php:662
+msgid "Post Type"
+msgstr "Inhaltstyp"
+
+#: includes/i18n-strings.php:663
+msgid "Choose which post type the grid pulls from."
+msgstr "Bestimmen Sie, aus welchem Inhaltstyp das Raster gespeist wird."
+
+#: includes/i18n-strings.php:664
+msgid "Posts"
+msgstr "Beitraege"
+
+#: includes/i18n-strings.php:665
+msgid "Pages"
+msgstr "Seiten"
+
+#: includes/i18n-strings.php:666
+msgid "Child pages"
+msgstr "Unterseiten"
+
+#: includes/i18n-strings.php:667
+msgid "Display Posts"
+msgstr "Anzeige"
+
+#: includes/i18n-strings.php:668
+msgid "Choose whether selected entries or their children are shown."
+msgstr "Bestimmen Sie, ob die ausgewaehlten Eintraege oder ihre Unterelemente dargestellt werden."
+
+#: includes/i18n-strings.php:669
+msgid "Selected"
+msgstr "Ausgewaehlte"
+
+#: includes/i18n-strings.php:670
+msgid "Children"
+msgstr "Unterelemente"
+
+#: includes/i18n-strings.php:671
+msgid "Posts per Page"
+msgstr "Eintraege je Seite"
+
+#: includes/i18n-strings.php:672
+msgid "How many entries one page of the grid shows."
+msgstr "Wie viele Eintraege auf einer Rasterseite erscheinen."
+
+#: includes/i18n-strings.php:673
+msgid "Order by"
+msgstr "Sortieren nach"
+
+#: includes/i18n-strings.php:674
+msgid "Choose the field the entries are sorted by."
+msgstr "Bestimmen Sie das Feld, nach dem sortiert wird."
+
+#: includes/i18n-strings.php:675
+msgid "Date"
+msgstr "Datum"
+
+#: includes/i18n-strings.php:676
+msgid "Menu order"
+msgstr "Menuereihenfolge"
+
+#: includes/i18n-strings.php:677
+msgid "Choose the sort direction."
+msgstr "Bestimmen Sie die Sortierrichtung."
+
+#: includes/i18n-strings.php:678
+msgid "Ascending"
+msgstr "Aufsteigend"
+
+#: includes/i18n-strings.php:679
+msgid "Descending"
+msgstr "Absteigend"
+
+#: includes/i18n-strings.php:680
+msgid "Include Pagination"
+msgstr "Seitenzahlen anzeigen"
+
+#: includes/i18n-strings.php:681
+msgid "Show page links below the grid."
+msgstr "Blendet Seitenlinks unterhalb des Rasters ein."
+
+#: includes/i18n-strings.php:682
+msgid "Pagination Colour"
+msgstr "Farbe der Seitenzahlen"
+
+#: includes/i18n-strings.php:683
+msgid "Choose the button colour of the page links."
+msgstr "Bestimmen Sie die Knopffarbe der Seitenlinks."
+
+#: includes/i18n-strings.php:684
+msgid "Card Size"
+msgstr "Kartengroesse"
+
+#: includes/i18n-strings.php:685
+msgid "Choose the size of the entry cards."
+msgstr "Bestimmen Sie die Groesse der Eintragskarten."
+
+#: includes/i18n-strings.php:686
+msgid "Include Media"
+msgstr "Medium anzeigen"
+
+#: includes/i18n-strings.php:687
+msgid "Show the featured image of each entry."
+msgstr "Blendet das Beitragsbild jedes Eintrags ein."
+
+#: includes/i18n-strings.php:688
+msgid "Media Layout"
+msgstr "Medienanordnung"
+
+#: includes/i18n-strings.php:689
+msgid "Choose whether the image sits inline or as a background."
+msgstr "Bestimmen Sie, ob das Bild im Textfluss oder als Hintergrund erscheint."
+
+#: includes/i18n-strings.php:690
+msgid "Inline"
+msgstr "Im Fluss"
+
+#: includes/i18n-strings.php:691
+msgid "Include Title"
+msgstr "Titel anzeigen"
+
+#: includes/i18n-strings.php:692
+msgid "Show the title of each entry."
+msgstr "Blendet den Titel jedes Eintrags ein."
+
+#: includes/i18n-strings.php:693
+msgid "Title Element"
+msgstr "Titelelement"
+
+#: includes/i18n-strings.php:694
+msgid "Choose the heading level of the entry title."
+msgstr "Bestimmen Sie die Ueberschriftenebene des Eintragstitels."
+
+#: includes/i18n-strings.php:695
+msgid "Include Excerpt"
+msgstr "Auszug anzeigen"
+
+#: includes/i18n-strings.php:696
+msgid "Show the excerpt of each entry."
+msgstr "Blendet den Auszug jedes Eintrags ein."
+
+#: includes/i18n-strings.php:697
+msgid "Include Permalink"
+msgstr "Ganzen Eintrag verlinken"
+
+#: includes/i18n-strings.php:698
+msgid "Make the whole entry a link to the post."
+msgstr "Verwandelt den gesamten Eintrag in einen Link auf den Beitrag."
+
+#: includes/i18n-strings.php:699
+msgid "Item background colour"
+msgstr "Hintergrundfarbe des Eintrags"
+
+#: includes/i18n-strings.php:700
+msgid "Display Item Overlay"
+msgstr "Farbschleier ueber dem Eintrag"
+
+#: includes/i18n-strings.php:701
+msgid "Lay a colour over the background image of each entry."
+msgstr "Legt einen Farbschleier ueber das Hintergrundbild jedes Eintrags."
+
+#: includes/i18n-strings.php:702
+msgid "Item overlay colour"
+msgstr "Schleierfarbe des Eintrags"
+
+#: includes/i18n-strings.php:703
+msgid "Item text alignment"
+msgstr "Textausrichtung des Eintrags"
+
+#: blocks-legacy/breadcrumb/block.json
+#: blocks/breadcrumb/block.json
+msgctxt "block title"
+msgid "Breadcrumb"
+msgstr "Brotkrumennavigation"
+
+#: blocks-legacy/breadcrumb/block.json
+#: blocks/breadcrumb/block.json
+msgctxt "block description"
+msgid "Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS."
+msgstr "Weist aus, an welcher Stelle der Hierarchie die aktuelle Seite steht; die Trenner erzeugt CSS."
+
+#: blocks-legacy/post-grid/block.json
+#: blocks/post-grid/block.json
+msgctxt "block title"
+msgid "Post Grid"
+msgstr "Beitragsraster"
+
+#: blocks-legacy/post-grid/block.json
+#: blocks/post-grid/block.json
+msgctxt "block description"
+msgid "A grid of posts or pages, queried automatically, with an optional heading, intro and pagination."
+msgstr "Ein Raster aus Beitraegen oder Seiten, selbsttaetig abgefragt, optional mit Ueberschrift, Einleitung und Seitenzahlen."
+
+#: includes/cli/class-doctor-command.php:213
+msgid "Blockstudio"
+msgstr "Blockstudio"
+
+#. translators: %s: required minimum Blockstudio version.
+#: includes/cli/class-doctor-command.php:221
+#, php-format
+msgid "Blockstudio is not active. Version %s or newer is required — without it not a single block is registered."
+msgstr "Blockstudio ist nicht aktiv. Benötigt wird Version %s oder neuer — ohne sie wird kein einziger Block registriert."
+
+#. translators: 1: installed Blockstudio version, 2: required minimum version.
+#: includes/cli/class-doctor-command.php:233
+#, php-format
+msgid "Blockstudio %1$s is installed, %2$s or newer is required."
+msgstr "Blockstudio %1$s ist installiert, benötigt wird %2$s oder neuer."
+
+#. translators: %s: installed Blockstudio version.
+#: includes/cli/class-doctor-command.php:245
+#, php-format
+msgid "active, version %s"
+msgstr "aktiv, Version %s"
+
+#: includes/cli/class-doctor-command.php:314
+msgid "Block counterparts"
+msgstr "Block-Gegenstücke"
+
+#: includes/cli/class-doctor-command.php:328
+msgid "no areoi/* block found in the content"
+msgstr "kein areoi/*-Block im Inhalt gefunden"
+
+#. translators: %d: number of distinct areoi/* block types found.
+#: includes/cli/class-doctor-command.php:358
+#, php-format
+msgid "all %d areoi/* block types found in the content have a registered creabb/* counterpart"
+msgstr "alle %d im Inhalt gefundenen areoi/*-Blocktypen haben ein registriertes creabb/*-Gegenstück"
+
+#. translators: %s: comma separated list of missing block names.
+#: includes/cli/class-doctor-command.php:369
+#, php-format
+msgid "no registered counterpart for: %s. Migrating now would leave those blocks without a block type (partial migration)."
+msgstr "Kein registriertes Gegenstück für: %s. Eine Migration jetzt ließe diese Blöcke ohne Blocktyp zurück (Teilmigration)."
+
+#: includes/cli/class-doctor-command.php:394
+msgid "Field types (contract rule 1.4)"
+msgstr "Feldtypen (Vertragsregel 1.4)"
+
+#: includes/cli/class-doctor-command.php:532
+msgid "numeric field on a non-numeric contract attribute"
+msgstr "Zahlenfeld an einem nicht numerischen Vertragsattribut"
+
+#: includes/cli/class-doctor-command.php:533
+msgid "locked field type"
+msgstr "gesperrter Feldtyp"
+
+#. translators: %s: list of offending block.json fields.
+#: includes/cli/class-doctor-command.php:546
+#, php-format
+msgid "These fields change the stored value form and break the data contract: %s. Fix the block.json before migrating."
+msgstr "Diese Felder ändern die gespeicherte Wertform und brechen den Datenvertrag: %s. Bitte korrigieren Sie die block.json vor der Migration."
+
+#: includes/cli/class-doctor-command.php:565
+msgid "Theme render overrides"
+msgstr "Render-Overrides im Theme"
+
+#: includes/cli/class-doctor-command.php:579
+msgid "no all-bootstrap-blocks/ directory in the active theme"
+msgstr "kein Ordner all-bootstrap-blocks/ im aktiven Theme"
+
+#. translators: %s: list of directory paths.
+#: includes/cli/class-doctor-command.php:590
+#, php-format
+msgid "The theme overrides render files of the old plugin: %s. Those overrides stop taking effect once the blocks are named creabb/*. Port them first."
+msgstr "Das Theme überschreibt Renderdateien des Alt-Plugins: %s. Diese Overrides greifen nicht mehr, sobald die Blöcke creabb/* heißen. Bitte übertragen Sie sie zuerst."
+
+#: includes/cli/class-doctor-command.php:635
+msgid "Legacy options"
+msgstr "Alt-Optionen"
+
+#: includes/cli/class-doctor-command.php:658
+msgid "default: off"
+msgstr "Default: aus"
+
+#: includes/cli/class-doctor-command.php:677
+msgid "default:"
+msgstr "Default:"
+
+#: includes/cli/class-doctor-command.php:688
+msgid "all four render-relevant legacy options are on their defaults"
+msgstr "alle vier renderrelevanten Alt-Optionen stehen auf ihrem Default"
+
+#: includes/cli/class-doctor-command.php:770
+msgid "no bi- class and no icon attribute in the content"
+msgstr "keine bi--Klasse und kein Icon-Attribut im Inhalt"
+
+#. translators: 1: number of bi- class occurrences, 2: number of button blocks with an icon attribute.
+#: includes/cli/class-doctor-command.php:776
+#, php-format
+msgid "%1$d bi- class occurrence(s), %2$d button block(s) with an icon attribute"
+msgstr "%1$d bi--Fundstelle(n), %2$d Button-Block/Blöcke mit Icon-Attribut"
+
+#: includes/cli/class-doctor-command.php:785
+msgid "plugin switch"
+msgstr "Schalter des Plugins"
+
+#: includes/cli/class-doctor-command.php:789
+msgid "active theme"
+msgstr "aktives Theme"
+
+#. translators: 1: finding summary, 2: comma separated list of icon sources.
+#: includes/cli/class-doctor-command.php:797
+#, php-format
+msgid "%1$s — the icon font is delivered by: %2$s. Check the rendering of those blocks after the migration."
+msgstr "%1$s — die Icon-Schrift liefert: %2$s. Bitte prüfen Sie die Darstellung dieser Blöcke nach der Migration."
+
+#. translators: %s: finding summary.
+#: includes/cli/class-doctor-command.php:809
+#, php-format
+msgid "%s — but neither the plugin switch (Appearance → CreaBootstrapBlocks, tab Assets) nor the active theme delivers the icon font. Turn the switch on or add the font to the theme before migrating."
+msgstr "%s — aber weder der Schalter des Plugins (Design → CreaBootstrapBlocks, Tab Assets) noch das aktive Theme liefert die Icon-Schrift. Bitte schalten Sie den Schalter ein oder legen Sie die Schrift ins Theme, bevor Sie migrieren."
+
+#: includes/cli/class-doctor-command.php:953
+msgid "Legacy CSS classes"
+msgstr "Legacy-CSS-Klassen"
+
+#: includes/cli/class-doctor-command.php:959
+msgid "the active theme carries no areoi selector"
+msgstr "das aktive Theme trägt keinen areoi-Selektor"
+
+#: includes/cli/class-doctor-command.php:967
+msgid "the active theme styles against areoi-* and the legacy classes are being emitted"
+msgstr "das aktive Theme stylt gegen areoi-*, und die Legacy-Klassen werden ausgegeben"
+
+#: includes/cli/class-doctor-command.php:974
+msgid "The active theme styles against areoi-* selectors, but the legacy classes are switched off. Turn CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES back on (or the matching option) and only switch it off once the theme has been ported to creabb-*."
+msgstr "Das aktive Theme stylt gegen areoi-*-Selektoren, aber die Legacy-Klassen sind abgeschaltet. Bitte schalten Sie CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES wieder ein (oder die entsprechende Option) und schalten Sie sie erst ab, wenn das Theme auf creabb-* umgestellt ist."
+
+#: includes/cli/class-doctor-command.php:1016
+msgid "Backup target"
+msgstr "Backup-Ziel"
+
+#. translators: %s: directory path.
+#: includes/cli/class-doctor-command.php:1024
+#, php-format
+msgid "The backup directory %s does not exist. Create it — there is no migration run without a way back."
+msgstr "Das Backup-Verzeichnis %s existiert nicht. Bitte legen Sie es an — es gibt keinen Migrationslauf ohne Rückweg."
+
+#. translators: %s: directory path.
+#: includes/cli/class-doctor-command.php:1036
+#, php-format
+msgid "The backup directory %s is not writable. Fix the permissions — there is no migration run without a way back."
+msgstr "Das Backup-Verzeichnis %s ist nicht beschreibbar. Bitte korrigieren Sie die Rechte — es gibt keinen Migrationslauf ohne Rückweg."
+
+#. translators: %s: directory path.
+#: includes/cli/class-doctor-command.php:1047
+#, php-format
+msgid "writable: %s"
+msgstr "beschreibbar: %s"
+
+#: includes/cli/class-doctor-command.php:1191
+msgid "Theme block templates"
+msgstr "Block-Templates des Themes"
+
+#: includes/cli/class-doctor-command.php:1205
+msgid "no areoi/ block in templates/*.html or parts/*.html of the active theme"
+msgstr "kein areoi/-Block in templates/*.html oder parts/*.html des aktiven Themes"
+
+#. translators: %s: comma separated list of file paths.
+#: includes/cli/class-doctor-command.php:1216
+#, php-format
+msgid "These theme files carry areoi/ blocks and are NOT in the database — no migration run touches them: %s. Rename the blocks in the theme repository and roll the theme out."
+msgstr "Diese Theme-Dateien enthalten areoi/-Blöcke und liegen NICHT in der Datenbank — kein Migrationslauf fasst sie an: %s. Bitte benennen Sie die Blöcke im Theme-Repository um und rollen Sie das Theme aus."
+
+#. translators: %s: filter hook name.
+#: includes/cli/class-doctor-command.php:878
+#, php-format
+msgid "filter: %s"
+msgstr "Filter: %s"
+
+#: includes/cli/class-doctor-command.php:883
+msgid "no filter — the rebuild has no equivalent; this option shifts the default of the is_flex attribute, so set is_flex explicitly on the affected blocks or accept the change"
+msgstr "kein Filter — der Nachbau hat keinen Ersatz; diese Option verschiebt den Default des Attributs is_flex. Setzen Sie is_flex an den betroffenen Blöcken ausdrücklich oder nehmen Sie die Änderung in Kauf"
+
+#: includes/cli/class-migrate-command.php:111
+msgid "No areoi/* and no creabb/* block found."
+msgstr "Kein areoi/*- und kein creabb/*-Block gefunden."
+
+#. translators: 1: number of carriers, 2: number of block entries.
+#: includes/cli/class-migrate-command.php:123
+#, php-format
+msgid "%1$d carriers, %2$d block entries."
+msgstr "%1$d Träger, %2$d Blockeinträge."
+
+#: includes/cli/class-migrate-command.php:174
+msgid "1/7 doctor"
+msgstr "1/7 doctor"
+
+#: includes/cli/class-migrate-command.php:199
+msgid "doctor reports an error. Nothing has been written."
+msgstr "doctor meldet einen Fehler. Es wurde nichts geschrieben."
+
+#: includes/cli/class-migrate-command.php:216
+msgid "3/7 inventory before"
+msgstr "3/7 Inventar vorher"
+
+#. translators: 1: number of carriers, 2: number of blocks.
+#: includes/cli/class-migrate-command.php:225
+#: includes/cli/class-migrate-command.php:429
+#, php-format
+msgid "    %1$d carriers, %2$d blocks"
+msgstr "    %1$d Träger, %2$d Blöcke"
+
+#. translators: %d: number of findings.
+#: includes/cli/class-migrate-command.php:252
+#, php-format
+msgid "%d carriers cannot be read. Nothing has been written."
+msgstr "%d Träger lassen sich nicht lesen. Es wurde nichts geschrieben."
+
+#: includes/cli/class-migrate-command.php:260
+msgid "4/7 dry run — rewriting in memory, writing nothing"
+msgstr "4/7 Trockenlauf — im Speicher umgeschrieben, nichts geschrieben"
+
+#. translators: %d: number of block delimiters that would change.
+#: includes/cli/class-migrate-command.php:271
+#, php-format
+msgid "    %d block delimiters would be rewritten"
+msgstr "    %d Blockbegrenzer würden umgeschrieben"
+
+#: includes/cli/class-migrate-command.php:278
+msgid "5/7 inventory after (simulated)"
+msgstr "5/7 Inventar nachher (simuliert)"
+
+#: includes/cli/class-migrate-command.php:284
+msgid "6/7 reconciliation (simulated)"
+msgstr "6/7 Abgleich (simuliert)"
+
+#. translators: %d: number of findings.
+#: includes/cli/class-migrate-command.php:322
+#, php-format
+msgid "Dry run: %d findings — see the warnings above. Nothing was written, and a real run would not pass."
+msgstr "Trockenlauf: %d Beanstandungen — siehe die Warnungen oben. Es wurde nichts geschrieben, und ein echter Lauf käme nicht durch."
+
+#: includes/cli/class-migrate-command.php:329
+msgid "Dry run finished: the reconciliation passes. Nothing was written."
+msgstr "Trockenlauf beendet: Der Abgleich geht auf. Es wurde nichts geschrieben."
+
+#: includes/cli/class-migrate-command.php:371
+msgid "    probing the rewrite of every carrier"
+msgstr "    Probelauf: jeder Träger wird einmal umgeschrieben"
+
+#. translators: %d: number of findings.
+#: includes/cli/class-migrate-command.php:387
+#, php-format
+msgid "%d carriers cannot be rewritten. Nothing has been written."
+msgstr "%d Träger lassen sich nicht umschreiben. Es wurde nichts geschrieben."
+
+#: includes/cli/class-migrate-command.php:393
+msgid "4/7 rewriting"
+msgstr "4/7 Umschreiben"
+
+#. translators: %d: number of rewritten carriers.
+#: includes/cli/class-migrate-command.php:415
+#, php-format
+msgid "    %d carriers rewritten"
+msgstr "    %d Träger umgeschrieben"
+
+#: includes/cli/class-migrate-command.php:421
+msgid "5/7 inventory after"
+msgstr "5/7 Inventar nachher"
+
+#: includes/cli/class-migrate-command.php:438
+msgid "6/7 reconciliation"
+msgstr "6/7 Abgleich"
+
+#. translators: 1: number of findings, 2: backup path.
+#: includes/cli/class-migrate-command.php:453
+#, php-format
+msgid "Reconciliation failed with %1$d findings. Restore the backup: %2$s"
+msgstr "Der Abgleich ist mit %1$d Beanstandungen gescheitert. Bitte spielen Sie das Backup zurück: %2$s"
+
+#: includes/cli/class-migrate-command.php:455
+#: includes/cli/class-migrate-command.php:1329
+msgid "(none taken)"
+msgstr "(keines angelegt)"
+
+#. translators: 1: number of block types, 2: number of block entries.
+#: includes/cli/class-migrate-command.php:463
+#, php-format
+msgid "    %1$d block types and %2$d block entries match exactly"
+msgstr "    %1$d Blocktypen und %2$d Blockeinträge stimmen genau überein"
+
+#: includes/cli/class-migrate-command.php:470
+msgid "7/7 flushing caches"
+msgstr "7/7 Caches leeren"
+
+#. translators: %d: number of removed cache files.
+#: includes/cli/class-migrate-command.php:806
+#, php-format
+msgid "    Blockstudio static prerender cache: %d files removed"
+msgstr "    Blockstudio-Prerender-Cache: %d Dateien gelöscht"
+
+#: includes/cli/class-migrate-command.php:812
+msgid "Blockstudio\\Static_Prerender_Runtime::purge() is missing — the static prerender cache was NOT flushed. Run `wp bs prerender purge` or empty wp-content/blockstudio/cache by hand before comparing renderings."
+msgstr "Blockstudio\\Static_Prerender_Runtime::purge() fehlt — der Prerender-Cache wurde NICHT geleert. Bitte fahren Sie `wp bs prerender purge` oder leeren Sie wp-content/blockstudio/cache von Hand, bevor Sie Darstellungen vergleichen."
+
+#: includes/cli/class-migrate-command.php:827
+msgid "Blockstudio\\Static_Prerender_Early_Serve::remove_current_site() is missing — early serving may keep delivering the old HTML before WordPress loads. Check the advanced-cache drop-in and wp-content/blockstudio/cache by hand."
+msgstr "Blockstudio\\Static_Prerender_Early_Serve::remove_current_site() fehlt — die Frühauslieferung liefert womöglich weiter das alte HTML aus, noch bevor WordPress lädt. Bitte prüfen Sie das advanced-cache-Drop-in und wp-content/blockstudio/cache von Hand."
+
+#: includes/cli/class-migrate-command.php:531
+msgid "Migration finished. Next: wp creabb migrate verify"
+msgstr "Migration beendet. Als Nächstes: wp creabb migrate verify"
+
+#. translators: %s: directory path.
+#: includes/cli/class-migrate-command.php:848
+#, php-format
+msgid "The backup directory %s is missing or not writable."
+msgstr "Das Backup-Verzeichnis %s fehlt oder ist nicht beschreibbar."
+
+#: includes/cli/class-migrate-command.php:930
+msgid "The dump could not be compressed."
+msgstr "Der Dump ließ sich nicht komprimieren."
+
+#. translators: 1: number of findings, 2: backup path.
+#: includes/cli/class-migrate-command.php:1327
+#, php-format
+msgid "%1$d carriers could not be rewritten. Restore the backup: %2$s"
+msgstr "%1$d Träger ließen sich nicht umschreiben. Bitte spielen Sie das Backup zurück: %2$s"
+
+#: includes/cli/class-migration-support.php:886
+msgid "dry run — nothing is written, no backup is taken"
+msgstr "Trockenlauf — es wird nichts geschrieben und kein Backup angelegt"
+
+#: includes/cli/class-migration-support.php:894
+msgid "--skip-backup: running without a backup, there is no way back from here"
+msgstr "--skip-backup: Lauf ohne Backup — von hier führt kein Weg zurück"
+
+#: includes/cli/class-migration-support.php:904
+msgid "There is no run without a way back. Pass --backup=<path> — or --skip-backup if the backup is taken elsewhere."
+msgstr "Es gibt keinen Lauf ohne Rückweg. Bitte geben Sie --backup=<pfad> an — oder --skip-backup, wenn das Backup anderswo entsteht."
+
+#. translators: %s: backup path.
+#: includes/cli/class-migration-support.php:913
+#, php-format
+msgid "backup: %s"
+msgstr "Backup: %s"
+
+#. translators: 1: source label, 2: comma separated list of block names and counts.
+#: includes/cli/class-migration-support.php:1147
+#, php-format
+msgid "%1$s — areoi/* blocks are left after the run: %2$s"
+msgstr "%1$s — nach dem Lauf stehen noch areoi/*-Blöcke: %2$s"
+
+#: includes/cli/class-migrate-command.php:616
+msgid "verify passed."
+msgstr "verify bestanden."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migrate-command.php:655
+#, php-format
+msgid "This replaces the entire database with %s. Continue?"
+msgstr "Dies ersetzt die gesamte Datenbank durch %s. Fortfahren?"
+
+#: includes/cli/class-migrate-command.php:683
+msgid "The dump could not be unpacked."
+msgstr "Der Dump ließ sich nicht entpacken."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migrate-command.php:778
+#, php-format
+msgid "Restored: %s"
+msgstr "Zurückgespielt: %s"
+
+#: includes/cli/class-migration-support.php:1253
+msgid "No areoi/* block left in any source."
+msgstr "In keiner Fundstelle steht noch ein areoi/*-Block."
+
+#. translators: %s: list of sources with leftover counts.
+#: includes/cli/class-migration-support.php:1263
+#, php-format
+msgid "areoi/* blocks are left: %s. Do not switch off the legacy blocks yet."
+msgstr "Es stehen noch areoi/*-Blöcke: %s. Bitte schalten Sie die Legacy-Blöcke noch nicht ab."
+
+#: includes/cli/class-migration-support.php:1281
+msgid "--from=<path> is required: name the dump that is to be restored."
+msgstr "--from=<pfad> wird benötigt: Bitte nennen Sie den Dump, der zurückgespielt werden soll."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migration-support.php:1290
+#, php-format
+msgid "The dump %s does not exist."
+msgstr "Der Dump %s existiert nicht."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migration-support.php:1301
+#, php-format
+msgid "The dump %s is not readable."
+msgstr "Der Dump %s ist nicht lesbar."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migration-support.php:1311
+#, php-format
+msgid "restoring: %s"
+msgstr "wird zurückgespielt: %s"
+
+#: includes/cli/class-cleanup-command.php:125
+msgid "wp creabb migrate verify is not clean. The legacy options stay until it is — they are the fallback of the old plugin."
+msgstr "wp creabb migrate verify ist nicht sauber. Die Alt-Optionen bleiben, bis es das ist — sie sind der Rückfall des Alt-Plugins."
+
+#: includes/cli/class-cleanup-command.php:143
+msgid "No legacy option left. Nothing to do."
+msgstr "Keine Alt-Option mehr vorhanden. Nichts zu tun."
+
+#. translators: %d: number of options.
+#: includes/cli/class-cleanup-command.php:152
+#, php-format
+msgid "%d legacy options can be removed."
+msgstr "%d Alt-Optionen können entfernt werden."
+
+#: includes/cli/class-cleanup-command.php:188
+msgid "Nothing selected. Currently the only subject is --legacy-options."
+msgstr "Nichts ausgewählt. Zurzeit ist --legacy-options der einzige Gegenstand."
+
+#: includes/cli/class-cleanup-command.php:222
+msgid "Dry run. Nothing was removed."
+msgstr "Trockenlauf. Es wurde nichts entfernt."
+
+#: includes/cli/class-cleanup-command.php:227
+msgid "Remove these options?"
+msgstr "Diese Optionen entfernen?"
+
+#. translators: %d: number of removed options.
+#: includes/cli/class-cleanup-command.php:240
+#, php-format
+msgid "%d legacy options removed."
+msgstr "%d Alt-Optionen entfernt."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migrate-command.php:703
+#, php-format
+msgid "The dump %s is truncated — nothing was imported."
+msgstr "Der Dump %s ist abgeschnitten — es wurde nichts importiert."
+
+#: includes/cli/class-migrate-command.php:716
+msgid "The dump could not be unpacked — nothing was imported."
+msgstr "Der Dump ließ sich nicht entpacken — es wurde nichts importiert."
+
+#. translators: %s: dump path.
+#: includes/cli/class-migrate-command.php:743
+#, php-format
+msgid "The dump %s does not look like a database dump — nothing was imported."
+msgstr "Der Dump %s sieht nicht nach einem Datenbank-Dump aus — es wurde nichts importiert."
+
+#. translators: %s: backup path.
+#: includes/cli/class-migrate-command.php:951
+#, php-format
+msgid "The dump could not be compressed completely — %s is truncated. The uncompressed dump is kept."
+msgstr "Der Dump ließ sich nicht vollständig komprimieren — %s ist abgeschnitten. Der unkomprimierte Dump bleibt erhalten."
+
+#. translators: 1: backup path, 2: expected byte count, 3: byte count read back.
+#: includes/cli/class-migrate-command.php:978
+#, php-format
+msgid "The backup %1$s does not read back completely: %2$d bytes written, %3$d bytes read. The uncompressed dump is kept."
+msgstr "Das Backup %1$s liest sich nicht vollständig zurück: %2$d Bytes geschrieben, %3$d Bytes gelesen. Der unkomprimierte Dump bleibt erhalten."
+
+#: includes/cli/class-migration-support.php:1247
+msgid "No areoi/* block left — revisions were not examined (--skip-revisions)."
+msgstr "Kein areoi/*-Block mehr vorhanden — Revisionen wurden nicht angesehen (--skip-revisions)."
+
+#. translators: %s: backup path.
+#: includes/cli/class-migrate-command.php:871
+#, php-format
+msgid "The backup %s already exists. Choose a different path — overwriting it would destroy the way back from an earlier run."
+msgstr "Das Backup %s existiert bereits. Bitte wählen Sie einen anderen Pfad — es zu überschreiben zerstörte den Rückweg eines früheren Laufs."
+
+#. translators: %s: path of the uncompressed dump.
+#: includes/cli/class-migrate-command.php:885
+#, php-format
+msgid "The uncompressed dump %s already exists. Remove it or choose a different path."
+msgstr "Der unkomprimierte Dump %s existiert bereits. Bitte entfernen Sie ihn oder wählen Sie einen anderen Pfad."
+
+#. translators: 1: number of carriers, 2: source kind, e.g. postmeta
+#: includes/cli/class-snapshot-command.php:150
+#, php-format
+msgid "%1$d carrier(s) of kind \"%2$s\" have no URL of their own. They render inside pages; check that those pages are in the list."
+msgstr "%1$d Traeger der Art \"%2$s\" haben keine eigene URL. Sie erscheinen innerhalb von Seiten; pruefen Sie, ob diese Seiten in der Liste stehen."
+
+#: includes/cli/class-snapshot-command.php:167
+msgid "No affected URL found."
+msgstr "Keine betroffene URL gefunden."
+
+#. translators: %s: file path
+#: includes/cli/class-snapshot-command.php:178
+#: includes/cli/class-snapshot-command.php:367
+#, php-format
+msgid "Could not write: %s"
+msgstr "Konnte nicht geschrieben werden: %s"
+
+#. translators: 1: number of URLs, 2: file path
+#: includes/cli/class-snapshot-command.php:187
+#, php-format
+msgid "%1$d URLs written to %2$s"
+msgstr "%1$d URLs nach %2$s geschrieben"
+
+#. translators: %d: term limit
+#: includes/cli/class-snapshot-command.php:710
+#, php-format
+msgid "Term archive limit of %d reached — raise --max-terms for a complete list."
+msgstr "Die Grenze von %d Begriffsarchiven ist erreicht — erhoehen Sie --max-terms fuer eine vollstaendige Liste."
+
+#: includes/cli/class-snapshot-command.php:235
+msgid "--out=<directory> is required."
+msgstr "--out=<verzeichnis> ist erforderlich."
+
+#: includes/cli/class-snapshot-command.php:239
+msgid "--urls=<file> is required and must be readable."
+msgstr "--urls=<datei> ist erforderlich und muss lesbar sein."
+
+#: includes/cli/class-snapshot-command.php:246
+msgid "The URL list is empty."
+msgstr "Die URL-Liste ist leer."
+
+#. translators: %s: directory path
+#: includes/cli/class-snapshot-command.php:253
+#, php-format
+msgid "Could not create directory: %s"
+msgstr "Verzeichnis konnte nicht angelegt werden: %s"
+
+#. translators: 1: number of failed URLs, 2: number of URLs
+#: includes/cli/class-snapshot-command.php:334
+#, php-format
+msgid "%1$d of %2$d URLs could not be captured — the snapshot is incomplete."
+msgstr "%1$d von %2$d URLs konnten nicht aufgenommen werden — die Aufnahme ist unvollstaendig."
+
+#. translators: 1: number of URLs, 2: directory
+#: includes/cli/class-snapshot-command.php:344
+#, php-format
+msgid "%1$d URLs captured into %2$s"
+msgstr "%1$d URLs nach %2$s aufgenommen"
+
+#: includes/cli/class-snapshot-command.php:406
+msgid "Two snapshot directories are required."
+msgstr "Es sind zwei Aufnahmeverzeichnisse erforderlich."
+
+#. translators: %s: URL
+#: includes/cli/class-snapshot-command.php:511
+#, php-format
+msgid "Missing in the second snapshot: %s"
+msgstr "Fehlt in der zweiten Aufnahme: %s"
+
+#. translators: %s: URL
+#: includes/cli/class-snapshot-command.php:521
+#, php-format
+msgid "Only in the second snapshot: %s"
+msgstr "Nur in der zweiten Aufnahme: %s"
+
+#: includes/cli/class-snapshot-command.php:548
+msgid "No unexpected deviation."
+msgstr "Keine unerwartete Abweichung."
+
+#. translators: %s: file path
+#: includes/cli/class-snapshot-command.php:568
+#, php-format
+msgid "Snapshot file not readable: %s"
+msgstr "Aufnahmedatei nicht lesbar: %s"
+
+#. translators: %s: file path
+#: includes/cli/class-snapshot-command.php:591
+#, php-format
+msgid "Snapshot index is not valid JSON: %s"
+msgstr "Das Aufnahmeverzeichnis ist kein gueltiges JSON: %s"
+
+#: includes/cli/class-doctor-command.php:278
+msgid "Old plugin (all-bootstrap-blocks)"
+msgstr "Alt-Plugin (all-bootstrap-blocks)"
+
+#: includes/cli/class-doctor-command.php:284
+msgid "active — this is the state migration and the before/after captures are meant to run in. After the last step it has to be switched off."
+msgstr "aktiv — genau in diesem Zustand laufen die Migration und die Vorher-/Nachher-Aufnahmen. Nach dem letzten Schritt muss es abgeschaltet werden."
+
+#: includes/cli/class-doctor-command.php:294
+msgid "NOT active — a \"before\" capture taken now renders through the areoi/* alias blocks of THIS plugin and would compare the rebuild against itself."
+msgstr "NICHT aktiv — eine jetzt erstellte Vorher-Aufnahme rendert über die areoi/*-Aliasblöcke DIESES Plugins; verglichen würde der Nachbau gegen sich selbst."
+
+#: includes/cli/class-doctor-command.php:422
+msgid "Rule 1.4 is UNCHECKED on this installation: not a single block.json could be read. This says nothing about the field types — it says the check did not run."
+msgstr "Regel 1.4 ist auf dieser Installation UNGEPRÜFT: Keine einzige block.json konnte gelesen werden. Das sagt nichts über die Feldtypen — es sagt, dass die Prüfung nicht gelaufen ist."
+
+#. translators: 1: number of block.json files read, 2: number of contract files found.
+#: includes/cli/class-doctor-command.php:435
+#, php-format
+msgid "Only %1$d of %2$d block.json could be read — the rest was skipped silently and is unchecked."
+msgstr "Nur %1$d von %2$d block.json konnten gelesen werden — der Rest wurde still übersprungen und ist ungeprüft."
+
+#. translators: 1: number of block.json files read, 2: number of contract attributes compared.
+#: includes/cli/class-doctor-command.php:512
+#, php-format
+msgid "no locked field type points at a contract attribute — %1$d block.json, %2$d attributes compared"
+msgstr "kein gesperrter Feldtyp zeigt auf ein Vertragsattribut — %1$d block.json, %2$d Attribute verglichen"
+
+#: includes/class-abilities.php:363
+msgid "Attribute values appear twice on purpose: flat at the top level and inside the blockstudio container. That is the form the migration writes (it copies, it does not move). At render time the container wins — edit the container copy, not the flat one; the flat level only carries what WordPress itself reads from supports, such as anchor and className."
+msgstr "Attributwerte stehen absichtlich zweimal: flach auf der oberen Ebene und im blockstudio-Container. Genau diese Form schreibt die Migration — sie kopiert, sie verschiebt nicht. Beim Rendern gewinnt der Container; ändern Sie deshalb die Kopie im Container, nicht die flache. Die flache Ebene trägt nur, was WordPress selbst aus supports liest, etwa anchor und className."
+
+#. translators: 1: attribute name, 2: block name.
+#: includes/class-abilities.php:628
+#, php-format
+msgid "The attribute %1$s of %2$s sits at the top level but is missing from the container or differs there. The container wins at render time, so this value is invisible in the editor and gone for good on the first save."
+msgstr "Das Attribut %1$s von %2$s steht auf der oberen Ebene, fehlt aber im Container oder weicht dort ab. Beim Rendern gewinnt der Container — dieser Wert ist im Editor unsichtbar und beim ersten Speichern endgültig weg."
+
+#. translators: %s: list of legacy options the rebuild honours.
+#: includes/cli/class-doctor-command.php:716
+#, php-format
+msgid "These options deviate from the default, and the rebuild reads them: %s. Nothing to do — but expect the pages to render in that mode."
+msgstr "Diese Optionen weichen vom Default ab, und der Nachbau liest sie: %s. Nichts zu tun — die Seiten rendern dann aber in diesem Modus."
+
+#. translators: 1: list of deviating options, 2: options the rebuild honours, or a dash.
+#: includes/cli/class-doctor-command.php:727
+#, php-format
+msgid "These options deviate from the default the rebuild hard-codes: %1$s. Adjust them before migrating; the way out is named per line. Read and honoured by the rebuild: %2$s."
+msgstr "Diese Optionen weichen vom Default ab, den der Nachbau fest verdrahtet: %1$s. Stellen Sie sie vor der Migration um; der Ausweg steht je Zeile dabei. Vom Nachbau gelesen und beachtet: %2$s."
+
+#: includes/cli/class-doctor-command.php:872
+msgid "read by the rebuild; override with the filter crea_bootstrap_blocks_css_grid"
+msgstr "vom Nachbau gelesen; übersteuerbar mit dem Filter crea_bootstrap_blocks_css_grid"
+
+#: includes/class-previews.php:259
+msgid "Block preview"
+msgstr "Blockvorschau"
+
+#. translators: %s: block title.
+#: includes/class-previews.php:263
+#, php-format
+msgid "Preview: %s"
+msgstr "Vorschau: %s"
+
+#: includes/class-settings.php:82
+msgid "Show a preview image for each block in the inserter"
+msgstr "Im Inserter für jeden Block ein Vorschaubild zeigen"
+
+#: includes/class-settings.php:83
+msgid "A schematic drawing instead of the rendered block, as the previous plugin did. Affects the editor only."
+msgstr "Eine schematische Zeichnung statt des gerenderten Blocks, wie beim Vorgänger-Plugin. Betrifft nur den Editor."
+
+#. translators: 1: number of blocks read, 2: number of attributes found.
+#: includes/cli/class-doctor-command.php:462
+#, php-format
+msgid "%1$d blocks were inspected but only %2$d attributes were resolved. A field resolver is losing fields."
+msgstr "%1$d Blöcke wurden geprüft, aber nur %2$d Attribute aufgelöst. Ein Feldauflöser verliert Felder."
+
+#: includes/i18n-strings.php:243
+msgid "Padding"
+msgstr "Innenabstand"
+
+#. translators: 1: block name, 2: number of missing attributes for that block alone.
+#: includes/cli/class-doctor-command.php:499
+#, php-format
+msgid "%1$s alone is missing %2$d attributes compared to its own contract. A field resolver may have collapsed for this one block."
+msgstr "Bei %1$s fehlen allein %2$d Attribute gegenüber dem eigenen Vertrag. Ein Feldauflöser könnte für diesen einen Block ausgefallen sein."
+
+#: includes/i18n-strings.php:207
+msgid "Numeric value without a unit. The unit is set below."
+msgstr "Zahlenwert ohne Einheit. Die Einheit legen Sie weiter unten fest."
+
+#: includes/i18n-strings.php:208
+msgid "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+msgstr "Zahlenwert ohne Einheit. Die Einheit ist eine Plugin-Einstellung, standardmäßig Pixel. Lassen Sie das Feld leer, wenn kein Abstand entstehen soll; mit einer 0 erzwingen Sie den Wert null."
+
+#: includes/i18n-strings.php:209
+msgid "Number without a unit. The unit is a plugin setting, pixels by default."
+msgstr "Zahlenwert ohne Einheit. Die Einheit ist eine Plugin-Einstellung, standardmäßig Pixel."
+
+#: includes/i18n-strings.php:244
+msgid "Margin"
+msgstr "Außenabstand"
+
+#: includes/i18n-strings.php:245
+msgid "Visibility"
+msgstr "Sichtbarkeit"
+
+#: includes/i18n-strings.php:262
+msgid "Spacing"
+msgstr "Abstände"
+
+#: includes/i18n-strings.php:246
+msgid "Background at this breakpoint"
+msgstr "Hintergrund an diesem Breakpoint"
+
+#: includes/i18n-strings.php:247
+msgid "CSS grid"
+msgstr "CSS-Grid"
+
+#: includes/i18n-strings.php:248
+msgid "Utility classes"
+msgstr "Hilfsklassen"
+
+#: includes/i18n-strings.php:249
+msgid "Technical"
+msgstr "Technisch"
+
+#: includes/i18n-strings.php:313
+msgid "Column width · col-*"
+msgstr "Spaltenbreite · col-*"
+
+#: includes/i18n-strings.php:314
+msgid "Column width · col-sm-*"
+msgstr "Spaltenbreite · col-sm-*"
+
+#: includes/i18n-strings.php:315
+msgid "Column width · col-md-*"
+msgstr "Spaltenbreite · col-md-*"
+
+#: includes/i18n-strings.php:316
+msgid "Column width · col-lg-*"
+msgstr "Spaltenbreite · col-lg-*"
+
+#: includes/i18n-strings.php:317
+msgid "Column width · col-xl-*"
+msgstr "Spaltenbreite · col-xl-*"
+
+#: includes/i18n-strings.php:318
+msgid "Column width · col-xxl-*"
+msgstr "Spaltenbreite · col-xxl-*"
+
+#: includes/i18n-strings.php:319
+msgid "Offset · offset-*"
+msgstr "Versatz · offset-*"
+
+#: includes/i18n-strings.php:320
+msgid "Offset · offset-sm-*"
+msgstr "Versatz · offset-sm-*"
+
+#: includes/i18n-strings.php:321
+msgid "Offset · offset-md-*"
+msgstr "Versatz · offset-md-*"
+
+#: includes/i18n-strings.php:322
+msgid "Offset · offset-lg-*"
+msgstr "Versatz · offset-lg-*"
+
+#: includes/i18n-strings.php:323
+msgid "Offset · offset-xl-*"
+msgstr "Versatz · offset-xl-*"
+
+#: includes/i18n-strings.php:324
+msgid "Offset · offset-xxl-*"
+msgstr "Versatz · offset-xxl-*"
+
+#: includes/i18n-strings.php:325
+msgid "Order · order-*"
+msgstr "Reihenfolge · order-*"
+
+#: includes/i18n-strings.php:326
+msgid "Order · order-sm-*"
+msgstr "Reihenfolge · order-sm-*"
+
+#: includes/i18n-strings.php:327
+msgid "Order · order-md-*"
+msgstr "Reihenfolge · order-md-*"
+
+#: includes/i18n-strings.php:328
+msgid "Order · order-lg-*"
+msgstr "Reihenfolge · order-lg-*"
+
+#: includes/i18n-strings.php:329
+msgid "Order · order-xl-*"
+msgstr "Reihenfolge · order-xl-*"
+
+#: includes/i18n-strings.php:330
+msgid "Order · order-xxl-*"
+msgstr "Reihenfolge · order-xxl-*"
+
+#: includes/i18n-strings.php:331
+msgid "Vertical alignment · align-self-*"
+msgstr "Senkrechte Ausrichtung · align-self-*"
+
+#: includes/i18n-strings.php:332
+msgid "Vertical alignment · align-self-sm-*"
+msgstr "Senkrechte Ausrichtung · align-self-sm-*"
+
+#: includes/i18n-strings.php:333
+msgid "Vertical alignment · align-self-md-*"
+msgstr "Senkrechte Ausrichtung · align-self-md-*"
+
+#: includes/i18n-strings.php:334
+msgid "Vertical alignment · align-self-lg-*"
+msgstr "Senkrechte Ausrichtung · align-self-lg-*"
+
+#: includes/i18n-strings.php:335
+msgid "Vertical alignment · align-self-xl-*"
+msgstr "Senkrechte Ausrichtung · align-self-xl-*"
+
+#: includes/i18n-strings.php:336
+msgid "Vertical alignment · align-self-xxl-*"
+msgstr "Senkrechte Ausrichtung · align-self-xxl-*"
+
+#: includes/i18n-strings.php:337
+msgid "Extra small · no Bootstrap infix (default size)"
+msgstr "Sehr klein · ohne Infix (Standardgröße)"
+
+#: includes/i18n-strings.php:338
+msgid "Small · Bootstrap infix sm"
+msgstr "Klein · Bootstrap-Infix sm"
+
+#: includes/i18n-strings.php:339
+msgid "Medium · Bootstrap infix md"
+msgstr "Mittel · Bootstrap-Infix md"
+
+#: includes/i18n-strings.php:340
+msgid "Large · Bootstrap infix lg"
+msgstr "Groß · Bootstrap-Infix lg"
+
+#: includes/i18n-strings.php:341
+msgid "Extra large · Bootstrap infix xl"
+msgstr "Sehr groß · Bootstrap-Infix xl"
+
+#: includes/i18n-strings.php:342
+msgid "Extra extra large · Bootstrap infix xxl"
+msgstr "Besonders groß · Bootstrap-Infix xxl"
+
+#: includes/i18n-strings.php:343
+msgid "Number of the twelve grid columns this block occupies from this breakpoint upwards."
+msgstr "Anzahl der zwölf Rasterspalten, die dieser Block ab diesem Breakpoint aufwärts belegt."
+
+#: includes/i18n-strings.php:344
+msgid "Empty grid columns to the left of this block."
+msgstr "Leere Rasterspalten links von diesem Block."
+
+#: includes/i18n-strings.php:345
+msgid "Visual position within the row, independent of the source order."
+msgstr "Visuelle Position innerhalb der Zeile, unabhängig von der Quellreihenfolge."
+
+#: includes/i18n-strings.php:346
+msgid "Alignment of this block within the row."
+msgstr "Ausrichtung dieses Blocks innerhalb der Zeile."
+
+#: includes/i18n-strings.php:347
+msgid "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+msgstr "Blendet die Hintergrundebene dieses Blocks an diesem Breakpoint aus und stellt sie beim nächsten sichtbaren Breakpoint wieder her."
+
+#: includes/i18n-strings.php:348
+msgid "Width of the background layer's grid column, independent of the block's own column width."
+msgstr "Breite der Rasterspalte der Hintergrundebene, unabhängig von der eigenen Spaltenbreite des Blocks."
+
+#: includes/i18n-strings.php:349
+msgid "Number for the CSS grid-row property, for example 2."
+msgstr "Zahl für die CSS-Eigenschaft grid-row, zum Beispiel 2."
+
+#: includes/i18n-strings.php:350
+msgid "Only takes effect when CSS grid is enabled in the plugin settings."
+msgstr "Wirkt sich nur aus, wenn der CSS-Grid-Modus in den Plugin-Einstellungen aktiviert ist."
+
+#: includes/i18n-strings.php:147
+msgid "Turns on the background layer below — its color, overlay and alignment fields only take effect while this is on."
+msgstr "Schaltet die Hintergrundebene weiter unten ein — deren Felder für Farbe, Overlay und Ausrichtung wirken erst, wenn diese Option aktiv ist."
+
+#: includes/i18n-strings.php:148
+msgid "Turns on the overlay layer, drawn above the background color. The overlay color below only takes effect while this is on."
+msgstr "Schaltet die Overlay-Ebene ein, die über der Hintergrundfarbe liegt. Die Overlay-Farbe weiter unten wirkt erst, wenn diese Option aktiv ist."
+
+#: includes/i18n-strings.php:149
+msgid "Drawn as a layer above the background color. Like the background color, only the rgb values are used for rendering."
+msgstr "Wird als Ebene über der Hintergrundfarbe dargestellt. Wie bei der Hintergrundfarbe werden für die Ausgabe ausschließlich die rgb-Werte genutzt."
+
+#: includes/i18n-strings.php:150
+msgid "Aligns the background layer within its row when the background column width is narrower than the full row. Has no visible effect at full width."
+msgstr "Richtet die Hintergrundebene innerhalb ihrer Zeile aus, wenn die Hintergrund-Spaltenbreite schmaler als die volle Zeile ist. Bei voller Breite ohne sichtbare Wirkung."
+
+#: includes/i18n-strings.php:151
+msgid "Applies a Bootstrap background-color utility class to this block. If the background layer is switched on, it is drawn on top and hides this utility."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Hintergrundfarbe auf diesen Block. Ist die Hintergrundebene eingeschaltet, liegt sie darüber und verdeckt diese Utility-Klasse."
+
+#: includes/i18n-strings.php:152
+msgid "Applies a Bootstrap text-color utility class to this block, inherited by its content unless a nested block sets its own color."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf diesen Block; sie vererbt sich an dessen Inhalt, sofern kein verschachtelter Block eine eigene Farbe setzt."
+
+#: includes/i18n-strings.php:153
+msgid "Applies a Bootstrap border-color utility class to this block. Bootstrap's border utilities only show a border when a border width is also set, which this field does not add."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Rahmenfarbe auf diesen Block. Bootstraps Rahmen-Utilities zeigen nur dann einen Rahmen, wenn zusätzlich eine Rahmenbreite gesetzt ist — die dieses Feld nicht hinzufügt."
+
+#: includes/i18n-strings.php:154
+msgid "Title attribute of the link created by the URL above. Shown as a tooltip by most browsers."
+msgstr "title-Attribut des Links, den die URL oben erzeugt. Wird von den meisten Browsern als Tooltip angezeigt."
+
+#: includes/i18n-strings.php:155
+msgid "Controls whether the link created by the URL above opens in the same tab or a new one."
+msgstr "Legt fest, ob der Link, den die URL oben erzeugt, im selben Tab oder in einem neuen geöffnet wird."
+
+#: includes/i18n-strings.php:156
+msgid "Value of the rel attribute on the link created by the URL above, for example nofollow or noopener."
+msgstr "Wert des rel-Attributs am Link, den die URL oben erzeugt, zum Beispiel nofollow oder noopener."
+
+#: includes/i18n-strings.php:170
+msgid "Height value"
+msgstr "Höhenwert"
+
+#: includes/i18n-strings.php:104
+msgid "XS"
+msgstr "XS"
+
+#: includes/i18n-strings.php:105
+msgid "SM"
+msgstr "SM"
+
+#: includes/i18n-strings.php:106
+msgid "MD"
+msgstr "MD"
+
+#: includes/i18n-strings.php:107
+msgid "LG"
+msgstr "LG"
+
+#: includes/i18n-strings.php:108
+msgid "XL"
+msgstr "XL"
+
+#: includes/i18n-strings.php:109
+msgid "XXL"
+msgstr "XXL"
+
+#: includes/i18n-strings.php:715
+msgid "Width of the grid column that carries the background layer."
+msgstr "Breite der Rasterspalte, die die Hintergrundebene trägt."
+
+#: includes/i18n-strings.php:716
+msgid "Kept from the previous plugin. The render path of this block does not read the utility fields, so the value is stored and no class is written."
+msgstr "Aus dem vorherigen Plugin übernommen. Der Renderpfad dieses Blocks liest die Hilfsklassen-Felder nicht; der Wert wird gespeichert, und es wird keine Klasse ausgegeben."
+
+#: includes/i18n-strings.php:717
+msgid "Turns the whole block into a link. The anchor is rendered behind the content and covers the block."
+msgstr "Macht den ganzen Block zu einem Link. Der Anker wird hinter dem Inhalt gerendert und deckt den Block ab."
+
+#: includes/i18n-strings.php:718
+msgid "Kept from the previous plugin. This block has no link title field, so the link overlay renders no title attribute."
+msgstr "Aus dem vorherigen Plugin übernommen. Dieser Block hat kein Feld für den Linktitel, deshalb gibt das Link-Overlay kein Titel-Attribut aus."
+
+#: includes/i18n-strings.php:719
+msgid "Theme integration"
+msgstr "Theme-Integration"
+
+#: includes/i18n-strings.php:720
+msgid "Kept from the previous plugin. It replaces the automatic pattern color with the color below. This plugin renders no pattern itself."
+msgstr "Aus dem vorherigen Plugin übernommen. Ersetzt die automatische Musterfarbe durch die Farbe unten. Dieses Plugin gibt selbst kein Muster aus."
+
+#: includes/i18n-strings.php:721
+msgid "Color of the background pattern while the override above is on. The value is passed to the filter crea_bootstrap_blocks_background_pattern, the only source of a pattern in this plugin."
+msgstr "Farbe des Hintergrundmusters, solange die Überschreibung oben eingeschaltet ist. Der Wert wird an den Filter crea_bootstrap_blocks_background_pattern übergeben, die einzige Quelle eines Musters in diesem Plugin."
+
+#: includes/i18n-strings.php:722
+msgid "Kept from the previous plugin. Only the Lightspeed theme evaluates it; there it stops this block from using transitions."
+msgstr "Aus dem vorherigen Plugin übernommen. Nur das Lightspeed-Theme wertet den Wert aus; dort verhindert er, dass dieser Block Übergänge verwendet."
+
+#: includes/i18n-strings.php:723
+msgid "Kept from the previous plugin. Only the Lightspeed theme evaluates it; there it stops this block from using parallax."
+msgstr "Aus dem vorherigen Plugin übernommen. Nur das Lightspeed-Theme wertet den Wert aus; dort verhindert er, dass dieser Block Parallax verwendet."
+
+#: includes/i18n-strings.php:724
+msgid "Block ID of the surrounding banner. Its layout setting decides which of the two wrappers this item renders."
+msgstr "Block-ID des umgebenden Banners. Dessen Layout-Einstellung entscheidet, welche der beiden Hüllen dieses Element ausgibt."
+
+#: includes/i18n-strings.php:727
+msgid "Display at this breakpoint"
+msgstr "Darstellung an diesem Breakpoint"
+
+#: includes/i18n-strings.php:728
+msgid "Makes the button a full-width block at this breakpoint. It returns to inline-block at the next breakpoint unless that one is switched on as well."
+msgstr "Macht den Button an diesem Breakpoint zu einem Block über die volle Breite. Am nächsten Breakpoint kehrt er zu inline-block zurück, sofern dieser nicht ebenfalls eingeschaltet ist."
+
+#: includes/i18n-strings.php:729
+msgid "Adds one of Bootstrap's predefined button classes, for example .btn-primary or .btn-outline-primary."
+msgstr "Fügt eine der vordefinierten Button-Klassen von Bootstrap hinzu, zum Beispiel .btn-primary oder .btn-outline-primary."
+
+#: includes/i18n-strings.php:730
+msgid "Adds .btn-lg or .btn-sm for a larger or smaller button."
+msgstr "Fügt .btn-lg oder .btn-sm für eine größere oder kleinere Schaltfläche hinzu."
+
+#: includes/i18n-strings.php:731
+msgid "Adds .text-nowrap so the button text is kept on one line."
+msgstr "Fügt .text-nowrap hinzu, damit der Text der Schaltfläche in einer Zeile bleibt."
+
+#: includes/i18n-strings.php:732
+msgid "Rendered as the href attribute of the button."
+msgstr "Wird als href-Attribut des Buttons ausgegeben."
+
+#: includes/i18n-strings.php:733
+msgid "Rendered as the target attribute. New tab writes _blank."
+msgstr "Wird als target-Attribut ausgegeben. Neuer Tab schreibt _blank."
+
+#: includes/i18n-strings.php:734
+msgid "Rendered as the rel attribute, for example nofollow or noopener."
+msgstr "Wird als rel-Attribut ausgegeben, zum Beispiel nofollow oder noopener."
+
+#: includes/i18n-strings.php:735
+msgid "Adds Bootstrap's modal data attributes with the link URL as the target. Only rendered when a URL is set and the filter crea_bootstrap_blocks_button_modal returns true."
+msgstr "Fügt Bootstraps Datenattribute für das Modal hinzu, mit der Link-URL als Ziel. Wird nur ausgegeben, wenn eine URL gesetzt ist und der Filter crea_bootstrap_blocks_button_modal true zurückgibt."
+
+#: includes/i18n-strings.php:736
+msgid "Shows the icon configured below. The icon is only rendered when an icon class and an icon size are set as well."
+msgstr "Zeigt das weiter unten eingerichtete Icon an. Das Icon wird nur ausgegeben, wenn zusätzlich eine Icon-Klasse und eine Icon-Größe gesetzt sind."
+
+#: includes/i18n-strings.php:737
+msgid "Places the icon before or after the button text."
+msgstr "Setzt das Icon vor oder hinter den Button-Text."
+
+#: includes/i18n-strings.php:738
+msgid "Badge"
+msgstr "Badge"
+
+#: includes/i18n-strings.php:739
+msgid "Adds a Bootstrap badge inside the button, after the text and the icon."
+msgstr "Fügt im Button ein Bootstrap-Badge hinzu, hinter dem Text und dem Icon."
+
+#: includes/i18n-strings.php:740
+msgid "Content of the badge, usually a number. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+msgstr "Inhalt des Badges, meist eine Zahl. Wird über wp_kses_post() ausgegeben; Inline-Markup ist erlaubt, Skripte sind es nicht."
+
+#: includes/i18n-strings.php:741
+msgid "Adds .rounded-pill to give the badge a larger border radius."
+msgstr "Fügt .rounded-pill hinzu und gibt dem Badge damit einen größeren Eckenradius."
+
+#: includes/i18n-strings.php:742
+msgid "Adds a Bootstrap background-color utility class to the badge."
+msgstr "Fügt dem Badge eine Bootstrap-Utility-Klasse für die Hintergrundfarbe hinzu."
+
+#: includes/i18n-strings.php:743
+msgid "Adds a Bootstrap text-color utility class to the badge."
+msgstr "Fügt dem Badge eine Bootstrap-Utility-Klasse für die Textfarbe hinzu."
+
+#: includes/i18n-strings.php:744
+msgid "Further classes for the badge, added after the three fields above — for example Bootstrap's position utilities."
+msgstr "Weitere Klassen für das Badge, die hinter den drei Feldern darüber ergänzt werden — zum Beispiel Bootstraps Positions-Utilities."
+
+#: includes/i18n-strings.php:745
+msgid "Popover"
+msgstr "Popover"
+
+#: includes/i18n-strings.php:746
+msgid "Wraps the button in a popover container. Bootstrap's JavaScript is required for the popover to open."
+msgstr "Legt die Schaltfläche in einen Popover-Container. Damit sich das Popover öffnet, wird das JavaScript von Bootstrap benötigt."
+
+#: includes/i18n-strings.php:747
+msgid "Heading of the popover, rendered as the title attribute of the popover container."
+msgstr "Überschrift des Popovers, wird als title-Attribut des Popover-Containers ausgegeben."
+
+#: includes/i18n-strings.php:748
+msgid "Body text of the popover."
+msgstr "Fließtext des Popovers."
+
+#: includes/i18n-strings.php:749
+msgid "Side of the button on which the popover opens. Directions are mirrored in right-to-left languages."
+msgstr "Seite des Buttons, an der das Popover geöffnet wird. In Sprachen mit Schreibrichtung von rechts nach links sind die Richtungen gespiegelt."
+
+#: includes/i18n-strings.php:750
+msgid "Event that opens the popover. Default is a click; the popover opens on focus in either case."
+msgstr "Ereignis, das das Popover öffnet. Voreingestellt ist Klick; bei Fokus öffnet sich das Popover in jedem Fall."
+
+#: includes/i18n-strings.php:751
+msgid "Tooltip"
+msgstr "Tooltip"
+
+#: includes/i18n-strings.php:752
+msgid "Adds Bootstrap's tooltip attributes to the button. Bootstrap's JavaScript is required for the tooltip to appear."
+msgstr "Fügt dem Button die Tooltip-Attribute von Bootstrap hinzu. Damit der Tooltip erscheint, wird das JavaScript von Bootstrap benötigt."
+
+#: includes/i18n-strings.php:753
+msgid "Text shown in the tooltip. It is rendered as the button's title attribute."
+msgstr "Text, der im Tooltip erscheint. Er wird als title-Attribut des Buttons ausgegeben."
+
+#: includes/i18n-strings.php:754
+msgid "Side of the button on which the tooltip appears. Directions are mirrored in right-to-left languages."
+msgstr "Seite des Buttons, an der der Tooltip erscheint. In Sprachen mit Schreibrichtung von rechts nach links sind die Richtungen gespiegelt."
+
+#: includes/i18n-strings.php:755
+msgid "Dropdown"
+msgstr "Dropdown"
+
+#: includes/i18n-strings.php:756
+msgid "Turns the button into a dropdown toggle. The child blocks of this button are only rendered inside the dropdown menu — with the dropdown switched off they do not appear at all."
+msgstr "Macht aus der Schaltfläche einen Dropdown-Auslöser. Die Kindblöcke dieser Schaltfläche werden nur innerhalb des Dropdown-Menüs ausgegeben — bei ausgeschaltetem Dropdown erscheinen sie gar nicht."
+
+#: includes/i18n-strings.php:757
+msgid "Adds .dropdown-menu-dark for a dark dropdown menu."
+msgstr "Fügt .dropdown-menu-dark für ein dunkles Dropdown-Menü hinzu."
+
+#: includes/i18n-strings.php:758
+msgid "Controls whether a click inside the menu, outside it, both or neither closes the open dropdown."
+msgstr "Legt fest, ob ein Klick innerhalb des Menüs, außerhalb, beides oder keines von beidem das geöffnete Dropdown schließt."
+
+#: includes/i18n-strings.php:759
+msgid "Direction in which the dropdown menu opens. Directions are mirrored in right-to-left languages."
+msgstr "Richtung, in die sich das Dropdown-Menü öffnet. In Sprachen mit Schreibrichtung von rechts nach links sind die Richtungen gespiegelt."
+
+#: includes/i18n-strings.php:760
+msgid "Adds .dropdown-menu-end to align the menu with the end of the button."
+msgstr "Fügt .dropdown-menu-end hinzu, um das Menü am Ende der Schaltfläche auszurichten."
+
+#: includes/i18n-strings.php:763
+msgid "Number of grid columns the background layer spans, from this breakpoint upwards."
+msgstr "Anzahl der Rasterspalten, über die sich die Hintergrundebene erstreckt, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:764
+msgid "Bootstrap container class. Fixed sets a maximum width at each breakpoint, Fluid is full width at every breakpoint, and a breakpoint value stays full width until that breakpoint is reached."
+msgstr "Bootstrap-Container-Klasse. Fest setzt an jedem Breakpoint eine Maximalbreite, Fließend ist an jedem Breakpoint volle Breite, und ein Breakpoint-Wert bleibt volle Breite, bis dieser Breakpoint erreicht ist."
+
+#: includes/i18n-strings.php:765
+msgid "Adds the WordPress width class to the container, for example alignfull."
+msgstr "Fügt dem Container die Breitenklasse von WordPress hinzu, zum Beispiel alignfull."
+
+#: includes/i18n-strings.php:768
+msgid "Aligns the item content from top to bottom inside the card body, from this breakpoint upwards."
+msgstr "Richtet den Inhalt des Elements im Kartenkörper von oben nach unten aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:769
+msgid "Aligns the item content from left to right inside the card body, from this breakpoint upwards."
+msgstr "Richtet den Inhalt des Elements im Kartenkörper von links nach rechts aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:770
+msgid "Width of the background layer's grid column at this breakpoint."
+msgstr "Breite der Rasterspalte der Hintergrundebene an diesem Breakpoint."
+
+#: includes/i18n-strings.php:771
+msgid "Item media"
+msgstr "Elementmedien"
+
+#: includes/i18n-strings.php:772
+msgid "How the media fills its container: Cover, Contain, or the dimensions set below."
+msgstr "Wie das Medium seinen Container ausfüllt: Cover, Contain oder die unten gesetzten Maße."
+
+#: includes/i18n-strings.php:773
+msgid "Maximum height of the media in pixels. Only used with Media fit set to Set dimensions; an empty value falls back to 50."
+msgstr "Maximale Höhe des Mediums in Pixeln. Wird nur verwendet, wenn Medienanpassung auf Maße festlegen steht; ein leerer Wert fällt auf 50 zurück."
+
+#: includes/i18n-strings.php:774
+msgid "Maximum width of the media in pixels. Only used with Media fit set to Set dimensions; an empty value falls back to 100."
+msgstr "Maximale Breite des Mediums in Pixeln. Wird nur verwendet, wenn die Medienanpassung auf „Maße festlegen“ steht; ein leerer Wert fällt auf 100 zurück."
+
+#: includes/i18n-strings.php:775
+msgid "Alignment of the media inside its container. An empty value falls back to Center."
+msgstr "Ausrichtung des Mediums innerhalb seines Containers. Ein leerer Wert fällt auf Mitte zurück."
+
+#: includes/i18n-strings.php:776
+msgid "Stored for compatibility with the previous plugin. This block does not render utility classes."
+msgstr "Wird aus Kompatibilität zum vorherigen Plugin gespeichert. Dieser Block gibt keine Utility-Klassen aus."
+
+#: includes/i18n-strings.php:777
+msgid "Bootstrap background-color utility class."
+msgstr "Bootstrap-Utility-Klasse für die Hintergrundfarbe."
+
+#: includes/i18n-strings.php:778
+msgid "Bootstrap text-color utility class."
+msgstr "Bootstrap-Hilfsklasse für die Textfarbe."
+
+#: includes/i18n-strings.php:779
+msgid "Bootstrap border-color utility class."
+msgstr "Bootstrap-Utility-Klasse für die Rahmenfarbe."
+
+#: includes/i18n-strings.php:780
+msgid "Turns the whole grid item into a link. The anchor is rendered behind the content and covers the item."
+msgstr "Macht das ganze Rasterelement zu einem Link. Der Anker wird hinter dem Inhalt gerendert und deckt das Element ab."
+
+#: includes/i18n-strings.php:781
+msgid "Block ID of the surrounding content grid. It supplies the item style."
+msgstr "Block-ID des umgebenden Inhaltsrasters. Von dort kommt der Elementstil."
+
+#: includes/i18n-strings.php:782
+msgid "Stored copy of the item style. The rendering takes this value from the surrounding content grid instead, through the parent block ID above."
+msgstr "Gespeicherte Kopie des Elementstils. Die Ausgabe nimmt diesen Wert stattdessen aus dem umgebenden Inhaltsraster, über die ID des übergeordneten Blocks darüber."
+
+#: includes/i18n-strings.php:785
+msgid "Aligns the grid content from top to bottom, from this breakpoint upwards."
+msgstr "Richtet den Inhalt des Rasters von oben nach unten aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:786
+msgid "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards."
+msgstr "Anzahl der zwölf Rasterspalten, die Überschrift und Einleitung ab diesem Breakpoint aufwärts belegen."
+
+#: includes/i18n-strings.php:787
+msgid "Aligns the heading column within its row, from this breakpoint upwards."
+msgstr "Richtet die Überschriftenspalte innerhalb ihrer Zeile aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:788
+msgid "Aligns the heading and intro text within their column, from this breakpoint upwards."
+msgstr "Richtet Überschrift und Einleitungstext innerhalb ihrer Spalte aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:789
+msgid "Layout of the items inside this grid."
+msgstr "Layout der Elemente in diesem Raster."
+
+#: includes/i18n-strings.php:790
+msgid "Bootstrap container the grid is wrapped in — a fixed width, one of the breakpoint widths, or fluid across the full width."
+msgstr "Bootstrap-Container, der das Raster umschließt — eine feste Breite, eine der Breakpoint-Breiten oder fluid über die volle Breite."
+
+#: includes/i18n-strings.php:791
+msgid "Number of item columns in the grid."
+msgstr "Anzahl der Elementspalten im Raster."
+
+#: includes/i18n-strings.php:792
+msgid "Items"
+msgstr "Elemente"
+
+#: includes/i18n-strings.php:793
+msgid "Shell of each grid item: Card, Full or Flush. Every item reads the value from this block through its parent block ID."
+msgstr "Hülle jedes Rasterelements: Card, Full oder Flush. Jedes Element liest den Wert über die ID seines übergeordneten Blocks aus diesem Block."
+
+#: includes/i18n-strings.php:794
+msgid "Preset size of the media area in the grid items. Rendered as a size class on the grid wrapper."
+msgstr "Vorgegebene Größe des Medienbereichs in den Rasterelementen. Wird als Größenklasse auf dem umschließenden Element des Rasters ausgegeben."
+
+#: includes/i18n-strings.php:795
+msgid "Stored for compatibility with the previous plugin. Each grid item renders from its own media fields."
+msgstr "Wird aus Kompatibilität zum vorherigen Plugin gespeichert. Jedes Rasterelement wird aus seinen eigenen Medienfeldern ausgegeben."
+
+#: includes/i18n-strings.php:796
+msgid "Maximum height of the media in pixels."
+msgstr "Maximale Höhe des Mediums in Pixeln."
+
+#: includes/i18n-strings.php:797
+msgid "Maximum width of the media in pixels."
+msgstr "Maximale Breite der Medien in Pixeln."
+
+#: includes/i18n-strings.php:798
+msgid "Alignment of the media inside its container."
+msgstr "Ausrichtung des Mediums innerhalb seines Containers."
+
+#: includes/i18n-strings.php:799
+msgid "Heading and intro"
+msgstr "Überschrift und Einleitung"
+
+#: includes/i18n-strings.php:800
+msgid "Turns on the area above the grid. The heading is rendered only while this is on and the heading text below is filled in."
+msgstr "Schaltet den Bereich über dem Raster ein. Die Überschrift wird nur ausgegeben, solange diese Option aktiv ist und der Überschriftentext weiter unten ausgefüllt ist."
+
+#: includes/i18n-strings.php:801
+msgid "Heading text shown above the grid. Basic inline HTML is allowed."
+msgstr "Text der Überschrift über dem Raster. Einfaches Inline-HTML ist erlaubt."
+
+#: includes/i18n-strings.php:802
+msgid "HTML heading level used for the heading, H1 to H6. An empty value falls back to H2."
+msgstr "HTML-Überschriftenebene der Überschrift, H1 bis H6. Ein leerer Wert fällt auf H2 zurück."
+
+#: includes/i18n-strings.php:803
+msgid "Bootstrap text-color utility class applied to the heading."
+msgstr "Bootstrap-Utility-Klasse für die Textfarbe, angewendet auf die Überschrift."
+
+#: includes/i18n-strings.php:804
+msgid "Intro text shown below the heading. Basic inline HTML is allowed."
+msgstr "Einleitungstext, der unter der Überschrift angezeigt wird. Einfaches Inline-HTML ist erlaubt."
+
+#: includes/i18n-strings.php:805
+msgid "Bootstrap text-color utility class applied to the intro."
+msgstr "Bootstrap-Utility-Klasse für die Textfarbe, die auf die Einleitung angewendet wird."
+
+#: includes/i18n-strings.php:806
+msgid "Lets the pattern color below override the automatic contrast color of the pattern."
+msgstr "Lässt die Musterfarbe unten die automatische Kontrastfarbe des Musters überschreiben."
+
+#: includes/i18n-strings.php:807
+msgid "Color of the background pattern. Only the hex value is used."
+msgstr "Farbe des Hintergrundmusters. Verwendet wird nur der Hex-Wert."
+
+#: includes/i18n-strings.php:808
+msgid "Kept from the previous plugin. Only its Lightspeed theme integration evaluates the value; this plugin renders nothing from it."
+msgstr "Aus dem vorherigen Plugin übernommen. Nur dessen Lightspeed-Theme-Integration wertet den Wert aus; dieses Plugin gibt nichts daraus aus."
+
+#: includes/i18n-strings.php:811
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/i18n-strings.php:812
+msgid "Layout of the media beside the content. The render path reacts to the value full-width only: it moves the media into a full-width background layer from the LG breakpoint upwards."
+msgstr "Anordnung des Mediums neben dem Inhalt. Der Renderpfad reagiert nur auf den Wert full-width: Er verschiebt das Medium ab dem Breakpoint LG in eine Hintergrundebene über die volle Breite."
+
+#: includes/i18n-strings.php:813
+msgid "Kept from the previous plugin. Neither render path reads it in this block; the value is stored only."
+msgstr "Aus dem vorherigen Plugin übernommen. In diesem Block liest ihn keiner der beiden Renderpfade; der Wert wird nur gespeichert."
+
+#: includes/i18n-strings.php:814
+msgid "Kept from the previous plugin. This block has no parent block, and neither render path reads the value."
+msgstr "Aus dem vorherigen Plugin übernommen. Dieser Block hat keinen übergeordneten Block, und keiner der beiden Renderpfade liest den Wert."
+
+#: includes/i18n-strings.php:817
+msgid "Turns the whole div into a link. The anchor is rendered behind the content and covers the block."
+msgstr "Macht das ganze Div zu einem Link. Der Anker wird hinter dem Inhalt gerendert und deckt den Block ab."
+
+#: includes/i18n-strings.php:820
+msgid "Aligns the content of this block from top to bottom, from this breakpoint upwards."
+msgstr "Richtet den Inhalt dieses Blocks von oben nach unten aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:821
+msgid "Aligns the content of this block from left to right, from this breakpoint upwards."
+msgstr "Richtet den Inhalt dieses Blocks von links nach rechts aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:822
+msgid "Unit of the height value above."
+msgstr "Einheit des Höhenwerts oben."
+
+#: includes/i18n-strings.php:823
+msgid "Heading and intro at this breakpoint"
+msgstr "Überschrift und Einleitung an diesem Breakpoint"
+
+#: includes/i18n-strings.php:824
+msgid "Positions the heading and intro within their row, from this breakpoint upwards."
+msgstr "Positioniert Überschrift und Einleitung innerhalb ihrer Zeile, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:825
+msgid "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row."
+msgstr "Breite der Rasterspalte der Hintergrundebene ab diesem Breakpoint aufwärts. Ohne Wert füllt die Ebene die ganze Zeile."
+
+#: includes/i18n-strings.php:826
+msgid "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+msgstr "Blendet diesen Block an diesem Breakpoint aus und stellt ihn beim nächsten sichtbaren Breakpoint wieder her. Beim Ausblenden entfallen zusätzlich die Ausrichtungs- und Überschriftsklassen dieses Breakpoints."
+
+#: includes/i18n-strings.php:827
+msgid "Grid keeps every item the same width. Masonry lets individual items span two columns."
+msgstr "Raster hält alle Elemente gleich breit. Mauerwerk lässt einzelne Elemente zwei Spalten überspannen."
+
+#: includes/i18n-strings.php:828
+msgid "Bootstrap container that wraps the grid. Fluid spans the full viewport width."
+msgstr "Bootstrap-Container, der das Raster umschließt. Fluid nimmt die volle Breite des Viewports ein."
+
+#: includes/i18n-strings.php:829
+msgid "How many columns the grid shows on wide screens. Narrower viewports step down on their own, down to a single column below 576 pixels."
+msgstr "Wie viele Spalten das Raster auf breiten Bildschirmen zeigt. Schmalere Viewports stufen von selbst herunter, bis auf eine einzige Spalte unterhalb von 576 Pixeln."
+
+#: includes/i18n-strings.php:830
+msgid "Grid items"
+msgstr "Rasterelemente"
+
+#: includes/i18n-strings.php:831
+msgid "Stored for compatibility. This block does not render the value — neither does the previous plugin."
+msgstr "Wird aus Kompatibilitätsgründen gespeichert. Dieser Block gibt den Wert nicht aus — das vorherige Plugin ebenso wenig."
+
+#: includes/i18n-strings.php:832
+msgid "Minimum height of every image tile: extra small 20vh, small 40vh, medium 60vh, large 80vh, extra large 100vh. Empty falls back to medium."
+msgstr "Mindesthöhe jeder Bildkachel: sehr klein 20vh, klein 40vh, mittel 60vh, groß 80vh, sehr groß 100vh. Leer fällt auf mittel zurück."
+
+#: includes/i18n-strings.php:833
+msgid "Media"
+msgstr "Medien"
+
+#: includes/i18n-strings.php:834
+msgid "How the media fills its container. The rendering reads each image's own Media fit field, not this one."
+msgstr "Wie das Medium seinen Container ausfüllt. Für die Ausgabe wird das Feld Medienanpassung des jeweiligen Bildes gelesen, nicht dieses hier."
+
+#: includes/i18n-strings.php:835
+msgid "Maximum media height in pixels, used when Media fit is Set dimensions. The rendering reads each image's own Media height field, not this one."
+msgstr "Maximale Medienhöhe in Pixeln, verwendet bei der Medienanpassung „Maße festlegen“. Die Ausgabe liest das Feld Medienhöhe des jeweiligen Bildes, nicht dieses."
+
+#: includes/i18n-strings.php:836
+msgid "Maximum media width in pixels, used when Media fit is Set dimensions. The rendering reads each image's own Media width field, not this one."
+msgstr "Maximale Medienbreite in Pixeln, verwendet, wenn Medienanpassung auf Maße festlegen steht. Die Ausgabe liest das Feld Medienbreite am jeweiligen Bild, nicht dieses hier."
+
+#: includes/i18n-strings.php:837
+msgid "How the media sits inside its container. The rendering reads each image's own Media alignment field, not this one."
+msgstr "Wie die Medien in ihrem Container sitzen. Die Ausgabe liest das Feld Medienausrichtung des jeweiligen Bildes, nicht dieses hier."
+
+#: includes/i18n-strings.php:838
+msgid "Stored for compatibility. This block does not render the value, and the previous plugin has no editor field for it either."
+msgstr "Wird aus Kompatibilitätsgründen gespeichert. Dieser Block gibt den Wert nicht aus, und im vorherigen Plugin gibt es dafür ebenfalls kein Editorfeld."
+
+#: includes/i18n-strings.php:839
+msgid "Images"
+msgstr "Bilder"
+
+#: includes/i18n-strings.php:840
+msgid "Registered image size the pictures are loaded at. The rendering reads each image's own Image size field, not this one."
+msgstr "Registrierte Bildgröße, in der die Bilder geladen werden. Die Ausgabe liest das Feld Bildgröße des jeweiligen Bildes, nicht dieses."
+
+#: includes/i18n-strings.php:841
+msgid "Where a click on a picture leads. The rendering reads each image's own Link destination field, not this one."
+msgstr "Wohin ein Klick auf ein Bild führt. Die Ausgabe liest das Feld Linkziel des Bildes am jeweiligen Bild, nicht dieses hier."
+
+#: includes/i18n-strings.php:842
+msgid "Rendered as the target attribute of the link on every image in this grid. New tab writes target=_blank."
+msgstr "Wird als target-Attribut des Links auf jedem Bild dieses Rasters ausgegeben. Neuer Tab schreibt target=_blank."
+
+#: includes/i18n-strings.php:843
+msgid "Cropped thumbnails in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+msgstr "Hat im Editor des vorherigen Plugins die Vorschaubilder beschnitten. Bleibt als gespeicherter Wert erhalten; keines der beiden Plugins gibt ihn aus."
+
+#: includes/i18n-strings.php:844
+msgid "Fixed image height in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+msgstr "Feste Bildhöhe im Editor des vorherigen Plugins. Bleibt als gespeicherter Wert erhalten; keines der beiden Plugins gibt sie aus."
+
+#: includes/i18n-strings.php:845
+msgid "Drag handles on the pictures in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+msgstr "Ziehpunkte an den Bildern im Editor des vorherigen Plugins. Bleibt als gespeicherter Wert erhalten; keines der beiden Plugins gibt ihn aus."
+
+#: includes/i18n-strings.php:846
+msgid "Shows a heading above the grid. The heading text below is only rendered while this is on."
+msgstr "Zeigt eine Überschrift über dem Raster. Der Überschriftentext unten wird nur ausgegeben, solange dies eingeschaltet ist."
+
+#: includes/i18n-strings.php:847
+msgid "HTML heading level of the heading above the grid."
+msgstr "HTML-Überschriftenebene der Überschrift über dem Raster."
+
+#: includes/i18n-strings.php:848
+msgid "Text of the heading above the grid. Basic inline HTML is allowed."
+msgstr "Text der Überschrift über dem Raster. Einfaches Inline-HTML ist erlaubt."
+
+#: includes/i18n-strings.php:849
+msgid "Applies a Bootstrap text-color utility class to the heading."
+msgstr "Setzt eine Bootstrap-Hilfsklasse für die Textfarbe auf die Überschrift."
+
+#: includes/i18n-strings.php:850
+msgid "Turns on the block above the grid. The intro text is rendered as soon as it is filled and either this switch or Show heading is on — a quirk of the previous plugin, kept on purpose."
+msgstr "Schaltet den Block über dem Raster ein. Der Einleitungstext wird ausgegeben, sobald er ausgefüllt ist und entweder dieser Schalter oder „Überschrift anzeigen“ aktiv ist — eine Eigenheit des vorherigen Plugins, die bewusst beibehalten wurde."
+
+#: includes/i18n-strings.php:851
+msgid "Text of the intro above the grid. Basic inline HTML is allowed."
+msgstr "Text der Einleitung über dem Raster. Einfaches Inline-HTML ist erlaubt."
+
+#: includes/i18n-strings.php:852
+msgid "Applies a Bootstrap text-color utility class to the intro."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf die Einleitung."
+
+#: includes/i18n-strings.php:853
+msgid "Background pattern"
+msgstr "Hintergrundmuster"
+
+#: includes/i18n-strings.php:854
+msgid "Kept from the previous plugin. This plugin hands the value to the pattern filter and renders nothing from it itself."
+msgstr "Aus dem vorherigen Plugin übernommen. Dieses Plugin reicht den Wert an den Musterfilter weiter und gibt selbst nichts daraus aus."
+
+#: includes/i18n-strings.php:855
+msgid "Color the previous plugin used for the background pattern. Handed to the pattern filter unchanged; this plugin renders nothing from it."
+msgstr "Farbe, die das vorherige Plugin für das Hintergrundmuster verwendet hat. Sie wird unverändert an den Musterfilter weitergegeben; dieses Plugin gibt nichts daraus aus."
+
+#: includes/i18n-strings.php:858
+msgid "Hides this block at this breakpoint and restores it at the next visible one. While it is hidden, the alignment classes of this breakpoint are dropped as well."
+msgstr "Blendet diesen Block an diesem Breakpoint aus und zeigt ihn am nächsten sichtbaren wieder an. Solange er ausgeblendet ist, entfallen auch die Ausrichtungsklassen dieses Breakpoints."
+
+#: includes/i18n-strings.php:859
+msgid "Bootstrap nav style, added as a class: nav-tabs draws the items as tabs, nav-pills as pills."
+msgstr "Bootstrap-Navigationsstil, als Klasse ergänzt: nav-tabs stellt die Einträge als Reiter dar, nav-pills als Pillen."
+
+#: includes/i18n-strings.php:862
+msgid "Aligns the heading and intro column within its row, from this breakpoint upwards."
+msgstr "Richtet die Spalte mit Überschrift und Einleitung innerhalb ihrer Zeile aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:863
+msgid "Items at this breakpoint"
+msgstr "Elemente an diesem Breakpoint"
+
+#: includes/i18n-strings.php:864
+msgid "Aligns the content in the card body of each entry from top to bottom, from this breakpoint upwards."
+msgstr "Richtet den Inhalt im Kartenkörper jedes Eintrags von oben nach unten aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:865
+msgid "Aligns the content in the card body of each entry from left to right, from this breakpoint upwards."
+msgstr "Richtet den Inhalt im Card-Body jedes Eintrags von links nach rechts aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:866
+msgid "Aligns the text in the card body of each entry, from this breakpoint upwards."
+msgstr "Richtet den Text im Kartenkörper jedes Eintrags aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:867
+msgid "Number of the twelve grid columns the background layer occupies, from this breakpoint upwards."
+msgstr "Anzahl der zwölf Rasterspalten, die die Hintergrundebene ab diesem Breakpoint aufwärts belegt."
+
+#: includes/i18n-strings.php:868
+msgid "Pagination"
+msgstr "Seitenzahlen"
+
+#: includes/i18n-strings.php:869
+msgid "Arrangement of the entries. Masonry lets single entries span two grid columns instead of one."
+msgstr "Anordnung der Einträge. Mit Masonry belegen einzelne Einträge zwei Rasterspalten statt einer."
+
+#: includes/i18n-strings.php:870
+msgid "Bootstrap container class that limits the width of the grid inside the block."
+msgstr "Bootstrap-Container-Klasse, die die Breite des Rasters innerhalb des Blocks begrenzt."
+
+#: includes/i18n-strings.php:871
+msgid "Number of columns the grid grows to on wide screens. Below 576 px it always shows a single column."
+msgstr "Anzahl der Spalten, auf die das Raster auf breiten Bildschirmen anwächst. Unterhalb von 576 px zeigt es immer eine einzelne Spalte."
+
+#: includes/i18n-strings.php:872
+msgid "Shows a heading above the grid. It is only rendered once the heading text below is filled in."
+msgstr "Zeigt eine Überschrift über dem Raster. Sie wird erst ausgegeben, wenn der Überschriftentext unten ausgefüllt ist."
+
+#: includes/i18n-strings.php:873
+msgid "Text of the heading above the grid."
+msgstr "Text der Überschrift über dem Raster."
+
+#: includes/i18n-strings.php:874
+msgid "Heading level the text above the grid is rendered as."
+msgstr "Überschriftsebene, in der der Text über dem Raster ausgegeben wird."
+
+#: includes/i18n-strings.php:875
+msgid "Applies a Bootstrap text-color utility class to the heading above the grid."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf die Überschrift über dem Raster."
+
+#: includes/i18n-strings.php:876
+msgid "Shows an intro above the grid. Note: while the heading switch is on, a filled-in intro is rendered even with this switch off."
+msgstr "Zeigt eine Einleitung über dem Raster. Hinweis: Solange der Überschriftenschalter eingeschaltet ist, wird eine ausgefüllte Einleitung auch dann ausgegeben, wenn dieser Schalter aus ist."
+
+#: includes/i18n-strings.php:877
+msgid "Text of the intro above the grid."
+msgstr "Text der Einleitung über dem Raster."
+
+#: includes/i18n-strings.php:878
+msgid "Applies a Bootstrap text-color utility class to the intro above the grid."
+msgstr "Setzt eine Bootstrap-Hilfsklasse für die Textfarbe auf die Einleitung über dem Raster."
+
+#: includes/i18n-strings.php:879
+msgid "Content"
+msgstr "Inhalt"
+
+#: includes/i18n-strings.php:880
+msgid "Item appearance"
+msgstr "Darstellung der Elemente"
+
+#: includes/i18n-strings.php:881
+msgid "Height of the inline media of each entry: Small is 20vh, Medium is 30vh. Large carries no rule of its own and keeps the default of 40vh."
+msgstr "Höhe der Inline-Medien jedes Eintrags: Klein ist 20vh, Mittel ist 30vh. Groß trägt keine eigene Regel und bleibt beim Standard von 40vh."
+
+#: includes/i18n-strings.php:882
+msgid "Applies a Bootstrap text-color utility class to the title, excerpt and card body of each entry."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf Titel, Auszug und Card-Body jedes Eintrags."
+
+#: includes/i18n-strings.php:883
+msgid "Drawn as a layer above the background image of each entry while the overlay switch above is on. Only the rgb values are used for rendering."
+msgstr "Wird als Ebene über dem Hintergrundbild jedes Eintrags dargestellt, solange der Overlay-Schalter darüber eingeschaltet ist. Für die Ausgabe werden ausschließlich die rgb-Werte genutzt."
+
+#: includes/i18n-strings.php:884
+msgid "Kept from the previous plugin, where it makes the background pattern use the color below. A pattern is only rendered when the filter crea_bootstrap_blocks_background_pattern supplies one."
+msgstr "Aus dem vorherigen Plugin übernommen, wo der Schalter dafür sorgt, dass das Hintergrundmuster die Farbe weiter unten verwendet. Ein Muster wird nur ausgegeben, wenn der Filter crea_bootstrap_blocks_background_pattern eines liefert."
+
+#: includes/i18n-strings.php:885
+msgid "Color of the background pattern, used while the switch above is on. A pattern is only rendered when the filter crea_bootstrap_blocks_background_pattern supplies one."
+msgstr "Farbe des Hintergrundmusters, verwendet, solange der Schalter oben eingeschaltet ist. Ein Muster wird nur ausgegeben, wenn der Filter crea_bootstrap_blocks_background_pattern eines liefert."
+
+#: includes/i18n-strings.php:886
+msgid "Theme options"
+msgstr "Theme-Optionen"
+
+#: includes/i18n-strings.php:889
+msgid "Vertical alignment · align-items-*"
+msgstr "Senkrechte Ausrichtung · align-items-*"
+
+#: includes/i18n-strings.php:890
+msgid "Aligns the columns within the row from top to bottom, from this breakpoint upwards."
+msgstr "Richtet die Spalten innerhalb der Zeile von oben nach unten aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:891
+msgid "Horizontal alignment · justify-content-*"
+msgstr "Horizontale Ausrichtung · justify-content-*"
+
+#: includes/i18n-strings.php:892
+msgid "Aligns the columns within the row from left to right, from this breakpoint upwards."
+msgstr "Richtet die Spalten innerhalb der Zeile von links nach rechts aus, ab diesem Breakpoint aufwärts."
+
+#: includes/i18n-strings.php:893
+msgid "Columns per row · row-cols-*"
+msgstr "Spalten pro Zeile · row-cols-*"
+
+#: includes/i18n-strings.php:894
+msgid "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead."
+msgstr "Anzahl der Spalten, in denen die Zeile ihre Kindblöcke anordnet, ab diesem Breakpoint aufwärts. Im CSS-Grid-Modus wird die Zahl stattdessen in die CSS-Eigenschaft --bs-columns geschrieben."
+
+#: includes/i18n-strings.php:895
+msgid "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."
+msgstr "Wirkt sich nur aus, wenn der CSS-Grid-Modus in den Plugin-Einstellungen aktiviert und Flexbox erzwingen ausgeschaltet ist."
+
+#: includes/i18n-strings.php:896
+msgid "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."
+msgstr "Anzahl der Zeilen im Raster, zum Beispiel 3. Der Wert wird in die CSS-Eigenschaft --bs-rows geschrieben."
+
+#: includes/i18n-strings.php:897
+msgid "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."
+msgstr "Zahlenwert ohne Einheit, wird in die CSS-Eigenschaft --bs-gap geschrieben. Die Einheit wird unten festgelegt."
+
+#: includes/i18n-strings.php:898
+msgid "Unit of the value above."
+msgstr "Einheit des Werts oben."
+
+#: includes/i18n-strings.php:899
+msgid "Numeric value without a unit, written as the row-gap property. The unit is set below."
+msgstr "Zahlenwert ohne Einheit, wird als Eigenschaft row-gap geschrieben. Die Einheit wird unten gesetzt."
+
+#: includes/i18n-strings.php:900
+msgid "Vertical alignment · align-items-sm-*"
+msgstr "Senkrechte Ausrichtung · align-items-sm-*"
+
+#: includes/i18n-strings.php:901
+msgid "Horizontal alignment · justify-content-sm-*"
+msgstr "Horizontale Ausrichtung · justify-content-sm-*"
+
+#: includes/i18n-strings.php:902
+msgid "Columns per row · row-cols-sm-*"
+msgstr "Spalten pro Zeile · row-cols-sm-*"
+
+#: includes/i18n-strings.php:903
+msgid "Vertical alignment · align-items-md-*"
+msgstr "Senkrechte Ausrichtung · align-items-md-*"
+
+#: includes/i18n-strings.php:904
+msgid "Horizontal alignment · justify-content-md-*"
+msgstr "Horizontale Ausrichtung · justify-content-md-*"
+
+#: includes/i18n-strings.php:905
+msgid "Columns per row · row-cols-md-*"
+msgstr "Spalten pro Zeile · row-cols-md-*"
+
+#: includes/i18n-strings.php:906
+msgid "Vertical alignment · align-items-lg-*"
+msgstr "Senkrechte Ausrichtung · align-items-lg-*"
+
+#: includes/i18n-strings.php:907
+msgid "Horizontal alignment · justify-content-lg-*"
+msgstr "Horizontale Ausrichtung · justify-content-lg-*"
+
+#: includes/i18n-strings.php:908
+msgid "Columns per row · row-cols-lg-*"
+msgstr "Spalten pro Zeile · row-cols-lg-*"
+
+#: includes/i18n-strings.php:909
+msgid "Vertical alignment · align-items-xl-*"
+msgstr "Senkrechte Ausrichtung · align-items-xl-*"
+
+#: includes/i18n-strings.php:910
+msgid "Horizontal alignment · justify-content-xl-*"
+msgstr "Horizontale Ausrichtung · justify-content-xl-*"
+
+#: includes/i18n-strings.php:911
+msgid "Columns per row · row-cols-xl-*"
+msgstr "Spalten pro Zeile · row-cols-xl-*"
+
+#: includes/i18n-strings.php:912
+msgid "Vertical alignment · align-items-xxl-*"
+msgstr "Senkrechte Ausrichtung · align-items-xxl-*"
+
+#: includes/i18n-strings.php:913
+msgid "Horizontal alignment · justify-content-xxl-*"
+msgstr "Horizontale Ausrichtung · justify-content-xxl-*"
+
+#: includes/i18n-strings.php:914
+msgid "Columns per row · row-cols-xxl-*"
+msgstr "Spalten pro Zeile · row-cols-xxl-*"
+
+#: includes/i18n-strings.php:917
+msgid "Adds the align class of this value to the block, for example alignfull. The value is written into the class list unchanged."
+msgstr "Fügt dem Block die align-Klasse dieses Werts hinzu, zum Beispiel alignfull. Der Wert wird unverändert in die Klassenliste geschrieben."
+
+#: includes/i18n-strings.php:918
+msgid "Turns on the area above the grid. Once that area is on, the intro paragraph is rendered as soon as the intro text below is filled in, with or without this switch — as in the previous plugin."
+msgstr "Schaltet den Bereich über dem Raster ein. Sobald dieser Bereich eingeschaltet ist, wird der Einleitungsabsatz ausgegeben, sobald der Einleitungstext unten gefüllt ist — mit oder ohne diesen Schalter, wie im vorherigen Plugin."
+
+#: includes/i18n-strings.php:925
+msgid "Hides this block at this breakpoint and restores it at the next visible one."
+msgstr "Blendet diesen Block an diesem Breakpoint aus und stellt ihn beim nächsten sichtbaren Breakpoint wieder her."
+
+#: includes/i18n-strings.php:926
+msgid "Text on the accordion button that opens and closes this item. It is rendered inside the heading element set below and may contain inline markup."
+msgstr "Text auf dem Akkordeon-Button, der diesen Abschnitt auf- und zuklappt. Er wird in dem unten eingestellten Überschriftenelement ausgegeben und darf Inline-Markup enthalten."
+
+#: includes/i18n-strings.php:929
+msgid "Arranges the banner items inside this block. Three arrangements are built: grid places the items side by side, stacked puts them below each other, carousel turns them into slides. Any other value renders the wrapper without its items."
+msgstr "Ordnet die Bannerelemente in diesem Block an. Drei Anordnungen sind gebaut: grid stellt die Elemente nebeneinander, stacked setzt sie untereinander, carousel macht Folien daraus. Jeder andere Wert gibt die Hülle ohne ihre Elemente aus."
+
+#: includes/i18n-strings.php:930
+msgid "Preset height of the banner: Small is 50vh and Medium is 75vh. Large carries no rule of its own and keeps the default of 100vh. In the grid layout all three double below the sm breakpoint."
+msgstr "Voreingestellte Höhe des Banners: Klein ist 50vh und Mittel ist 75vh. Groß trägt keine eigene Regel und bleibt beim Standard von 100vh. Im Layout grid verdoppeln sich alle drei unterhalb des Breakpoints sm."
+
+#: includes/i18n-strings.php:933
+msgid "Lays the buttons out in a row (.btn-group) or stacks them vertically (.btn-group-vertical)."
+msgstr "Ordnet die Buttons in einer Zeile (.btn-group) an oder stapelt sie senkrecht (.btn-group-vertical)."
+
+#: includes/i18n-strings.php:934
+msgid "Sizes every button of the group at once through .btn-group-sm or .btn-group-lg, instead of setting a size on each button."
+msgstr "Setzt die Größe aller Buttons der Gruppe auf einmal über .btn-group-sm oder .btn-group-lg, statt an jedem Button eine eigene Größe zu setzen."
+
+#: includes/i18n-strings.php:937
+msgid "Applies a Bootstrap background-color utility class to this block."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Hintergrundfarbe auf diesen Block."
+
+#: includes/i18n-strings.php:938
+msgid "Applies a Bootstrap text-color utility class to this block."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf diesen Block."
+
+#: includes/i18n-strings.php:939
+msgid "Applies a Bootstrap border-color utility class to this block."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Rahmenfarbe auf diesen Block."
+
+#: includes/i18n-strings.php:942
+msgid "Per-slide delay in milliseconds (data-bs-interval). The value is stored on the block, but neither this plugin nor the original writes it into the markup."
+msgstr "Verzögerung dieser Folie in Millisekunden (data-bs-interval). Der Wert wird am Block gespeichert, aber weder dieses Plugin noch das Original schreibt ihn ins Markup."
+
+#: includes/i18n-strings.php:945
+msgid "Navigation"
+msgstr "Navigation"
+
+#: includes/i18n-strings.php:946
+msgid "Autoplay"
+msgstr "Automatisches Weiterschalten"
+
+#: includes/i18n-strings.php:947
+msgid "Appearance"
+msgstr "Darstellung"
+
+#: includes/i18n-strings.php:950
+msgid "Content of the item. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+msgstr "Inhalt des Elements. Wird über wp_kses_post() ausgegeben; Inline-Markup ist erlaubt, Skripte sind es nicht."
+
+#: includes/i18n-strings.php:951
+msgid "Rendered as the href attribute. Only the Link type renders an anchor; the other types render a div."
+msgstr "Wird als href-Attribut ausgegeben. Nur der Typ Link gibt einen Anker aus; die übrigen Typen geben ein div aus."
+
+#: includes/i18n-strings.php:952
+msgid "Rendered as the title attribute of the anchor."
+msgstr "Wird als title-Attribut des Ankers ausgegeben."
+
+#: includes/i18n-strings.php:953
+msgid "Rendered as the rel attribute of the anchor, for example nofollow or noopener."
+msgstr "Wird als rel-Attribut des Ankers ausgegeben, zum Beispiel nofollow oder noopener."
+
+#: includes/i18n-strings.php:956
+msgid "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+msgstr "Gespeicherte Ausrichtung für diesen Breakpoint. Dieser Block gibt kein eigenes Element aus; er reicht seinen inneren Inhalt unverändert durch."
+
+#: includes/i18n-strings.php:957
+msgid "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+msgstr "Gespeicherter Ausblenden-Schalter für diesen Breakpoint. Dieser Block gibt kein eigenes Element aus; er reicht seinen inneren Inhalt unverändert durch."
+
+#: includes/i18n-strings.php:958
+msgid "Stored colour of the icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged."
+msgstr "Gespeicherte Farbe des Icons. Aus dem vorherigen Plugin übernommen, wo dieser Block das Icon selbst gezeichnet hat; hier reicht er seinen inneren Inhalt unverändert durch."
+
+#: includes/i18n-strings.php:959
+msgid "Stored size of the icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged."
+msgstr "Gespeicherte Größe des Icons. Aus dem vorherigen Plugin übernommen, wo dieser Block das Icon selbst gezeichnet hat; hier reicht er seinen inneren Inhalt unverändert durch."
+
+#: includes/i18n-strings.php:960
+msgid "Stored name of the Bootstrap icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged."
+msgstr "Gespeicherter Name des Bootstrap-Icons. Aus dem vorherigen Plugin übernommen, wo dieser Block das Icon selbst gezeichnet hat; hier reicht er seinen inneren Inhalt unverändert durch."
+
+#: includes/i18n-strings.php:963
+msgid "Rendered as the href attribute. With a URL the item is rendered as a link, without one as a div."
+msgstr "Wird als href-Attribut ausgegeben. Mit einer URL wird das Element als Link ausgegeben, ohne URL als div."
+
+#: includes/i18n-strings.php:964
+msgid "Rendered as the title attribute of the link."
+msgstr "Wird als title-Attribut des Links ausgegeben."
+
+#: includes/i18n-strings.php:965
+msgid "Rendered as the rel attribute of the link, for example nofollow or noopener."
+msgstr "Wird als rel-Attribut des Links ausgegeben, zum Beispiel nofollow oder noopener."
+
+#: includes/i18n-strings.php:968
+msgid "Source URL of the picked image. The rendering resolves the file from the attachment ID above and does not read this value."
+msgstr "Quell-URL des gewählten Bildes. Die Ausgabe löst die Datei über die Medien-ID darüber auf und liest diesen Wert nicht."
+
+#: includes/i18n-strings.php:969
+msgid "Width stored by the editor's image size control. The rendering takes the width from the attachment file instead."
+msgstr "Breite, die das Bildgrößen-Steuerelement des Editors gespeichert hat. Die Ausgabe nimmt die Breite stattdessen aus der Datei des Anhangs."
+
+#: includes/i18n-strings.php:970
+msgid "Height stored by the editor's image size control. The rendering takes the height from the attachment file instead."
+msgstr "Höhe, die das Bildgrößen-Steuerelement des Editors gespeichert hat. Die Ausgabe nimmt die Höhe stattdessen aus der Datei des Anhangs."
+
+#: includes/i18n-strings.php:971
+msgid "Registered image size the file is loaded at. An empty value falls back to the full size."
+msgstr "Registrierte Bildgröße, in der die Datei geladen wird. Ein leerer Wert fällt auf die volle Größe zurück."
+
+#: includes/i18n-strings.php:972
+msgid "Where a click on the image leads: nowhere, the image file, or the attachment page."
+msgstr "Wohin ein Klick auf das Bild führt: nirgendwohin, zur Bilddatei oder zur Anhangseite."
+
+#: includes/i18n-strings.php:975
+msgid "Content of the link. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+msgstr "Inhalt des Links. Wird über wp_kses_post() ausgegeben; Inline-Markup ist erlaubt, Skripte sind es nicht."
+
+#: includes/i18n-strings.php:976
+msgid "Rendered as the href attribute. It is only added when a value is set."
+msgstr "Wird als href-Attribut ausgegeben. Es wird nur hinzugefügt, wenn ein Wert gesetzt ist."
+
+#: includes/i18n-strings.php:979
+msgid "Applies a Bootstrap background-color utility class to the toast."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Hintergrundfarbe auf die Kurzmeldung."
+
+#: includes/i18n-strings.php:980
+msgid "Applies a Bootstrap text-color utility class to the toast."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Textfarbe auf die Kurzmeldung."
+
+#: includes/i18n-strings.php:981
+msgid "Applies a Bootstrap border-color utility class to the toast."
+msgstr "Setzt eine Bootstrap-Utility-Klasse für die Rahmenfarbe auf die Kurzmeldung."
+
+#: includes/i18n-strings.php:991
+msgid "Set the title here — you cannot type it directly into the block."
+msgstr "Die Überschrift wird hier gesetzt — direkt im Block lässt sie sich nicht eingeben."
+
+#: includes/i18n-strings.php:992
+msgid "Set the text here — you cannot type it directly into the block."
+msgstr "Der Text wird hier gesetzt — direkt im Block lässt er sich nicht eingeben."
+
+#: assets/js/fields/color.js:400
+msgid "Hex"
+msgstr "Hex"
+
+#: assets/js/fields/color.js:418
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: assets/js/fields/media.js:278
+#: assets/js/fields/media.js:439
+msgid "Select image"
+msgstr "Bild auswählen"
+
+#: assets/js/fields/media.js:279
+msgid "Use this image"
+msgstr "Dieses Bild verwenden"
+
+#: assets/js/fields/media.js:409
+msgid "The media library is not available here. Enter the attachment ID manually."
+msgstr "Die Mediathek steht hier nicht zur Verfügung. Bitte geben Sie die Medien-ID von Hand ein."
+
+#: assets/js/fields/media.js:438
+msgid "Replace image"
+msgstr "Bild ersetzen"
+
+#: assets/js/fields/media.js:454
+msgid "Remove image"
+msgstr "Bild entfernen"
+
+#: includes/i18n-strings.php:263
+msgid "Height and margin"
+msgstr "Höhe und Außenabstand"

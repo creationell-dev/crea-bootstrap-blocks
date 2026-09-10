@@ -1,0 +1,281 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/carousel",
+	"title": "Carousel",
+	"category": "creabb-components",
+	"description": "A slideshow component for cycling through elements — images or slides of text — like a carousel.",
+	"icon": "images-alt2",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": true,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xs",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_sm",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_md",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_lg",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xxl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Navigation",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "controls",
+						"type": "toggle",
+						"label": "Display Controls",
+						"help": "Show the previous and next buttons."
+					},
+					{
+						"id": "indicators",
+						"type": "toggle",
+						"label": "Display Indicators",
+						"help": "Show the slide indicators below the carousel."
+					},
+					{
+						"id": "touch",
+						"type": "toggle",
+						"label": "Touch Enabled",
+						"help": "Allow swiping left and right on touch devices."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Autoplay",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "auto_scroll",
+						"type": "toggle",
+						"label": "Auto Scroll",
+						"help": "Cycle through the slides automatically."
+					},
+					{
+						"id": "interval",
+						"type": "text",
+						"label": "Auto Scroll Interval",
+						"help": "Time in milliseconds between two slides."
+					},
+					{
+						"id": "pause",
+						"type": "creabb/select",
+						"label": "Pause",
+						"help": "Choose whether the carousel pauses when the pointer hovers over it.",
+						"options": [
+							{
+								"value": "hover",
+								"label": "Hover"
+							},
+							{
+								"value": "false",
+								"label": "False"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Appearance",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "item_style",
+						"type": "creabb/select",
+						"label": "Style",
+						"help": "Choose the colour scheme of the carousel controls and indicators.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "carousel-dark",
+								"label": "Dark"
+							}
+						]
+					},
+					{
+						"id": "transition",
+						"type": "creabb/select",
+						"label": "Transition",
+						"help": "Choose how one slide is replaced by the next.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "carousel-fade",
+								"label": "Crossfade"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

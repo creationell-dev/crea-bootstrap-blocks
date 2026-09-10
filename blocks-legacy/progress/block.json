@@ -1,0 +1,228 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/progress",
+    "title": "Progress",
+    "category": "creabb-components",
+    "description": "Document the progress of a task or an action with a progress bar.",
+    "icon": "chart-bar",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_xs"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xs"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_sm"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_sm"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_md"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_md"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_lg"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_lg"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_xl"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xl"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "custom/creabb-spacing",
+                                "idStructure": "{id}_xxl"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xxl"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Settings",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "id": "width",
+                        "type": "text",
+                        "label": "Width",
+                        "help": "Width of the bar in percent."
+                    },
+                    {
+                        "id": "label",
+                        "type": "toggle",
+                        "label": "Include Label",
+                        "help": "Show the width value as text inside the bar."
+                    },
+                    {
+                        "id": "striped",
+                        "type": "toggle",
+                        "label": "Include Stripes",
+                        "help": "Add a striped pattern to the bar."
+                    },
+                    {
+                        "id": "animated",
+                        "type": "toggle",
+                        "label": "Include Animation",
+                        "help": "Animate the striped pattern."
+                    },
+                    {
+                        "id": "background",
+                        "type": "creabb/select",
+                        "label": "Background",
+                        "help": "Choose the colour of the bar.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "bg-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "bg-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "bg-success",
+                                "label": "Success"
+                            },
+                            {
+                                "value": "bg-danger",
+                                "label": "Danger"
+                            },
+                            {
+                                "value": "bg-warning",
+                                "label": "Warning"
+                            },
+                            {
+                                "value": "bg-info",
+                                "label": "Info"
+                            },
+                            {
+                                "value": "bg-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "bg-dark",
+                                "label": "Dark"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    }
+                ]
+            }
+        ]
+    }
+}

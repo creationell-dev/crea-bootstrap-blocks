@@ -1,0 +1,138 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/dropdown-item",
+	"title": "Dropdown Item",
+	"category": "creabb-components",
+	"description": "A single entry within a dropdown menu.",
+	"icon": "menu",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "type",
+						"type": "creabb/select",
+						"label": "Type",
+						"help": "Choose how you would like the item to be displayed.",
+						"options": [
+							{
+								"value": "dropdown-item",
+								"label": "Link"
+							},
+							{
+								"value": "dropdown-header",
+								"label": "Header"
+							},
+							{
+								"value": "dropdown-divider",
+								"label": "Divider"
+							},
+							{
+								"value": "p-3",
+								"label": "Text"
+							}
+						]
+					},
+					{"type": "message", "value": "Set the text here — you cannot type it directly into the block."},
+					{
+						"id": "text",
+						"type": "text",
+						"label": "Text",
+						"help": "Content of the item. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+					},
+					{
+						"id": "active",
+						"type": "toggle",
+						"label": "Active",
+						"help": "Add .active to items in the dropdown to style them as active."
+					},
+					{
+						"id": "disabled",
+						"type": "toggle",
+						"label": "Disabled",
+						"help": "Add .disabled to items in the dropdown to style them as disabled."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Link",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "url",
+						"type": "text",
+						"label": "URL",
+						"help": "Rendered as the href attribute. Only the Link type renders an anchor; the other types render a div."
+					},
+					{
+						"id": "url_title",
+						"type": "text",
+						"label": "Link title",
+						"help": "Rendered as the title attribute of the anchor."
+					},
+					{
+						"id": "title",
+						"type": "text",
+						"label": "Title",
+						"help": "Kept for compatibility. The rendered title attribute comes from the link title above."
+					},
+					{
+						"id": "linkTarget",
+						"type": "creabb/select",
+						"label": "Link target",
+						"help": "Open the link in a new tab.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "_blank",
+								"label": "New tab"
+							}
+						]
+					},
+					{
+						"id": "rel",
+						"type": "text",
+						"label": "Link relationship",
+						"help": "Rendered as the rel attribute of the anchor, for example nofollow or noopener."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	},
+	"parent": [
+		"creabb/button"
+	]
+}

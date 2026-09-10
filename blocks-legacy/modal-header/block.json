@@ -1,0 +1,42 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/modal-header",
+    "title": "Modal Header",
+    "category": "creabb-components",
+    "description": "The header of a modal dialog.",
+    "icon": "admin-page",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "block_id",
+                "type": "text",
+                "label": "Block ID",
+                "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+            },
+            {
+                "id": "close_button",
+                "type": "toggle",
+                "label": "Display Close Button",
+                "help": "Add a close button to the modal header."
+            }
+        ]
+    },
+    "parent": [
+        "creabb/modal",
+        "areoi/modal"
+    ]
+}

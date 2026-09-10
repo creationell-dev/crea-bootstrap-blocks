@@ -1,0 +1,18 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "anchor": {
+        "type": "string",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "close_button": {
+        "type": "boolean",
+        "default": true
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/offcanvas-body",
+    "title": "Offcanvas Body",
+    "category": "creabb-components",
+    "description": "The body of an offcanvas panel.",
+    "icon": "align-pull-left",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "block_id",
+                "type": "text",
+                "label": "Block ID",
+                "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+            }
+        ]
+    },
+    "parent": [
+        "creabb/offcanvas",
+        "areoi/offcanvas"
+    ]
+}

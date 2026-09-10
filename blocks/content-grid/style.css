@@ -1,0 +1,474 @@
+/*
+ * Block CSS of `creabb/content-grid` — und die gemeinsame Quelle dreier Bloecke.
+ *
+ * Uebernommen aus `blocks/content-grid/style.css` des Alt-Plugins, vollstaendig:
+ * alle 45 Regeln einschliesslich der Abschnitte „Item size" und „Media size",
+ * die `.card-body > div` und `.card-img-top` treffen.
+ *
+ * DREI BLOECKE TEILEN SICH DIESE DATEI, und das ist die Struktur des Originals:
+ * dort bestehen `blocks/post-grid/style.css` und `blocks/media-grid/style.css`
+ * aus nichts als `@import url( '../content-grid/style.css' );`. Der Nachbau
+ * macht es genauso — eine Quelle, zwei Verweise. Wer hier etwas aendert, aendert
+ * es fuer alle drei.
+ *
+ * WARUM DIE REGELN NICHT MEHR BEI `media-grid` LIEGEN. Sie lagen dort, weil
+ * `content-grid` zur Phase 2 des Blockinventars gehoerte und noch nicht gebaut
+ * war; der Kopfkommentar dort kuendigte den Umzug fuer den Tag an, an dem der
+ * Block entsteht. Phase 2 steht seit dem 2026-08-26. Solange die Regeln bei
+ * `media-grid` lagen, wurden sie nur geladen, wenn ein `media-grid` auf der
+ * Seite stand — eine Seite mit `content-grid` oder `post-grid` und ohne
+ * `media-grid` bekam gar kein CSS. Das Markup war dabei zeichengleich mit dem
+ * des Originals, und keine Markup-Pruefung konnte es sehen.
+ *
+ * Jeder Selektor steht doppelt, solange der Schalter `legacy_classes` an ist
+ * (Vertragsregel 2.2). Die Bloecke geben beide Klassensaetze aus; das
+ * Stylesheet kann den Schalter nicht kennen und deckt deshalb beide ab.
+ */
+
+.creabb-content-grid-item .aligncenter,
+.areoi-content-grid-item .aligncenter {
+    margin: 0 auto;
+}
+.creabb-content-grid-item,
+.areoi-content-grid-item {
+    padding-top: calc(var(--bs-gutter-x) * .5);
+    padding-bottom: calc(var(--bs-gutter-x) * .5);
+}
+
+/* 
+ * ---------------------------------------------------
+ * Media grid
+ * --------------------------------------------------
+ */
+.creabb-media-grid .creabb-content-grid-columns figure,
+/* 
+ * ---------------------------------------------------
+ * Media grid
+ * --------------------------------------------------
+ */
+.areoi-media-grid .areoi-content-grid-columns figure {
+    display: block;
+    margin: 0;
+    padding-top: calc(var(--bs-gutter-x) * .5);
+    padding-bottom: calc(var(--bs-gutter-x) * .5);
+    position: relative;
+}
+.creabb-media-grid.creabb-content-grid-full .creabb-content-grid-columns > figure,
+.areoi-media-grid.areoi-content-grid-full .areoi-content-grid-columns > figure {
+    padding: 0;
+}
+.creabb-media-grid .creabb-content-grid-columns figure > div,
+.creabb-media-grid .creabb-content-grid-columns figure > a,
+.areoi-media-grid .areoi-content-grid-columns figure > div,
+.areoi-media-grid .areoi-content-grid-columns figure > a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.creabb-media-grid .creabb-content-grid-columns figure > div > img,
+.creabb-media-grid .creabb-content-grid-columns figure > a > img,
+.areoi-media-grid .areoi-content-grid-columns figure > div > img,
+.areoi-media-grid .areoi-content-grid-columns figure > a > img {
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height:  50%;
+    transform: translate( -50%, -50% );
+    object-fit: cover;
+}
+.creabb-media-grid .creabb-content-grid-columns figcaption,
+.areoi-media-grid .areoi-content-grid-columns figcaption {
+    display: none;
+}
+.creabb-media-grid .creabb-content-grid-columns figure > figcaption,
+.areoi-media-grid .areoi-content-grid-columns figure > figcaption {
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: calc(var(--bs-gutter-x) * .5);
+    text-align: center;
+}
+
+/* 
+ * ---------------------------------------------------
+ * Item size
+ * --------------------------------------------------
+ */
+.creabb-content-grid-item .card-body > div,
+/* 
+ * ---------------------------------------------------
+ * Item size
+ * --------------------------------------------------
+ */
+.areoi-content-grid-item .card-body > div {
+    max-width: 550px;
+}
+
+
+/* 
+ * ---------------------------------------------------
+ * Card size
+ * --------------------------------------------------
+ */
+.creabb-card-extra-small.creabb-content-grid-item,
+.creabb-card-extra-small.creabb-media-grid .creabb-content-grid-columns figure,
+/* 
+ * ---------------------------------------------------
+ * Card size
+ * --------------------------------------------------
+ */
+.areoi-card-extra-small.areoi-content-grid-item,
+.areoi-card-extra-small.areoi-media-grid .areoi-content-grid-columns figure {
+    min-height: 20vh;
+}
+.creabb-card-small.creabb-content-grid-item,
+.creabb-card-small.creabb-media-grid .creabb-content-grid-columns figure,
+.areoi-card-small.areoi-content-grid-item,
+.areoi-card-small.areoi-media-grid .areoi-content-grid-columns figure {
+    min-height: 40vh;
+}
+.creabb-card-medium.creabb-content-grid-item,
+.creabb-card-medium.creabb-media-grid .creabb-content-grid-columns figure,
+.areoi-card-medium.areoi-content-grid-item,
+.areoi-card-medium.areoi-media-grid .areoi-content-grid-columns figure {
+    min-height: 60vh;
+}
+.creabb-card-large.creabb-content-grid-item,
+.creabb-card-large.creabb-media-grid .creabb-content-grid-columns figure,
+.areoi-card-large.areoi-content-grid-item,
+.areoi-card-large.areoi-media-grid .areoi-content-grid-columns figure {
+    min-height: 80vh;
+}
+.creabb-card-extra-large.creabb-content-grid-item,
+.creabb-card-extra-large.creabb-media-grid .creabb-content-grid-columns figure,
+.areoi-card-extra-large.areoi-content-grid-item,
+.areoi-card-extra-large.areoi-media-grid .areoi-content-grid-columns figure {
+    min-height: 100vh;
+}
+
+/* 
+ * ---------------------------------------------------
+ * Media size
+ * --------------------------------------------------
+ */
+.creabb-content-grid-item .card-img-top,
+/* 
+ * ---------------------------------------------------
+ * Media size
+ * --------------------------------------------------
+ */
+.areoi-content-grid-item .card-img-top {
+    display: none;
+    height: 40vh;
+}
+.creabb-extra-small .creabb-content-grid-item .card-img-top,
+.areoi-extra-small .areoi-content-grid-item .card-img-top {
+    height: 10vh;
+}
+.creabb-small .creabb-content-grid-item .card-img-top,
+.areoi-small .areoi-content-grid-item .card-img-top {
+    height: 20vh;
+}
+.creabb-medium .creabb-content-grid-item .card-img-top,
+.areoi-medium .areoi-content-grid-item .card-img-top {
+    height: 30vh;
+}
+.creabb-extra-large .creabb-content-grid-item .card-img-top,
+.areoi-extra-large .areoi-content-grid-item .card-img-top {
+    height: 50vh;
+}
+.creabb-content-grid-item.has-image .card-img-top,
+.areoi-content-grid-item.has-image .card-img-top {
+    display: block;
+}
+
+
+/* 
+ * ---------------------------------------------------
+ * Media layout
+ * --------------------------------------------------
+ */
+.creabb-media .creabb-media-container,
+/* 
+ * ---------------------------------------------------
+ * Media layout
+ * --------------------------------------------------
+ */
+.areoi-media .areoi-media-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.creabb-media .creabb-media-container img,
+.creabb-media .creabb-media-container video,
+.areoi-media .areoi-media-container img,
+.areoi-media .areoi-media-container video {
+    max-width: unset;
+    max-height: unset;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+}
+.creabb-media .creabb-media-container.start:not(.cover, .contain) img,
+.creabb-media .creabb-media-container.start:not(.cover, .contain) video,
+.areoi-media .areoi-media-container.start:not(.cover, .contain) img,
+.areoi-media .areoi-media-container.start:not(.cover, .contain) video {
+    top: 50%;
+    left: 1rem;
+    transform: translate( 0, -50% );
+}
+.creabb-media .creabb-media-container.end:not(.cover, .contain) img,
+.creabb-media .creabb-media-container.end:not(.cover, .contain) video,
+.areoi-media .areoi-media-container.end:not(.cover, .contain) img,
+.areoi-media .areoi-media-container.end:not(.cover, .contain) video {
+    top: 50%;
+    left: auto;
+    right: 1rem;
+    transform: translate( 0, -50% );
+}
+.creabb-media .creabb-media-container.cover img,
+.creabb-media .creabb-media-container.cover video,
+.areoi-media .areoi-media-container.cover img,
+.areoi-media .areoi-media-container.cover video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.creabb-media .creabb-media-container.contain img,
+.creabb-media .creabb-media-container.contain video,
+.areoi-media .areoi-media-container.contain img,
+.areoi-media .areoi-media-container.contain video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* 
+ * ---------------------------------------------------
+ * Grid size
+ * --------------------------------------------------
+ */
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns,
+.creabb-media-grid > div > figure,
+/* 
+ * ---------------------------------------------------
+ * Grid size
+ * --------------------------------------------------
+ */
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns,
+.areoi-media-grid > div > figure {
+    display: grid !important;
+    grid-auto-rows: 1fr;
+    min-height: 100px;
+}
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-1,
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-2,
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-3,
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-4,
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-5,
+.creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-6,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-1,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-2,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-3,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-4,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-5,
+.areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-6 {
+    grid-template-columns: 1fr;
+}
+
+
+/* 
+ * ---------------------------------------------------
+ * SM Grid size
+ * --------------------------------------------------
+ */
+@media only screen and ( min-width: 576px ) {
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-2,
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-3,
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-4,
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-5,
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-6,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-2,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-3,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-4,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-5,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-6 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(even) {
+        grid-column-start: auto;
+        grid-column-end: auto;
+    }
+
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(7),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(7),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(7),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(7) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+}
+
+
+/* 
+ * ---------------------------------------------------
+ * LG Grid size
+ * --------------------------------------------------
+ */
+@media only screen and ( min-width: 992px ) {
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-3,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(even),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(odd),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(even),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(odd),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(even) {
+        grid-column-start: auto;
+        grid-column-end: auto;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(5),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(9),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(5),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(9) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(8),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-3 .creabb-content-grid-item:nth-of-type(12),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(8),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-3 .areoi-content-grid-item:nth-of-type(12) {
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-4,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item,
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(4),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item,
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(4),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(7) {
+        grid-column-start: auto;
+        grid-column-end: auto;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(7),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(7) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-4 .creabb-content-grid-item:nth-of-type(6),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-4 .areoi-content-grid-item:nth-of-type(6) {
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-5,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-5 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(9),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(9) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-5 .creabb-content-grid-item:nth-of-type(8),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-5 .areoi-content-grid-item:nth-of-type(8) {
+        grid-column-start: 4;
+        grid-column-end: 6;
+    }
+
+    .creabb-content-grid > div > .row > .col > .creabb-content-grid-columns.creabb-content-grid-columns-6,
+    .areoi-content-grid > div > .row > .col > .areoi-content-grid-columns.areoi-content-grid-columns-6 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(1),
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(9),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(1),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(9) {
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    .creabb-content-grid-masonry .creabb-content-grid-columns-6 .creabb-content-grid-item:nth-of-type(8),
+    .areoi-content-grid-masonry .areoi-content-grid-columns-6 .areoi-content-grid-item:nth-of-type(8) {
+        grid-column-start: 4;
+        grid-column-end: 7;
+    }
+}

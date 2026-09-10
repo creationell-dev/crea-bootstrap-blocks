@@ -1,0 +1,398 @@
+{
+    "accordion": {
+        "allowedBlocks": [
+            "creabb/accordion-item"
+        ],
+        "template": [
+            [
+                "creabb/accordion-item",
+                []
+            ]
+        ]
+    },
+    "banner": {
+        "allowedBlocks": [
+            "creabb/banner-item"
+        ],
+        "template": [
+            [
+                "creabb/banner-item",
+                [],
+                [
+                    [
+                        "core/heading",
+                        {
+                            "level": 1,
+                            "content": "Enter Heading"
+                        }
+                    ],
+                    [
+                        "core/paragraph",
+                        {
+                            "content": "Enter description"
+                        }
+                    ],
+                    [
+                        "creabb/button",
+                        []
+                    ]
+                ]
+            ],
+            [
+                "creabb/banner-item",
+                [],
+                [
+                    [
+                        "core/heading",
+                        {
+                            "level": 2,
+                            "content": "Enter Heading"
+                        }
+                    ]
+                ]
+            ],
+            [
+                "creabb/banner-item",
+                [],
+                [
+                    [
+                        "core/heading",
+                        {
+                            "level": 2,
+                            "content": "Enter Heading"
+                        }
+                    ]
+                ]
+            ]
+        ]
+    },
+    "banner-item": {
+        "allowedBlocks": [
+            "core/heading",
+            "core/paragraph",
+            "creabb/button",
+            "core/image",
+            "core/video",
+            "creabb/icon"
+        ]
+    },
+    "button": {
+        "allowedBlocks": [
+            "creabb/dropdown-item"
+        ]
+    },
+    "button-group": {
+        "allowedBlocks": [
+            "creabb/button"
+        ],
+        "template": [
+            [
+                "creabb/button",
+                []
+            ],
+            [
+                "creabb/button",
+                []
+            ]
+        ]
+    },
+    "card": {
+        "allowedBlocks": [
+            "creabb/card-header",
+            "creabb/card-body",
+            "creabb/card-footer",
+            "creabb/list-group",
+            "core/image",
+            "core/video",
+            "core/post-featured-image"
+        ],
+        "template": [
+            [
+                "creabb/card-header",
+                []
+            ],
+            [
+                "creabb/card-body",
+                []
+            ],
+            [
+                "creabb/card-footer",
+                []
+            ]
+        ]
+    },
+    "card-group": {
+        "allowedBlocks": [
+            "creabb/card"
+        ],
+        "template": [
+            [
+                "creabb/card",
+                []
+            ]
+        ]
+    },
+    "carousel": {
+        "allowedBlocks": [
+            "creabb/carousel-item"
+        ],
+        "template": [
+            [
+                "creabb/carousel-item",
+                []
+            ]
+        ]
+    },
+    "carousel-item": {
+        "template": [
+            [
+                "creabb/strip",
+                {
+                    "height_dimension_xs": "800",
+                    "height_unit_xs": "px"
+                },
+                [
+                    [
+                        "creabb/container",
+                        {
+                            "height_dimension_xs": "100",
+                            "height_unit_xs": "%"
+                        },
+                        [
+                            [
+                                "creabb/row",
+                                {
+                                    "height_dimension_xs": "100",
+                                    "height_unit_xs": "%",
+                                    "vertical_align": "align-items-center",
+                                    "horizontal_align": "justify-content-center"
+                                },
+                                [
+                                    [
+                                        "creabb/column",
+                                        {
+                                            "col_xs": "col-6"
+                                        }
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    },
+    "column-break": {
+        "allowedBlocks": []
+    },
+    "container": {
+        "template": [
+            [
+                "creabb/row",
+                [],
+                [
+                    [
+                        "creabb/column",
+                        []
+                    ]
+                ]
+            ]
+        ]
+    },
+    "content-grid": {
+        "allowedBlocks": [
+            "creabb/content-grid-item"
+        ],
+        "template": [
+            [
+                "creabb/content-grid-item"
+            ],
+            [
+                "creabb/content-grid-item"
+            ],
+            [
+                "creabb/content-grid-item"
+            ]
+        ]
+    },
+    "icon": {
+        "allowedBlocks": []
+    },
+    "list-group": {
+        "allowedBlocks": [
+            "creabb/list-group-item"
+        ],
+        "template": [
+            [
+                "creabb/list-group-item",
+                []
+            ]
+        ]
+    },
+    "modal": {
+        "allowedBlocks": [
+            "creabb/modal-header",
+            "creabb/modal-body",
+            "creabb/modal-footer"
+        ],
+        "template": [
+            [
+                "creabb/modal-header",
+                []
+            ],
+            [
+                "creabb/modal-body",
+                []
+            ],
+            [
+                "creabb/modal-footer",
+                []
+            ]
+        ]
+    },
+    "nav-and-tab": {
+        "allowedBlocks": [
+            "creabb/nav-and-tab-item"
+        ],
+        "template": [
+            [
+                "creabb/nav-and-tab-item",
+                []
+            ],
+            [
+                "creabb/nav-and-tab-item",
+                []
+            ]
+        ]
+    },
+    "offcanvas": {
+        "allowedBlocks": [
+            "creabb/offcanvas-header",
+            "creabb/offcanvas-body"
+        ],
+        "template": [
+            [
+                "creabb/offcanvas-header",
+                []
+            ],
+            [
+                "creabb/offcanvas-body",
+                []
+            ]
+        ]
+    },
+    "row": {
+        "allowedBlocks": [
+            "creabb/column",
+            "creabb/column-break"
+        ],
+        "template": [
+            [
+                "creabb/column",
+                []
+            ]
+        ]
+    },
+    "strip": {
+        "template": [
+            [
+                "creabb/container",
+                {
+                    "height_dimension_xs": "100",
+                    "height_unit_xs": "%"
+                },
+                [
+                    [
+                        "creabb/row",
+                        {
+                            "height_dimension_xs": "100",
+                            "height_unit_xs": "%",
+                            "vertical_align": "align-items-center"
+                        },
+                        [
+                            [
+                                "creabb/column",
+                                []
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    },
+    "tabs": {
+        "allowedBlocks": [
+            "creabb/div"
+        ],
+        "template": [
+            [
+                "creabb/nav-and-tab",
+                {
+                    "style": "nav-tabs"
+                },
+                [
+                    [
+                        "creabb/nav-and-tab-item",
+                        {
+                            "url": "#tab-1",
+                            "text": "Tab 1",
+                            "active": true
+                        }
+                    ],
+                    [
+                        "creabb/nav-and-tab-item",
+                        {
+                            "url": "#tab-2",
+                            "text": "Tab 2",
+                            "active": false
+                        }
+                    ]
+                ]
+            ],
+            [
+                "creabb/div",
+                {
+                    "anchor": "tab-1"
+                },
+                [
+                    [
+                        "core/paragraph",
+                        {
+                            "content": "Tab 1 Content"
+                        }
+                    ]
+                ]
+            ],
+            [
+                "creabb/div",
+                {
+                    "anchor": "tab-2"
+                },
+                [
+                    [
+                        "core/paragraph",
+                        {
+                            "content": "Tab 2 Content"
+                        }
+                    ]
+                ]
+            ]
+        ]
+    },
+    "toast": {
+        "allowedBlocks": [
+            "creabb/toast-header",
+            "creabb/toast-body"
+        ],
+        "template": [
+            [
+                "creabb/toast-header",
+                []
+            ],
+            [
+                "creabb/toast-body",
+                []
+            ]
+        ]
+    }
+}

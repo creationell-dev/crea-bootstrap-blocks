@@ -1,0 +1,160 @@
+# CreaBootstrapBlocks — Index fuer Agenten
+
+## Zweck
+
+CreaBootstrapBlocks ist ein rueckwaertskompatibler Ersatz fuer das Plugin
+"All Bootstrap Blocks" (Blocknamensraum `areoi/`). Die Bloecke liegen im
+Namensraum `creabb/` und werden von Blockstudio registriert
+(`block.json` plus PHP-Template, kein JavaScript-Build).
+
+Diese Datei und `crea-bootstrap-blocks-llm-full.txt` sind fuer Agenten
+geschrieben, die Blockmarkup fuer dieses Plugin erzeugen oder pruefen.
+Sie werden aus den Vertragsdateien erzeugt und nicht von Hand gepflegt.
+
+## REGEL 1 — Attributwerte gehoeren in den blockstudio-Container
+
+Das ist die wichtigste Regel dieses Dokuments, und die einzige, deren
+Verletzung STILL schiefgeht: Es gibt keine Fehlermeldung. Werte, die NUR flach
+stehen, werden beim Rendern verworfen und durch die Defaults ersetzt; die Seite
+zeigt dann etwas anderes als gewollt, und nichts weist darauf hin.
+
+FALSCH — die Form des Alt-Plugins, ohne Container:
+
+    <!-- wp:creabb/container {"container":"container-fluid","padding_top_xs":"40"} /-->
+
+RICHTIG:
+
+    <!-- wp:creabb/container {"container":"container-fluid","padding_top_xs":"40","blockstudio":{"name":"creabb/container","attributes":{"container":"container-fluid","padding_top_xs":"40"}}} /-->
+
+Die Schluessel, die Werte und ihre Reihenfolge bleiben gleich; es kommt genau
+eine Ebene DAZU. Der Schluessel `name` im Container wiederholt den Blocknamen.
+
+**Die flache Ebene bleibt stehen — sie wird nicht verschoben.** Das ist kein
+Versehen und keine Redundanz, die man aufraeumen sollte:
+
+- Der WordPress-Kern liest einige Attribute ausschliesslich oben, weil sie aus
+  `supports` kommen und keine Blockstudio-Felder sind — `className` und
+  `anchor` sind die beiden haeufigsten. Blockstudio raeumt jeden Nicht-Feld-
+  Schluessel aus dem Container; wer sich auf ihn allein verlaesst, verliert die
+  CSS-Klasse und das `id`-Attribut im Markup.
+- Blockstudio baut den Block aus der oberen Ebene, BEVOR es den Container
+  hineinmischt.
+
+**Welche Ebene beim Rendern gewinnt:** der Container. Wer einen Wert aendern
+will, aendert ihn im Container — eine Aenderung nur an der flachen Kopie bleibt
+wirkungslos, und genau das geht still schief. Am besten aendert man beide, dann
+stimmen sie ueberein.
+
+Ausgenommen von der Verdopplung sind die Buchfuehrungsattribute des
+WordPress-Kerns (`lock`, `metadata`): Sie stehen NUR oben, weil der Kern sie
+dort liest und sie keine Blockstudio-Felder sind.
+
+Wer das nicht selbst umsetzen will, ruft die Ability
+`crea-bootstrap-blocks/build-block-markup` auf: Sie nimmt flache Attributwerte
+entgegen und gibt korrektes Markup zurueck, samt einem Hinweis dazu, welche
+Ebene beim Rendern gewinnt.
+
+## Bloecke
+
+- creabb/accordion — Kategorie creabb-components, Elternblock: keiner, 10 Attribute
+  nimmt als Kindbloecke NUR: creabb/accordion-item
+  wird beim Einfuegen gefuellt mit: creabb/accordion-item
+- creabb/accordion-item — Kategorie creabb-components, Elternblock: creabb/accordion, 14 Attribute
+- creabb/alert — Kategorie creabb-components, Elternblock: keiner, 12 Attribute
+- creabb/banner — Kategorie creabb-strips, Elternblock: keiner, 11 Attribute
+  nimmt als Kindbloecke NUR: creabb/banner-item
+  wird beim Einfuegen gefuellt mit: creabb/banner-item; creabb/banner-item > core/heading; creabb/banner-item > core/paragraph; creabb/banner-item > creabb/button; creabb/banner-item; creabb/banner-item > core/heading; creabb/banner-item; creabb/banner-item > core/heading
+- creabb/banner-item — Kategorie creabb-strips, Elternblock: creabb/banner, 104 Attribute
+  nimmt als Kindbloecke NUR: core/heading, core/paragraph, creabb/button, core/image, core/video, creabb/icon
+- creabb/breadcrumb — Kategorie creabb-components, Elternblock: keiner, 11 Attribute
+- creabb/button — Kategorie creabb-components, Elternblock: keiner, 109 Attribute
+  nimmt als Kindbloecke NUR: creabb/dropdown-item
+- creabb/button-group — Kategorie creabb-components, Elternblock: keiner, 11 Attribute
+  nimmt als Kindbloecke NUR: creabb/button
+  wird beim Einfuegen gefuellt mit: creabb/button; creabb/button
+- creabb/card — Kategorie creabb-components, Elternblock: keiner, 12 Attribute
+  nimmt als Kindbloecke NUR: creabb/card-header, creabb/card-body, creabb/card-footer, creabb/list-group, core/image, core/video, core/post-featured-image
+  wird beim Einfuegen gefuellt mit: creabb/card-header; creabb/card-body; creabb/card-footer
+- creabb/card-body — Kategorie creabb-components, Elternblock: creabb/card, 12 Attribute
+- creabb/card-footer — Kategorie creabb-components, Elternblock: creabb/card, 12 Attribute
+- creabb/card-group — Kategorie creabb-components, Elternblock: keiner, 9 Attribute
+  nimmt als Kindbloecke NUR: creabb/card
+  wird beim Einfuegen gefuellt mit: creabb/card
+- creabb/card-header — Kategorie creabb-components, Elternblock: creabb/card, 12 Attribute
+- creabb/carousel — Kategorie creabb-components, Elternblock: keiner, 17 Attribute
+  nimmt als Kindbloecke NUR: creabb/carousel-item
+  wird beim Einfuegen gefuellt mit: creabb/carousel-item
+- creabb/carousel-item — Kategorie creabb-components, Elternblock: creabb/carousel, 11 Attribute
+  wird beim Einfuegen gefuellt mit: creabb/strip; creabb/strip > creabb/container; creabb/strip > creabb/container > creabb/row; creabb/strip > creabb/container > creabb/row > creabb/column
+- creabb/collapse — Kategorie creabb-components, Elternblock: keiner, 4 Attribute
+- creabb/column — Kategorie creabb-layout, Elternblock: keiner, 126 Attribute
+- creabb/column-break — Kategorie creabb-layout, Elternblock: keiner, 9 Attribute
+- creabb/container — Kategorie creabb-layout, Elternblock: keiner, 93 Attribute
+  wird beim Einfuegen gefuellt mit: creabb/row; creabb/row > creabb/column
+- creabb/content-grid — Kategorie creabb-strips, Elternblock: keiner, 137 Attribute
+  nimmt als Kindbloecke NUR: creabb/content-grid-item
+  wird beim Einfuegen gefuellt mit: creabb/content-grid-item; creabb/content-grid-item; creabb/content-grid-item
+- creabb/content-grid-item — Kategorie creabb-strips, Elternblock: creabb/content-grid, 116 Attribute
+- creabb/content-with-media — Kategorie creabb-strips, Elternblock: keiner, 108 Attribute
+- creabb/div — Kategorie creabb-layout, Elternblock: keiner, 96 Attribute
+- creabb/dropdown-item — Kategorie creabb-components, Elternblock: creabb/button, 12 Attribute
+- creabb/icon — Kategorie creabb-components, Elternblock: keiner, 18 Attribute
+- creabb/list-group — Kategorie creabb-components, Elternblock: keiner, 17 Attribute
+  nimmt als Kindbloecke NUR: creabb/list-group-item
+  wird beim Einfuegen gefuellt mit: creabb/list-group-item
+- creabb/list-group-item — Kategorie creabb-components, Elternblock: creabb/list-group, 20 Attribute
+- creabb/media-grid — Kategorie creabb-strips, Elternblock: keiner, 154 Attribute
+- creabb/media-grid-image — Kategorie creabb-components, Elternblock: creabb/media-grid, 21 Attribute
+- creabb/modal — Kategorie creabb-components, Elternblock: keiner, 7 Attribute
+  nimmt als Kindbloecke NUR: creabb/modal-header, creabb/modal-body, creabb/modal-footer
+  wird beim Einfuegen gefuellt mit: creabb/modal-header; creabb/modal-body; creabb/modal-footer
+- creabb/modal-body — Kategorie creabb-components, Elternblock: creabb/modal, 3 Attribute
+- creabb/modal-footer — Kategorie creabb-components, Elternblock: creabb/modal, 3 Attribute
+- creabb/modal-header — Kategorie creabb-components, Elternblock: creabb/modal, 4 Attribute
+- creabb/nav-and-tab — Kategorie creabb-components, Elternblock: keiner, 23 Attribute
+  nimmt als Kindbloecke NUR: creabb/nav-and-tab-item
+  wird beim Einfuegen gefuellt mit: creabb/nav-and-tab-item; creabb/nav-and-tab-item
+- creabb/nav-and-tab-item — Kategorie creabb-components, Elternblock: creabb/nav-and-tab, 17 Attribute
+- creabb/offcanvas — Kategorie creabb-components, Elternblock: keiner, 6 Attribute
+  nimmt als Kindbloecke NUR: creabb/offcanvas-header, creabb/offcanvas-body
+  wird beim Einfuegen gefuellt mit: creabb/offcanvas-header; creabb/offcanvas-body
+- creabb/offcanvas-body — Kategorie creabb-components, Elternblock: creabb/offcanvas, 3 Attribute
+- creabb/offcanvas-header — Kategorie creabb-components, Elternblock: creabb/offcanvas, 3 Attribute
+- creabb/post-grid — Kategorie creabb-strips, Elternblock: keiner, 176 Attribute
+- creabb/progress — Kategorie creabb-components, Elternblock: keiner, 74 Attribute
+- creabb/row — Kategorie creabb-layout, Elternblock: keiner, 118 Attribute
+  nimmt als Kindbloecke NUR: creabb/column, creabb/column-break
+  wird beim Einfuegen gefuellt mit: creabb/column
+- creabb/spinner — Kategorie creabb-components, Elternblock: keiner, 12 Attribute
+- creabb/strip — Kategorie creabb-layout, Elternblock: keiner, 98 Attribute
+  wird beim Einfuegen gefuellt mit: creabb/container; creabb/container > creabb/row; creabb/container > creabb/row > creabb/column
+- creabb/tabs — Kategorie creabb-components, Elternblock: keiner, 9 Attribute
+  nimmt als Kindbloecke NUR: creabb/div
+  wird beim Einfuegen gefuellt mit: creabb/nav-and-tab; creabb/nav-and-tab > creabb/nav-and-tab-item; creabb/nav-and-tab > creabb/nav-and-tab-item; creabb/div; creabb/div > core/paragraph; creabb/div; creabb/div > core/paragraph
+- creabb/toast — Kategorie creabb-components, Elternblock: keiner, 7 Attribute
+  nimmt als Kindbloecke NUR: creabb/toast-header, creabb/toast-body
+  wird beim Einfuegen gefuellt mit: creabb/toast-header; creabb/toast-body
+- creabb/toast-body — Kategorie creabb-components, Elternblock: creabb/toast, 3 Attribute
+- creabb/toast-header — Kategorie creabb-components, Elternblock: creabb/toast, 3 Attribute
+
+## Was beim Einfuegen wirklich gesaet wird
+
+Die Grundstrukturen oben stehen in der Form des Alt-Plugins. Beim Ausliefern
+gilt zweierlei zusaetzlich:
+
+- Der PLATZHALTERTEXT des Originals wird gestrichen. `creabb/banner` und
+  `creabb/tabs` saeen ihre Struktur ohne Inhalt — eine Ueberschrift und ein
+  Absatz entstehen LEER, nicht mit "Enter Heading" oder "Tab 1 Content".
+  Die Beschriftung eines Reiters ("Tab 1") bleibt: Sie beschriftet ein
+  Strukturelement, statt es zu fuellen.
+- Die `areoi/*`-Aliasbloecke saeen GAR NICHTS. Sie tragen bestehenden Inhalt
+  aus dem Alt-Plugin; eine Grundstruktur in sie zu saeen wuerde Daten
+  aendern, ohne dass jemand etwas eingegeben hat. Ihre `allowedBlocks`
+  bleiben — das ist eine Schranke, keine Saat.
+
+## Weiter
+
+- Vollstaendiger Attributvertrag je Block: crea-bootstrap-blocks-llm-full.txt
+- Maschinenlesbar: blocks.json
+- Markup erzeugen, ohne die Container-Regel selbst umzusetzen:
+  Ability crea-bootstrap-blocks/build-block-markup

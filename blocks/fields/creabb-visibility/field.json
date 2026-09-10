@@ -1,0 +1,20 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "creabb-visibility",
+  "title": "Visibility",
+  "attributes": [
+    {
+      "type": "group",
+      "title": "Visibility",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "hide",
+          "type": "toggle",
+          "label": "Hide at this breakpoint",
+          "help": "Hiding a breakpoint also removes the column, offset, order and alignment classes for that breakpoint."
+        }
+      ]
+    }
+  ]
+}

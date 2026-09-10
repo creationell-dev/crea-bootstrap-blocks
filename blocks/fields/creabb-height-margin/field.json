@@ -1,0 +1,79 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "creabb-height-margin",
+  "title": "Height and margin",
+  "attributes": [
+    {
+      "type": "group",
+      "title": "Height",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "height_dimension",
+          "type": "text",
+          "label": "Height value",
+          "help": "Numeric value without a unit. The unit is set below."
+        },
+        {
+          "id": "height_unit",
+          "type": "creabb/select",
+          "label": "Height unit",
+          "help": "Unit of the height value above.",
+          "options": [
+            {
+              "value": "px",
+              "label": "Pixels"
+            },
+            {
+              "value": "%",
+              "label": "Percent"
+            },
+            {
+              "value": "vh",
+              "label": "Viewport height"
+            },
+            {
+              "value": "rem",
+              "label": "Rem"
+            },
+            {
+              "value": "em",
+              "label": "Em"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Margin",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "margin_top",
+          "type": "text",
+          "label": "Margin top",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_right",
+          "type": "text",
+          "label": "Margin right",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_bottom",
+          "type": "text",
+          "label": "Margin bottom",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_left",
+          "type": "text",
+          "label": "Margin left",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        }
+      ]
+    }
+  ]
+}

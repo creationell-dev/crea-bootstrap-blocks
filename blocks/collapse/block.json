@@ -1,0 +1,36 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/collapse",
+	"title": "Collapse",
+	"category": "creabb-components",
+	"description": "Toggle the visibility of content across your project with a few classes and our JavaScript plugins.",
+	"icon": "arrow-down-alt2",
+	"keywords": [
+		"areoi", "creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "block_id",
+				"type": "text",
+				"label": "Block ID",
+				"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+			},
+			{
+				"id": "open",
+				"type": "toggle",
+				"label": "Open",
+				"help": "Set the collapsible content visible as a default."
+			}
+		]
+	}
+}

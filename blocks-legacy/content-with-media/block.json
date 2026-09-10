@@ -1,0 +1,1223 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/content-with-media",
+    "title": "Content with Media",
+    "category": "creabb-strips",
+    "description": "A content section with an image or video beside it.",
+    "icon": "align-pull-left",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "strip"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": true,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xs",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xs",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xs",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xs",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xs",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_xs"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xs"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_sm",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_sm",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_sm",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_sm",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_sm",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-sm-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-sm-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-sm-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-sm-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-sm-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-sm-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-sm-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-sm-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-sm-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-sm-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-sm-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-sm-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-sm-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-sm-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_sm"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_sm"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_md",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_md",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_md",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_md",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_md",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-md-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-md-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-md-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-md-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-md-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-md-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-md-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-md-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-md-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-md-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-md-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-md-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-md-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-md-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_md"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_md"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_lg",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_lg",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_lg",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_lg",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_lg",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-lg-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-lg-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-lg-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-lg-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-lg-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-lg-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-lg-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-lg-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-lg-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-lg-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-lg-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-lg-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-lg-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-lg-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_lg"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_lg"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xl",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xl",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xl",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xl",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xl",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xl-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-xl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_xl"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xl"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xxl",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xxl",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xxl",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xxl",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the grid column that carries the background layer.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xxl-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-xxl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xxl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xxl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xxl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xxl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xxl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xxl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xxl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xxl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xxl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xxl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xxl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xxl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "custom/creabb-height-margin",
+                                "idStructure": "{id}_xxl"
+                            },
+                            {
+                                "type": "custom/creabb-visibility",
+                                "idStructure": "{id}_xxl"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Settings",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "id": "layout",
+                        "type": "creabb/select",
+                        "label": "Layout",
+                        "help": "Layout of the media beside the content. The render path reacts to the value full-width only: it moves the media into a full-width background layer from the LG breakpoint upwards.",
+                        "options": [
+                            {
+                                "value": "grid",
+                                "label": "Grid"
+                            },
+                            {
+                                "value": "masonry",
+                                "label": "Masonry"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "alignment",
+                        "type": "creabb/select",
+                        "label": "Alignment",
+                        "help": "Choose which side the content sits on.",
+                        "options": [
+                            {
+                                "value": "start",
+                                "label": "Start"
+                            },
+                            {
+                                "value": "end",
+                                "label": "End"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "size",
+                        "type": "creabb/select",
+                        "label": "Item size",
+                        "help": "Kept from the previous plugin. Neither render path reads it in this block; the value is stored only.",
+                        "options": [
+                            {
+                                "value": "areoi-small",
+                                "label": "Small"
+                            },
+                            {
+                                "value": "areoi-medium",
+                                "label": "Medium"
+                            },
+                            {
+                                "value": "areoi-large",
+                                "label": "Large"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Background",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "background_display",
+                        "type": "toggle",
+                        "label": "Show background",
+                        "help": "Turns on the background layer below — its color, overlay and alignment fields only take effect while this is on."
+                    },
+                    {
+                        "id": "background_color",
+                        "type": "creabb/color",
+                        "label": "Background color",
+                        "help": "Only the rgb values are used for rendering. The remaining keys are kept for compatibility with the previous plugin.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_display_overlay",
+                        "type": "toggle",
+                        "label": "Show overlay",
+                        "help": "Turns on the overlay layer, drawn above the background color. The overlay color below only takes effect while this is on.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_overlay",
+                        "type": "creabb/color",
+                        "label": "Overlay color",
+                        "help": "Drawn as a layer above the background color. Like the background color, only the rgb values are used for rendering.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display_overlay",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_horizontal_align",
+                        "type": "creabb/select",
+                        "label": "Horizontal background alignment",
+                        "help": "Aligns the background layer within its row when the background column width is narrower than the full row. Has no visible effect at full width.",
+                        "options": [
+                            {
+                                "value": "justify-content-start",
+                                "label": "Left"
+                            },
+                            {
+                                "value": "justify-content-center",
+                                "label": "Center"
+                            },
+                            {
+                                "value": "justify-content-end",
+                                "label": "Right"
+                            }
+                        ],
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Utility classes",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "utilities_bg",
+                        "type": "creabb/select",
+                        "label": "Background utilities",
+                        "help": "Kept from the previous plugin. The render path of this block does not read the utility fields, so the value is stored and no class is written.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "bg-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "bg-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "bg-success",
+                                "label": "Success"
+                            },
+                            {
+                                "value": "bg-warning",
+                                "label": "Warning"
+                            },
+                            {
+                                "value": "bg-danger",
+                                "label": "Danger"
+                            },
+                            {
+                                "value": "bg-info",
+                                "label": "Info"
+                            },
+                            {
+                                "value": "bg-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "bg-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "bg-body",
+                                "label": "Body"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "utilities_text",
+                        "type": "creabb/select",
+                        "label": "Text utilities",
+                        "help": "Kept from the previous plugin. The render path of this block does not read the utility fields, so the value is stored and no class is written.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "text-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "text-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "text-success",
+                                "label": "Success"
+                            },
+                            {
+                                "value": "text-warning",
+                                "label": "Warning"
+                            },
+                            {
+                                "value": "text-danger",
+                                "label": "Danger"
+                            },
+                            {
+                                "value": "text-info",
+                                "label": "Info"
+                            },
+                            {
+                                "value": "text-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "text-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "text-white",
+                                "label": "White"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "utilities_border",
+                        "type": "creabb/select",
+                        "label": "Border utilities",
+                        "help": "Kept from the previous plugin. The render path of this block does not read the utility fields, so the value is stored and no class is written.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "border-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "border-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "border-success",
+                                "label": "Success"
+                            },
+                            {
+                                "value": "border-warning",
+                                "label": "Warning"
+                            },
+                            {
+                                "value": "border-danger",
+                                "label": "Danger"
+                            },
+                            {
+                                "value": "border-info",
+                                "label": "Info"
+                            },
+                            {
+                                "value": "border-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "border-light",
+                                "label": "Light"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Link",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "url",
+                        "type": "text",
+                        "label": "Link URL",
+                        "help": "Turns the whole block into a link. The anchor is rendered behind the content and covers the block."
+                    },
+                    {
+                        "id": "url_title",
+                        "type": "text",
+                        "label": "Link title",
+                        "help": "Title attribute of the link created by the URL above. Shown as a tooltip by most browsers."
+                    },
+                    {
+                        "id": "title",
+                        "type": "text",
+                        "label": "Title attribute",
+                        "help": "Kept for compatibility. The rendered title attribute comes from the link title above."
+                    },
+                    {
+                        "id": "linkTarget",
+                        "type": "creabb/select",
+                        "label": "Link target",
+                        "help": "Controls whether the link created by the URL above opens in the same tab or a new one.",
+                        "options": [
+                            {
+                                "value": "",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "_blank",
+                                "label": "New tab"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "rel",
+                        "type": "text",
+                        "label": "Link relationship",
+                        "help": "Value of the rel attribute on the link created by the URL above, for example nofollow or noopener."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Theme integration",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "exclude_divider",
+                        "type": "toggle",
+                        "label": "Exclude divider",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; this plugin stores the value and renders nothing from it."
+                    },
+                    {
+                        "id": "exclude_pattern",
+                        "type": "toggle",
+                        "label": "Exclude pattern",
+                        "help": "Kept from the previous plugin. A pattern is only rendered when the filter crea_bootstrap_blocks_background_pattern supplies one."
+                    },
+                    {
+                        "id": "change_pattern_color",
+                        "type": "toggle",
+                        "label": "Change pattern color",
+                        "help": "Kept from the previous plugin. It replaces the automatic pattern color with the color below. This plugin renders no pattern itself."
+                    },
+                    {
+                        "id": "pattern_color",
+                        "type": "creabb/color",
+                        "label": "Pattern color",
+                        "help": "Color of the background pattern while the override above is on. The value is passed to the filter crea_bootstrap_blocks_background_pattern, the only source of a pattern in this plugin.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "change_pattern_color",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "exclude_transition",
+                        "type": "toggle",
+                        "label": "Exclude transition",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; there it stops this block from using transitions."
+                    },
+                    {
+                        "id": "exclude_parallax",
+                        "type": "toggle",
+                        "label": "Exclude parallax",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; there it stops this block from using parallax."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    },
+                    {
+                        "id": "parent_id",
+                        "type": "text",
+                        "label": "Parent block ID",
+                        "help": "Kept from the previous plugin. This block has no parent block, and neither render path reads the value."
+                    }
+                ]
+            }
+        ]
+    }
+}

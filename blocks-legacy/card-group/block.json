@@ -1,0 +1,176 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/card-group",
+    "title": "Card Group",
+    "category": "creabb-components",
+    "description": "Render cards as a single, attached element with equal width and height columns. Card groups start off stacked and become attached at the small breakpoint.",
+    "icon": "grid-view",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "card"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "block_id",
+                "type": "text",
+                "label": "Block ID",
+                "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+            }
+        ]
+    }
+}

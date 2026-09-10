@@ -1,0 +1,263 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/nav-and-tab-item",
+    "title": "Nav and Tab Item",
+    "category": "creabb-components",
+    "description": "A single link within a nav or tab list.",
+    "icon": "menu-alt",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Settings",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "type": "message",
+                        "value": "Set the text here — you cannot type it directly into the block."
+                    },
+                    {
+                        "id": "text",
+                        "type": "text",
+                        "label": "Text",
+                        "help": "Content of the link. Rendered through wp_kses_post(); inline markup is allowed, scripts are not."
+                    },
+                    {
+                        "id": "active",
+                        "type": "toggle",
+                        "label": "Active",
+                        "help": "Add .active to a .nav-item to indicate the current active selection."
+                    },
+                    {
+                        "id": "disabled",
+                        "type": "toggle",
+                        "label": "Disabled",
+                        "help": "Add .disabled to a .nav-item to make it appear disabled. Note that some elements with .disabled will also require custom JavaScript to fully disable their click events (e.g., links)."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Link",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "url",
+                        "type": "text",
+                        "label": "URL",
+                        "help": "Rendered as the href attribute. It is only added when a value is set."
+                    },
+                    {
+                        "id": "url_title",
+                        "type": "text",
+                        "label": "Link title",
+                        "help": "Rendered as the title attribute of the link."
+                    },
+                    {
+                        "id": "title",
+                        "type": "text",
+                        "label": "Title",
+                        "help": "Kept for compatibility. The rendered title attribute comes from the link title above."
+                    },
+                    {
+                        "id": "linkTarget",
+                        "type": "creabb/select",
+                        "label": "Link target",
+                        "help": "Open the link in a new tab.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "_blank",
+                                "label": "New tab"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "rel",
+                        "type": "text",
+                        "label": "Link relationship",
+                        "help": "Rendered as the rel attribute of the link, for example nofollow or noopener."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    }
+                ]
+            }
+        ]
+    },
+    "parent": [
+        "creabb/nav-and-tab",
+        "areoi/nav-and-tab"
+    ]
+}

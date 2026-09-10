@@ -1,0 +1,30 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "anchor": {
+        "type": "string",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "backdrop": {
+        "type": "string",
+        "default": null
+    },
+    "scrollable": {
+        "type": "string",
+        "default": null
+    },
+    "centered": {
+        "type": "string",
+        "default": null
+    },
+    "size": {
+        "type": "string",
+        "default": null
+    }
+}

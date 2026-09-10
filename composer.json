@@ -1,0 +1,63 @@
+{
+    "name": "creationell/crea-bootstrap-blocks",
+    "description": "CreaBootstrapBlocks — rückwärtskompatibler Ersatz für All Bootstrap Blocks, gebaut auf Blockstudio.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "creationell® – die Werbeagentur",
+            "homepage": "https://www.creationell.de/"
+        }
+    ],
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "php-stubs/wordpress-stubs": "^6.9",
+        "php-stubs/wp-cli-stubs": "^2.12",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "phpstan/phpstan": "^2.1",
+        "squizlabs/php_codesniffer": "^3.11",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "wp-coding-standards/wpcs": "^3.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": "parallel-lint --colors --exclude vendor --exclude node_modules .",
+        "stan": "phpstan analyse --memory-limit=1G",
+        "cs": "phpcs",
+        "cs:fix": "phpcbf",
+        "test": "@php bin/run-tests.php",
+        "mutate": "@php bin/mutate.php",
+        "llm-docs": "@php bin/build-llm-docs.php",
+        "i18n": "@php bin/i18n.php",
+        "check": [
+            "@lint",
+            "@cs",
+            "@stan",
+            "@test"
+        ],
+        "block-previews": "@php bin/build-block-previews.php",
+        "field-groups": "@php bin/check-field-groups.php"
+    },
+    "scripts-descriptions": {
+        "lint": "Syntaxprüfung aller PHP-Dateien.",
+        "stan": "Statische Analyse mit PHPStan und der WordPress-Erweiterung.",
+        "cs": "Coding-Standards prüfen (WordPress Coding Standards).",
+        "cs:fix": "Coding-Standards automatisch korrigieren, soweit möglich.",
+        "test": "Alle eigenständigen Testsuiten unter tests/ ausführen.",
+        "mutate": "Mutationstest: macht den Produktivcode einmal kaputt und misst, ob die Suite umfaellt. Aufruf: composer mutate -- <mutationen.json>",
+        "llm-docs": "Erzeugt die Agentendokumentation unter llm/ aus den Vertragsdateien. Mit -- --check nur pruefen.",
+        "i18n": "Erzeugt die .pot, aktualisiert die .po und baut die ausgelieferten .l10n.php.",
+        "check": "Lint, Coding-Standards, statische Analyse und Tests nacheinander.",
+        "block-previews": "Erzeugt die Inserter-Vorschau je Block als SVG-Schema unter assets/img/block-previews/. Mit -- --check nur pruefen.",
+        "field-groups": "Driftwächter der Editor-UI: prüft die elf Invarianten der Feldgruppen in blocks/, blocks-legacy/ und den Feldbibliotheken. Er schreibt nichts. Mit -- --check bricht er bei einem Verstoß ab."
+    }
+}

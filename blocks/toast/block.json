@@ -1,0 +1,216 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/toast",
+	"title": "Toast",
+	"category": "creabb-components",
+	"description": "Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.",
+	"icon": "bell",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "placement",
+						"type": "creabb/select",
+						"label": "Placement",
+						"help": "Choose the corner the toast is shown in.",
+						"options": [
+							{
+								"value": "top-0 start-0",
+								"label": "Top Left"
+							},
+							{
+								"value": "top-0 end-0",
+								"label": "Top Right"
+							},
+							{
+								"value": "bottom-0 end-0",
+								"label": "Bottom Right"
+							},
+							{
+								"value": "bottom-0 start-0",
+								"label": "Bottom Left"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Utility classes",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "background",
+						"type": "creabb/select",
+						"label": "Background utilities",
+						"help": "Applies a Bootstrap background-color utility class to the toast.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "bg-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "bg-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "bg-success",
+								"label": "Success"
+							},
+							{
+								"value": "bg-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "bg-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "bg-info",
+								"label": "Info"
+							},
+							{
+								"value": "bg-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "bg-light",
+								"label": "Light"
+							},
+							{
+								"value": "bg-body",
+								"label": "Body"
+							}
+						]
+					},
+					{
+						"id": "text_color",
+						"type": "creabb/select",
+						"label": "Text utilities",
+						"help": "Applies a Bootstrap text-color utility class to the toast.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "text-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "text-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "text-success",
+								"label": "Success"
+							},
+							{
+								"value": "text-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "text-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "text-info",
+								"label": "Info"
+							},
+							{
+								"value": "text-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "text-light",
+								"label": "Light"
+							},
+							{
+								"value": "text-white",
+								"label": "White"
+							}
+						]
+					},
+					{
+						"id": "border_color",
+						"type": "creabb/select",
+						"label": "Border utilities",
+						"help": "Applies a Bootstrap border-color utility class to the toast.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "border-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "border-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "border-success",
+								"label": "Success"
+							},
+							{
+								"value": "border-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "border-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "border-info",
+								"label": "Info"
+							},
+							{
+								"value": "border-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "border-light",
+								"label": "Light"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

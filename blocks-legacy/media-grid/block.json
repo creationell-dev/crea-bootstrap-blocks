@@ -1,0 +1,3094 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/media-grid",
+    "title": "Media Grid",
+    "category": "creabb-strips",
+    "description": "Display multiple media items in a rich gallery.",
+    "icon": "grid-view",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "gallery",
+        "grid"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": true,
+        "html": false,
+        "inserter": false
+    },
+    "allowedBlocks": [
+        "creabb/media-grid-image",
+        "areoi/media-grid-image"
+    ],
+    "providesContext": {
+        "allowResize": "allowResize",
+        "imageCrop": "imageCrop",
+        "fixedHeight": "fixedHeight"
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_xs",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_xs",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xs",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xs",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xs",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xs",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_xs",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_xs",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_xs",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_xs",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_xs",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_xs",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xs",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-sm-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-sm-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-sm-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_sm",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_sm",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_sm",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_sm",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_sm",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_sm",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_sm",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_sm",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_sm",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_sm",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_sm",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-sm-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-sm-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-sm-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-sm-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-sm-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-sm-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-sm-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-sm-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-sm-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-sm-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-sm-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-sm-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-sm-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-sm-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_sm",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-sm-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-sm-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-sm-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_sm",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-sm-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-sm-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-sm-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-sm-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-sm-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-sm-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-sm-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-sm-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-sm-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-sm-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-sm-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-sm-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-sm-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-sm-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-md-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-md-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-md-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-md-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-md-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-md-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-md-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-md-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-md-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_md",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_md",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_md",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_md",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_md",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_md",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_md",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_md",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_md",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_md",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_md",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-md-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-md-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-md-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-md-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-md-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-md-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-md-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-md-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-md-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-md-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-md-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-md-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-md-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-md-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-md-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-md-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_md",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-md-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-md-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-md-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_md",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-md-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-md-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-md-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-md-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-md-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-md-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-md-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-md-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-md-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-md-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-md-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-md-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-md-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-md-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-lg-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-lg-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-lg-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_lg",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_lg",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_lg",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_lg",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_lg",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_lg",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_lg",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_lg",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_lg",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_lg",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_lg",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-lg-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-lg-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-lg-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-lg-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-lg-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-lg-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-lg-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-lg-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-lg-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-lg-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-lg-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-lg-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-lg-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-lg-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_lg",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-lg-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-lg-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-lg-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_lg",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-lg-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-lg-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-lg-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-lg-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-lg-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-lg-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-lg-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-lg-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-lg-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-lg-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-lg-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-lg-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-lg-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-lg-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-xl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-xl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-xl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_xl",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_xl",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xl",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xl",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xl",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xl",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_xl",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_xl",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_xl",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_xl",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_xl",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_xl",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-xl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-xl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-xl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xl",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xl-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-xl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Alignment",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "vertical_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Vertical alignment",
+                                        "help": "Aligns the content of this block from top to bottom, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "align-items-xxl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "align-items-xxl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "align-items-xxl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "horizontal_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Horizontal alignment",
+                                        "help": "Aligns the content of this block from left to right, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-end",
+                                                "label": "End"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-around",
+                                                "label": "Around"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-between",
+                                                "label": "Between"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-evenly",
+                                                "label": "Evenly"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Height",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "height_dimension_xxl",
+                                        "type": "text",
+                                        "label": "Height value",
+                                        "help": "Numeric value without a unit. The unit is set below."
+                                    },
+                                    {
+                                        "id": "height_unit_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Height unit",
+                                        "help": "Unit of the height value above.",
+                                        "options": [
+                                            {
+                                                "value": "px",
+                                                "label": "Pixels"
+                                            },
+                                            {
+                                                "value": "%",
+                                                "label": "Percent"
+                                            },
+                                            {
+                                                "value": "vh",
+                                                "label": "Viewport height"
+                                            },
+                                            {
+                                                "value": "rem",
+                                                "label": "Rem"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Padding",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "padding_top_xxl",
+                                        "type": "text",
+                                        "label": "Padding top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+                                    },
+                                    {
+                                        "id": "padding_right_xxl",
+                                        "type": "text",
+                                        "label": "Padding right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_bottom_xxl",
+                                        "type": "text",
+                                        "label": "Padding bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "padding_left_xxl",
+                                        "type": "text",
+                                        "label": "Padding left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Margin",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "margin_top_xxl",
+                                        "type": "text",
+                                        "label": "Margin top",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_right_xxl",
+                                        "type": "text",
+                                        "label": "Margin right",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_bottom_xxl",
+                                        "type": "text",
+                                        "label": "Margin bottom",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    },
+                                    {
+                                        "id": "margin_left_xxl",
+                                        "type": "text",
+                                        "label": "Margin left",
+                                        "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Heading and intro at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "prepend_col_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Heading columns",
+                                        "help": "Number of the twelve grid columns the heading and intro occupy, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xxl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xxl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xxl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xxl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xxl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xxl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xxl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xxl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xxl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xxl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xxl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xxl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xxl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_horizontal_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Heading horizontal alignment",
+                                        "help": "Positions the heading and intro within their row, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "justify-content-xxl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "prepend_text_align_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Heading text alignment",
+                                        "help": "Aligns the heading and intro text within their column, from this breakpoint upwards.",
+                                        "options": [
+                                            {
+                                                "value": "",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "text-xxl-start",
+                                                "label": "Start"
+                                            },
+                                            {
+                                                "value": "text-xxl-center",
+                                                "label": "Center"
+                                            },
+                                            {
+                                                "value": "text-xxl-end",
+                                                "label": "End"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Background at this breakpoint",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "background_hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide background at this breakpoint",
+                                        "help": "Hides the background layer of this block at this breakpoint and restores it at the next visible one."
+                                    },
+                                    {
+                                        "id": "background_col_xxl",
+                                        "type": "creabb/select",
+                                        "label": "Background columns",
+                                        "help": "Width of the background layer's grid column from this breakpoint upwards. Without a value the layer fills the whole row.",
+                                        "options": [
+                                            {
+                                                "value": "Default",
+                                                "label": "Default"
+                                            },
+                                            {
+                                                "value": "col-xxl-0",
+                                                "label": "0"
+                                            },
+                                            {
+                                                "value": "col-xxl-1",
+                                                "label": "1"
+                                            },
+                                            {
+                                                "value": "col-xxl-2",
+                                                "label": "2"
+                                            },
+                                            {
+                                                "value": "col-xxl-3",
+                                                "label": "3"
+                                            },
+                                            {
+                                                "value": "col-xxl-4",
+                                                "label": "4"
+                                            },
+                                            {
+                                                "value": "col-xxl-5",
+                                                "label": "5"
+                                            },
+                                            {
+                                                "value": "col-xxl-6",
+                                                "label": "6"
+                                            },
+                                            {
+                                                "value": "col-xxl-7",
+                                                "label": "7"
+                                            },
+                                            {
+                                                "value": "col-xxl-8",
+                                                "label": "8"
+                                            },
+                                            {
+                                                "value": "col-xxl-9",
+                                                "label": "9"
+                                            },
+                                            {
+                                                "value": "col-xxl-10",
+                                                "label": "10"
+                                            },
+                                            {
+                                                "value": "col-xxl-11",
+                                                "label": "11"
+                                            },
+                                            {
+                                                "value": "col-xxl-12",
+                                                "label": "12"
+                                            },
+                                            {
+                                                "value": "col-xxl-auto",
+                                                "label": "Auto"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": false,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one. Hiding also drops this breakpoint's alignment and heading classes."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Grid",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "id": "layout",
+                        "type": "creabb/select",
+                        "label": "Layout",
+                        "help": "Grid keeps every item the same width. Masonry lets individual items span two columns.",
+                        "options": [
+                            {
+                                "value": "grid",
+                                "label": "Grid"
+                            },
+                            {
+                                "value": "masonry",
+                                "label": "Masonry"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "container",
+                        "type": "creabb/select",
+                        "label": "Container width",
+                        "help": "Bootstrap container that wraps the grid. Fluid spans the full viewport width.",
+                        "options": [
+                            {
+                                "value": "container",
+                                "label": "Fixed"
+                            },
+                            {
+                                "value": "container-sm",
+                                "label": "Small"
+                            },
+                            {
+                                "value": "container-md",
+                                "label": "Medium"
+                            },
+                            {
+                                "value": "container-lg",
+                                "label": "Large"
+                            },
+                            {
+                                "value": "container-xl",
+                                "label": "Extra large"
+                            },
+                            {
+                                "value": "container-xxl",
+                                "label": "Extra extra large"
+                            },
+                            {
+                                "value": "container-fluid",
+                                "label": "Fluid"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "columns",
+                        "type": "creabb/select",
+                        "label": "Columns",
+                        "help": "How many columns the grid shows on wide screens. Narrower viewports step down on their own, down to a single column below 576 pixels.",
+                        "options": [
+                            {
+                                "value": "1",
+                                "label": "1"
+                            },
+                            {
+                                "value": "2",
+                                "label": "2"
+                            },
+                            {
+                                "value": "3",
+                                "label": "3"
+                            },
+                            {
+                                "value": "4",
+                                "label": "4"
+                            },
+                            {
+                                "value": "5",
+                                "label": "5"
+                            },
+                            {
+                                "value": "6",
+                                "label": "6"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Grid items",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "style",
+                        "type": "creabb/select",
+                        "label": "Item style",
+                        "help": "Passed on to the images: Full removes their padding.",
+                        "options": [
+                            {
+                                "value": "flush",
+                                "label": "Flush"
+                            },
+                            {
+                                "value": "card",
+                                "label": "Card"
+                            },
+                            {
+                                "value": "full",
+                                "label": "Full"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "size",
+                        "type": "creabb/select",
+                        "label": "Item size",
+                        "help": "Stored for compatibility. This block does not render the value — neither does the previous plugin.",
+                        "options": [
+                            {
+                                "value": "areoi-small",
+                                "label": "Small"
+                            },
+                            {
+                                "value": "areoi-medium",
+                                "label": "Medium"
+                            },
+                            {
+                                "value": "areoi-large",
+                                "label": "Large"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "card_size",
+                        "type": "creabb/select",
+                        "label": "Card size",
+                        "help": "Minimum height of every image tile: extra small 20vh, small 40vh, medium 60vh, large 80vh, extra large 100vh. Empty falls back to medium.",
+                        "options": [
+                            {
+                                "value": "areoi-card-extra-small",
+                                "label": "Extra small"
+                            },
+                            {
+                                "value": "areoi-card-small",
+                                "label": "Small"
+                            },
+                            {
+                                "value": "areoi-card-medium",
+                                "label": "Medium"
+                            },
+                            {
+                                "value": "areoi-card-large",
+                                "label": "Large"
+                            },
+                            {
+                                "value": "areoi-card-extra-large",
+                                "label": "Extra large"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Media",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "media_fit",
+                        "type": "creabb/select",
+                        "label": "Media fit",
+                        "help": "How the media fills its container. The rendering reads each image's own Media fit field, not this one.",
+                        "options": [
+                            {
+                                "value": "cover",
+                                "label": "Cover"
+                            },
+                            {
+                                "value": "contain",
+                                "label": "Contain"
+                            },
+                            {
+                                "value": "set",
+                                "label": "Set dimensions"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "media_height",
+                        "type": "text",
+                        "label": "Media height",
+                        "help": "Maximum media height in pixels, used when Media fit is Set dimensions. The rendering reads each image's own Media height field, not this one."
+                    },
+                    {
+                        "id": "media_width",
+                        "type": "text",
+                        "label": "Media width",
+                        "help": "Maximum media width in pixels, used when Media fit is Set dimensions. The rendering reads each image's own Media width field, not this one."
+                    },
+                    {
+                        "id": "media_align",
+                        "type": "creabb/select",
+                        "label": "Media alignment",
+                        "help": "How the media sits inside its container. The rendering reads each image's own Media alignment field, not this one.",
+                        "options": [
+                            {
+                                "value": "start",
+                                "label": "Start"
+                            },
+                            {
+                                "value": "center",
+                                "label": "Center"
+                            },
+                            {
+                                "value": "end",
+                                "label": "End"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "image_layout",
+                        "type": "creabb/select",
+                        "label": "Media size",
+                        "help": "Stored for compatibility. This block does not render the value, and the previous plugin has no editor field for it either.",
+                        "options": [
+                            {
+                                "value": "cover",
+                                "label": "Cover"
+                            },
+                            {
+                                "value": "contain",
+                                "label": "Contain"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Images",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "sizeSlug",
+                        "type": "creabb/select",
+                        "label": "Image size",
+                        "help": "Registered image size the pictures are loaded at. The rendering reads each image's own Image size field, not this one.",
+                        "options": [
+                            {
+                                "value": "thumbnail",
+                                "label": "Thumbnail"
+                            },
+                            {
+                                "value": "medium",
+                                "label": "Medium"
+                            },
+                            {
+                                "value": "large",
+                                "label": "Large"
+                            },
+                            {
+                                "value": "full",
+                                "label": "Full size"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "linkTo",
+                        "type": "creabb/select",
+                        "label": "Link to",
+                        "help": "Where a click on a picture leads. The rendering reads each image's own Link destination field, not this one.",
+                        "options": [
+                            {
+                                "value": "none",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "media",
+                                "label": "Media file"
+                            },
+                            {
+                                "value": "attachment",
+                                "label": "Attachment page"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "linkTarget",
+                        "type": "creabb/select",
+                        "label": "Link target",
+                        "help": "Rendered as the target attribute of the link on every image in this grid. New tab writes target=_blank.",
+                        "options": [
+                            {
+                                "value": "",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "_blank",
+                                "label": "New tab"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "imageCrop",
+                        "type": "toggle",
+                        "label": "Crop images",
+                        "help": "Cropped thumbnails in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+                    },
+                    {
+                        "id": "fixedHeight",
+                        "type": "toggle",
+                        "label": "Fixed height",
+                        "help": "Fixed image height in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+                    },
+                    {
+                        "id": "allowResize",
+                        "type": "toggle",
+                        "label": "Allow resizing",
+                        "help": "Drag handles on the pictures in the previous plugin's editor. Kept as stored data; neither plugin renders it."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Heading",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "prepend_display_heading",
+                        "type": "toggle",
+                        "label": "Show heading",
+                        "help": "Shows a heading above the grid. The heading text below is only rendered while this is on."
+                    },
+                    {
+                        "id": "prepend_heading_level",
+                        "type": "creabb/select",
+                        "label": "Heading level",
+                        "help": "HTML heading level of the heading above the grid.",
+                        "options": [
+                            {
+                                "value": "h1",
+                                "label": "H1"
+                            },
+                            {
+                                "value": "h2",
+                                "label": "H2"
+                            },
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "h4",
+                                "label": "H4"
+                            },
+                            {
+                                "value": "h5",
+                                "label": "H5"
+                            },
+                            {
+                                "value": "h6",
+                                "label": "H6"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "prepend_heading",
+                        "type": "text",
+                        "label": "Heading",
+                        "help": "Text of the heading above the grid. Basic inline HTML is allowed."
+                    },
+                    {
+                        "id": "prepend_heading_color",
+                        "type": "creabb/select",
+                        "label": "Heading color",
+                        "help": "Applies a Bootstrap text-color utility class to the heading.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "text-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "text-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "text-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "text-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "text-white",
+                                "label": "White"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Intro",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "prepend_display_intro",
+                        "type": "toggle",
+                        "label": "Show intro",
+                        "help": "Turns on the block above the grid. The intro text is rendered as soon as it is filled and either this switch or Show heading is on — a quirk of the previous plugin, kept on purpose."
+                    },
+                    {
+                        "id": "prepend_intro",
+                        "type": "text",
+                        "label": "Intro",
+                        "help": "Text of the intro above the grid. Basic inline HTML is allowed."
+                    },
+                    {
+                        "id": "prepend_intro_color",
+                        "type": "creabb/select",
+                        "label": "Intro color",
+                        "help": "Applies a Bootstrap text-color utility class to the intro.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "text-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "text-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "text-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "text-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "text-white",
+                                "label": "White"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Background",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "background_display",
+                        "type": "toggle",
+                        "label": "Show background",
+                        "help": "Turns on the background layer below — its color, overlay and alignment fields only take effect while this is on."
+                    },
+                    {
+                        "id": "background_color",
+                        "type": "creabb/color",
+                        "label": "Background color",
+                        "help": "Only the rgb values are used for rendering. The remaining keys are kept for compatibility with the previous plugin.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_display_overlay",
+                        "type": "toggle",
+                        "label": "Show overlay",
+                        "help": "Turns on the overlay layer, drawn above the background color. The overlay color below only takes effect while this is on.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_overlay",
+                        "type": "creabb/color",
+                        "label": "Overlay color",
+                        "help": "Drawn as a layer above the background color. Like the background color, only the rgb values are used for rendering.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display_overlay",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": "background_horizontal_align",
+                        "type": "creabb/select",
+                        "label": "Horizontal background alignment",
+                        "help": "Aligns the background layer within its row when the background column width is narrower than the full row. Has no visible effect at full width.",
+                        "options": [
+                            {
+                                "value": "justify-content-start",
+                                "label": "Left"
+                            },
+                            {
+                                "value": "justify-content-center",
+                                "label": "Center"
+                            },
+                            {
+                                "value": "justify-content-end",
+                                "label": "Right"
+                            }
+                        ],
+                        "conditions": [
+                            [
+                                {
+                                    "id": "background_display",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Background pattern",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "exclude_pattern",
+                        "type": "toggle",
+                        "label": "Exclude pattern",
+                        "help": "Kept from the previous plugin. A pattern is only rendered when the filter crea_bootstrap_blocks_background_pattern supplies one."
+                    },
+                    {
+                        "id": "change_pattern_color",
+                        "type": "toggle",
+                        "label": "Change pattern color",
+                        "help": "Kept from the previous plugin. This plugin hands the value to the pattern filter and renders nothing from it itself."
+                    },
+                    {
+                        "id": "pattern_color",
+                        "type": "creabb/color",
+                        "label": "Pattern color",
+                        "help": "Color the previous plugin used for the background pattern. Handed to the pattern filter unchanged; this plugin renders nothing from it.",
+                        "conditions": [
+                            [
+                                {
+                                    "id": "change_pattern_color",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Utility classes",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "utilities_bg",
+                        "type": "creabb/select",
+                        "label": "Background utilities",
+                        "help": "Stored for compatibility. This block does not render utility classes — neither does the previous plugin.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "bg-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "bg-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "bg-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "bg-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "bg-body",
+                                "label": "Body"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "utilities_text",
+                        "type": "creabb/select",
+                        "label": "Text utilities",
+                        "help": "Stored for compatibility. This block does not render utility classes — neither does the previous plugin.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "text-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "text-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "text-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "text-light",
+                                "label": "Light"
+                            },
+                            {
+                                "value": "text-white",
+                                "label": "White"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "utilities_border",
+                        "type": "creabb/select",
+                        "label": "Border utilities",
+                        "help": "Stored for compatibility. This block does not render utility classes — neither does the previous plugin.",
+                        "options": [
+                            {
+                                "value": "Default",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "border-primary",
+                                "label": "Primary"
+                            },
+                            {
+                                "value": "border-secondary",
+                                "label": "Secondary"
+                            },
+                            {
+                                "value": "border-dark",
+                                "label": "Dark"
+                            },
+                            {
+                                "value": "border-light",
+                                "label": "Light"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Theme options",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "exclude_divider",
+                        "type": "toggle",
+                        "label": "Exclude divider",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; this plugin stores the value and renders nothing from it."
+                    },
+                    {
+                        "id": "exclude_transition",
+                        "type": "toggle",
+                        "label": "Exclude transition",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; this plugin stores the value and renders nothing from it."
+                    },
+                    {
+                        "id": "exclude_parallax",
+                        "type": "toggle",
+                        "label": "Exclude parallax",
+                        "help": "Kept from the previous plugin. Only the Lightspeed theme evaluates it; this plugin stores the value and renders nothing from it."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    }
+                ]
+            }
+        ]
+    }
+}

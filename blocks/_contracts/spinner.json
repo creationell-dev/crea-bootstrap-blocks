@@ -1,0 +1,50 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "anchor": {
+        "type": "string",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "style": {
+        "type": "string",
+        "default": "spinner-border"
+    },
+    "color": {
+        "type": "string",
+        "default": "text-primary"
+    },
+    "size": {
+        "type": "string",
+        "default": null
+    },
+    "hide_xs": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_sm": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_md": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_lg": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_xl": {
+        "type": "boolean",
+        "default": false
+    },
+    "hide_xxl": {
+        "type": "boolean",
+        "default": false
+    }
+}

@@ -1,0 +1,262 @@
+{
+    "$schema": "https://blockstudio.dev/schema/block",
+    "apiVersion": 2,
+    "name": "areoi/accordion-item",
+    "title": "Accordion Item",
+    "category": "creabb-components",
+    "description": "A single collapsible section within an accordion.",
+    "icon": "list-view",
+    "keywords": [
+        "areoi",
+        "creabb",
+        "bootstrap",
+        "component"
+    ],
+    "textdomain": "crea-bootstrap-blocks",
+    "supports": {
+        "anchor": true,
+        "align": false,
+        "html": false,
+        "inserter": false
+    },
+    "blockstudio": {
+        "attributes": [
+            {
+                "id": "breakpoints",
+                "type": "tabs",
+                "tabs": [
+                    {
+                        "id": "xs",
+                        "title": "XS",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra small · no Bootstrap infix (default size)"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xs",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sm",
+                        "title": "SM",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Small · Bootstrap infix sm"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_sm",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "md",
+                        "title": "MD",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Medium · Bootstrap infix md"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_md",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "lg",
+                        "title": "LG",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Large · Bootstrap infix lg"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_lg",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xl",
+                        "title": "XL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra large · Bootstrap infix xl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "xxl",
+                        "title": "XXL",
+                        "attributes": [
+                            {
+                                "type": "message",
+                                "value": "Extra extra large · Bootstrap infix xxl"
+                            },
+                            {
+                                "type": "group",
+                                "title": "Visibility",
+                                "initialOpen": true,
+                                "attributes": [
+                                    {
+                                        "id": "hide_xxl",
+                                        "type": "toggle",
+                                        "label": "Hide at this breakpoint",
+                                        "help": "Hides this block at this breakpoint and restores it at the next visible one."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Settings",
+                "initialOpen": true,
+                "attributes": [
+                    {
+                        "type": "message",
+                        "value": "Set the title here — you cannot type it directly into the block."
+                    },
+                    {
+                        "id": "title",
+                        "type": "text",
+                        "label": "Title",
+                        "help": "Text on the accordion button that opens and closes this item. It is rendered inside the heading element set below and may contain inline markup."
+                    },
+                    {
+                        "id": "heading",
+                        "type": "creabb/select",
+                        "label": "Heading",
+                        "help": "Specify the element type to apply to the accordion header.",
+                        "options": [
+                            {
+                                "value": "h1",
+                                "label": "Default"
+                            },
+                            {
+                                "value": "h1",
+                                "label": "H1"
+                            },
+                            {
+                                "value": "h2",
+                                "label": "H2"
+                            },
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "h4",
+                                "label": "H4"
+                            },
+                            {
+                                "value": "h5",
+                                "label": "H5"
+                            },
+                            {
+                                "value": "h6",
+                                "label": "H6"
+                            },
+                            {
+                                "value": "p",
+                                "label": "p"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "open",
+                        "type": "toggle",
+                        "label": "Open",
+                        "help": "The accordion uses collapse internally to make it collapsible. To render an accordion that’s expanded, add the .open class on the .accordion."
+                    },
+                    {
+                        "id": "always_open",
+                        "type": "toggle",
+                        "label": "Always Open",
+                        "help": "Omit the data-bs-parent attribute on each .accordion-collapse to make accordion items stay open when another item is opened."
+                    }
+                ]
+            },
+            {
+                "type": "group",
+                "title": "Technical",
+                "initialOpen": false,
+                "attributes": [
+                    {
+                        "id": "block_id",
+                        "type": "text",
+                        "label": "Block ID",
+                        "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+                    },
+                    {
+                        "id": "parent_id",
+                        "type": "text",
+                        "label": "Parent block ID",
+                        "help": "Identifier of the surrounding block. It is set automatically and must not be changed."
+                    }
+                ]
+            }
+        ]
+    },
+    "parent": [
+        "creabb/accordion",
+        "areoi/accordion"
+    ]
+}

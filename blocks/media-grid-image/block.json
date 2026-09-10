@@ -1,0 +1,219 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/media-grid-image",
+	"icon": "format-image",
+	"title": "Image",
+	"category": "creabb-components",
+	"parent": [
+		"creabb/media-grid"
+	],
+	"usesContext": [
+		"allowResize",
+		"imageCrop",
+		"fixedHeight"
+	],
+	"description": "Insert an image to make a visual statement.",
+	"textdomain": "crea-bootstrap-blocks",
+	"keywords": [
+		"areoi",
+		"img",
+		"photo",
+		"picture"
+	],
+	"example": {
+		"attributes": {
+			"preview": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"type": "group",
+				"title": "Image",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "id",
+						"type": "creabb/media",
+						"label": "Attachment ID",
+						"help": "The image is rendered from this attachment, not from the URL below."
+					},
+					{
+						"id": "url",
+						"type": "text",
+						"label": "Image URL",
+						"help": "Source URL of the picked image. The rendering resolves the file from the attachment ID above and does not read this value."
+					},
+					{
+						"id": "alt",
+						"type": "text",
+						"label": "Alt text",
+						"help": "Leave empty for decorative images."
+					},
+					{
+						"id": "width",
+						"type": "number",
+						"label": "Image width",
+						"help": "Width stored by the editor's image size control. The rendering takes the width from the attachment file instead."
+					},
+					{
+						"id": "height",
+						"type": "number",
+						"label": "Image height",
+						"help": "Height stored by the editor's image size control. The rendering takes the height from the attachment file instead."
+					},
+					{
+						"id": "sizeSlug",
+						"type": "creabb/select",
+						"label": "Image size",
+						"help": "Registered image size the file is loaded at. An empty value falls back to the full size.",
+						"options": [
+							{
+								"value": "thumbnail",
+								"label": "Thumbnail"
+							},
+							{
+								"value": "medium",
+								"label": "Medium"
+							},
+							{
+								"value": "large",
+								"label": "Large"
+							},
+							{
+								"value": "full",
+								"label": "Full size"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Link",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "linkDestination",
+						"type": "creabb/select",
+						"label": "Link destination",
+						"help": "Where a click on the image leads: nowhere, the image file, or the attachment page.",
+						"options": [
+							{
+								"value": "none",
+								"label": "None"
+							},
+							{
+								"value": "media",
+								"label": "Media file"
+							},
+							{
+								"value": "attachment",
+								"label": "Attachment page"
+							}
+						]
+					},
+					{
+						"id": "linkTarget",
+						"type": "creabb/select",
+						"label": "Link target",
+						"help": "The rendered link uses the target of the surrounding media grid.",
+						"options": [
+							{
+								"value": "",
+								"label": "None"
+							},
+							{
+								"value": "_blank",
+								"label": "New tab"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Item media",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "media_fit",
+						"type": "creabb/select",
+						"label": "Media fit",
+						"help": "How the media fills its container: Cover, Contain, or the dimensions set below.",
+						"options": [
+							{
+								"value": "cover",
+								"label": "Cover"
+							},
+							{
+								"value": "contain",
+								"label": "Contain"
+							},
+							{
+								"value": "set",
+								"label": "Set dimensions"
+							}
+						]
+					},
+					{
+						"id": "media_height",
+						"type": "text",
+						"label": "Media height",
+						"help": "Only used with Set dimensions. Numeric value without a unit; pixels are added on output."
+					},
+					{
+						"id": "media_width",
+						"type": "text",
+						"label": "Media width",
+						"help": "Only used with Set dimensions. Numeric value without a unit; pixels are added on output."
+					},
+					{
+						"id": "media_align",
+						"type": "creabb/select",
+						"label": "Media alignment",
+						"help": "Alignment of the media inside its container. An empty value falls back to Center.",
+						"options": [
+							{
+								"value": "start",
+								"label": "Start"
+							},
+							{
+								"value": "center",
+								"label": "Center"
+							},
+							{
+								"value": "end",
+								"label": "End"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					},
+					{
+						"id": "parent_id",
+						"type": "text",
+						"label": "Parent block ID",
+						"help": "Block ID of the surrounding media grid. It supplies the item style and the link target."
+					}
+				]
+			}
+		]
+	}
+}

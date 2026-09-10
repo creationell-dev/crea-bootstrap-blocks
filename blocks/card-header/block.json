@@ -1,0 +1,332 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/card-header",
+	"title": "Card Header",
+	"category": "creabb-components",
+	"parent": [
+		"creabb/card"
+	],
+	"description": "Add an optional header within a card.",
+	"icon": "id-alt",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"card"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xs",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_sm",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_md",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_lg",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xxl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Utility classes",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "background",
+						"type": "creabb/select",
+						"label": "Background utilities",
+						"help": "Applies a Bootstrap background-color utility class to this block.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "bg-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "bg-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "bg-success",
+								"label": "Success"
+							},
+							{
+								"value": "bg-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "bg-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "bg-info",
+								"label": "Info"
+							},
+							{
+								"value": "bg-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "bg-light",
+								"label": "Light"
+							},
+							{
+								"value": "bg-body",
+								"label": "Body"
+							}
+						]
+					},
+					{
+						"id": "text_color",
+						"type": "creabb/select",
+						"label": "Text utilities",
+						"help": "Applies a Bootstrap text-color utility class to this block.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "text-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "text-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "text-success",
+								"label": "Success"
+							},
+							{
+								"value": "text-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "text-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "text-info",
+								"label": "Info"
+							},
+							{
+								"value": "text-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "text-light",
+								"label": "Light"
+							},
+							{
+								"value": "text-white",
+								"label": "White"
+							}
+						]
+					},
+					{
+						"id": "border_color",
+						"type": "creabb/select",
+						"label": "Border utilities",
+						"help": "Applies a Bootstrap border-color utility class to this block.",
+						"options": [
+							{
+								"value": "Default",
+								"label": "Default"
+							},
+							{
+								"value": "border-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "border-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "border-success",
+								"label": "Success"
+							},
+							{
+								"value": "border-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "border-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "border-info",
+								"label": "Info"
+							},
+							{
+								"value": "border-dark",
+								"label": "Dark"
+							},
+							{
+								"value": "border-light",
+								"label": "Light"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

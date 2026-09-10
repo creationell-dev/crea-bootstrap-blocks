@@ -1,0 +1,15 @@
+/*
+ * Block CSS of `creabb/media-grid`.
+ *
+ * Der Block teilt sich das Stylesheet mit `content-grid`; die Regeln stehen
+ * dort, diese Datei verweist nur darauf. Das Original macht es an derselben
+ * Stelle genauso — `blocks/media-grid/style.css` besteht dort aus genau dieser
+ * einen Zeile.
+ *
+ * Der Pfad ist relativ zur URL DIESER Datei und loest damit auf
+ * `blocks/content-grid/style.css` auf. Fehlt die Zieldatei, liefert der Import
+ * still nichts; `tests/test-block-stylesheets.php` loest ihn deshalb beim
+ * Pruefen mit auf, statt nur den Dateiinhalt zu lesen.
+ */
+
+@import url( '../content-grid/style.css' );

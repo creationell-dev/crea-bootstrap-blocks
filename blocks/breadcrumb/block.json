@@ -1,0 +1,201 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/breadcrumb",
+	"title": "Breadcrumb",
+	"category": "creabb-components",
+	"description": "Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS.",
+	"icon": "admin-links",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xs",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_sm",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_md",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_lg",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xxl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "divider",
+						"type": "text",
+						"label": "Divider",
+						"help": "Dividers are automatically added in CSS through ::before and content. They can be changed by modifying a local CSS custom property --bs-breadcrumb-divider, or through the $breadcrumb-divider Sass variable — and $breadcrumb-divider-flipped for its RTL counterpart, if needed. We default to our Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
+					},
+					{
+						"id": "is_front_page",
+						"type": "toggle",
+						"label": "Use Front Page Title",
+						"help": "If checked the title of the front page will be used in place of Home."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

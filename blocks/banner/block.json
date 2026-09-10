@@ -1,0 +1,225 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/banner",
+	"title": "Banner",
+	"category": "creabb-strips",
+	"description": "A banner area holding one or more banner items.",
+	"icon": "format-image",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"strip"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": true,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xs",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_sm",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_md",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_lg",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "hide_xxl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Hides this block at this breakpoint and restores it at the next visible one."
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "layout",
+						"type": "creabb/select",
+						"label": "Layout",
+						"help": "Arranges the banner items inside this block. Three arrangements are built: grid places the items side by side, stacked puts them below each other, carousel turns them into slides. Any other value renders the wrapper without its items.",
+						"options": [
+							{
+								"value": "grid",
+								"label": "Grid"
+							},
+							{
+								"value": "masonry",
+								"label": "Masonry"
+							}
+						]
+					},
+					{
+						"id": "size",
+						"type": "creabb/select",
+						"label": "Item size",
+						"help": "Preset height of the banner: Small is 50vh and Medium is 75vh. Large carries no rule of its own and keeps the default of 100vh. In the grid layout all three double below the sm breakpoint.",
+						"options": [
+							{
+								"value": "areoi-small",
+								"label": "Small"
+							},
+							{
+								"value": "areoi-medium",
+								"label": "Medium"
+							},
+							{
+								"value": "areoi-large",
+								"label": "Large"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

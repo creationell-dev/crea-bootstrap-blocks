@@ -1,0 +1,101 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/offcanvas",
+	"title": "Offcanvas",
+	"category": "creabb-components",
+	"description": "Build hidden sidebars into your project for navigation, shopping carts, and more.",
+	"icon": "align-pull-left",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "backdrop",
+						"type": "creabb/select",
+						"label": "Backdrop",
+						"help": "Choose whether a backdrop is shown behind the offcanvas panel.",
+						"options": [
+							{
+								"value": "true",
+								"label": "Include Backdrop"
+							},
+							{
+								"value": "false",
+								"label": "No Backdrop"
+							}
+						]
+					},
+					{
+						"id": "scrollable",
+						"type": "creabb/select",
+						"label": "Scrollable",
+						"help": "Choose whether the page behind the offcanvas panel can be scrolled.",
+						"options": [
+							{
+								"value": "false",
+								"label": "Disable Scrolling"
+							},
+							{
+								"value": "true",
+								"label": "Allow Scrolling"
+							}
+						]
+					},
+					{
+						"id": "placement",
+						"type": "creabb/select",
+						"label": "Placement",
+						"help": "Choose the edge the offcanvas panel slides in from.",
+						"options": [
+							{
+								"value": "offcanvas-start",
+								"label": "Left"
+							},
+							{
+								"value": "offcanvas-end",
+								"label": "Right"
+							},
+							{
+								"value": "offcanvas-top",
+								"label": "Top"
+							},
+							{
+								"value": "offcanvas-bottom",
+								"label": "Bottom"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

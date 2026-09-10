@@ -1,0 +1,2579 @@
+# CreaBootstrapBlocks — Volltext fuer Agenten
+
+## REGEL 1 — Attributwerte gehoeren in den blockstudio-Container
+
+Das ist die wichtigste Regel dieses Dokuments, und die einzige, deren
+Verletzung STILL schiefgeht: Es gibt keine Fehlermeldung. Werte, die NUR flach
+stehen, werden beim Rendern verworfen und durch die Defaults ersetzt; die Seite
+zeigt dann etwas anderes als gewollt, und nichts weist darauf hin.
+
+FALSCH — die Form des Alt-Plugins, ohne Container:
+
+    <!-- wp:creabb/container {"container":"container-fluid","padding_top_xs":"40"} /-->
+
+RICHTIG:
+
+    <!-- wp:creabb/container {"container":"container-fluid","padding_top_xs":"40","blockstudio":{"name":"creabb/container","attributes":{"container":"container-fluid","padding_top_xs":"40"}}} /-->
+
+Die Schluessel, die Werte und ihre Reihenfolge bleiben gleich; es kommt genau
+eine Ebene DAZU. Der Schluessel `name` im Container wiederholt den Blocknamen.
+
+**Die flache Ebene bleibt stehen — sie wird nicht verschoben.** Das ist kein
+Versehen und keine Redundanz, die man aufraeumen sollte:
+
+- Der WordPress-Kern liest einige Attribute ausschliesslich oben, weil sie aus
+  `supports` kommen und keine Blockstudio-Felder sind — `className` und
+  `anchor` sind die beiden haeufigsten. Blockstudio raeumt jeden Nicht-Feld-
+  Schluessel aus dem Container; wer sich auf ihn allein verlaesst, verliert die
+  CSS-Klasse und das `id`-Attribut im Markup.
+- Blockstudio baut den Block aus der oberen Ebene, BEVOR es den Container
+  hineinmischt.
+
+**Welche Ebene beim Rendern gewinnt:** der Container. Wer einen Wert aendern
+will, aendert ihn im Container — eine Aenderung nur an der flachen Kopie bleibt
+wirkungslos, und genau das geht still schief. Am besten aendert man beide, dann
+stimmen sie ueberein.
+
+Ausgenommen von der Verdopplung sind die Buchfuehrungsattribute des
+WordPress-Kerns (`lock`, `metadata`): Sie stehen NUR oben, weil der Kern sie
+dort liest und sie keine Blockstudio-Felder sind.
+
+Wer das nicht selbst umsetzen will, ruft die Ability
+`crea-bootstrap-blocks/build-block-markup` auf: Sie nimmt flache Attributwerte
+entgegen und gibt korrektes Markup zurueck, samt einem Hinweis dazu, welche
+Ebene beim Rendern gewinnt.
+
+## Gerendertes Markup und generiertes CSS
+
+Alle Blöcke sind dynamisch — es gibt kein gespeichertes Markup, nur den
+Blockkommentar mit der Attribut-JSON aus REGEL 1. Der Renderer setzt daraus
+HTML und ein Inline-Stylesheet zusammen.
+
+### Zwei Klassensätze, solange die Migration läuft
+
+Jeder Block gibt übergangsweise **beide** Klassensätze aus:
+
+    <div class="block-<uuid> creabb-element areoi-element container">
+
+`areoi-*` ist die Klasse des alten Plugins; Themes stylen teils direkt
+dagegen. Die Konstante `CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` (Default
+`true`) schaltet die `areoi-*`-Klassen ab, sobald das Theme einer Seite
+umgestellt ist. Wer Markup für eine Seite erzeugt, deren Theme das noch
+nicht ist, lässt beide Klassensätze stehen.
+
+### Drei Eigenheiten, die die Ausgabe ändern
+
+1. **Der Literalwert `Default` wird übersprungen.** Ein Attribut wie
+   `vertical_align_xs` mit dem gespeicherten Wert `"Default"` erzeugt keine
+   Klasse — das ist kein leerer Wert, sondern ein Steuerwert mit dieser einen
+   Bedeutung.
+2. **`hide_<bp>` ist eine Kaskade, kein einzelnes `d-none`.** Ist ein
+   Breakpoint versteckt und der nächste nicht, folgt auf `d-none` ein
+   `d-<bp>-block` am nächsten sichtbaren Breakpoint. Beim `xs`-Breakpoint
+   entfällt das Infix (`d-none`, nicht `d-xs-none`). Dieselbe Logik gilt
+   getrennt für `background_hide_<bp>`.
+3. **`hide_<bp>` unterdrückt Layoutklassen.** Ist `hide_<bp>` gesetzt, geben
+   `col_<bp>`, `offset_<bp>`, `order_<bp>` und `vertical_align_<bp>` an diesem
+   Breakpoint nichts aus.
+
+### Das generierte Inline-CSS
+
+Selektor ist `.block-<uuid>`, aus dem Attribut `block_id` — dieser Selektor
+ändert sich nicht. Die Regeln stehen gebündelt je Breakpoint in
+`@media (min-width: …px)`-Blöcken, in aufsteigender Reihenfolge, mit den
+Standardgrenzen `0 / 576 / 768 / 992 / 1200 / 1400`. Ein `@media`-Block, der
+keine Regel enthielte, entfällt vollständig.
+
+Erzeugt werden `height` (aus `height_dimension_<bp>` plus `height_unit_<bp>`,
+Fallback-Einheit `px`) sowie `padding-top|right|bottom|left` und
+`margin-top|right|bottom|left` (Einheit standardmäßig `px`).
+
+**Zwei unterschiedliche Leerprüfungen, beide bewusst:**
+
+- Bei Abständen ist `"0"` ein gültiger, von `""` verschiedener Wert:
+  `padding_top_xs: "0"` erzeugt `padding-top: 0px;`, `padding_top_xs: ""`
+  erzeugt gar keine Deklaration.
+- Bei der Höhe gilt das **nicht**: `height_dimension_md: "0"` erzeugt
+  **keine** `height`-Regel. Wer beide Fälle vereinheitlicht, erzeugt
+  `height`-Regeln, die auf migrierten Bestandsseiten heute nicht existieren,
+  und damit sichtbaren Layoutbruch.
+
+Jeder Wert läuft vor der Ausgabe durch eine Prüfung: Zahlen numerisch,
+`block_id` gegen das UUID-Format, Einheiten gegen eine feste Liste
+(`px`, `%`, `vh`, `vw`, `rem`, `em`). Ein Attributwert, der diese Prüfung
+nicht besteht, erzeugt keine Regel, statt ungeprüft ins Stylesheet zu
+gelangen — ein manipuliertes `block_id` erzeugt damit kein beliebiges CSS
+mehr.
+
+## Filter und Kompatibilitätsschalter
+
+Drei Werte des generierten CSS stehen in allen bisher geprüften
+Installationen auf ihrem Default und sind deshalb fest im Code hinterlegt,
+nicht als Backend-Option. Wo eine Installation abweicht, ist der Ausweg ein
+Filter — kein UI-Feld, das zum unbedachten Ändern des Renderpfads einlädt.
+
+| Filter | Default | Wirkung |
+|---|---|---|
+| `crea_bootstrap_blocks_spacing_unit` | `'px'` | Einheit für `padding`/`margin` im generierten CSS |
+| `crea_bootstrap_blocks_breakpoints` | `xs=0, sm=576, md=768, lg=992, xl=1200, xxl=1400` | Media-Query-Grenzen je Breakpoint-Suffix |
+| `crea_bootstrap_blocks_allowed_units` | `px, %, vh, vw, rem, em` | Allowlist der Einheiten, die überhaupt ins CSS dürfen |
+
+Jeder gefilterte Wert wird nach dem Filter erneut geprüft: Ein ungültiger
+Rückgabewert (falscher Typ, unbekannter Breakpoint-Schlüssel, eine Einheit
+außerhalb der Allowlist) fällt auf den Default zurück, statt ungeprüft
+weiterzulaufen.
+
+### Zwei Konstanten, kein Filter
+
+`CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` (Default `true`) und
+`CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS` (Default `true`) sind bewusst
+Konstanten und keine Filter: Sie werden einmal pro Seite/Theme umgestellt,
+nicht laufend abgefragt. `LEGACY_CLASSES` steuert, ob `areoi-*`-Klassen
+zusätzlich zu `creabb-*` ausgegeben werden (siehe `20-render`).
+`LEGACY_BLOCKS` steuert, ob die `areoi/*`-Aliasblöcke überhaupt registriert
+sind und im Editor rendern.
+
+### Der Render-Shim ist kein Ersatz für richtiges Markup
+
+Ein Filter auf `render_block_data` hebt zur Renderzeit flach gespeicherte
+Attributwerte automatisch in den `blockstudio`-Container (REGEL 1). Er ist
+ein Sicherheitsnetz für übersehene Fundstellen aus der Migration, **kein**
+Grund, selbst flaches Markup zu erzeugen: Der Shim wirkt ausschließlich beim
+Rendern. Im Editor zeigt ein flach gespeicherter Block leere Felder und
+schreibt beim ersten Speichern den leeren Stand zurück — dann sind die
+flachen Werte endgültig weg.
+
+## Fallstricke
+
+### 1. Flache Attribute — der häufigste Fehler
+
+Attributwerte gehören in den `blockstudio`-Container, nicht auf die oberste
+Ebene des Blockkommentars (REGEL 1). Flach gespeicherte Werte werden beim
+Rendern verworfen und durch die Defaults ersetzt — **ohne Fehlermeldung**.
+Ein Block, der aussieht wie richtig konfiguriert, zeigt dann trotzdem nur
+Defaults an.
+
+### 2. `areoi/*` ist der alte Namensraum
+
+Neues Markup gehört ausschließlich nach `creabb/*`. `areoi/*` existiert nur
+als Alias für nicht migrierten Bestandscontent und wird im Editor-Inserter
+absichtlich verborgen — ein Agent soll ihn beim Erzeugen neuen Markups nicht
+von sich aus wählen.
+
+### 3. `block_id` ist die Klammer zum generierten CSS
+
+`block_id` ist eine UUID und der Selektor `.block-<uuid>` des generierten
+Inline-CSS (siehe `20-render`). Wer sie beim Erzeugen oder Ändern von Markup
+weglässt oder verändert, verliert damit alle über dieses Attribut
+adressierten Abstände und Höhen — das Markup rendert weiter, nur ohne die
+zugehörige Regel.
+
+### 4. `""` und `"0"` sind bei Abständen nicht dasselbe
+
+Bei `padding_*` und `margin_*` ist `"0"` ein gültiger, bedeutungstragender
+Wert (er erzeugt `…: 0px;`), `""` dagegen erzeugt keine Regel. Ein Agent, der
+einen Abstand „auf Null setzen" will, muss `"0"` schreiben, nicht den
+Attributwert leeren oder weglassen.
+
+### 5. `number`/`range` sind für Maßangaben gesperrt
+
+`padding_*`, `margin_*` und `height_dimension_<bp>` sind im Vertrag Strings.
+Editor-Felder für Vertragsattribute dürfen nur speicherformtreue Feldtypen
+verwenden (`text`, `textarea`, `toggle`, `code`, `creabb/select`,
+`creabb/color`) — `number` und `range` erzeugen eine Zahl und brechen damit
+den Attributtyp, außer an den drei numerischen Attributen von
+`media-grid-image`.
+
+## Attributvertrag je Block
+
+### creabb/accordion
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/accordion-item
+Grundstruktur beim Einfuegen: creabb/accordion-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- flush (string), Default: NULL, erlaubt: Default | accordion-flush
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/accordion-item
+
+Kategorie: creabb-components
+Elternblock: creabb/accordion
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- heading (string), Default: 'h3', erlaubt: h1 | h1 | h2 | h3 | h4 | h5 | h6 | p
+- title (string), Default: true
+- open (boolean), Default: false
+- always_open (boolean), Default: false
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/alert
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- style (string), Default: 'alert-primary', erlaubt: alert-primary | alert-primary | alert-secondary | alert-success | alert-danger | alert-warning | alert-info | alert-light | alert-dark
+- close (boolean), Default: false
+- icon (object), Default: false
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/banner
+
+Kategorie: creabb-strips
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/banner-item
+Grundstruktur beim Einfuegen: creabb/banner-item; creabb/banner-item > core/heading; creabb/banner-item > core/paragraph; creabb/banner-item > creabb/button; creabb/banner-item; creabb/banner-item > core/heading; creabb/banner-item; creabb/banner-item > core/heading
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- layout (string), Default: 'grid', erlaubt: grid | masonry
+- size (string), Default: 'areoi-large', erlaubt: areoi-small | areoi-medium | areoi-large
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/banner-item
+
+Kategorie: creabb-strips
+Elternblock: creabb/banner
+Erlaubte Kindbloecke: core/heading, core/paragraph, creabb/button, core/image, core/video, creabb/icon
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- image (object), Default: NULL
+- video (object), Default: NULL
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- url (string), Default: NULL
+- title (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+
+### creabb/breadcrumb
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- divider (string), Default: '/'
+- is_front_page (boolean), Default: false
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/button
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/dropdown-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- type (string), Default: 'a', erlaubt: a | button | div | span
+- style (string), Default: 'btn-primary', erlaubt: btn-primary | btn-secondary | btn-success | btn-warning | btn-danger | btn-info | btn-dark | btn-light | btn-link | btn-outline-primary | btn-outline-secondary | btn-outline-dark | btn-outline-light
+- size (string), Default: NULL, erlaubt: Default | btn-sm | btn-lg
+- text_wrap (string), Default: NULL, erlaubt: Default | text-nowrap
+- link_to_modal (boolean), Default: false
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- text (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+- include_icon (boolean), Default: false
+- icon (string), Default: 'bi-activity'
+- icon_size (string), Default: '24'
+- icon_position (string), Default: 'append', erlaubt: prepend | append
+- popover (boolean), Default: false
+- popover_title (string), Default: NULL
+- popover_content (string), Default: NULL
+- popover_direction (string), Default: 'top', erlaubt: top | bottom | left | right
+- popover_trigger (string), Default: NULL, erlaubt:  | click | hover
+- tooltip (boolean), Default: false
+- tooltip_content (string), Default: NULL
+- tooltip_direction (string), Default: 'top', erlaubt: top | bottom | left | right
+- dropdown (boolean), Default: false
+- dropdown_auto_close (string), Default: 'true', erlaubt: true | inside | outside | false
+- dropdown_style (string), Default: NULL, erlaubt: Default | dropdown-menu-dark
+- dropdown_direction (string), Default: 'dropdown', erlaubt: dropdown | dropup | dropend | dropstart
+- dropdown_menu_alignment (string), Default: NULL, erlaubt: Default | dropdown-menu-end
+- badge (boolean), Default: false
+- badge_style (string), Default: NULL, erlaubt: Default | rounded-pill
+- badge_background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light
+- badge_text_color (string), Default: NULL, erlaubt: Default | text-dark | text-light | text-white
+- badge_content (string), Default: NULL
+- badge_classes (string), Default: NULL
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- block_xs (boolean), Default: false
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- block_sm (boolean), Default: false
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- block_md (boolean), Default: false
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- block_lg (boolean), Default: false
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- block_xl (boolean), Default: false
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- block_xxl (boolean), Default: false
+
+### creabb/button-group
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/button
+Grundstruktur beim Einfuegen: creabb/button; creabb/button
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- style (string), Default: 'btn-group', erlaubt: btn-group | btn-group-vertical
+- size (string), Default: NULL, erlaubt: Default | btn-group-sm | btn-group-lg
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/card
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/card-header, creabb/card-body, creabb/card-footer, creabb/list-group, core/image, core/video, core/post-featured-image
+Grundstruktur beim Einfuegen: creabb/card-header; creabb/card-body; creabb/card-footer
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- border_color (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/card-body
+
+Kategorie: creabb-components
+Elternblock: creabb/card
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- border_color (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/card-footer
+
+Kategorie: creabb-components
+Elternblock: creabb/card
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- border_color (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/card-group
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/card
+Grundstruktur beim Einfuegen: creabb/card
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/card-header
+
+Kategorie: creabb-components
+Elternblock: creabb/card
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- border_color (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/carousel
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/carousel-item
+Grundstruktur beim Einfuegen: creabb/carousel-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- controls (boolean), Default: true
+- indicators (boolean), Default: true
+- touch (boolean), Default: true
+- auto_scroll (boolean), Default: true
+- pause (string), Default: 'hover', erlaubt: hover | false
+- interval (string), Default: '4000'
+- transition (string), Default: NULL, erlaubt: Default | carousel-fade
+- item_style (string), Default: NULL, erlaubt: Default | carousel-dark
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/carousel-item
+
+Kategorie: creabb-components
+Elternblock: creabb/carousel
+Grundstruktur beim Einfuegen: creabb/strip; creabb/strip > creabb/container; creabb/strip > creabb/container > creabb/row; creabb/strip > creabb/container > creabb/row > creabb/column
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- interval (string), Default: 4000
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/collapse
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- open (boolean), Default: false
+
+### creabb/column
+
+Kategorie: creabb-layout
+Elternblock: keiner
+Kontext: creabb/isFlex
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- background_display (boolean), Default: false
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+- vertical_align_xs (string), Default: NULL, erlaubt: Default | align-self-start | align-self-center | align-self-end
+- vertical_align_sm (string), Default: NULL, erlaubt: Default | align-self-sm-start | align-self-sm-center | align-self-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt: Default | align-self-md-start | align-self-md-center | align-self-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt: Default | align-self-lg-start | align-self-lg-center | align-self-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt: Default | align-self-xl-start | align-self-xl-center | align-self-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt: Default | align-self-xxl-start | align-self-xxl-center | align-self-xxl-end
+- grid_row_xs (string), Default: NULL
+- grid_row_sm (string), Default: NULL
+- grid_row_md (string), Default: NULL
+- grid_row_lg (string), Default: NULL
+- grid_row_xl (string), Default: NULL
+- grid_row_xxl (string), Default: NULL
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- offset_xs (string), Default: NULL, erlaubt: Default | offset-0 | offset-1 | offset-2 | offset-3 | offset-4 | offset-5 | offset-6 | offset-7 | offset-8 | offset-9 | offset-10 | offset-11 | offset-12 | offset-auto
+- offset_sm (string), Default: NULL, erlaubt: Default | offset-sm-0 | offset-sm-1 | offset-sm-2 | offset-sm-3 | offset-sm-4 | offset-sm-5 | offset-sm-6 | offset-sm-7 | offset-sm-8 | offset-sm-9 | offset-sm-10 | offset-sm-11 | offset-sm-12 | offset-sm-auto
+- offset_md (string), Default: NULL, erlaubt: Default | offset-md-0 | offset-md-1 | offset-md-2 | offset-md-3 | offset-md-4 | offset-md-5 | offset-md-6 | offset-md-7 | offset-md-8 | offset-md-9 | offset-md-10 | offset-md-11 | offset-md-12 | offset-md-auto
+- offset_lg (string), Default: NULL, erlaubt: Default | offset-lg-0 | offset-lg-1 | offset-lg-2 | offset-lg-3 | offset-lg-4 | offset-lg-5 | offset-lg-6 | offset-lg-7 | offset-lg-8 | offset-lg-9 | offset-lg-10 | offset-lg-11 | offset-lg-12 | offset-lg-auto
+- offset_xl (string), Default: NULL, erlaubt: Default | offset-xl-0 | offset-xl-1 | offset-xl-2 | offset-xl-3 | offset-xl-4 | offset-xl-5 | offset-xl-6 | offset-xl-7 | offset-xl-8 | offset-xl-9 | offset-xl-10 | offset-xl-11 | offset-xl-12 | offset-xl-auto
+- offset_xxl (string), Default: NULL, erlaubt: Default | offset-xxl-0 | offset-xxl-1 | offset-xxl-2 | offset-xxl-3 | offset-xxl-4 | offset-xxl-5 | offset-xxl-6 | offset-xxl-7 | offset-xxl-8 | offset-xxl-9 | offset-xxl-10 | offset-xxl-11 | offset-xxl-12 | offset-xxl-auto
+- order_xs (string), Default: NULL, erlaubt: Default | order-0 | order-1 | order-2 | order-3 | order-4 | order-5 | order-6 | order-7 | order-8 | order-9 | order-10 | order-11 | order-12 | order-auto
+- order_sm (string), Default: NULL, erlaubt: Default | order-sm-0 | order-sm-1 | order-sm-2 | order-sm-3 | order-sm-4 | order-sm-5 | order-sm-6 | order-sm-7 | order-sm-8 | order-sm-9 | order-sm-10 | order-sm-11 | order-sm-12 | order-sm-auto
+- order_md (string), Default: NULL, erlaubt: Default | order-md-0 | order-md-1 | order-md-2 | order-md-3 | order-md-4 | order-md-5 | order-md-6 | order-md-7 | order-md-8 | order-md-9 | order-md-10 | order-md-11 | order-md-12 | order-md-auto
+- order_lg (string), Default: NULL, erlaubt: Default | order-lg-0 | order-lg-1 | order-lg-2 | order-lg-3 | order-lg-4 | order-lg-5 | order-lg-6 | order-lg-7 | order-lg-8 | order-lg-9 | order-lg-10 | order-lg-11 | order-lg-12 | order-lg-auto
+- order_xl (string), Default: NULL, erlaubt: Default | order-xl-0 | order-xl-1 | order-xl-2 | order-xl-3 | order-xl-4 | order-xl-5 | order-xl-6 | order-xl-7 | order-xl-8 | order-xl-9 | order-xl-10 | order-xl-11 | order-xl-12 | order-xl-auto
+- order_xxl (string), Default: NULL, erlaubt: Default | order-xxl-0 | order-xxl-1 | order-xxl-2 | order-xxl-3 | order-xxl-4 | order-xxl-5 | order-xxl-6 | order-xxl-7 | order-xxl-8 | order-xxl-9 | order-xxl-10 | order-xxl-11 | order-xxl-12 | order-xxl-auto
+
+### creabb/column-break
+
+Kategorie: creabb-layout
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/container
+
+Kategorie: creabb-layout
+Elternblock: keiner
+Grundstruktur beim Einfuegen: creabb/row; creabb/row > creabb/column
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- align (string), Default: '', erlaubt:  | wide | full
+- container (string), Default: 'container', erlaubt: container | container-sm | container-md | container-lg | container-xl | container-xxl | container-fluid
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+
+### creabb/content-grid
+
+Kategorie: creabb-strips
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/content-grid-item
+Grundstruktur beim Einfuegen: creabb/content-grid-item; creabb/content-grid-item; creabb/content-grid-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- layout (string), Default: 'grid', erlaubt: grid | masonry
+- style (string), Default: 'card', erlaubt: flush | card | full
+- size (string), Default: 'areoi-medium', erlaubt: areoi-small | areoi-medium | areoi-large
+- media_fit (string), Default: 'cover', erlaubt: cover | contain | set
+- media_height (string), Default: '50'
+- media_width (string), Default: '100'
+- media_align (string), Default: 'center', erlaubt: start | center | end
+- columns (string), Default: '3', erlaubt: 1 | 2 | 3 | 4 | 5 | 6
+- container (string), Default: 'container', erlaubt: container | container-sm | container-md | container-lg | container-xl | container-xxl | container-fluid
+- prepend_display_heading (boolean), Default: true
+- prepend_heading_level (string), Default: 'h2', erlaubt: h1 | h2 | h3 | h4 | h5 | h6
+- prepend_heading (string), Default: NULL
+- prepend_heading_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_display_intro (boolean), Default: true
+- prepend_intro (string), Default: NULL
+- prepend_intro_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_text_align_xs (string), Default: NULL, erlaubt:  | text-start | text-center | text-end
+- prepend_text_align_sm (string), Default: NULL, erlaubt:  | text-sm-start | text-sm-center | text-sm-end
+- prepend_text_align_md (string), Default: NULL, erlaubt:  | text-md-start | text-md-center | text-md-end
+- prepend_text_align_lg (string), Default: NULL, erlaubt:  | text-lg-start | text-lg-center | text-lg-end
+- prepend_text_align_xl (string), Default: NULL, erlaubt:  | text-xl-start | text-xl-center | text-xl-end
+- prepend_text_align_xxl (string), Default: NULL, erlaubt:  | text-xxl-start | text-xxl-center | text-xxl-end
+- prepend_horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end
+- prepend_horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end
+- prepend_horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end
+- prepend_horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end
+- prepend_horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end
+- prepend_horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end
+- prepend_col_xs (string), Default: NULL, erlaubt:  | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- prepend_col_sm (string), Default: NULL, erlaubt:  | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- prepend_col_md (string), Default: NULL, erlaubt:  | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- prepend_col_lg (string), Default: NULL, erlaubt:  | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- prepend_col_xl (string), Default: NULL, erlaubt:  | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- prepend_col_xxl (string), Default: NULL, erlaubt:  | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- vertical_align_xs (string), Default: NULL, erlaubt:  | align-items-start | align-items-center | align-items-end
+- vertical_align_sm (string), Default: NULL, erlaubt:  | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt:  | align-items-md-start | align-items-md-center | align-items-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt:  | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt:  | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt:  | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+
+### creabb/content-grid-item
+
+Kategorie: creabb-strips
+Elternblock: creabb/content-grid
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- media_fit (string), Default: 'cover', erlaubt: cover | contain | set
+- media_height (string), Default: '50'
+- media_width (string), Default: '100'
+- media_align (string), Default: 'center', erlaubt: start | center | end
+- style (string), Default: 'card', erlaubt: flush | card | full
+- image (object), Default: NULL
+- video (object), Default: NULL
+- vertical_align_xs (string), Default: NULL, erlaubt:  | align-items-start | align-items-center | align-items-end
+- vertical_align_sm (string), Default: NULL, erlaubt:  | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt:  | align-items-md-start | align-items-md-center | align-items-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt:  | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt:  | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt:  | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+
+### creabb/content-with-media
+
+Kategorie: creabb-strips
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- layout (string), Default: 'fixed', erlaubt: grid | masonry
+- alignment (string), Default: 'start', erlaubt: start | end
+- size (string), Default: 'areoi-large', erlaubt: areoi-small | areoi-medium | areoi-large
+- image (object), Default: NULL
+- video (object), Default: NULL
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+
+### creabb/div
+
+Kategorie: creabb-layout
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- rel (string), Default: NULL
+
+### creabb/dropdown-item
+
+Kategorie: creabb-components
+Elternblock: creabb/button
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- type (string), Default: 'dropdown-item', erlaubt: dropdown-item | dropdown-header | dropdown-divider | p-3
+- active (boolean), Default: false
+- disabled (boolean), Default: false
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- text (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt: Default | _blank
+- rel (string), Default: NULL
+
+### creabb/icon
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- style (string), Default: 'text-primary', erlaubt: text-primary | text-primary | text-secondary | text-success | text-danger | text-warning | text-info | text-light | text-dark
+- size (string), Default: '24', erlaubt: 12 | 24 | 36 | 48 | 60 | 80
+- icon (string), Default: 'bi-activity'
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+- horizontal_align_xs (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+- horizontal_align_sm (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+- horizontal_align_md (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+- horizontal_align_lg (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+- horizontal_align_xl (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+- horizontal_align_xxl (string), Default: NULL, erlaubt: Default | text-start | text-center | text-end
+
+### creabb/list-group
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/list-group-item
+Grundstruktur beim Einfuegen: creabb/list-group-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- flush (string), Default: NULL, erlaubt: Default | list-group-flush
+- layout (string), Default: '', erlaubt: Default | list-group-horizontal
+- layout_xs (string), Default: NULL
+- layout_sm (string), Default: NULL
+- layout_md (string), Default: NULL
+- layout_lg (string), Default: NULL
+- layout_xl (string), Default: NULL
+- layout_xxl (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/list-group-item
+
+Kategorie: creabb-components
+Elternblock: creabb/list-group
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- active (boolean), Default: false
+- disabled (boolean), Default: false
+- action (boolean), Default: false
+- item_style (string), Default: NULL, erlaubt: Default | list-group-item-primary | list-group-item-secondary | list-group-item-success | list-group-item-danger | list-group-item-warning | list-group-item-info | list-group-item-light | list-group-item-dark
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- text (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt: Default | _blank
+- rel (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/media-grid
+
+Kategorie: creabb-strips
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- block_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- layout (string), Default: 'grid', erlaubt: grid | masonry
+- style (string), Default: 'flush', erlaubt: flush | card | full
+- size (string), Default: 'areoi-medium', erlaubt: areoi-small | areoi-medium | areoi-large
+- card_size (string), Default: 'areoi-card-small', erlaubt: areoi-card-extra-small | areoi-card-small | areoi-card-medium | areoi-card-large | areoi-card-extra-large
+- media_fit (string), Default: 'cover', erlaubt: cover | contain | set
+- media_height (string), Default: '50'
+- media_width (string), Default: '100'
+- media_align (string), Default: 'center', erlaubt: start | center | end
+- image_layout (string), Default: 'cover', erlaubt: cover | contain
+- columns (string), Default: '3', erlaubt: 1 | 2 | 3 | 4 | 5 | 6
+- container (string), Default: 'container', erlaubt: container | container-sm | container-md | container-lg | container-xl | container-xxl | container-fluid
+- prepend_display_heading (boolean), Default: true
+- prepend_heading_level (string), Default: 'h2', erlaubt: h1 | h2 | h3 | h4 | h5 | h6
+- prepend_heading (string), Default: NULL
+- prepend_heading_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_display_intro (boolean), Default: true
+- prepend_intro (string), Default: NULL
+- prepend_intro_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_text_align_xs (string), Default: NULL, erlaubt:  | text-start | text-center | text-end
+- prepend_text_align_sm (string), Default: NULL, erlaubt:  | text-sm-start | text-sm-center | text-sm-end
+- prepend_text_align_md (string), Default: NULL, erlaubt:  | text-md-start | text-md-center | text-md-end
+- prepend_text_align_lg (string), Default: NULL, erlaubt:  | text-lg-start | text-lg-center | text-lg-end
+- prepend_text_align_xl (string), Default: NULL, erlaubt:  | text-xl-start | text-xl-center | text-xl-end
+- prepend_text_align_xxl (string), Default: NULL, erlaubt:  | text-xxl-start | text-xxl-center | text-xxl-end
+- prepend_horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end
+- prepend_horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end
+- prepend_horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end
+- prepend_horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end
+- prepend_horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end
+- prepend_horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end
+- prepend_col_xs (string), Default: NULL, erlaubt:  | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- prepend_col_sm (string), Default: NULL, erlaubt:  | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- prepend_col_md (string), Default: NULL, erlaubt:  | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- prepend_col_lg (string), Default: NULL, erlaubt:  | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- prepend_col_xl (string), Default: NULL, erlaubt:  | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- prepend_col_xxl (string), Default: NULL, erlaubt:  | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- images (array), Default: array (
+)
+- ids (array), Default: array (
+)
+- shortCodeTransforms (array), Default: array (
+)
+- caption (string), Default: NULL
+- imageCrop (boolean), Default: true
+- fixedHeight (boolean), Default: true
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+- linkTo (string), Default: NULL, erlaubt: none | media | attachment
+- sizeSlug (string), Default: 'large', erlaubt: thumbnail | medium | large | full
+- allowResize (boolean), Default: false
+- vertical_align_xs (string), Default: NULL, erlaubt:  | align-items-start | align-items-center | align-items-end
+- vertical_align_sm (string), Default: NULL, erlaubt:  | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt:  | align-items-md-start | align-items-md-center | align-items-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt:  | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt:  | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt:  | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px', erlaubt: px | % | vh | rem
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+
+### creabb/media-grid-image
+
+Kategorie: creabb-components
+Elternblock: creabb/media-grid
+Kontext: allowResize, imageCrop, fixedHeight
+
+- preview (boolean), Default: false
+- block_id (string), Default: NULL
+- parent_id (string), Default: NULL
+- align (string), Default: NULL
+- media_fit (string), Default: 'cover', erlaubt: cover | contain | set
+- media_height (string), Default: '50'
+- media_width (string), Default: '100'
+- media_align (string), Default: 'center', erlaubt: start | center | end
+- url (string), Default: NULL
+- alt (string), Default: ''
+- caption (string), Default: NULL
+- title (string), Default: NULL
+- href (string), Default: NULL
+- rel (string), Default: NULL
+- linkClass (string), Default: NULL
+- id (number), Default: NULL
+- width (number), Default: NULL
+- height (number), Default: NULL
+- sizeSlug (string), Default: NULL, erlaubt: thumbnail | medium | large | full
+- linkDestination (string), Default: NULL, erlaubt: none | media | attachment
+- linkTarget (string), Default: NULL, erlaubt:  | _blank
+
+### creabb/modal
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/modal-header, creabb/modal-body, creabb/modal-footer
+Grundstruktur beim Einfuegen: creabb/modal-header; creabb/modal-body; creabb/modal-footer
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- backdrop (string), Default: NULL, erlaubt: Default | static
+- scrollable (string), Default: NULL, erlaubt: Default | modal-dialog-scrollable
+- centered (string), Default: NULL, erlaubt: Default | modal-dialog-centered
+- size (string), Default: NULL, erlaubt: Default | modal-sm | Default | modal-lg | modal-xl | modal-fullscreen
+
+### creabb/modal-body
+
+Kategorie: creabb-components
+Elternblock: creabb/modal
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+### creabb/modal-footer
+
+Kategorie: creabb-components
+Elternblock: creabb/modal
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+### creabb/modal-header
+
+Kategorie: creabb-components
+Elternblock: creabb/modal
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- close_button (boolean), Default: true
+
+### creabb/nav-and-tab
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/nav-and-tab-item
+Grundstruktur beim Einfuegen: creabb/nav-and-tab-item; creabb/nav-and-tab-item
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- style (string), Default: 'btn-group', erlaubt: Default | nav-tabs | nav-pills
+- fill (string), Default: NULL, erlaubt: Default | nav-fill | nav-justified
+- vertical_align_xs (string), Default: NULL, erlaubt: Default | flex-column
+- vertical_align_sm (string), Default: NULL, erlaubt: Default | flex-sm-column
+- vertical_align_md (string), Default: NULL, erlaubt: Default | flex-md-column
+- vertical_align_lg (string), Default: NULL, erlaubt: Default | flex-lg-column
+- vertical_align_xl (string), Default: NULL, erlaubt: Default | flex-xl-column
+- vertical_align_xxl (string), Default: NULL, erlaubt: Default | flex-xxl-column
+- horizontal_align_xs (string), Default: NULL, erlaubt: Default | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- horizontal_align_sm (string), Default: NULL, erlaubt: Default | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- horizontal_align_md (string), Default: NULL, erlaubt: Default | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- horizontal_align_lg (string), Default: NULL, erlaubt: Default | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- horizontal_align_xl (string), Default: NULL, erlaubt: Default | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- horizontal_align_xxl (string), Default: NULL, erlaubt: Default | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/nav-and-tab-item
+
+Kategorie: creabb-components
+Elternblock: creabb/nav-and-tab
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- active (boolean), Default: false
+- disabled (boolean), Default: false
+- url (string), Default: NULL
+- url_title (string), Default: NULL
+- title (string), Default: NULL
+- text (string), Default: NULL
+- linkTarget (string), Default: NULL, erlaubt: Default | _blank
+- rel (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/offcanvas
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/offcanvas-header, creabb/offcanvas-body
+Grundstruktur beim Einfuegen: creabb/offcanvas-header; creabb/offcanvas-body
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- backdrop (string), Default: NULL, erlaubt: true | false
+- scrollable (string), Default: NULL, erlaubt: false | true
+- placement (string), Default: 'offcanvas-start', erlaubt: offcanvas-start | offcanvas-end | offcanvas-top | offcanvas-bottom
+
+### creabb/offcanvas-body
+
+Kategorie: creabb-components
+Elternblock: creabb/offcanvas
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+### creabb/offcanvas-header
+
+Kategorie: creabb-components
+Elternblock: creabb/offcanvas
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+### creabb/post-grid
+
+Kategorie: creabb-strips
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- post_type (string), Default: 'post', erlaubt: post | page | child-pages
+- display_posts (string), Default: 'selected', erlaubt: selected | children
+- posts_per_page (string), Default: '8'
+- orderby (string), Default: 'title', erlaubt: title | date | menu_order
+- order (string), Default: 'asc', erlaubt: asc | desc
+- post_ids (array), Default: array (
+)
+- include_pagination (boolean), Default: false
+- pagination_color (string), Default: 'btn-primary', erlaubt: btn-primary | btn-secondary | btn-dark | btn-light
+- layout (string), Default: 'grid', erlaubt: grid | masonry
+- style (string), Default: 'card', erlaubt: flush | card | full
+- size (string), Default: 'areoi-medium', erlaubt: areoi-small | areoi-medium | areoi-large
+- card_size (string), Default: 'areoi-card-small', erlaubt: areoi-card-small | areoi-card-medium | areoi-card-large
+- columns (string), Default: '3', erlaubt: 1 | 2 | 3 | 4 | 5 | 6
+- container (string), Default: 'container', erlaubt: container | container-sm | container-md | container-lg | container-xl | container-xxl | container-fluid
+- include_media (boolean), Default: true
+- media_layout (string), Default: 'inline', erlaubt: inline | background
+- include_title (boolean), Default: true
+- title_element (string), Default: 'h1', erlaubt: h1 | h2 | h3 | h4 | h5 | h6
+- include_excerpt (boolean), Default: false
+- include_permalink (boolean), Default: true
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- prepend_display_heading (boolean), Default: true
+- prepend_heading_level (string), Default: 'h2', erlaubt: h1 | h2 | h3 | h4 | h5 | h6
+- prepend_heading (string), Default: NULL
+- prepend_heading_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_display_intro (boolean), Default: true
+- prepend_intro (string), Default: NULL
+- prepend_intro_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-dark | text-light | text-white
+- prepend_text_align_xs (string), Default: NULL, erlaubt:  | text-start | text-center | text-end
+- prepend_text_align_sm (string), Default: NULL, erlaubt:  | text-sm-start | text-sm-center | text-sm-end
+- prepend_text_align_md (string), Default: NULL, erlaubt:  | text-md-start | text-md-center | text-md-end
+- prepend_text_align_lg (string), Default: NULL, erlaubt:  | text-lg-start | text-lg-center | text-lg-end
+- prepend_text_align_xl (string), Default: NULL, erlaubt:  | text-xl-start | text-xl-center | text-xl-end
+- prepend_text_align_xxl (string), Default: NULL, erlaubt:  | text-xxl-start | text-xxl-center | text-xxl-end
+- prepend_horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end
+- prepend_horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end
+- prepend_horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end
+- prepend_horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end
+- prepend_horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end
+- prepend_horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end
+- prepend_col_xs (string), Default: NULL, erlaubt:  | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- prepend_col_sm (string), Default: NULL, erlaubt:  | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- prepend_col_md (string), Default: NULL, erlaubt:  | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- prepend_col_lg (string), Default: NULL, erlaubt:  | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- prepend_col_xl (string), Default: NULL, erlaubt:  | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- prepend_col_xxl (string), Default: NULL, erlaubt:  | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+- item_background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- item_display_overlay (boolean), Default: false
+- item_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- item_vertical_align_xs (string), Default: NULL, erlaubt:  | align-items-start | align-items-center | align-items-end
+- item_vertical_align_sm (string), Default: NULL, erlaubt:  | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- item_vertical_align_md (string), Default: NULL, erlaubt:  | align-items-md-start | align-items-md-center | align-items-md-end
+- item_vertical_align_lg (string), Default: NULL, erlaubt:  | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- item_vertical_align_xl (string), Default: NULL, erlaubt:  | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- item_vertical_align_xxl (string), Default: NULL, erlaubt:  | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- item_horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- item_horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- item_horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- item_horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- item_horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- item_horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- item_text_align_xs (string), Default: NULL, erlaubt:  | text-start | text-center | text-end
+- item_text_align_sm (string), Default: NULL, erlaubt:  | text-sm-start | text-sm-center | text-sm-end
+- item_text_align_md (string), Default: NULL, erlaubt:  | text-md-start | text-md-center | text-md-end
+- item_text_align_lg (string), Default: NULL, erlaubt:  | text-lg-start | text-lg-center | text-lg-end
+- item_text_align_xl (string), Default: NULL, erlaubt:  | text-xl-start | text-xl-center | text-xl-end
+- item_text_align_xxl (string), Default: NULL, erlaubt:  | text-xxl-start | text-xxl-center | text-xxl-end
+- vertical_align_xs (string), Default: NULL, erlaubt:  | align-items-start | align-items-center | align-items-end
+- vertical_align_sm (string), Default: NULL, erlaubt:  | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt:  | align-items-md-start | align-items-md-center | align-items-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt:  | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt:  | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt:  | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- horizontal_align_xs (string), Default: NULL, erlaubt:  | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- horizontal_align_sm (string), Default: NULL, erlaubt:  | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- horizontal_align_md (string), Default: NULL, erlaubt:  | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- horizontal_align_lg (string), Default: NULL, erlaubt:  | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- horizontal_align_xl (string), Default: NULL, erlaubt:  | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- horizontal_align_xxl (string), Default: NULL, erlaubt:  | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+
+### creabb/progress
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- width (string), Default: '50'
+- label (boolean), Default: false
+- background (string), Default: 'bg-primary', erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-danger | bg-warning | bg-info | bg-light | bg-dark
+- striped (boolean), Default: false
+- animated (boolean), Default: false
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+
+### creabb/row
+
+Kategorie: creabb-layout
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/column, creabb/column-break
+Grundstruktur beim Einfuegen: creabb/column
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- is_flex (boolean), Default: false
+- vertical_align_xs (string), Default: NULL, erlaubt: Default | align-items-start | align-items-center | align-items-end
+- vertical_align_sm (string), Default: NULL, erlaubt: Default | align-items-sm-start | align-items-sm-center | align-items-sm-end
+- vertical_align_md (string), Default: NULL, erlaubt: Default | align-items-md-start | align-items-md-center | align-items-md-end
+- vertical_align_lg (string), Default: NULL, erlaubt: Default | align-items-lg-start | align-items-lg-center | align-items-lg-end
+- vertical_align_xl (string), Default: NULL, erlaubt: Default | align-items-xl-start | align-items-xl-center | align-items-xl-end
+- vertical_align_xxl (string), Default: NULL, erlaubt: Default | align-items-xxl-start | align-items-xxl-center | align-items-xxl-end
+- horizontal_align_xs (string), Default: NULL, erlaubt: Default | justify-content-start | justify-content-center | justify-content-end | justify-content-around | justify-content-between | justify-content-evenly
+- horizontal_align_sm (string), Default: NULL, erlaubt: Default | justify-content-sm-start | justify-content-sm-center | justify-content-sm-end | justify-content-sm-around | justify-content-sm-between | justify-content-sm-evenly
+- horizontal_align_md (string), Default: NULL, erlaubt: Default | justify-content-md-start | justify-content-md-center | justify-content-md-end | justify-content-md-around | justify-content-md-between | justify-content-md-evenly
+- horizontal_align_lg (string), Default: NULL, erlaubt: Default | justify-content-lg-start | justify-content-lg-center | justify-content-lg-end | justify-content-lg-around | justify-content-lg-between | justify-content-lg-evenly
+- horizontal_align_xl (string), Default: NULL, erlaubt: Default | justify-content-xl-start | justify-content-xl-center | justify-content-xl-end | justify-content-xl-around | justify-content-xl-between | justify-content-xl-evenly
+- horizontal_align_xxl (string), Default: NULL, erlaubt: Default | justify-content-xxl-start | justify-content-xxl-center | justify-content-xxl-end | justify-content-xxl-around | justify-content-xxl-between | justify-content-xxl-evenly
+- row_cols_xs (string), Default: NULL, erlaubt: Default | row-cols-1 | row-cols-2 | row-cols-3 | row-cols-4 | row-cols-5 | row-cols-6
+- row_cols_sm (string), Default: NULL, erlaubt: Default | row-cols-sm-1 | row-cols-sm-2 | row-cols-sm-3 | row-cols-sm-4 | row-cols-sm-5 | row-cols-sm-6
+- row_cols_md (string), Default: NULL, erlaubt: Default | row-cols-md-1 | row-cols-md-2 | row-cols-md-3 | row-cols-md-4 | row-cols-md-5 | row-cols-md-6
+- row_cols_lg (string), Default: NULL, erlaubt: Default | row-cols-lg-1 | row-cols-lg-2 | row-cols-lg-3 | row-cols-lg-4 | row-cols-lg-5 | row-cols-lg-6
+- row_cols_xl (string), Default: NULL, erlaubt: Default | row-cols-xl-1 | row-cols-xl-2 | row-cols-xl-3 | row-cols-xl-4 | row-cols-xl-5 | row-cols-xl-6
+- row_cols_xxl (string), Default: NULL, erlaubt: Default | row-cols-xxl-1 | row-cols-xxl-2 | row-cols-xxl-3 | row-cols-xxl-4 | row-cols-xxl-5 | row-cols-xxl-6
+- grid_gap_dimension_xs (string), Default: NULL
+- grid_gap_unit_xs (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_gap_dimension_sm (string), Default: NULL
+- grid_gap_unit_sm (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_gap_dimension_md (string), Default: NULL
+- grid_gap_unit_md (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_gap_dimension_lg (string), Default: NULL
+- grid_gap_unit_lg (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_gap_dimension_xl (string), Default: NULL
+- grid_gap_unit_xl (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_gap_dimension_xxl (string), Default: NULL
+- grid_gap_unit_xxl (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_xs (string), Default: NULL
+- grid_row_gap_unit_xs (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_sm (string), Default: NULL
+- grid_row_gap_unit_sm (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_md (string), Default: NULL
+- grid_row_gap_unit_md (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_lg (string), Default: NULL
+- grid_row_gap_unit_lg (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_xl (string), Default: NULL
+- grid_row_gap_unit_xl (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_row_gap_dimension_xxl (string), Default: NULL
+- grid_row_gap_unit_xxl (string), Default: 'px', erlaubt: px | % | rem | em
+- grid_rows_xs (string), Default: NULL
+- grid_rows_sm (string), Default: NULL
+- grid_rows_md (string), Default: NULL
+- grid_rows_lg (string), Default: NULL
+- grid_rows_xl (string), Default: NULL
+- grid_rows_xxl (string), Default: NULL
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+
+### creabb/spinner
+
+Kategorie: creabb-components
+Elternblock: keiner
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- style (string), Default: 'spinner-border', erlaubt: spinner-border | spinner-border | spinner-grow
+- color (string), Default: 'text-primary', erlaubt: Default | text-primary | text-secondary | text-success | text-danger | text-warning | text-info | text-light | text-dark
+- size (string), Default: NULL, erlaubt: Default | -sm
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/strip
+
+Kategorie: creabb-layout
+Elternblock: keiner
+Grundstruktur beim Einfuegen: creabb/container; creabb/container > creabb/row; creabb/container > creabb/row > creabb/column
+
+- preview (boolean), Default: false
+- align (string), Default: 'full', erlaubt: full | wide
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- exclude_divider (boolean), Default: false
+- exclude_pattern (boolean), Default: false
+- change_pattern_color (boolean), Default: false
+- pattern_color (object), Default: array (
+  'hex' => '#fff',
+)
+- exclude_transition (boolean), Default: false
+- exclude_parallax (boolean), Default: false
+- utilities_bg (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- utilities_text (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- utilities_border (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+- background_display (boolean), Default: false
+- background_color (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_image (object), Default: NULL
+- background_video (object), Default: NULL
+- background_display_overlay (boolean), Default: false
+- background_overlay (object), Default: array (
+  'rgb' => 
+  array (
+    'r' => 0,
+    'g' => 0,
+    'b' => 0,
+    'a' => 1,
+  ),
+)
+- background_horizontal_align (string), Default: 'justify-content-start', erlaubt: justify-content-start | justify-content-center | justify-content-end
+- height_dimension_xs (string), Default: NULL
+- height_unit_xs (string), Default: 'px'
+- padding_top_xs (string), Default: NULL
+- padding_right_xs (string), Default: NULL
+- padding_bottom_xs (string), Default: NULL
+- padding_left_xs (string), Default: NULL
+- margin_top_xs (string), Default: NULL
+- margin_right_xs (string), Default: NULL
+- margin_bottom_xs (string), Default: NULL
+- margin_left_xs (string), Default: NULL
+- hide_xs (boolean), Default: false
+- background_hide_xs (boolean), Default: false
+- background_col_xs (string), Default: NULL, erlaubt: Default | col-0 | col-1 | col-2 | col-3 | col-4 | col-5 | col-6 | col-7 | col-8 | col-9 | col-10 | col-11 | col-12 | col-auto
+- height_dimension_sm (string), Default: NULL
+- height_unit_sm (string), Default: 'px'
+- padding_top_sm (string), Default: NULL
+- padding_right_sm (string), Default: NULL
+- padding_bottom_sm (string), Default: NULL
+- padding_left_sm (string), Default: NULL
+- margin_top_sm (string), Default: NULL
+- margin_right_sm (string), Default: NULL
+- margin_bottom_sm (string), Default: NULL
+- margin_left_sm (string), Default: NULL
+- hide_sm (boolean), Default: false
+- background_hide_sm (boolean), Default: false
+- background_col_sm (string), Default: NULL, erlaubt: Default | col-sm-0 | col-sm-1 | col-sm-2 | col-sm-3 | col-sm-4 | col-sm-5 | col-sm-6 | col-sm-7 | col-sm-8 | col-sm-9 | col-sm-10 | col-sm-11 | col-sm-12 | col-sm-auto
+- height_dimension_md (string), Default: NULL
+- height_unit_md (string), Default: 'px'
+- padding_top_md (string), Default: NULL
+- padding_right_md (string), Default: NULL
+- padding_bottom_md (string), Default: NULL
+- padding_left_md (string), Default: NULL
+- margin_top_md (string), Default: NULL
+- margin_right_md (string), Default: NULL
+- margin_bottom_md (string), Default: NULL
+- margin_left_md (string), Default: NULL
+- hide_md (boolean), Default: false
+- background_hide_md (boolean), Default: false
+- background_col_md (string), Default: NULL, erlaubt: Default | col-md-0 | col-md-1 | col-md-2 | col-md-3 | col-md-4 | col-md-5 | col-md-6 | col-md-7 | col-md-8 | col-md-9 | col-md-10 | col-md-11 | col-md-12 | col-md-auto
+- height_dimension_lg (string), Default: NULL
+- height_unit_lg (string), Default: 'px'
+- padding_top_lg (string), Default: NULL
+- padding_right_lg (string), Default: NULL
+- padding_bottom_lg (string), Default: NULL
+- padding_left_lg (string), Default: NULL
+- margin_top_lg (string), Default: NULL
+- margin_right_lg (string), Default: NULL
+- margin_bottom_lg (string), Default: NULL
+- margin_left_lg (string), Default: NULL
+- hide_lg (boolean), Default: false
+- background_hide_lg (boolean), Default: false
+- background_col_lg (string), Default: NULL, erlaubt: Default | col-lg-0 | col-lg-1 | col-lg-2 | col-lg-3 | col-lg-4 | col-lg-5 | col-lg-6 | col-lg-7 | col-lg-8 | col-lg-9 | col-lg-10 | col-lg-11 | col-lg-12 | col-lg-auto
+- height_dimension_xl (string), Default: NULL
+- height_unit_xl (string), Default: 'px'
+- padding_top_xl (string), Default: NULL
+- padding_right_xl (string), Default: NULL
+- padding_bottom_xl (string), Default: NULL
+- padding_left_xl (string), Default: NULL
+- margin_top_xl (string), Default: NULL
+- margin_right_xl (string), Default: NULL
+- margin_bottom_xl (string), Default: NULL
+- margin_left_xl (string), Default: NULL
+- hide_xl (boolean), Default: false
+- background_hide_xl (boolean), Default: false
+- background_col_xl (string), Default: NULL, erlaubt: Default | col-xl-0 | col-xl-1 | col-xl-2 | col-xl-3 | col-xl-4 | col-xl-5 | col-xl-6 | col-xl-7 | col-xl-8 | col-xl-9 | col-xl-10 | col-xl-11 | col-xl-12 | col-xl-auto
+- height_dimension_xxl (string), Default: NULL
+- height_unit_xxl (string), Default: 'px'
+- padding_top_xxl (string), Default: NULL
+- padding_right_xxl (string), Default: NULL
+- padding_bottom_xxl (string), Default: NULL
+- padding_left_xxl (string), Default: NULL
+- margin_top_xxl (string), Default: NULL
+- margin_right_xxl (string), Default: NULL
+- margin_bottom_xxl (string), Default: NULL
+- margin_left_xxl (string), Default: NULL
+- hide_xxl (boolean), Default: false
+- background_hide_xxl (boolean), Default: false
+- background_col_xxl (string), Default: NULL, erlaubt: Default | col-xxl-0 | col-xxl-1 | col-xxl-2 | col-xxl-3 | col-xxl-4 | col-xxl-5 | col-xxl-6 | col-xxl-7 | col-xxl-8 | col-xxl-9 | col-xxl-10 | col-xxl-11 | col-xxl-12 | col-xxl-auto
+
+### creabb/tabs
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/div
+Grundstruktur beim Einfuegen: creabb/nav-and-tab; creabb/nav-and-tab > creabb/nav-and-tab-item; creabb/nav-and-tab > creabb/nav-and-tab-item; creabb/div; creabb/div > core/paragraph; creabb/div; creabb/div > core/paragraph
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- hide_xs (boolean), Default: false
+- hide_sm (boolean), Default: false
+- hide_md (boolean), Default: false
+- hide_lg (boolean), Default: false
+- hide_xl (boolean), Default: false
+- hide_xxl (boolean), Default: false
+
+### creabb/toast
+
+Kategorie: creabb-components
+Elternblock: keiner
+Erlaubte Kindbloecke: creabb/toast-header, creabb/toast-body
+Grundstruktur beim Einfuegen: creabb/toast-header; creabb/toast-body
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+- placement (string), Default: 'bottom-0 end-0', erlaubt: top-0 start-0 | top-0 end-0 | bottom-0 end-0 | bottom-0 start-0
+- background (string), Default: NULL, erlaubt: Default | bg-primary | bg-secondary | bg-success | bg-warning | bg-danger | bg-info | bg-dark | bg-light | bg-body
+- text_color (string), Default: NULL, erlaubt: Default | text-primary | text-secondary | text-success | text-warning | text-danger | text-info | text-dark | text-light | text-white
+- border_color (string), Default: NULL, erlaubt: Default | border-primary | border-secondary | border-success | border-warning | border-danger | border-info | border-dark | border-light
+
+### creabb/toast-body
+
+Kategorie: creabb-components
+Elternblock: creabb/toast
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+### creabb/toast-header
+
+Kategorie: creabb-components
+Elternblock: creabb/toast
+
+- preview (boolean), Default: false
+- anchor (string), Default: false
+- block_id (string), Default: NULL
+
+
+## Was beim Einfuegen wirklich gesaet wird
+
+Die Grundstrukturen oben stehen in der Form des Alt-Plugins. Beim Ausliefern
+gilt zweierlei zusaetzlich:
+
+- Der PLATZHALTERTEXT des Originals wird gestrichen. `creabb/banner` und
+  `creabb/tabs` saeen ihre Struktur ohne Inhalt — eine Ueberschrift und ein
+  Absatz entstehen LEER, nicht mit "Enter Heading" oder "Tab 1 Content".
+  Die Beschriftung eines Reiters ("Tab 1") bleibt: Sie beschriftet ein
+  Strukturelement, statt es zu fuellen.
+- Die `areoi/*`-Aliasbloecke saeen GAR NICHTS. Sie tragen bestehenden Inhalt
+  aus dem Alt-Plugin; eine Grundstruktur in sie zu saeen wuerde Daten
+  aendern, ohne dass jemand etwas eingegeben hat. Ihre `allowedBlocks`
+  bleiben — das ist eine Schranke, keine Saat.

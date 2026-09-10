@@ -1,0 +1,457 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/icon",
+	"title": "Icon",
+	"category": "creabb-components",
+	"description": "Display a Bootstrap icon in any of the available theme colours and sizes.",
+	"icon": "star-filled",
+	"keywords": [
+		"areoi",
+		"creabb",
+		"bootstrap",
+		"component"
+	],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"html": false
+	},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra small · no Bootstrap infix (default size)"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_xs",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_xs",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Small · Bootstrap infix sm"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_sm",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_sm",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Medium · Bootstrap infix md"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_md",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_md",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Large · Bootstrap infix lg"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_lg",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_lg",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra large · Bootstrap infix xl"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_xl",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_xl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{
+								"type": "message",
+								"value": "Extra extra large · Bootstrap infix xxl"
+							},
+							{
+								"type": "group",
+								"title": "Alignment",
+								"initialOpen": true,
+								"attributes": [
+									{
+										"id": "horizontal_align_xxl",
+										"type": "creabb/select",
+										"label": "Horizontal Align",
+										"help": "Stored alignment for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged.",
+										"options": [
+											{
+												"value": "Default",
+												"label": "Default"
+											},
+											{
+												"value": "text-start",
+												"label": "Start"
+											},
+											{
+												"value": "text-center",
+												"label": "Center"
+											},
+											{
+												"value": "text-end",
+												"label": "End"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "group",
+								"title": "Visibility",
+								"initialOpen": false,
+								"attributes": [
+									{
+										"id": "hide_xxl",
+										"type": "toggle",
+										"label": "Hide at this breakpoint",
+										"help": "Stored hide flag for this breakpoint. This block renders no element of its own; it outputs its inner content unchanged."
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Settings",
+				"initialOpen": true,
+				"attributes": [
+					{
+						"id": "style",
+						"type": "creabb/select",
+						"label": "Style",
+						"help": "Stored colour of the icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged.",
+						"options": [
+							{
+								"value": "text-primary",
+								"label": "Default"
+							},
+							{
+								"value": "text-primary",
+								"label": "Primary"
+							},
+							{
+								"value": "text-secondary",
+								"label": "Secondary"
+							},
+							{
+								"value": "text-success",
+								"label": "Success"
+							},
+							{
+								"value": "text-danger",
+								"label": "Danger"
+							},
+							{
+								"value": "text-warning",
+								"label": "Warning"
+							},
+							{
+								"value": "text-info",
+								"label": "Info"
+							},
+							{
+								"value": "text-light",
+								"label": "Light"
+							},
+							{
+								"value": "text-dark",
+								"label": "Dark"
+							}
+						]
+					},
+					{
+						"id": "size",
+						"type": "creabb/select",
+						"label": "Size",
+						"help": "Stored size of the icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged.",
+						"options": [
+							{
+								"value": "12",
+								"label": "Extra Small"
+							},
+							{
+								"value": "24",
+								"label": "Small"
+							},
+							{
+								"value": "36",
+								"label": "Medium"
+							},
+							{
+								"value": "48",
+								"label": "Large"
+							},
+							{
+								"value": "60",
+								"label": "Extra Large"
+							},
+							{
+								"value": "80",
+								"label": "Extra Extra Large"
+							}
+						]
+					},
+					{
+						"id": "icon",
+						"type": "text",
+						"label": "Icon",
+						"help": "Stored name of the Bootstrap icon. Kept from the previous plugin, where this block drew the icon itself; here it outputs its inner content unchanged."
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{
+						"id": "block_id",
+						"type": "text",
+						"label": "Block ID",
+						"help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."
+					}
+				]
+			}
+		]
+	}
+}

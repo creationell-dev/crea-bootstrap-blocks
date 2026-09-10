@@ -1,0 +1,110 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "creabb-spacing",
+  "title": "Spacing",
+  "attributes": [
+    {
+      "type": "group",
+      "title": "Height",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "height_dimension",
+          "type": "text",
+          "label": "Height value",
+          "help": "Numeric value without a unit. The unit is set below."
+        },
+        {
+          "id": "height_unit",
+          "type": "creabb/select",
+          "label": "Height unit",
+          "help": "Unit of the height value above.",
+          "options": [
+            {
+              "value": "px",
+              "label": "Pixels"
+            },
+            {
+              "value": "%",
+              "label": "Percent"
+            },
+            {
+              "value": "vh",
+              "label": "Viewport height"
+            },
+            {
+              "value": "rem",
+              "label": "Rem"
+            },
+            {
+              "value": "em",
+              "label": "Em"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Padding",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "padding_top",
+          "type": "text",
+          "label": "Padding top",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default. Leave empty for no spacing; enter 0 to force a zero value."
+        },
+        {
+          "id": "padding_right",
+          "type": "text",
+          "label": "Padding right",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "padding_bottom",
+          "type": "text",
+          "label": "Padding bottom",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "padding_left",
+          "type": "text",
+          "label": "Padding left",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Margin",
+      "initialOpen": false,
+      "attributes": [
+        {
+          "id": "margin_top",
+          "type": "text",
+          "label": "Margin top",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_right",
+          "type": "text",
+          "label": "Margin right",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_bottom",
+          "type": "text",
+          "label": "Margin bottom",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        },
+        {
+          "id": "margin_left",
+          "type": "text",
+          "label": "Margin left",
+          "help": "Number without a unit. The unit is a plugin setting, pixels by default."
+        }
+      ]
+    }
+  ]
+}

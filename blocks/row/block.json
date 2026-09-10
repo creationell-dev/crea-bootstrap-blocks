@@ -1,0 +1,232 @@
+{
+	"$schema": "https://blockstudio.dev/schema/block",
+	"apiVersion": 2,
+	"name": "creabb/row",
+	"title": "Row",
+	"category": "creabb-layout",
+	"description": "Rows are wrappers for columns. Each column has horizontal padding (called a gutter) for controlling the space between them. This padding is then counteracted on the rows.",
+	"icon": "columns",
+	"keywords": ["areoi", "creabb", "bootstrap", "layout", "row"],
+	"textdomain": "crea-bootstrap-blocks",
+	"supports": {"anchor": true, "align": false, "html": false},
+	"providesContext": {"creabb/isFlex": "is_flex"},
+	"blockstudio": {
+		"attributes": [
+			{
+				"id": "breakpoints",
+				"type": "tabs",
+				"tabs": [
+					{
+						"id": "xs",
+						"title": "XS",
+						"attributes": [
+							{"type": "message", "value": "Extra small · no Bootstrap infix (default size)"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_xs", "type": "creabb/select", "label": "Vertical alignment · align-items-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-start", "label": "Start"}, {"value": "align-items-center", "label": "Center"}, {"value": "align-items-end", "label": "End"}]},
+									{"id": "horizontal_align_xs", "type": "creabb/select", "label": "Horizontal alignment · justify-content-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-start", "label": "Start"}, {"value": "justify-content-center", "label": "Center"}, {"value": "justify-content-end", "label": "End"}, {"value": "justify-content-around", "label": "Around"}, {"value": "justify-content-between", "label": "Between"}, {"value": "justify-content-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_xs", "type": "creabb/select", "label": "Columns per row · row-cols-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-1", "label": "1"}, {"value": "row-cols-2", "label": "2"}, {"value": "row-cols-3", "label": "3"}, {"value": "row-cols-4", "label": "4"}, {"value": "row-cols-5", "label": "5"}, {"value": "row-cols-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xs"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_xs", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_xs", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_xs", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_xs", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_xs", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xs"}
+						]
+					},
+					{
+						"id": "sm",
+						"title": "SM",
+						"attributes": [
+							{"type": "message", "value": "Small · Bootstrap infix sm"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_sm", "type": "creabb/select", "label": "Vertical alignment · align-items-sm-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-sm-start", "label": "Start"}, {"value": "align-items-sm-center", "label": "Center"}, {"value": "align-items-sm-end", "label": "End"}]},
+									{"id": "horizontal_align_sm", "type": "creabb/select", "label": "Horizontal alignment · justify-content-sm-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-sm-start", "label": "Start"}, {"value": "justify-content-sm-center", "label": "Center"}, {"value": "justify-content-sm-end", "label": "End"}, {"value": "justify-content-sm-around", "label": "Around"}, {"value": "justify-content-sm-between", "label": "Between"}, {"value": "justify-content-sm-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_sm", "type": "creabb/select", "label": "Columns per row · row-cols-sm-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-sm-1", "label": "1"}, {"value": "row-cols-sm-2", "label": "2"}, {"value": "row-cols-sm-3", "label": "3"}, {"value": "row-cols-sm-4", "label": "4"}, {"value": "row-cols-sm-5", "label": "5"}, {"value": "row-cols-sm-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_sm"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_sm", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_sm", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_sm", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_sm", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_sm", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_sm"}
+						]
+					},
+					{
+						"id": "md",
+						"title": "MD",
+						"attributes": [
+							{"type": "message", "value": "Medium · Bootstrap infix md"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_md", "type": "creabb/select", "label": "Vertical alignment · align-items-md-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-md-start", "label": "Start"}, {"value": "align-items-md-center", "label": "Center"}, {"value": "align-items-md-end", "label": "End"}]},
+									{"id": "horizontal_align_md", "type": "creabb/select", "label": "Horizontal alignment · justify-content-md-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-md-start", "label": "Start"}, {"value": "justify-content-md-center", "label": "Center"}, {"value": "justify-content-md-end", "label": "End"}, {"value": "justify-content-md-around", "label": "Around"}, {"value": "justify-content-md-between", "label": "Between"}, {"value": "justify-content-md-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_md", "type": "creabb/select", "label": "Columns per row · row-cols-md-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-md-1", "label": "1"}, {"value": "row-cols-md-2", "label": "2"}, {"value": "row-cols-md-3", "label": "3"}, {"value": "row-cols-md-4", "label": "4"}, {"value": "row-cols-md-5", "label": "5"}, {"value": "row-cols-md-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_md"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_md", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_md", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_md", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_md", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_md", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_md"}
+						]
+					},
+					{
+						"id": "lg",
+						"title": "LG",
+						"attributes": [
+							{"type": "message", "value": "Large · Bootstrap infix lg"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_lg", "type": "creabb/select", "label": "Vertical alignment · align-items-lg-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-lg-start", "label": "Start"}, {"value": "align-items-lg-center", "label": "Center"}, {"value": "align-items-lg-end", "label": "End"}]},
+									{"id": "horizontal_align_lg", "type": "creabb/select", "label": "Horizontal alignment · justify-content-lg-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-lg-start", "label": "Start"}, {"value": "justify-content-lg-center", "label": "Center"}, {"value": "justify-content-lg-end", "label": "End"}, {"value": "justify-content-lg-around", "label": "Around"}, {"value": "justify-content-lg-between", "label": "Between"}, {"value": "justify-content-lg-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_lg", "type": "creabb/select", "label": "Columns per row · row-cols-lg-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-lg-1", "label": "1"}, {"value": "row-cols-lg-2", "label": "2"}, {"value": "row-cols-lg-3", "label": "3"}, {"value": "row-cols-lg-4", "label": "4"}, {"value": "row-cols-lg-5", "label": "5"}, {"value": "row-cols-lg-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_lg"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_lg", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_lg", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_lg", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_lg", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_lg", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_lg"}
+						]
+					},
+					{
+						"id": "xl",
+						"title": "XL",
+						"attributes": [
+							{"type": "message", "value": "Extra large · Bootstrap infix xl"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_xl", "type": "creabb/select", "label": "Vertical alignment · align-items-xl-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-xl-start", "label": "Start"}, {"value": "align-items-xl-center", "label": "Center"}, {"value": "align-items-xl-end", "label": "End"}]},
+									{"id": "horizontal_align_xl", "type": "creabb/select", "label": "Horizontal alignment · justify-content-xl-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-xl-start", "label": "Start"}, {"value": "justify-content-xl-center", "label": "Center"}, {"value": "justify-content-xl-end", "label": "End"}, {"value": "justify-content-xl-around", "label": "Around"}, {"value": "justify-content-xl-between", "label": "Between"}, {"value": "justify-content-xl-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_xl", "type": "creabb/select", "label": "Columns per row · row-cols-xl-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-xl-1", "label": "1"}, {"value": "row-cols-xl-2", "label": "2"}, {"value": "row-cols-xl-3", "label": "3"}, {"value": "row-cols-xl-4", "label": "4"}, {"value": "row-cols-xl-5", "label": "5"}, {"value": "row-cols-xl-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xl"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_xl", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_xl", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_xl", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_xl", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_xl", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xl"}
+						]
+					},
+					{
+						"id": "xxl",
+						"title": "XXL",
+						"attributes": [
+							{"type": "message", "value": "Extra extra large · Bootstrap infix xxl"},
+							{
+								"type": "group",
+								"title": "Row",
+								"initialOpen": true,
+								"attributes": [
+									{"id": "vertical_align_xxl", "type": "creabb/select", "label": "Vertical alignment · align-items-xxl-*", "help": "Aligns the columns within the row from top to bottom, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "align-items-xxl-start", "label": "Start"}, {"value": "align-items-xxl-center", "label": "Center"}, {"value": "align-items-xxl-end", "label": "End"}]},
+									{"id": "horizontal_align_xxl", "type": "creabb/select", "label": "Horizontal alignment · justify-content-xxl-*", "help": "Aligns the columns within the row from left to right, from this breakpoint upwards.", "options": [{"value": "Default", "label": "Default"}, {"value": "justify-content-xxl-start", "label": "Start"}, {"value": "justify-content-xxl-center", "label": "Center"}, {"value": "justify-content-xxl-end", "label": "End"}, {"value": "justify-content-xxl-around", "label": "Around"}, {"value": "justify-content-xxl-between", "label": "Between"}, {"value": "justify-content-xxl-evenly", "label": "Evenly"}]},
+									{"id": "row_cols_xxl", "type": "creabb/select", "label": "Columns per row · row-cols-xxl-*", "help": "Number of columns the row lays its children out in, from this breakpoint upwards. In CSS grid mode the number is written to the --bs-columns custom property instead.", "options": [{"value": "Default", "label": "Default"}, {"value": "row-cols-xxl-1", "label": "1"}, {"value": "row-cols-xxl-2", "label": "2"}, {"value": "row-cols-xxl-3", "label": "3"}, {"value": "row-cols-xxl-4", "label": "4"}, {"value": "row-cols-xxl-5", "label": "5"}, {"value": "row-cols-xxl-6", "label": "6"}]}
+								]
+							},
+							{"type": "custom/creabb-spacing", "idStructure": "{id}_xxl"},
+							{
+								"type": "group",
+								"title": "CSS grid",
+								"initialOpen": false,
+								"attributes": [
+									{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings and Force flexbox is off."},
+									{"id": "grid_rows_xxl", "type": "text", "label": "Grid rows", "help": "Number of rows in the grid, for example 3. It is written to the --bs-rows custom property."},
+									{"id": "grid_gap_dimension_xxl", "type": "text", "label": "Grid column gap", "help": "Numeric value without a unit, written to the --bs-gap custom property. The unit is set below."},
+									{"id": "grid_gap_unit_xxl", "type": "creabb/select", "label": "Grid column gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]},
+									{"id": "grid_row_gap_dimension_xxl", "type": "text", "label": "Grid row gap", "help": "Numeric value without a unit, written as the row-gap property. The unit is set below."},
+									{"id": "grid_row_gap_unit_xxl", "type": "creabb/select", "label": "Grid row gap unit", "help": "Unit of the value above.", "options": [{"value": "px", "label": "Pixels"}, {"value": "%", "label": "Percent"}, {"value": "rem", "label": "Rem"}, {"value": "em", "label": "Em"}]}
+								]
+							},
+							{"type": "custom/creabb-visibility", "idStructure": "{id}_xxl"}
+						]
+					}
+				]
+			},
+			{
+				"type": "group",
+				"title": "CSS grid",
+				"initialOpen": false,
+				"attributes": [
+					{"type": "message", "value": "Only takes effect when CSS grid is enabled in the plugin settings."},
+					{"id": "is_flex", "type": "toggle", "label": "Force flexbox", "help": "Keeps this row on the Bootstrap flexbox grid even when the CSS grid mode is switched on. Passed to the columns inside."}
+				]
+			},
+			{
+				"type": "group",
+				"title": "Technical",
+				"initialOpen": false,
+				"attributes": [
+					{"id": "block_id", "type": "text", "label": "Block ID", "help": "Unique identifier of this block. It links the block to its generated inline CSS and must not be changed."}
+				]
+			}
+		]
+	}
+}

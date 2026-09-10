@@ -1,0 +1,73 @@
+{
+    "preview": {
+        "type": "boolean",
+        "default": false
+    },
+    "block_id": {
+        "type": "string",
+        "default": null
+    },
+    "parent_id": {
+        "type": "string",
+        "default": null
+    },
+    "align": {
+        "type": "string"
+    },
+    "media_fit": {
+        "type": "string",
+        "default": "cover"
+    },
+    "media_height": {
+        "type": "string",
+        "default": "50"
+    },
+    "media_width": {
+        "type": "string",
+        "default": "100"
+    },
+    "media_align": {
+        "type": "string",
+        "default": "center"
+    },
+    "url": {
+        "type": "string"
+    },
+    "alt": {
+        "type": "string",
+        "default": ""
+    },
+    "caption": {
+        "type": "string"
+    },
+    "title": {
+        "type": "string"
+    },
+    "href": {
+        "type": "string"
+    },
+    "rel": {
+        "type": "string"
+    },
+    "linkClass": {
+        "type": "string"
+    },
+    "id": {
+        "type": "number"
+    },
+    "width": {
+        "type": "number"
+    },
+    "height": {
+        "type": "number"
+    },
+    "sizeSlug": {
+        "type": "string"
+    },
+    "linkDestination": {
+        "type": "string"
+    },
+    "linkTarget": {
+        "type": "string"
+    }
+}
