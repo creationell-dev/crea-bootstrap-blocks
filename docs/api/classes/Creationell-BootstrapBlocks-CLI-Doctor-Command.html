@@ -189,7 +189,7 @@
     <span>
                                 &nbsp;: array{check: string, status: string, message: string}    </span>
 </dt>
-<dd>Check 8 — the backup target is writable.</dd>
+<dd>Check 8 — the backup target is writable, and not served to the public.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_bi_class_hits">bi_class_hits()</a>
@@ -281,6 +281,34 @@
                                 &nbsp;: array{check: string, status: string, message: string}    </span>
 </dt>
 <dd>Check 1b — is the old plugin still active?</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_normalize_path">normalize_path()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Resolves `.` and `..` in a path WITHOUT touching the file system.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_path_inside_public_root">path_inside_public_root()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Whether a directory lies at or below one of the publicly served roots.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots">public_roots()</a>
+    <span>
+                                &nbsp;: array&lt;int, string&gt;    </span>
+</dt>
+<dd>The directories this installation serves over HTTP.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots_from">public_roots_from()</a>
+    <span>
+                                &nbsp;: array&lt;int, string&gt;    </span>
+</dt>
+<dd>The pure half of `public_roots()`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_theme_override_check">theme_override_check()</a>
@@ -545,7 +573,7 @@ wp creabb doctor --backup=/var/backups/dump.sql.gz --format=json
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1063</span>
+    <span class="phpdocumentor-element-found-in__line">1214</span>
 
     </aside>
 
@@ -604,7 +632,7 @@ ein Blogbeitrag ueber die Migration selbst einen Treffer.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">987</span>
+    <span class="phpdocumentor-element-found-in__line">988</span>
 
     </aside>
 
@@ -659,15 +687,15 @@ am Verzeichnis, nicht an der noch nicht existierenden Datei.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1015</span>
+    <span class="phpdocumentor-element-found-in__line">1108</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Check 8 — the backup target is writable.</p>
+        <p class="phpdocumentor-summary">Check 8 — the backup target is writable, and not served to the public.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">backup_target_check</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory_exists</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory_writable</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{check: string, status: string, message: string}</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">backup_target_check</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory_exists</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory_writable</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$publicly_reachable</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{check: string, status: string, message: string}</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -677,6 +705,15 @@ die einzige ist, die nichts ueber die Installation aussagt — sie sichert
 nur zu, dass <code class="prettyprint">migrate run</code> sein Backup ueberhaupt ablegen kann. Ohne sie
 faellt der fehlende Schreibzugriff erst auf, wenn die Ersetzung bereits
 laeuft.</p>
+<p>WARUM ES NICHT BEIM SCHREIBRECHT BLEIBT: Ein beschreibbares Verzeichnis
+ist nicht schon ein geeignetes. Bis zum 2026-09-10 meldete diese Zeile
+<code class="prettyprint">ok — beschreibbar: …/wp-content/uploads</code> und empfahl damit ein
+Verzeichnis, aus dem jeder Fremde den Dump herunterladen kann.</p>
+<p>WARUM <code class="prettyprint">warn</code> UND NICHT <code class="prettyprint">error</code>: Auf geteiltem Webspace gibt es haeufig
+gar kein beschreibbares Verzeichnis ausserhalb des Webbaums. Ein <code class="prettyprint">error</code>
+hielte den Lauf dort auf und draengte zu <code class="prettyprint">--skip-backup</code> — also dazu,
+den Rueckweg ganz wegzulassen. Ein Backup an schlechter Stelle ist
+besser als keines; es muss nur hinterher weg.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -708,6 +745,15 @@ laeuft.</p>
 </section>
 
             </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$publicly_reachable</span>
+                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether the web server serves that directory.</p>
+</section>
+
+            </dd>
             </dl>
 
     
@@ -734,7 +780,7 @@ laeuft.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1090</span>
+    <span class="phpdocumentor-element-found-in__line">1241</span>
 
     </aside>
 
@@ -788,7 +834,7 @@ blosse <code class="prettyprint">bi</code> ohne Symbolnamen ist die Basisklasse 
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">212</span>
+    <span class="phpdocumentor-element-found-in__line">213</span>
 
     </aside>
 
@@ -854,7 +900,7 @@ Inhalt&quot; und verwirft die Attribute beim naechsten Speichern.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1109</span>
+    <span class="phpdocumentor-element-found-in__line">1260</span>
 
     </aside>
 
@@ -914,7 +960,7 @@ keine Abbruchbedingung fuer sich.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">313</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -979,7 +1025,7 @@ hilft dort nicht — er faengt den umgekehrten Fall ab (nicht migrierter
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1154</span>
+    <span class="phpdocumentor-element-found-in__line">1305</span>
 
     </aside>
 
@@ -1033,7 +1079,7 @@ Alt-Plugin erwaehnt, ist kein Grund, die Legacy-Klassen festzuhalten.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">393</span>
+    <span class="phpdocumentor-element-found-in__line">394</span>
 
     </aside>
 
@@ -1095,7 +1141,7 @@ hat, und dann ist der Altwert weg.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1476</span>
+    <span class="phpdocumentor-element-found-in__line">1627</span>
 
     </aside>
 
@@ -1174,7 +1220,7 @@ Fehlbetrag (Vertragsattribute minus aufgeloeste Felder) samt Blockname.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1163</span>
+    <span class="phpdocumentor-element-found-in__line">1314</span>
 
     </aside>
 
@@ -1225,7 +1271,7 @@ Fehlbetrag (Vertragsattribute minus aufgeloeste Felder) samt Blockname.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">758</span>
+    <span class="phpdocumentor-element-found-in__line">759</span>
 
     </aside>
 
@@ -1309,7 +1355,7 @@ Icon-Schrift. Dann fehlten nach der Migration sichtbare Symbole.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">952</span>
+    <span class="phpdocumentor-element-found-in__line">953</span>
 
     </aside>
 
@@ -1375,7 +1421,7 @@ Seite ihr Layout — und zwar vollstaendig, nicht in Nuancen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">613</span>
+    <span class="phpdocumentor-element-found-in__line">614</span>
 
     </aside>
 
@@ -1425,7 +1471,7 @@ koennen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">634</span>
+    <span class="phpdocumentor-element-found-in__line">635</span>
 
     </aside>
 
@@ -1477,7 +1523,7 @@ A missing key or null means &quot;not set&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">277</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -1538,6 +1584,248 @@ verbietet nichts.</p>
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_normalize_path">
+        normalize_path()
+        <a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_normalize_path" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1012</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolves `.` and `..` in a path WITHOUT touching the file system.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">normalize_path</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p><code class="prettyprint">realpath()</code> waere hier falsch: Das Backup-Verzeichnis muss nicht
+existieren, wenn <code class="prettyprint">doctor</code> laeuft, und <code class="prettyprint">realpath()</code> gibt fuer einen
+nicht existierenden Pfad <code class="prettyprint">false</code> zurueck. Ein Cast daraus waere der
+Leerstring — und ein Leerstring liegt unter JEDER Wurzel.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$path</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Absolute or relative path.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_path_inside_public_root">
+        path_inside_public_root()
+        <a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_path_inside_public_root" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1060</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Whether a directory lies at or below one of the publicly served roots.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">path_inside_public_root</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$directory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$public_roots</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>WARUM DAS GEPRUEFT WIRD: <code class="prettyprint">default_backup_path()</code> legt den Dump nach
+<code class="prettyprint">wp_upload_dir()['basedir']</code>, und der Rueckfall zeigt sogar auf
+<code class="prettyprint">ABSPATH</code>. Beide werden vom Webserver ausgeliefert. Am 2026-09-10 auf
+einer echten Instanz nachgemessen: Eine Datei
+<code class="prettyprint">wp-content/uploads/probe.sql.gz</code> antwortete anonym mit HTTP 200 und
+gab ihren Inhalt heraus. Ein Migrationsbackup ist ein VOLLSTAENDIGER
+Datenbankabzug — Benutzer, Passworthashes, Bestellungen. Sein Name ist
+dazu vorhersagbar, weil die Anleitung <code class="prettyprint">backup-JJJJ-MM-TT.sql.gz</code>
+vorschlaegt.</p>
+<p>Der Vergleich ist LEXIKALISCH und beruehrt das Dateisystem nicht
+(siehe <code class="prettyprint">normalize_path()</code>). Ein Symlink, der aus dem Baum hinausfuehrt,
+wird deshalb nicht erkannt — die Prueflinie faellt damit auf die
+sichere Seite: Sie meldet eher zu viel als zu wenig.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$directory</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Directory that would receive the dump.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$public_roots</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;int, string&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Directories the web server serves.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_public_roots">
+        public_roots()
+        <a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1169</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The directories this installation serves over HTTP.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">public_roots</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Beide Konstanten, nicht nur <code class="prettyprint">ABSPATH</code>: <code class="prettyprint">wp-content</code> darf ausserhalb des
+WordPress-Verzeichnisses liegen (<code class="prettyprint">WP_CONTENT_DIR</code>), und genau dort steht
+das Upload-Verzeichnis, in das der Vorgabepfad zeigt. Wer nur <code class="prettyprint">ABSPATH</code>
+prueft, uebersieht die verschobene Installation — also gerade die, bei
+der jemand ueber den Aufbau nachgedacht hat.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_public_roots_from">
+        public_roots_from()
+        <a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots_from" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1190</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The pure half of `public_roots()`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">public_roots_from</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$abspath</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$content_dir</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>E-135: Eine Entscheidung, die nur Konstanten liest, fuehrt keine Suite
+aus — jede Mutation daran ueberlebt <code class="prettyprint">composer test</code>. Genau das ist am
+2026-09-10 passiert: Die Mutation, die <code class="prettyprint">WP_CONTENT_DIR</code> aus der Liste
+strich, blieb am Leben, weil die Konstante im Pruefstand gar nicht
+definiert ist. Die Entscheidung steht deshalb hier, die Erhebung
+darueber.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$abspath</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Value of <code class="prettyprint">ABSPATH</code>, or null when undefined.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$content_dir</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Value of <code class="prettyprint">WP_CONTENT_DIR</code>, or null when undefined.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_theme_override_check">
         theme_override_check()
         <a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_theme_override_check" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1546,7 +1834,7 @@ verbietet nichts.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">564</span>
+    <span class="phpdocumentor-element-found-in__line">565</span>
 
     </aside>
 
@@ -1603,7 +1891,7 @@ Layoutbruch genau an den Stellen, die jemand bewusst angepasst hat.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1190</span>
+    <span class="phpdocumentor-element-found-in__line">1341</span>
 
     </aside>
 
@@ -1663,7 +1951,7 @@ fuer Schritt 8 der Reihenfolge pro Seite.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1239</span>
+    <span class="phpdocumentor-element-found-in__line">1390</span>
 
     </aside>
 
@@ -1713,7 +2001,7 @@ genau diesem Blocktyp ab.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">833</span>
+    <span class="phpdocumentor-element-found-in__line">834</span>
 
     </aside>
 
@@ -1784,7 +2072,7 @@ der Abstandseinheit ist <code class="prettyprint">px</code> der Wert selbst.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1732</span>
+    <span class="phpdocumentor-element-found-in__line">1883</span>
 
     </aside>
 
@@ -1823,7 +2111,7 @@ der Abstandseinheit ist <code class="prettyprint">px</code> der Wert selbst.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1261</span>
+    <span class="phpdocumentor-element-found-in__line">1412</span>
 
     </aside>
 
@@ -1869,7 +2157,7 @@ nichts — an der Meldung schon, und die liest ein Mensch.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">891</span>
+    <span class="phpdocumentor-element-found-in__line">892</span>
 
     </aside>
 
@@ -1920,7 +2208,7 @@ nichts — an der Meldung schon, und die liest ein Mensch.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">904</span>
+    <span class="phpdocumentor-element-found-in__line">905</span>
 
     </aside>
 
@@ -1974,7 +2262,7 @@ nichts — an der Meldung schon, und die liest ein Mensch.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">739</span>
+    <span class="phpdocumentor-element-found-in__line">740</span>
 
     </aside>
 
@@ -2025,7 +2313,7 @@ nichts — an der Meldung schon, und die liest ein Mensch.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">861</span>
+    <span class="phpdocumentor-element-found-in__line">862</span>
 
     </aside>
 
@@ -2085,7 +2373,7 @@ diese Zeile abbricht.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1588</span>
+    <span class="phpdocumentor-element-found-in__line">1739</span>
 
     </aside>
 
@@ -2127,7 +2415,7 @@ nicht erst uebergeben — „nicht gesetzt&quot; heisst „auf Default&quot;.</p
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1425</span>
+    <span class="phpdocumentor-element-found-in__line">1576</span>
 
     </aside>
 
@@ -2171,7 +2459,7 @@ unabhaengig davon, wie sein Verzeichnis heisst.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1337</span>
+    <span class="phpdocumentor-element-found-in__line">1488</span>
 
     </aside>
 
@@ -2229,7 +2517,7 @@ vorkommen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1284</span>
+    <span class="phpdocumentor-element-found-in__line">1435</span>
 
     </aside>
 
@@ -2286,7 +2574,7 @@ Inhalt wie ihr Elternbeitrag und sind trotzdem eigene Fundstellen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1409</span>
+    <span class="phpdocumentor-element-found-in__line">1560</span>
 
     </aside>
 
@@ -2325,7 +2613,7 @@ Inhalt wie ihr Elternbeitrag und sind trotzdem eigene Fundstellen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">917</span>
+    <span class="phpdocumentor-element-found-in__line">918</span>
 
     </aside>
 
@@ -2376,7 +2664,7 @@ Inhalt wie ihr Elternbeitrag und sind trotzdem eigene Fundstellen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1607</span>
+    <span class="phpdocumentor-element-found-in__line">1758</span>
 
     </aside>
 
@@ -2415,7 +2703,7 @@ Inhalt wie ihr Elternbeitrag und sind trotzdem eigene Fundstellen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1659</span>
+    <span class="phpdocumentor-element-found-in__line">1810</span>
 
     </aside>
 
@@ -2459,7 +2747,7 @@ und dieser Befund ist ein Hinweis, keine Beweisfuehrung.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1639</span>
+    <span class="phpdocumentor-element-found-in__line">1790</span>
 
     </aside>
 
@@ -2508,7 +2796,7 @@ Elternthema. Sie wird ausdruecklich nicht nachgebaut.)</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1700</span>
+    <span class="phpdocumentor-element-found-in__line">1851</span>
 
     </aside>
 
@@ -2559,7 +2847,7 @@ Markup einen Treffer, und die Zeile waere Rauschen.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="includes/cli/class-doctor-command.php"><a href="files/includes-cli-class-doctor-command.html"><abbr title="includes/cli/class-doctor-command.php">class-doctor-command.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1386</span>
+    <span class="phpdocumentor-element-found-in__line">1537</span>
 
     </aside>
 
@@ -2720,6 +3008,10 @@ gelesen.</p>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_legacy_option_defaults">legacy_option_defaults()</a></li>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_legacy_options_check">legacy_options_check()</a></li>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_legacy_plugin_check">legacy_plugin_check()</a></li>
+                                            <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_normalize_path">normalize_path()</a></li>
+                                            <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_path_inside_public_root">path_inside_public_root()</a></li>
+                                            <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots">public_roots()</a></li>
+                                            <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots_from">public_roots_from()</a></li>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_theme_override_check">theme_override_check()</a></li>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_theme_template_check">theme_template_check()</a></li>
                                             <li class=""><a href="classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_block_content_haystack">block_content_haystack()</a></li>

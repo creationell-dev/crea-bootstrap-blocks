@@ -1,16 +1,199 @@
-<ol type="1">
-<li><strong>Blockstudio ≥ 7.6 installieren und aktivieren.</strong> Ohne
-diese Abhängigkeit lässt sich CreaBootstrapBlocks nicht aktivieren
-(<code>Requires Plugins</code>-Header) und registriert keine
-Blöcke.</li>
-<li>Das ZIP des jüngsten Releases herunterladen und unter <em>Plugins →
-Installieren → Plugin hochladen</em> einspielen.</li>
-<li>Plugin aktivieren.</li>
-<li>Unter <em>Design → CreaBootstrapBlocks</em> prüfen, ob die Diagnose
-Blockstudio erkennt.</li>
-<li>Bestehende <code>areoi/*</code>-Inhalte rendern ab sofort über die
-mitgelieferten Aliasblöcke weiter — <strong>es ist kein Eingriff nötig,
-um eine bestehende Seite lauffähig zu halten.</strong> Für die
-dauerhafte Umstellung siehe den nächsten Abschnitt.</li>
-</ol>
+<p><strong>Es gibt zwei Ausgangslagen, und sie verlangen unterschiedlich
+viel Arbeit.</strong> Lesen Sie zuerst diese Tabelle:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ihre Ausgangslage</th>
+<th>Was zu tun ist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Neue Seite</strong>, auf der noch nie Blöcke aus All
+Bootstrap Blocks standen</td>
+<td>Nur <strong>Teil A</strong>. Danach sind Sie fertig.</td>
+</tr>
+<tr class="even">
+<td><strong>Bestehende Seite</strong> mit
+<code>areoi/*</code>-Inhalten</td>
+<td><strong>Teil A und Teil B.</strong> Teil A allein genügt nicht —
+siehe den Kasten.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Achtung: Der naheliegende Weg ist der falsche.</strong></p>
+<p><em>Neues Plugin hochladen → aktivieren → altes Plugin
+deaktivieren</em> — damit ist die Umstellung <strong>nicht</strong>
+erledigt.</p>
+<p>Die Seite sieht danach im Frontend richtig aus, und genau darin liegt
+die Gefahr. Ihre Inhalte stehen weiterhin als <code>areoi/*</code> in
+der Datenbank und werden nur über ein mitgeliefertes Notfallnetz
+gerendert. <strong>Sobald jemand einen solchen Block im Editor öffnet
+und die Seite speichert, sind dessen Einstellungen verloren</strong> —
+Abstände, Farben, Spaltenbreiten, alles.</p>
+<p>Damit die Inhalte dauerhaft sicher sind, muss der Blocknamensraum
+einmalig in der Datenbank umgeschrieben werden. Das ist <strong>Teil
+B</strong>, es geschieht mit einem einzigen Befehl, und das alte Plugin
+muss dafür bis zum vorletzten Schritt <strong>aktiv
+bleiben</strong>.</p>
+</blockquote>
+<h3 id="teil-a-plugin-installieren">Teil A — Plugin installieren</h3>
+<p><strong>A1.</strong> <strong>Blockstudio ≥ 7.6 installieren und
+aktivieren.</strong> Ohne diese Abhängigkeit lässt sich
+CreaBootstrapBlocks nicht aktivieren
+(<code>Requires Plugins</code>-Header) und registriert keine Blöcke.</p>
+<p><strong>A2.</strong> Das ZIP des jüngsten Releases herunterladen und
+unter <em>Plugins → Installieren → Plugin hochladen</em> einspielen.</p>
+<p><strong>A3.</strong> CreaBootstrapBlocks aktivieren. <strong>Das alte
+Plugin All Bootstrap Blocks bleibt dabei aktiv.</strong> Beide Plugins
+nebeneinander zu betreiben ist beabsichtigt und für Teil B sogar
+nötig.</p>
+<p><strong>A4.</strong> Unter <em>Design → CreaBootstrapBlocks</em>
+prüfen, ob die Diagnose Blockstudio erkennt.</p>
+<p>Ihre Seite läuft ab hier unverändert weiter — es ist kein Eingriff
+nötig, um sie lauffähig zu <strong>halten</strong>. Stehen auf der Seite
+<code>areoi/*</code>-Inhalte, machen Sie jetzt mit Teil B weiter; sonst
+sind Sie fertig.</p>
+<h3 id="teil-b-bestehende-inhalte-umstellen">Teil B — Bestehende Inhalte
+umstellen</h3>
+<p>Die Umstellung tauscht <strong>nur das Plugin</strong>. Inhalte,
+Theme und Layout bleiben, wie sie sind: Der Blocknamensraum in
+<code>post_content</code> wird umgeschrieben, die Attribute wandern in
+den Blockstudio-Container, und die alten
+<code>areoi-*</code>-CSS-Klassen werden weiterhin ausgegeben. <strong>Am
+Theme ist nichts zu tun.</strong></p>
+<p>Teil B läuft über die Kommandozeile (WP-CLI); über die
+WordPress-Oberfläche lässt er sich nicht erledigen. Rechnen Sie mit
+wenigen Minuten.</p>
+<h4 id="vorbereiten">Vorbereiten</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B1 — Vorbedingungen prüfen. Schreibt nichts.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb doctor</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># B2 — Inventar: welche areoi-Blöcke, in welchen Fundstellen, wie oft.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate scan</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate scan <span class="at">--format</span><span class="op">=</span>json <span class="op">&gt;</span> inventar-vorher.json</span></code></pre></div>
+<p><code>doctor</code> gibt zehn Zeilen aus. Zwei davon dürfen an dieser
+Stelle <code>warn</code> sein und sind es meist auch: <em>Alt-Plugin
+(all-bootstrap-blocks)</em> — es läuft absichtlich noch mit — und
+<em>Legacy-CSS-Klassen</em>, wenn das Theme gegen <code>areoi-*</code>
+stylt. Jede rote Zeile beendet den Lauf.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B3 — Den Zustand VOR der Umstellung festhalten, um später dagegen vergleichen zu können.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot urls <span class="at">--out</span><span class="op">=</span>urls.txt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot create <span class="at">--out</span><span class="op">=</span>snapshot-vorher <span class="at">--urls</span><span class="op">=</span>urls.txt</span></code></pre></div>
+<p><strong>Nehmen Sie die Seite jetzt vom Netz</strong> und lassen Sie
+sie bis nach B6 offline:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> maintenance-mode activate</span></code></pre></div>
+<p><code>migrate run</code> hat keine Nebenläufigkeitssicherung: Wer
+währenddessen einen Beitrag speichert, dessen Wert überschreibt der
+Lauf.</p>
+<h4 id="durchführen">Durchführen</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B4 — Trockenlauf. Schreibt nichts, rechnet aber vollständig nach.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate run <span class="at">--dry-run</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># B5 — Die eigentliche Migration, mit Backup.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate run <span class="at">--backup</span><span class="op">=</span>/pfad/zum/backup-JJJJ-MM-TT.sql.gz</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># B6 — Nachkontrolle. Muss null areoi-Treffer melden.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate verify</span></code></pre></div>
+<p><strong><code>--backup</code> erwartet einen Dateipfad, kein
+Verzeichnis.</strong> Das Kommando weist ein bereits vorhandenes Ziel ab
+— es zu überschreiben zerstörte den Rückweg eines früheren Laufs.</p>
+<blockquote>
+<p><strong>Das Backup gehört nicht in den Webbaum.</strong> Ein
+Datenbankabzug unter <code>wp-content/uploads/</code> ist über HTTP
+abrufbar — an einer echten Installation nachgemessen:
+<code>wp-content/uploads/probe.sql.gz</code> antwortete anonym mit
+<strong>HTTP 200</strong> und gab ihren Inhalt heraus. Ein
+Migrationsbackup enthält die vollständige Datenbank samt Benutzern und
+Passworthashes, und sein Name ist vorhersagbar. Wählen Sie ein
+Verzeichnis <strong>außerhalb</strong> des Webbaums, etwa
+<code>/var/backups/</code>. Geht das auf Ihrem Webspace nicht, nehmen
+Sie das Backup trotzdem — ein Backup an schlechter Stelle ist besser als
+keines — und <strong>löschen Sie es in Schritt B10</strong>.
+<code>wp creabb doctor</code> und <code>migrate run</code> weisen beide
+auf diesen Zustand hin.</p>
+</blockquote>
+<p>Der Lauf ist <strong>idempotent</strong>: Blöcke, die bereits einen
+<code>blockstudio</code>-Schlüssel tragen, werden übersprungen, ein
+zweiter Durchgang ändert also nichts. Angefasst wird ausschließlich der
+Blockbegrenzer; alles zwischen den Begrenzern bleibt Byte für Byte
+stehen.</p>
+<h4 id="nachweisen">Nachweisen</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B7 — HTML und Inline-CSS vorher gegen nachher halten.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot create <span class="at">--out</span><span class="op">=</span>snapshot-nachher <span class="at">--urls</span><span class="op">=</span>urls.txt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot diff snapshot-vorher snapshot-nachher</span></code></pre></div>
+<p>Der Diff normalisiert Nonces, Cache-Buster und Zeitstempel weg und
+meldet jede verbleibende Abweichung. Die Reihenfolge innerhalb von
+<code>class</code>-Attributen wird <strong>nicht</strong> normalisiert —
+sie ist Teil des Vertrags, und eine Verschiebung soll auffallen.</p>
+<blockquote>
+<p><strong>Messen Sie zuerst die Rauschgrenze — die Fehlerzahl allein
+sagt nichts.</strong> Viele Plugins erzeugen bei <em>jedem</em> Aufruf
+anderes Markup: zufällige Element-IDs von E-Mail-Verschleierern,
+Formular-IDs, Werbe- und Trackingbausteine. Auf einer echten
+Bestandsseite haben wir am 2026-09-10 <strong>904 Markup-Abweichungen
+zwischen zwei Aufnahmen desselben, unveränderten Zustands</strong>
+gemessen. Nehmen Sie deshalb <strong>vor</strong> der Migration zweimal
+hintereinander auf und vergleichen Sie die beiden:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot create <span class="at">--out</span><span class="op">=</span>snapshot-rauschen <span class="at">--urls</span><span class="op">=</span>urls.txt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot diff snapshot-vorher snapshot-rauschen</span></code></pre></div>
+<p>Was dort schon rot ist, ist Eigenschaft der Seite und nicht Ihrer
+Migration. Erst was <strong>darüber hinaus</strong> in B7 auftaucht, ist
+ein Befund.</p>
+<p><strong>Und beide Seiten müssen denselben Cache-Zustand
+haben.</strong> Eine aus dem Seitencache bediente Vorher-Aufnahme gegen
+eine frisch gerenderte Nachher-Aufnahme zu halten erzeugt Abweichungen,
+die niemand verursacht hat. Leeren Sie den Cache vor jeder Aufnahme.</p>
+<p><strong>Nach B8 ist der CSS-Teil des Vergleichs nicht mehr
+gültig.</strong> Er hält das Stylesheet des Alt-Plugins gegen das des
+Nachbaus; ist das Alt-Plugin weg, fehlt die Vorher-Seite. Der Diff sagt
+das selbst — <code>css-reference-missing</code>. Wiederholen Sie den
+Vergleich also nicht nach dem Abschalten.</p>
+</blockquote>
+<h4 id="abschließen">Abschließen</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B8 — Jetzt erst das Alt-Plugin deaktivieren.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> plugin deactivate all-bootstrap-blocks</span></code></pre></div>
+<p>Ab hier rendert ausschließlich CreaBootstrapBlocks. Falls die Seite
+noch offline ist:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> maintenance-mode deactivate</span></code></pre></div>
+<p>Solange beide Plugins aktiv waren, druckten beide ihr generiertes
+Inline-CSS in denselben Kopf; bei gleicher Spezifität gewann die später
+gedruckte Regel. <strong>Eine Abnahme des erzeugten CSS ist deshalb erst
+nach B8 aussagekräftig.</strong></p>
+<p>Das Alt-Plugin kann jetzt auch gelöscht werden
+(<code>wp plugin delete all-bootstrap-blocks</code>) — der Rückweg hängt
+am Backup, nicht am Plugin-Ordner.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B9 — Alt-Optionen räumen. Erst nach Ihrer Abnahme: bis dahin sind sie der Rückweg.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb cleanup <span class="at">--legacy-options</span> <span class="at">--yes</span></span></code></pre></div>
+<p><code>wp creabb cleanup</code> weigert sich, solange
+<code>migrate verify</code> nicht sauber durchläuft. Ohne
+<code>--yes</code> zeigt es die Liste und fragt nach.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># B10 — Den Datenbankabzug aus dem Webbaum schaffen.</span></span></code></pre></div>
+<p><strong>Wenn das Backup in <code>wp-content/uploads/</code> oder
+sonst im Webbaum liegt, muss es nach der Abnahme weg</strong> — oder
+wenigstens an einen Ort außerhalb des Webbaums. Solange es dort steht,
+ist Ihre vollständige Datenbank für jeden herunterladbar, der den
+Dateinamen errät. Das gilt auch für den Dump, den
+<code>wp creabb migrate rollback</code> gelesen hat.</p>
+<h4 id="wenn-etwas-schiefgeht">Wenn etwas schiefgeht</h4>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate rollback <span class="at">--from</span><span class="op">=</span>/pfad/zum/backup-JJJJ-MM-TT.sql.gz <span class="at">--yes</span></span></code></pre></div>
+<p>Ohne <code>--yes</code> fragt das Kommando nach. Danach das
+Alt-Plugin wieder aktivieren. Der Rückweg ist so lange offen, wie B9
+nicht gelaufen ist.</p>
 <hr />

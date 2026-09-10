@@ -1,4 +1,41 @@
-<h3 id="section">1.0.0</h3>
+<h3 id="section">1.0.1</h3>
+<p>Wartungsfassung. Der erste echte Migrationslauf auf einer
+Bestandsinstanz hat zwei Dinge gefunden — eines davon
+sicherheitsrelevant.</p>
+<ul>
+<li><strong>Sicherheit: Das Migrationsbackup wird nicht mehr
+stillschweigend in ein öffentlich abrufbares Verzeichnis
+gelegt.</strong> <code>wp creabb doctor</code> meldete ein Backup-Ziel
+bisher als <code>ok</code>, sobald es beschreibbar war — auch
+<code>wp-content/uploads/</code>, aus dem sich ein Datenbankabzug über
+HTTP herunterladen lässt. Die Zeile meldet jetzt <code>warn</code>,
+nennt den Grund und den Ausweg, und <code>wp creabb migrate run</code>
+wiederholt die Warnung an der Stelle, an der die Datei entsteht. Kein
+Abbruch: Wo es kein Verzeichnis außerhalb des Webbaums gibt, ist ein
+Backup an schlechter Stelle besser als keines — es muss nur nach der
+Abnahme wieder weg.</li>
+<li><strong>Die Anleitung zur Umstellung erreicht jetzt das
+Update-Manifest.</strong> Der Abschnitt <em>Installation</em> endete
+bisher nach dem Aktivieren des Plugins; die Migration stand darunter in
+einem eigenen Kapitel und wurde beim Erzeugen des Manifests
+abgeschnitten. Wer nur die Installationsanweisung las, konnte
+„hochladen, aktivieren, altes Plugin deaktivieren” für vollständig
+halten — und verlöre beim nächsten Speichern im Editor die
+Blockeinstellungen. <em>Installation</em> führt jetzt <strong>Teil
+A</strong> (Plugin einspielen) und <strong>Teil B</strong> (Inhalte
+umstellen), benennt den falschen Weg ausdrücklich und zählt die Schritte
+eindeutig als A1–A4 und B1–B10.</li>
+<li><strong>Neu in der Anleitung:</strong> die Rauschgrenze des
+Vorher-Nachher-Vergleichs wird vor der Migration gemessen, statt eine
+nackte Fehlerzahl zu deuten; beide Aufnahmen brauchen denselben
+Cache-Zustand; der CSS-Teil des Vergleichs ist nach dem Abschalten des
+Alt-Plugins gegenstandslos. Dazu der Wartungsmodus als konkreter Befehl
+und <code>--yes</code> bei <code>cleanup</code> und
+<code>rollback</code>.</li>
+<li>Keine Änderung an Blöcken, Attributen, Markup oder erzeugtem CSS.
+Ein Update von 1.0.0 ändert an bestehenden Seiten nichts.</li>
+</ul>
+<h3 id="section-1">1.0.0</h3>
 <p>Erste veröffentlichte Fassung. (Eine Version 0.1.0 ist nie
 ausgeliefert worden; ihr Changelog-Eintrag ist hier aufgegangen.)</p>
 <ul>

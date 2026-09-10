@@ -121,6 +121,24 @@ sie BENENNT jede Abweichung einzeln und stellt sie als <code class="prettyprint"
 unterscheiden zwei Aufrufe derselben Seite. Mit zu viel Normalisierung ist
 jeder Diff gruen. Deshalb wird die Klassenreihenfolge ausdruecklich NICHT
 angefasst: Sie ist Teil des Kompatibilitaetsvertrags.</p>
+<p>DIE DRITTE GRENZE: DIESE KLASSE KENNT DIE RAUSCHGRENZE DER SEITE NICHT</p>
+<p>Am 2026-09-10 auf einer Bestandsinstanz gemessen: 904 Markup-Befunde
+zwischen zwei Aufnahmen desselben, UNVERAENDERTEN Zustands. Ursache waren
+Zufalls-IDs eines E-Mail-Verschleierers und eine Kaskade ab dem
+<code class="prettyprint">&lt;form&gt;</code>-Tag einer Formularseite. Beides ist Eigenschaft der Installation,
+nicht des Nachbaus — und diese Klasse kann die beiden nicht unterscheiden,
+weil ihr dazu jede Bezugsgroesse fehlt.</p>
+<p>Die Konsequenz ist bewusst KEINE weitere Normalisierung: Ein Muster, das
+<code class="prettyprint">eeb-&lt;zahl&gt;-&lt;zahl&gt;</code> wegraeumt, raeumt auch eine echte Abweichung an dieser
+Stelle weg. Die Bezugsgroesse wird stattdessen GEMESSEN — zwei Aufnahmen
+desselben Zustands gegeneinander, vor der Migration. Eine nackte
+Fehlerzahl aus <code class="prettyprint">summary_line()</code> ist ohne sie kein Urteil.</p>
+<p>ZWEI VORAUSSETZUNGEN DES VERGLEICHS, die derselbe Lauf gefunden hat:
+Beide Aufnahmen brauchen denselben Cache-Zustand — eine gecachte gegen eine
+frisch gerenderte Seite erzeugt Befunde, die niemand verursacht hat. Und der
+CSS-Teil traegt nur, solange das Alt-Plugin aktiv und der Inhalt noch
+<code class="prettyprint">areoi/*</code> ist; danach meldet <code class="prettyprint">css_reference_findings()</code> selbst
+<code class="prettyprint">css-reference-missing</code>, und die Regelbefunde daneben sind dessen Folge.</p>
 <p>WARUM JEDER REGEX-AUFRUF BEWACHT IST</p>
 <p><code class="prettyprint">preg_replace()</code> gibt bei einem Abbruch der Engine — Backtrack- oder
 Rekursionsgrenze — <code class="prettyprint">null</code> zurueck, <code class="prettyprint">preg_match_all()</code> und <code class="prettyprint">preg_split()</code>

@@ -1191,10 +1191,30 @@ Search.appendIndex(
             "summary": "The\u0020directory\u0020a\u0020backup\u0020argument\u0020addresses.",
             "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_backup_directory"
         },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Anormalize_path\u0028\u0029",
+            "name": "normalize_path",
+            "summary": "Resolves\u0020\u0060.\u0060\u0020and\u0020\u0060..\u0060\u0020in\u0020a\u0020path\u0020WITHOUT\u0020touching\u0020the\u0020file\u0020system.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_normalize_path"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Apath_inside_public_root\u0028\u0029",
+            "name": "path_inside_public_root",
+            "summary": "Whether\u0020a\u0020directory\u0020lies\u0020at\u0020or\u0020below\u0020one\u0020of\u0020the\u0020publicly\u0020served\u0020roots.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_path_inside_public_root"
+        },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Abackup_target_check\u0028\u0029",
             "name": "backup_target_check",
-            "summary": "Check\u00208\u0020\u2014\u0020the\u0020backup\u0020target\u0020is\u0020writable.",
+            "summary": "Check\u00208\u0020\u2014\u0020the\u0020backup\u0020target\u0020is\u0020writable,\u0020and\u0020not\u0020served\u0020to\u0020the\u0020public.",
             "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_backup_target_check"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Apublic_roots\u0028\u0029",
+            "name": "public_roots",
+            "summary": "The\u0020directories\u0020this\u0020installation\u0020serves\u0020over\u0020HTTP.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Apublic_roots_from\u0028\u0029",
+            "name": "public_roots_from",
+            "summary": "The\u0020pure\u0020half\u0020of\u0020\u0060public_roots\u0028\u0029\u0060.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Doctor-Command.html#method_public_roots_from"
         },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Doctor_Command\u003A\u003Aareoi_block_names\u0028\u0029",
             "name": "areoi_block_names",

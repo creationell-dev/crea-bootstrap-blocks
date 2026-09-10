@@ -1,3 +1,13 @@
+<p><strong>Reicht es, das neue Plugin hochzuladen, zu aktivieren und das
+alte zu deaktivieren?</strong> Nein — das ist der häufigste Irrtum bei
+der Umstellung. Damit ist nur <strong>Teil A</strong> der Installation
+erledigt. Ihre Inhalte tragen danach immer noch den alten
+Blocknamensraum <code>areoi/*</code> und werden lediglich über ein
+Notfallnetz gerendert; beim nächsten Speichern im Editor verlieren sie
+ihre Einstellungen. Erst <strong>Teil B</strong> —
+<code>wp creabb migrate run</code> — schreibt den Namensraum dauerhaft
+um. Und das alte Plugin wird nicht am Anfang deaktiviert, sondern erst
+in Schritt B8, wenn die Umstellung nachgewiesen ist.</p>
 <p><strong>Brauche ich eine kostenpflichtige
 Blockstudio-Lizenz?</strong> Nein. Blockstudio steht unter GPL-2.0, ist
 quelloffen unter <a
@@ -24,7 +34,7 @@ während der Umstellung ist es nötig. Solange beide aktiv sind, drucken
 beide ihr generiertes Inline-CSS in denselben Kopf; bei gleicher
 Spezifität gewinnt die später gedruckte Regel. Eine Abnahme des
 erzeugten CSS ist deshalb erst aussagekräftig, <strong>nachdem</strong>
-das Alt-Plugin deaktiviert ist (Schritt 7).</p>
+das Alt-Plugin deaktiviert ist (Schritt B8).</p>
 <p><strong>Bringt das Plugin Bootstrap mit?</strong> Optional.
 Standardmäßig sind alle drei Asset-Schalter aus, Bootstrap kommt dann
 vom Theme. Wer sie einschaltet, bekommt eine exakt gepinnte
@@ -35,13 +45,34 @@ Blocknamensraum und hebt die Attribute in den Blockstudio-Container.
 Alles zwischen den Blockbegrenzern bleibt Byte für Byte stehen. Der Lauf
 ist idempotent und wird über einen Schlüssel- und Wertevergleich je
 <code>block_id</code> gegen das Backup verifiziert.</p>
-<p><strong>Was passiert mit nicht migrierten Seiten?</strong> Sie
-rendern weiter: Zu jedem Block gibt es ein ausgeblendetes
-<code>areoi/*</code>-Gegenstück, und ein Render-Fallback hebt flach
-gespeicherte Attribute zur Laufzeit in den Blockstudio-Container. Im
-Editor gehen die Werte allerdings verloren, sobald ein solcher Block
-gespeichert wird — der Fallback ist ein Netz, kein Ersatz für die
-Migration.</p>
+<p><strong>Was passiert mit nicht migrierten Seiten?</strong> Im
+<strong>Frontend</strong> rendern sie unverändert weiter: Zu jedem Block
+gibt es ein ausgeblendetes <code>areoi/*</code>-Gegenstück, und ein
+Render-Fallback hebt flach gespeicherte Attribute zur Laufzeit in den
+Blockstudio-Container. Im <strong>Editor</strong> dagegen gehen die
+Werte verloren, sobald jemand einen solchen Block öffnet und speichert —
+die Einstellungen des Blocks fallen dann auf ihre Standardwerte zurück.
+Der Fallback ist ein Netz für den Übergang, kein Ersatz für die
+Migration. Wer eine Seite dauerhaft betreiben will, fährt Teil B.</p>
+<p><strong>Wohin gehört das Migrationsbackup?</strong> Außerhalb des
+Webbaums — nicht nach <code>wp-content/uploads/</code>. Ein
+<code>.sql.gz</code> liegt dort öffentlich abrufbar; nachgemessen
+antwortet der Server anonym mit HTTP 200 und gibt die Datei heraus. Das
+Backup ist ein vollständiger Datenbankabzug samt Benutzern und
+Passworthashes, und der in dieser Anleitung vorgeschlagene Name
+<code>backup-JJJJ-MM-TT.sql.gz</code> ist zu erraten. Wenn Ihr Webspace
+kein Verzeichnis außerhalb erlaubt, nehmen Sie das Backup trotzdem und
+löschen es nach der Abnahme (Schritt B10). <code>wp creabb doctor</code>
+meldet ein öffentlich ausgeliefertes Backup-Ziel als <code>warn</code>,
+und <code>migrate run</code> wiederholt die Warnung beim Schreiben.</p>
+<p><strong>Warum meldet der Snapshot-Diff Fehler, obwohl nichts kaputt
+ist?</strong> Weil viele Plugins bei jedem Seitenaufruf anderes Markup
+erzeugen — zufällige Element-IDs, Formular-IDs, Trackingbausteine.
+Gemessen: 904 Markup-Abweichungen zwischen zwei Aufnahmen desselben
+unveränderten Zustands. Messen Sie deshalb erst die Rauschgrenze (zwei
+Aufnahmen vor der Migration gegeneinander) und lesen Sie das Ergebnis
+von B7 dagegen. Achten Sie außerdem darauf, dass beide Aufnahmen
+denselben Cache-Zustand haben.</p>
 <p><strong>Werden auch Revisionen migriert?</strong> Ja, standardmäßig.
 <code>--skip-revisions</code> lässt sie stehen; dann braucht auch die
 Nachkontrolle das Flag:
