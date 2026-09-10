@@ -1,0 +1,62 @@
+<p><strong>CreaBootstrapBlocks setzt <a
+href="https://blockstudio.dev">Blockstudio</a> ab Version 7.6
+voraus.</strong> Blockstudio ist das Block-Framework, auf dem sämtliche
+Blöcke dieses Plugins registriert und gerendert werden. Ohne aktives
+Blockstudio registriert CreaBootstrapBlocks keinen einzigen Block, zeigt
+eine Hinweismeldung im Backend und bleibt im Übrigen untätig — es gibt
+keinen Ersatzmodus und keine abgespeckte Variante.</p>
+<p>Blockstudio steht unter <strong>GPL-2.0</strong> und ist quelloffen
+unter <a
+href="https://github.com/inline0/blockstudio">github.com/inline0/blockstudio</a>
+verfügbar; es braucht keinen Lizenzschlüssel, um zu laufen. Es liegt
+allerdings <strong>nicht auf wordpress.org</strong> und ist in diesem
+Paket nicht enthalten — es wird getrennt installiert.</p>
+<p><strong>CreaBootstrapBlocks</strong> ist der rückwärtskompatible
+Nachfolger des eingestellten Plugins <em>All Bootstrap Blocks</em>
+(Blocknamensraum <code>areoi/*</code>). Es baut dessen <strong>47
+Blöcke</strong> nach — mit identischen Attributnamen, -typen und
+-defaults, äquivalentem Markup, denselben CSS-Klassen und demselben
+generierten Inline-CSS. Bestehende Seiteninhalte werden per WP-CLI
+migriert; für nicht migrierte Fundstellen gibt es einen Render-Fallback
+und einen abschaltbaren <code>areoi/*</code>-Alias.</p>
+<p>Bootstrap CSS und JavaScript kommen standardmäßig vom Theme. Optional
+liefert das Plugin eine exakt gepinnte Bootstrap-5.3.x-Fassung samt
+Icons mit; CSS und JavaScript stammen dabei aus derselben Version.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Rückwärtskompatibler Attributvertrag</strong> —
+Attributnamen, -typen und -defaults werden 1:1 aus dem Vorgänger
+übernommen, auch nirgends belegte</li>
+<li><strong>Äquivalentes Markup</strong> — Blöcke geben
+<code>creabb-*</code> und zusätzlich die alten
+<code>areoi-*</code>-Klassen aus, damit vorhandene Theme-Styles
+unverändert weiter greifen. Das ist eine dauerhaft unterstützte
+Betriebsart, kein Provisorium (siehe <em>Muss ich mein Theme
+anpassen?</em>)</li>
+<li><strong>Generiertes Inline-CSS</strong> —
+<code>.block-&lt;kennung&gt;</code>-Selektoren, nach Breakpoint in
+<code>@media</code>-Blöcken gebündelt, mit validierten Werten</li>
+<li><strong>Legacy-Alias</strong> — zu jedem der 47 Blöcke ein
+ausgeblendetes <code>areoi/*</code>-Gegenstück, abschaltbar per
+Konstante oder Backend-Schalter</li>
+<li><strong>WP-CLI-Migration</strong> — <code>wp creabb doctor</code>,
+<code>migrate scan|run|verify|rollback</code> und <code>cleanup</code>;
+der Lauf ist idempotent, schreibt ein Backup und rechnet sich selbst
+nach</li>
+<li><strong>Eigene Blockstile und Frontend-Logik</strong> — die fünf
+blockeigenen Stylesheets des Vorgängers und sein Frontend-JavaScript
+(Tabs, Popover, Tooltip, Modal, Collapse, Offcanvas, Toast), in
+Vanilla-JS statt jQuery</li>
+<li><strong>Optionale Bootstrap-Assets</strong> — CSS, JS-Bundle und
+Icons einzeln zuschaltbar, standardmäßig aus, kein CDN, kein
+SCSS-Compiler</li>
+<li><strong>Agentendokumentation</strong> — maschinenlesbarer
+Blockvertrag und Volltextreferenz unter <code>llm/</code>, plus lesende
+Fähigkeiten über die WordPress Abilities API</li>
+<li><strong>Kein Lizenz-Gate, keine Telemetrie</strong> —
+GPL-2.0-or-later, alle Funktionen dauerhaft aktiv</li>
+</ul>
+<p><strong>Geplant, noch nicht enthalten:</strong> ein
+Self-Hosted-Updater, der Updates direkt aus GitHub-Releases mit
+SHA-256-Manifest-Verifikation bezieht.</p>
+<hr />

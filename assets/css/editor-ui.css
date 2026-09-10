@@ -1,0 +1,47 @@
+/*
+ * Korrekturen an der Editor-OBERFLAECHE — nicht an der Leinwand.
+ *
+ * WOFUER DIESE DATEI DA IST
+ *
+ * `blocks.css` laedt ueber `enqueue_block_assets` in das iframe, in dem der
+ * Beitrag gerendert wird. Die Seitenleiste des Blockeditors liegt AUSSERHALB
+ * dieses iframes; von dort ist sie nicht erreichbar. Was die Bedienbarkeit der
+ * Seitenleiste betrifft, gehoert deshalb hierher und wird ueber
+ * `enqueue_block_editor_assets` geladen.
+ *
+ * SPARSAM BLEIBEN. Jede Regel hier greift in die Oberflaeche eines fremden
+ * Plugins ein und kann mit dessen naechster Fassung ins Leere laufen. Deshalb
+ * steht hier ausschliesslich, was ohne die Regel MESSBAR kaputt ist — und zu
+ * jeder Regel die Messung, an der sie haengt.
+ */
+
+/*
+ * DIE REITERLEISTE DER BREAKPOINTS PASST IN DIE SEITENLEISTE.
+ *
+ * Gemessen am 2026-09-08 im echten Editor, an allen drei Blocktypen der
+ * Startseite einer Bestandsinstallation: Die Leiste brauchte 298 px in 280 px
+ * Sicht, der rechte Rand des letzten Knopfes lag bei 1618 px bei 1600 px
+ * Fensterbreite. `XXL` ragte also 18 px hinaus und war nur teilweise
+ * anklickbar.
+ *
+ * Vorher war es schlimmer: Mit den ausgeschriebenen Namen („Sehr klein",
+ * „Klein", „Mittel", „Gross", …) endete die sichtbare Leiste hinter „Gross" —
+ * XL und XXL waren gar nicht erreichbar. Das stand als Befund 5 im Entwurf und
+ * ist mit den Bootstrap-Infixen als Reitertitel zum groessten Teil erledigt;
+ * die letzten 18 px erledigt diese Regel.
+ *
+ * WARUM UEBER DIE POLSTERUNG und nicht ueber die Schriftgroesse: Die Kuerzel
+ * sind ohnehin kurz; kleiner gesetzt waeren sie schlechter zu treffen. Sechs
+ * Knoepfe mal zwei Seiten sparen hier zusammen genug, ohne dass die
+ * Klickflaeche unter das hinausgeht, was der Editor sonst anbietet.
+ *
+ * Die Wache dagegen, dass es wieder auflaeuft, ist keine Zusicherung, sondern
+ * eine Messung: `php bin/creabb-editor.php bild` druckt Inhalts- und
+ * Sichtbreite der Leiste und meldet „LAEUFT UEBER", sobald sie nicht mehr
+ * passt. Ein Bild allein zeigt es nicht — der angeschnittene Reiter sah aus
+ * wie ein vollstaendiger.
+ */
+.blockstudio-fields [role="tablist"] > [role="tab"] {
+	padding-left: 6px;
+	padding-right: 6px;
+}

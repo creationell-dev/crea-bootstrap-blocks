@@ -1,0 +1,55 @@
+<p><strong>Brauche ich eine kostenpflichtige
+Blockstudio-Lizenz?</strong> Nein. Blockstudio steht unter GPL-2.0, ist
+quelloffen unter <a
+href="https://github.com/inline0/blockstudio">github.com/inline0/blockstudio</a>
+verfügbar und läuft ohne Lizenzschlüssel. Es ist aber die
+Laufzeitgrundlage aller Blöcke, liegt nicht auf wordpress.org und ist in
+diesem Paket nicht enthalten — installieren müssen Sie es also
+selbst.</p>
+<p><strong>Muss ich mein Theme anpassen?</strong> Nein. Solange
+<code>CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES</code> auf <code>true</code>
+steht — und das ist der Standard —, geben alle Blöcke die alten
+<code>areoi-*</code>-Klassen zusätzlich zu den neuen
+<code>creabb-*</code>-Klassen aus, an derselben Position im
+<code>class</code>-Attribut. Ein Theme, das gegen
+<code>.areoi-element</code>, <code>.areoi-element.container</code> oder
+<code>.areoi-has-url</code> stylt, greift unverändert weiter.
+<strong>Das ist eine dauerhaft unterstützte Betriebsart.</strong> Wer
+sein Theme irgendwann auf <code>creabb-*</code> umstellt, ergänzt dort
+zuerst die neuen Selektoren, rollt aus, sieht nach — und schaltet erst
+danach die Konstante auf <code>false</code>. Umgekehrt verlöre die Seite
+zwischen beiden Schritten ihr Layout.</p>
+<p><strong>Können beide Plugins gleichzeitig laufen?</strong> Ja, und
+während der Umstellung ist es nötig. Solange beide aktiv sind, drucken
+beide ihr generiertes Inline-CSS in denselben Kopf; bei gleicher
+Spezifität gewinnt die später gedruckte Regel. Eine Abnahme des
+erzeugten CSS ist deshalb erst aussagekräftig, <strong>nachdem</strong>
+das Alt-Plugin deaktiviert ist (Schritt 7).</p>
+<p><strong>Bringt das Plugin Bootstrap mit?</strong> Optional.
+Standardmäßig sind alle drei Asset-Schalter aus, Bootstrap kommt dann
+vom Theme. Wer sie einschaltet, bekommt eine exakt gepinnte
+5.3.x-Fassung, bei der CSS und JavaScript aus derselben Version
+stammen.</p>
+<p><strong>Ändert die Migration meine Inhalte?</strong> Sie ersetzt den
+Blocknamensraum und hebt die Attribute in den Blockstudio-Container.
+Alles zwischen den Blockbegrenzern bleibt Byte für Byte stehen. Der Lauf
+ist idempotent und wird über einen Schlüssel- und Wertevergleich je
+<code>block_id</code> gegen das Backup verifiziert.</p>
+<p><strong>Was passiert mit nicht migrierten Seiten?</strong> Sie
+rendern weiter: Zu jedem Block gibt es ein ausgeblendetes
+<code>areoi/*</code>-Gegenstück, und ein Render-Fallback hebt flach
+gespeicherte Attribute zur Laufzeit in den Blockstudio-Container. Im
+Editor gehen die Werte allerdings verloren, sobald ein solcher Block
+gespeichert wird — der Fallback ist ein Netz, kein Ersatz für die
+Migration.</p>
+<p><strong>Werden auch Revisionen migriert?</strong> Ja, standardmäßig.
+<code>--skip-revisions</code> lässt sie stehen; dann braucht auch die
+Nachkontrolle das Flag:
+<code>wp creabb migrate verify --skip-revisions</code>.</p>
+<p><strong>Was ist mit FSE-Templates im Theme?</strong>
+<code>templates/*.html</code> und <code>parts/*.html</code> liegen als
+Dateien im Theme, nicht in der Datenbank — die Migration fasst sie nicht
+an. <code>wp creabb doctor</code> meldet, ob dort
+<code>areoi/</code>-Blöcke stehen; sie sind von Hand im Theme-Repo
+umzustellen.</p>
+<hr />

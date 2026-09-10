@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400" role="img">
+<rect width="500" height="400" fill="#ffffff"/>
+<rect x="60" y="60" width="110" height="34" fill="#ececed" rx="17"/>
+<path d="M140 74 l6 6 l6 -6" stroke="#b7b7b7" stroke-width="2" fill="none" stroke-linecap="round"/>
+<rect x="84" y="110" width="200" height="150" fill="#ffffff" rx="5" stroke="#57575c" stroke-width="1.0"/>
+<rect x="104" y="132" width="120" height="5" rx="2" fill="#b7b7b7"/>
+<rect x="84" y="158" width="200" height="44" fill="#ececed" stroke="#57575c" stroke-width="2.0"/>
+<rect x="104" y="176" width="140" height="8" rx="2" fill="#57575c"/>
+<line x1="84" y1="214" x2="284" y2="214" stroke="#b7b7b7" stroke-width="1.0"/>
+<rect x="104" y="232" width="100" height="5" rx="2" fill="#b7b7b7"/>
+<rect x="104" y="278" width="133" height="20" fill="#57575c"/>
+<text x="109" y="292" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffffff">creabb/dropdown-item</text>
+</svg>

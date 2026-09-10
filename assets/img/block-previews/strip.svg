@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400" role="img">
+<rect width="500" height="400" fill="#ffffff"/>
+<rect x="30" y="85" width="440" height="230" fill="none" stroke="#b7b7b7" stroke-dasharray="4 3"/>
+<rect x="30" y="75" width="83" height="20" fill="#57575c"/>
+<text x="35" y="89" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffffff">creabb/strip</text>
+<rect x="50" y="115" width="400" height="172" fill="none" stroke="#b7b7b7" stroke-dasharray="4 3"/>
+<rect x="50" y="105" width="108" height="20" fill="#57575c"/>
+<text x="55" y="119" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffffff">creabb/container</text>
+<rect x="70" y="145" width="360" height="114" fill="none" stroke="#b7b7b7" stroke-dasharray="4 3"/>
+<rect x="70" y="135" width="71" height="20" fill="#57575c"/>
+<text x="75" y="149" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffffff">creabb/row</text>
+<rect x="90" y="175" width="320" height="56" fill="none" stroke="#b7b7b7" stroke-dasharray="4 3"/>
+<rect x="90" y="165" width="90" height="20" fill="#57575c"/>
+<text x="95" y="179" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffffff">creabb/column</text>
+</svg>

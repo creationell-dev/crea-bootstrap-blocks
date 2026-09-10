@@ -1,0 +1,48 @@
+<h3 id="section">1.0.0</h3>
+<p>Erste veröffentlichte Fassung. (Eine Version 0.1.0 ist nie
+ausgeliefert worden; ihr Changelog-Eintrag ist hier aufgegangen.)</p>
+<ul>
+<li><strong>Alle 47 Blöcke</strong> des Vorgängers samt vollständigem
+Attributvertrag — Layout (<code>container</code>, <code>row</code>,
+<code>column</code>, <code>div</code>), Karten und Buttons, die drei
+Stripblöcke sowie die 33 Blöcke der zweiten Ausbaustufe (Akkordeon,
+Navigation, die zehn Overlays, Karussell, Fortschritt, die fünf großen
+Strips, <code>breadcrumb</code> und <code>post-grid</code>).</li>
+<li>Zu jedem Block ein ausgeblendeter <code>areoi/*</code>-Aliasblock,
+abschaltbar über Konstante oder Backend-Schalter.</li>
+<li><strong>WP-CLI-Migration:</strong> <code>wp creabb doctor</code>,
+<code>migrate scan|run|verify|rollback</code> und
+<code>cleanup --legacy-options</code>, dazu
+<code>snapshot urls|create|diff</code> für den Vorher-Nachher-Vergleich
+von HTML und Inline-CSS.</li>
+<li>Generiertes Inline-CSS je Breakpoint, Render-Fallback für flach
+gespeicherte Attribute, Backend unter <em>Design →
+CreaBootstrapBlocks</em> mit den Tabs Assets, Kompatibilität und
+Diagnose.</li>
+<li>Die fünf blockeigenen Stylesheets des Vorgängers und sein
+Frontend-JavaScript, in Vanilla-JS statt jQuery.</li>
+<li>Übersetzungen für <code>de_DE</code> und <code>de_DE_formal</code>,
+Agentendokumentation unter <code>llm/</code>, sechs lesende Fähigkeiten
+der WordPress Abilities API.</li>
+<li>Optionale Bootstrap-Assets (CSS, JS-Bundle, Icons), alle drei
+standardmäßig aus.</li>
+<li><strong>Editor-Seitenleiste:</strong> Die Felder stehen in benannten
+Gruppen statt als lange Liste — 39 der 47 Blöcke haben sie, die übrigen
+führen ein oder zwei Felder. Jedes Feld trägt einen Hilfetext, die
+wichtigste Gruppe steht oben und startet aufgeklappt, und die
+Breakpoint-Optionen liegen in einer Reiterleiste XS bis XXL.</li>
+<li><strong>Vorschaubilder im Inserter</strong> für alle 47 Blöcke, als
+SVG-Schema statt als Screenshot (188 kB statt 2,2 MB); über
+<code>CREA_BOOTSTRAP_BLOCKS_INSERTER_PREVIEWS</code> abschaltbar.</li>
+<li><strong>Drei eigene Editor-Bedienelemente</strong>, damit die
+gespeicherte Form dem Vertrag entspricht: Auswahllisten und Farbwähler
+schreiben denselben Wert wie das Vorgängerplugin, und die Bildauswahl
+von <code>media-grid-image</code> öffnet die Mediathek, statt eine
+Anhang-ID zu verlangen.</li>
+<li><strong>Kindblock-Schranken wie im Original:</strong> 21 Blöcke
+geben vor, was in sie hinein darf, und füllen sich beim Einfügen mit
+ihrer Grundstruktur.</li>
+<li>Das Plugin-CSS wirkt jetzt auch in der Editor-Leinwand — Abstände
+und Layout sehen dort aus wie im Frontend.</li>
+<li>Noch nicht enthalten: der Self-Hosted-Updater.</li>
+</ul>

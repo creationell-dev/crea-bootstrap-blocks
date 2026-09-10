@@ -1,0 +1,339 @@
+<h1 id="creabootstrapblocks">CreaBootstrapBlocks</h1>
+<p><strong>Plugin Name:</strong> CreaBootstrapBlocks<br />
+<strong>Plugin URI:</strong>
+https://github.com/creationell-dev/crea-bootstrap-blocks<br />
+<strong>Description:</strong> Rückwärtskompatibler Ersatz für das
+stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben
+Attribute, dasselbe Markup, gebaut auf Blockstudio.<br />
+<strong>Version:</strong> 1.0.0<br />
+<strong>Author:</strong> creationell® – die Werbeagentur <a
+href="mailto:marketing@creationell.de"
+class="email">marketing@creationell.de</a><br />
+<strong>Author URI:</strong> https://www.creationell.de/<br />
+<strong>Contributors:</strong> creationell-dev, JPKCom<br />
+<strong>Tags:</strong> bootstrap, blocks, gutenberg, layout, grid<br />
+<strong>Requires at least:</strong> 6.9<br />
+<strong>Tested up to:</strong> 7.1<br />
+<strong>Requires PHP:</strong> 8.3<br />
+<strong>Requires Plugins:</strong> blockstudio<br />
+<strong>Stable tag:</strong> 1.0.0<br />
+<strong>License:</strong> GPL-2.0-or-later<br />
+<strong>License URI:</strong>
+https://www.gnu.org/licenses/gpl-2.0.html<br />
+<strong>Text Domain:</strong> crea-bootstrap-blocks<br />
+<strong>Domain Path:</strong> /languages</p>
+<p>Ersetzt das am 18. Juni 2026 dauerhaft stillgelegte Plugin
+<strong>All Bootstrap Blocks</strong> ohne Datenverlust und ohne
+sichtbare Layoutänderung.</p>
+<hr />
+<h2 id="description">Description</h2>
+<p><strong>CreaBootstrapBlocks setzt <a
+href="https://blockstudio.dev">Blockstudio</a> ab Version 7.6
+voraus.</strong> Blockstudio ist das Block-Framework, auf dem sämtliche
+Blöcke dieses Plugins registriert und gerendert werden. Ohne aktives
+Blockstudio registriert CreaBootstrapBlocks keinen einzigen Block, zeigt
+eine Hinweismeldung im Backend und bleibt im Übrigen untätig — es gibt
+keinen Ersatzmodus und keine abgespeckte Variante.</p>
+<p>Blockstudio steht unter <strong>GPL-2.0</strong> und ist quelloffen
+unter <a
+href="https://github.com/inline0/blockstudio">github.com/inline0/blockstudio</a>
+verfügbar; es braucht keinen Lizenzschlüssel, um zu laufen. Es liegt
+allerdings <strong>nicht auf wordpress.org</strong> und ist in diesem
+Paket nicht enthalten — es wird getrennt installiert.</p>
+<p><strong>CreaBootstrapBlocks</strong> ist der rückwärtskompatible
+Nachfolger des eingestellten Plugins <em>All Bootstrap Blocks</em>
+(Blocknamensraum <code>areoi/*</code>). Es baut dessen <strong>47
+Blöcke</strong> nach — mit identischen Attributnamen, -typen und
+-defaults, äquivalentem Markup, denselben CSS-Klassen und demselben
+generierten Inline-CSS. Bestehende Seiteninhalte werden per WP-CLI
+migriert; für nicht migrierte Fundstellen gibt es einen Render-Fallback
+und einen abschaltbaren <code>areoi/*</code>-Alias.</p>
+<p>Bootstrap CSS und JavaScript kommen standardmäßig vom Theme. Optional
+liefert das Plugin eine exakt gepinnte Bootstrap-5.3.x-Fassung samt
+Icons mit; CSS und JavaScript stammen dabei aus derselben Version.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Rückwärtskompatibler Attributvertrag</strong> —
+Attributnamen, -typen und -defaults werden 1:1 aus dem Vorgänger
+übernommen, auch nirgends belegte</li>
+<li><strong>Äquivalentes Markup</strong> — Blöcke geben
+<code>creabb-*</code> und zusätzlich die alten
+<code>areoi-*</code>-Klassen aus, damit vorhandene Theme-Styles
+unverändert weiter greifen. Das ist eine dauerhaft unterstützte
+Betriebsart, kein Provisorium (siehe <em>Muss ich mein Theme
+anpassen?</em>)</li>
+<li><strong>Generiertes Inline-CSS</strong> —
+<code>.block-&lt;kennung&gt;</code>-Selektoren, nach Breakpoint in
+<code>@media</code>-Blöcken gebündelt, mit validierten Werten</li>
+<li><strong>Legacy-Alias</strong> — zu jedem der 47 Blöcke ein
+ausgeblendetes <code>areoi/*</code>-Gegenstück, abschaltbar per
+Konstante oder Backend-Schalter</li>
+<li><strong>WP-CLI-Migration</strong> — <code>wp creabb doctor</code>,
+<code>migrate scan|run|verify|rollback</code> und <code>cleanup</code>;
+der Lauf ist idempotent, schreibt ein Backup und rechnet sich selbst
+nach</li>
+<li><strong>Eigene Blockstile und Frontend-Logik</strong> — die fünf
+blockeigenen Stylesheets des Vorgängers und sein Frontend-JavaScript
+(Tabs, Popover, Tooltip, Modal, Collapse, Offcanvas, Toast), in
+Vanilla-JS statt jQuery</li>
+<li><strong>Optionale Bootstrap-Assets</strong> — CSS, JS-Bundle und
+Icons einzeln zuschaltbar, standardmäßig aus, kein CDN, kein
+SCSS-Compiler</li>
+<li><strong>Agentendokumentation</strong> — maschinenlesbarer
+Blockvertrag und Volltextreferenz unter <code>llm/</code>, plus lesende
+Fähigkeiten über die WordPress Abilities API</li>
+<li><strong>Kein Lizenz-Gate, keine Telemetrie</strong> —
+GPL-2.0-or-later, alle Funktionen dauerhaft aktiv</li>
+</ul>
+<p><strong>Geplant, noch nicht enthalten:</strong> ein
+Self-Hosted-Updater, der Updates direkt aus GitHub-Releases mit
+SHA-256-Manifest-Verifikation bezieht.</p>
+<hr />
+<h2 id="installation">Installation</h2>
+<ol type="1">
+<li><strong>Blockstudio ≥ 7.6 installieren und aktivieren.</strong> Ohne
+diese Abhängigkeit lässt sich CreaBootstrapBlocks nicht aktivieren
+(<code>Requires Plugins</code>-Header) und registriert keine
+Blöcke.</li>
+<li>Das ZIP des jüngsten Releases herunterladen und unter <em>Plugins →
+Installieren → Plugin hochladen</em> einspielen.</li>
+<li>Plugin aktivieren.</li>
+<li>Unter <em>Design → CreaBootstrapBlocks</em> prüfen, ob die Diagnose
+Blockstudio erkennt.</li>
+<li>Bestehende <code>areoi/*</code>-Inhalte rendern ab sofort über die
+mitgelieferten Aliasblöcke weiter — <strong>es ist kein Eingriff nötig,
+um eine bestehende Seite lauffähig zu halten.</strong> Für die
+dauerhafte Umstellung siehe den nächsten Abschnitt.</li>
+</ol>
+<hr />
+<h2 id="vom-alt-plugin-auf-creabootstrapblocks-umstellen">Vom Alt-Plugin
+auf CreaBootstrapBlocks umstellen</h2>
+<p>Die Umstellung tauscht <strong>nur das Plugin</strong>. Inhalte,
+Theme und Layout bleiben, wie sie sind: Der Blocknamensraum in
+<code>post_content</code> wird umgeschrieben, die Attribute wandern in
+den Blockstudio-Container, und die alten
+<code>areoi-*</code>-CSS-Klassen werden weiterhin ausgegeben. Am Theme
+ist nichts zu tun.</p>
+<p><strong>Beide Plugins laufen während der Umstellung
+nebeneinander.</strong> Das ist beabsichtigt und für die Schritte 3 bis
+6 sogar nötig.</p>
+<h3 id="vorbereitung">Vorbereitung</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 — Vorbedingungen. Schreibt nichts.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb doctor</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 — Inventar: welche areoi-Blöcke, in welchen Fundstellen, wie oft.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate scan</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate scan <span class="at">--format</span><span class="op">=</span>json <span class="op">&gt;</span> inventar-vorher.json</span></code></pre></div>
+<p><code>doctor</code> gibt zehn Zeilen aus. Zwei davon dürfen an dieser
+Stelle <code>warn</code> sein und sind es meist auch: <em>Alt-Plugin
+(all-bootstrap-blocks)</em> — es läuft absichtlich noch mit — und
+<em>Legacy-CSS-Klassen</em>, wenn das Theme gegen <code>areoi-*</code>
+stylt. Jede rote Zeile beendet den Lauf.</p>
+<p><strong>Nehmen Sie die Seite für die Dauer des Laufs vom
+Netz.</strong> <code>migrate run</code> hat keine
+Nebenläufigkeitssicherung: Wer währenddessen einen Beitrag speichert,
+dessen Wert überschreibt der Lauf.</p>
+<h3 id="durchführen">Durchführen</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 — Trockenlauf. Schreibt nichts, rechnet aber vollständig nach.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate run <span class="at">--dry-run</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 — Migration mit Backup.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate run <span class="at">--backup</span><span class="op">=</span>/pfad/zum/backup-JJJJ-MM-TT.sql.gz</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 — Nachkontrolle. Darf null areoi-Treffer melden.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate verify</span></code></pre></div>
+<p><strong><code>--backup</code> erwartet einen Dateipfad, kein
+Verzeichnis.</strong> Das Kommando weist ein bereits vorhandenes Ziel ab
+— es zu überschreiben zerstörte den Rückweg eines früheren Laufs.</p>
+<p>Der Lauf ist <strong>idempotent</strong>: Blöcke, die bereits einen
+<code>blockstudio</code>-Schlüssel tragen, werden übersprungen. Ein
+zweiter Durchgang ändert nichts.</p>
+<p>Angefasst wird ausschließlich der Blockbegrenzer. Alles zwischen den
+Begrenzern bleibt Byte für Byte stehen; eine vollständige
+Reserialisierung des Contents findet nicht statt.</p>
+<h3 id="nachweisen">Nachweisen</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 — HTML und Inline-CSS vor und nach der Migration vergleichen.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot urls <span class="at">--out</span><span class="op">=</span>urls.txt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot create <span class="at">--out</span><span class="op">=</span>snapshot-vorher <span class="at">--urls</span><span class="op">=</span>urls.txt   <span class="co"># VOR Schritt 4</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot create <span class="at">--out</span><span class="op">=</span>snapshot-nachher <span class="at">--urls</span><span class="op">=</span>urls.txt  <span class="co"># nach Schritt 5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb snapshot diff snapshot-vorher snapshot-nachher</span></code></pre></div>
+<p>Der Diff normalisiert Nonces, Cache-Buster und Zeitstempel weg und
+meldet jede verbleibende Abweichung. Die Reihenfolge innerhalb von
+<code>class</code>-Attributen wird <strong>nicht</strong> normalisiert —
+sie ist Teil des Vertrags, und eine Verschiebung soll auffallen.</p>
+<h3 id="abschließen">Abschließen</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7 — Alt-Plugin deaktivieren und entfernen.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> plugin deactivate all-bootstrap-blocks</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 8 — Alt-Optionen räumen. Erst nach der Abnahme: vorher sind sie der Rückweg.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb cleanup <span class="at">--legacy-options</span></span></code></pre></div>
+<p>Ab Schritt 7 rendert ausschließlich CreaBootstrapBlocks.
+<code>wp creabb cleanup</code> weigert sich, solange
+<code>migrate verify</code> nicht sauber durchläuft.</p>
+<h3 id="wenn-etwas-schiefgeht">Wenn etwas schiefgeht</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wp</span> creabb migrate rollback <span class="at">--from</span><span class="op">=</span>/pfad/zum/backup-JJJJ-MM-TT.sql.gz</span></code></pre></div>
+<p>Danach das Alt-Plugin wieder aktivieren. Der Rückweg ist so lange
+offen, wie Schritt 8 nicht gelaufen ist.</p>
+<hr />
+<h2 id="faq">FAQ</h2>
+<p><strong>Brauche ich eine kostenpflichtige
+Blockstudio-Lizenz?</strong> Nein. Blockstudio steht unter GPL-2.0, ist
+quelloffen unter <a
+href="https://github.com/inline0/blockstudio">github.com/inline0/blockstudio</a>
+verfügbar und läuft ohne Lizenzschlüssel. Es ist aber die
+Laufzeitgrundlage aller Blöcke, liegt nicht auf wordpress.org und ist in
+diesem Paket nicht enthalten — installieren müssen Sie es also
+selbst.</p>
+<p><strong>Muss ich mein Theme anpassen?</strong> Nein. Solange
+<code>CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES</code> auf <code>true</code>
+steht — und das ist der Standard —, geben alle Blöcke die alten
+<code>areoi-*</code>-Klassen zusätzlich zu den neuen
+<code>creabb-*</code>-Klassen aus, an derselben Position im
+<code>class</code>-Attribut. Ein Theme, das gegen
+<code>.areoi-element</code>, <code>.areoi-element.container</code> oder
+<code>.areoi-has-url</code> stylt, greift unverändert weiter.
+<strong>Das ist eine dauerhaft unterstützte Betriebsart.</strong> Wer
+sein Theme irgendwann auf <code>creabb-*</code> umstellt, ergänzt dort
+zuerst die neuen Selektoren, rollt aus, sieht nach — und schaltet erst
+danach die Konstante auf <code>false</code>. Umgekehrt verlöre die Seite
+zwischen beiden Schritten ihr Layout.</p>
+<p><strong>Können beide Plugins gleichzeitig laufen?</strong> Ja, und
+während der Umstellung ist es nötig. Solange beide aktiv sind, drucken
+beide ihr generiertes Inline-CSS in denselben Kopf; bei gleicher
+Spezifität gewinnt die später gedruckte Regel. Eine Abnahme des
+erzeugten CSS ist deshalb erst aussagekräftig, <strong>nachdem</strong>
+das Alt-Plugin deaktiviert ist (Schritt 7).</p>
+<p><strong>Bringt das Plugin Bootstrap mit?</strong> Optional.
+Standardmäßig sind alle drei Asset-Schalter aus, Bootstrap kommt dann
+vom Theme. Wer sie einschaltet, bekommt eine exakt gepinnte
+5.3.x-Fassung, bei der CSS und JavaScript aus derselben Version
+stammen.</p>
+<p><strong>Ändert die Migration meine Inhalte?</strong> Sie ersetzt den
+Blocknamensraum und hebt die Attribute in den Blockstudio-Container.
+Alles zwischen den Blockbegrenzern bleibt Byte für Byte stehen. Der Lauf
+ist idempotent und wird über einen Schlüssel- und Wertevergleich je
+<code>block_id</code> gegen das Backup verifiziert.</p>
+<p><strong>Was passiert mit nicht migrierten Seiten?</strong> Sie
+rendern weiter: Zu jedem Block gibt es ein ausgeblendetes
+<code>areoi/*</code>-Gegenstück, und ein Render-Fallback hebt flach
+gespeicherte Attribute zur Laufzeit in den Blockstudio-Container. Im
+Editor gehen die Werte allerdings verloren, sobald ein solcher Block
+gespeichert wird — der Fallback ist ein Netz, kein Ersatz für die
+Migration.</p>
+<p><strong>Werden auch Revisionen migriert?</strong> Ja, standardmäßig.
+<code>--skip-revisions</code> lässt sie stehen; dann braucht auch die
+Nachkontrolle das Flag:
+<code>wp creabb migrate verify --skip-revisions</code>.</p>
+<p><strong>Was ist mit FSE-Templates im Theme?</strong>
+<code>templates/*.html</code> und <code>parts/*.html</code> liegen als
+Dateien im Theme, nicht in der Datenbank — die Migration fasst sie nicht
+an. <code>wp creabb doctor</code> meldet, ob dort
+<code>areoi/</code>-Blöcke stehen; sie sind von Hand im Theme-Repo
+umzustellen.</p>
+<hr />
+<h2 id="developer-reference">Developer Reference</h2>
+<h3 id="konstanten">Konstanten</h3>
+<p>Alle Konstanten lassen sich in der <code>wp-config.php</code>
+vorbelegen und haben dann Vorrang vor der Backend-Einstellung.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Konstante</th>
+<th>Standardwert</th>
+<th>Zweck</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CREA_BOOTSTRAP_BLOCKS_VERSION</code></td>
+<td><code>1.0.0</code></td>
+<td>Aktuelle Plugin-Version</td>
+</tr>
+<tr class="even">
+<td><code>CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES</code></td>
+<td><code>true</code></td>
+<td>Gibt zusätzlich zu <code>creabb-*</code> auch die alten
+<code>areoi-*</code>-Klassen aus. Darf dauerhaft <code>true</code>
+bleiben</td>
+</tr>
+<tr class="odd">
+<td><code>CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS</code></td>
+<td><code>true</code></td>
+<td>Registriert zu jedem Block ein ausgeblendetes
+<code>areoi/*</code>-Gegenstück</td>
+</tr>
+<tr class="even">
+<td><code>CREA_BOOTSTRAP_BLOCKS_DEBUG</code></td>
+<td><code>false</code></td>
+<td>Schaltet die Protokollierung des Plugins frei</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mitgelieferte-fremdbestandteile">Mitgelieferte
+Fremdbestandteile</h3>
+<p>Unter <code>assets/vendor/bootstrap/</code> liegen Bootstrap und
+Bootstrap Icons, beide unter der MIT-Lizenz und damit mit
+GPL-2.0-or-later verträglich. Die Lizenztexte, die Bezugsquellen
+(<code>UPSTREAM.txt</code>) und die Prüfsummen jeder ausgelieferten
+Datei (<code>CHECKSUMS.txt</code>) liegen daneben. CSS und JavaScript
+stammen zwingend aus derselben Bootstrap-Version.</p>
+<hr />
+<h2 id="changelog">Changelog</h2>
+<h3 id="section">1.0.0</h3>
+<p>Erste veröffentlichte Fassung. (Eine Version 0.1.0 ist nie
+ausgeliefert worden; ihr Changelog-Eintrag ist hier aufgegangen.)</p>
+<ul>
+<li><strong>Alle 47 Blöcke</strong> des Vorgängers samt vollständigem
+Attributvertrag — Layout (<code>container</code>, <code>row</code>,
+<code>column</code>, <code>div</code>), Karten und Buttons, die drei
+Stripblöcke sowie die 33 Blöcke der zweiten Ausbaustufe (Akkordeon,
+Navigation, die zehn Overlays, Karussell, Fortschritt, die fünf großen
+Strips, <code>breadcrumb</code> und <code>post-grid</code>).</li>
+<li>Zu jedem Block ein ausgeblendeter <code>areoi/*</code>-Aliasblock,
+abschaltbar über Konstante oder Backend-Schalter.</li>
+<li><strong>WP-CLI-Migration:</strong> <code>wp creabb doctor</code>,
+<code>migrate scan|run|verify|rollback</code> und
+<code>cleanup --legacy-options</code>, dazu
+<code>snapshot urls|create|diff</code> für den Vorher-Nachher-Vergleich
+von HTML und Inline-CSS.</li>
+<li>Generiertes Inline-CSS je Breakpoint, Render-Fallback für flach
+gespeicherte Attribute, Backend unter <em>Design →
+CreaBootstrapBlocks</em> mit den Tabs Assets, Kompatibilität und
+Diagnose.</li>
+<li>Die fünf blockeigenen Stylesheets des Vorgängers und sein
+Frontend-JavaScript, in Vanilla-JS statt jQuery.</li>
+<li>Übersetzungen für <code>de_DE</code> und <code>de_DE_formal</code>,
+Agentendokumentation unter <code>llm/</code>, sechs lesende Fähigkeiten
+der WordPress Abilities API.</li>
+<li>Optionale Bootstrap-Assets (CSS, JS-Bundle, Icons), alle drei
+standardmäßig aus.</li>
+<li><strong>Editor-Seitenleiste:</strong> Die Felder stehen in benannten
+Gruppen statt als lange Liste — 39 der 47 Blöcke haben sie, die übrigen
+führen ein oder zwei Felder. Jedes Feld trägt einen Hilfetext, die
+wichtigste Gruppe steht oben und startet aufgeklappt, und die
+Breakpoint-Optionen liegen in einer Reiterleiste XS bis XXL.</li>
+<li><strong>Vorschaubilder im Inserter</strong> für alle 47 Blöcke, als
+SVG-Schema statt als Screenshot (188 kB statt 2,2 MB); über
+<code>CREA_BOOTSTRAP_BLOCKS_INSERTER_PREVIEWS</code> abschaltbar.</li>
+<li><strong>Drei eigene Editor-Bedienelemente</strong>, damit die
+gespeicherte Form dem Vertrag entspricht: Auswahllisten und Farbwähler
+schreiben denselben Wert wie das Vorgängerplugin, und die Bildauswahl
+von <code>media-grid-image</code> öffnet die Mediathek, statt eine
+Anhang-ID zu verlangen.</li>
+<li><strong>Kindblock-Schranken wie im Original:</strong> 21 Blöcke
+geben vor, was in sie hinein darf, und füllen sich beim Einfügen mit
+ihrer Grundstruktur.</li>
+<li>Das Plugin-CSS wirkt jetzt auch in der Editor-Leinwand — Abstände
+und Layout sehen dort aus wie im Frontend.</li>
+<li>Noch nicht enthalten: der Self-Hosted-Updater.</li>
+</ul>

@@ -1,0 +1,21 @@
+{
+  "Author": "creationell® – die Werbeagentur <marketing@creationell.de>",
+  "TextDomain": "crea-bootstrap-blocks",
+  "Version": "1.0.0",
+  "Description": "Rückwärtskompatibler Ersatz für das stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben Attribute, dasselbe Markup, gebaut auf Blockstudio.",
+  "PluginURI": "https://github.com/creationell-dev/crea-bootstrap-blocks",
+  "DomainPath": "/languages",
+  "RequiresPlugins": "blockstudio",
+  "PluginName": "CreaBootstrapBlocks",
+  "Contributors": "creationell-dev, JPKCom",
+  "Requiresatleast": "6.9",
+  "Testedupto": "7.1",
+  "Geplant,nochnichtenthalten": "ein Self-Hosted-Updater, der Updates direkt aus GitHub-Releases mit SHA-256-Manifest-Verifikation bezieht.",
+  "Stabletag": "1.0.0",
+  "RequiresPHP": "8.3",
+  "License": "GPL-2.0-or-later",
+  "LicenseURI": "https://www.gnu.org/licenses/gpl-2.0.html",
+  "Tags": "bootstrap, blocks, gutenberg, layout, grid",
+  "AuthorURI": "https://www.creationell.de/",
+  "_generated": true
+}
