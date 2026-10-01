@@ -45,7 +45,8 @@
             "@test"
         ],
         "block-previews": "@php bin/build-block-previews.php",
-        "field-groups": "@php bin/check-field-groups.php"
+        "field-groups": "@php bin/check-field-groups.php",
+        "shared-styles": "@php bin/build-shared-styles.php"
     },
     "scripts-descriptions": {
         "lint": "Syntaxprüfung aller PHP-Dateien.",
@@ -58,6 +59,7 @@
         "i18n": "Erzeugt die .pot, aktualisiert die .po und baut die ausgelieferten .l10n.php.",
         "check": "Lint, Coding-Standards, statische Analyse und Tests nacheinander.",
         "block-previews": "Erzeugt die Inserter-Vorschau je Block als SVG-Schema unter assets/img/block-previews/. Mit -- --check nur pruefen.",
-        "field-groups": "Driftwächter der Editor-UI: prüft die elf Invarianten der Feldgruppen in blocks/, blocks-legacy/ und den Feldbibliotheken. Er schreibt nichts. Mit -- --check bricht er bei einem Verstoß ab."
+        "field-groups": "Driftwächter der Editor-UI: prüft die elf Invarianten der Feldgruppen in blocks/, blocks-legacy/ und den Feldbibliotheken. Er schreibt nichts. Mit -- --check bricht er bei einem Verstoß ab.",
+        "shared-styles": "Schreibt blocks/content-grid/style.css als Kopie nach post-grid und media-grid (danach bin/build-aliases.php fahren). Mit -- --check nur pruefen."
     }
 }

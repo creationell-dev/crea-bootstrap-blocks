@@ -5,11 +5,18 @@
  * alle 45 Regeln einschliesslich der Abschnitte „Item size" und „Media size",
  * die `.card-body > div` und `.card-img-top` treffen.
  *
- * DREI BLOECKE TEILEN SICH DIESE DATEI, und das ist die Struktur des Originals:
- * dort bestehen `blocks/post-grid/style.css` und `blocks/media-grid/style.css`
- * aus nichts als `@import url( '../content-grid/style.css' );`. Der Nachbau
- * macht es genauso — eine Quelle, zwei Verweise. Wer hier etwas aendert, aendert
- * es fuer alle drei.
+ * DREI BLOECKE TEILEN SICH DIESE REGELN, und diese Datei ist ihre einzige
+ * Quelle. Im Original bestehen `blocks/post-grid/style.css` und
+ * `blocks/media-grid/style.css` aus nichts als einem relativen Import dieser
+ * Datei, und der Nachbau hat das bis 1.0.1 genauso gehalten. Im Frontend ging
+ * das gut, im Editor nicht: Dort setzt Blockstudio Block-CSS inline in die
+ * Leinwand ein, und der relative Pfad loeste gegen die Adresse der Editorseite
+ * auf — eine 404 an der Wurzel der Website, bei jedem Oeffnen des Editors.
+ *
+ * Seit 1.0.2 schreibt `bin/build-shared-styles.php` diese Datei deshalb
+ * wortgleich in die beiden anderen Bloecke. Wer hier etwas aendert, faehrt
+ * danach den Generator und `bin/build-aliases.php`; die Pruefsuite meldet eine
+ * vergessene Kopie als Abweichung.
  *
  * WARUM DIE REGELN NICHT MEHR BEI `media-grid` LIEGEN. Sie lagen dort, weil
  * `content-grid` zur Phase 2 des Blockinventars gehoerte und noch nicht gebaut
