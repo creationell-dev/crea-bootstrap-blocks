@@ -1,4 +1,22 @@
-<h3 id="section">1.0.1</h3>
+<h3 id="section">1.0.2</h3>
+<p>Maintenance release. Fixes a failing stylesheet request in the block
+editor.</p>
+<ul>
+<li><strong>Post Grid and Media Grid no longer reference the Content
+Grid stylesheet through a relative <code>@import</code>.</strong> In the
+block editor and the site editor, block CSS is inlined into the editor
+canvas, where the relative path resolved against the editor page instead
+of the plugin folder. Every editor load requested
+<code>/content-grid/style.css</code> at the site root and received a
+404. Both blocks now ship the shared grid rules in their own stylesheet,
+so the rules load the same way in the editor and on the front end.</li>
+<li>The shared rules keep a single source: the Content Grid stylesheet.
+The two copies are generated from it and checked for drift in the test
+suite.</li>
+<li>No change to blocks, attributes, class names, markup or generated
+CSS. Updating from 1.0.1 changes nothing on existing pages.</li>
+</ul>
+<h3 id="section-1">1.0.1</h3>
 <p>Wartungsfassung. Der erste echte Migrationslauf auf einer
 Bestandsinstanz hat zwei Dinge gefunden — eines davon
 sicherheitsrelevant.</p>
@@ -35,7 +53,7 @@ und <code>--yes</code> bei <code>cleanup</code> und
 <li>Keine Änderung an Blöcken, Attributen, Markup oder erzeugtem CSS.
 Ein Update von 1.0.0 ändert an bestehenden Seiten nichts.</li>
 </ul>
-<h3 id="section-1">1.0.0</h3>
+<h3 id="section-2">1.0.0</h3>
 <p>Erste veröffentlichte Fassung. (Eine Version 0.1.0 ist nie
 ausgeliefert worden; ihr Changelog-Eintrag ist hier aufgegangen.)</p>
 <ul>

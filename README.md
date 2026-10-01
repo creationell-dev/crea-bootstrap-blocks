@@ -3,7 +3,7 @@
 **Plugin Name:** CreaBootstrapBlocks  
 **Plugin URI:** https://github.com/creationell-dev/crea-bootstrap-blocks  
 **Description:** Rückwärtskompatibler Ersatz für das stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben Attribute, dasselbe Markup, gebaut auf Blockstudio.  
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Author:** creationell® – die Werbeagentur <marketing@creationell.de>  
 **Author URI:** https://www.creationell.de/  
 **Contributors:** creationell-dev, JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Requires Plugins:** blockstudio  
-**Stable tag:** 1.0.1  
+**Stable tag:** 1.0.2  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** crea-bootstrap-blocks  
@@ -237,7 +237,7 @@ Alle Konstanten lassen sich in der `wp-config.php` vorbelegen und haben dann Vor
 
 | Konstante | Standardwert | Zweck |
 |---|---|---|
-| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.1` | Aktuelle Plugin-Version |
+| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.2` | Aktuelle Plugin-Version |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` | `true` | Gibt zusätzlich zu `creabb-*` auch die alten `areoi-*`-Klassen aus. Darf dauerhaft `true` bleiben |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS` | `true` | Registriert zu jedem Block ein ausgeblendetes `areoi/*`-Gegenstück |
 | `CREA_BOOTSTRAP_BLOCKS_DEBUG` | `false` | Schaltet die Protokollierung des Plugins frei |
@@ -249,6 +249,21 @@ Unter `assets/vendor/bootstrap/` liegen Bootstrap und Bootstrap Icons, beide unt
 ---
 
 ## Changelog
+
+### 1.0.2
+
+Maintenance release. Fixes a failing stylesheet request in the block editor.
+
+- **Post Grid and Media Grid no longer reference the Content Grid stylesheet through a
+  relative `@import`.** In the block editor and the site editor, block CSS is inlined into
+  the editor canvas, where the relative path resolved against the editor page instead of
+  the plugin folder. Every editor load requested `/content-grid/style.css` at the site root
+  and received a 404. Both blocks now ship the shared grid rules in their own stylesheet,
+  so the rules load the same way in the editor and on the front end.
+- The shared rules keep a single source: the Content Grid stylesheet. The two copies are
+  generated from it and checked for drift in the test suite.
+- No change to blocks, attributes, class names, markup or generated CSS. Updating from
+  1.0.1 changes nothing on existing pages.
 
 ### 1.0.1
 
