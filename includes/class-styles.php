@@ -28,6 +28,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Styles {
 
     /**
+     * CSS side per attribute side: left and right as logical sides, so right-to-left pages mirror them.
+     */
+    private const LOGICAL_SIDES = [
+        'top'    => 'top',
+        'right'  => 'inline-end',
+        'bottom' => 'bottom',
+        'left'   => 'inline-start',
+    ];
+
+    /**
      * Breakpoint minimum widths of Bootstrap 5.3, keyed by suffix.
      *
      * Ersetzt die Alt-Optionen `areoi-layout-grid-grid-breakpoint-<bp>`.
@@ -320,10 +330,11 @@ final class Styles {
     /**
      * Builds the declarations of one block for one breakpoint.
      *
-     * Erzeugt werden genau die Eigenschaften des Originals:
+     * Erzeugt werden die Eigenschaften des Originals:
      * `height` aus `height_dimension_<bp>` plus `height_unit_<bp>` (Fallback
-     * `px`), sowie `padding-top|right|bottom|left` und
-     * `margin-top|right|bottom|left` mit der uebergebenen Einheit.
+     * `px`), sowie Innen- und Aussenabstand oben, rechts, unten und links mit
+     * der uebergebenen Einheit — rechts und links seit 1.0.3 als logische
+     * Seiten (E-305, siehe unten).
      *
      * ZWEI VERSCHIEDENE LEERPRUEFUNGEN, beide 1:1 aus dem Original:
      *
@@ -338,6 +349,11 @@ final class Styles {
      *
      * Jeder Wert laeuft vor der Ausgabe durch css_number() bzw. css_unit(). Das
      * Original schreibt sie ungeprueft in den Stylesheet-String.
+     *
+     * Links und rechts gehen als logische Seiten hinaus (`inline-start`,
+     * `inline-end`): Auf Seiten von rechts nach links spiegeln sie sich, auf
+     * Seiten von links nach rechts wirken sie wie bisher. Oben und unten
+     * bleiben physisch; die Attributnamen aendern sich nicht.
      *
      * @param array<string, mixed> $attributes Flat attribute set.
      * @param string               $suffix     Breakpoint suffix including the underscore (`_xs`).
@@ -377,7 +393,7 @@ final class Styles {
                     continue;
                 }
 
-                $out .= $box . '-' . $side . ': ' . $number . $unit . ';';
+                $out .= $box . '-' . self::LOGICAL_SIDES[ $side ] . ': ' . $number . $unit . ';';
             }
         }
 

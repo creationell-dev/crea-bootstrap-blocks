@@ -56,7 +56,7 @@ $cbb_label = empty( $cbb_a['label'] ) ? '' : esc_attr( (string) ( $cbb_a['width'
 $cbb_width = empty( $cbb_a['width'] ) ? '' : 'style="width: ' . esc_attr( (string) $cbb_a['width'] ) . '%;"';
 ?>
 <div <?php echo crea_bootstrap_blocks_anchor_attr( $cbb_a ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- baut sein Attribut samt esc_attr() selbst. ?> class="<?php echo esc_attr( $cbb_class ); ?>">
-<div class="<?php echo esc_attr( $cbb_bar ); ?>" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" <?php echo $cbb_width; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- baut sein Attribut samt esc_attr() selbst. ?>>
+<div class="<?php echo esc_attr( $cbb_bar ); ?>" role="progressbar" aria-label="<?php echo esc_attr( __( 'Progress', 'crea-bootstrap-blocks' ) ); ?>" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" <?php echo $cbb_width; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- baut sein Attribut samt esc_attr() selbst. ?>>
 <?php echo $cbb_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- bereits durch esc_attr() gefiltert. ?>
 </div>
 </div>

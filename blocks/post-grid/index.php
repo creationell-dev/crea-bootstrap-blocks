@@ -151,7 +151,8 @@ if ( $cbb_query->have_posts() ) {
     while ( $cbb_query->have_posts() ) {
         $cbb_query->the_post();
 
-        $cbb_url     = empty( $cbb_a['include_permalink'] ) ? '' : '<a class="areoi-full-link" href="' . get_the_permalink() . '"></a>';
+        // E-308: der Link ueberdeckt die ganze Karte und hat keinen Text; der Beitragstitel ist sein Name.
+        $cbb_url     = empty( $cbb_a['include_permalink'] ) ? '' : '<a class="areoi-full-link" href="' . get_the_permalink() . '" aria-label="' . esc_attr( wp_strip_all_tags( get_the_title() ) ) . '"></a>';
         $cbb_title   = empty( $cbb_a['include_title'] ) ? '' : '<' . $cbb_title_el . ' class="' . esc_attr( $cbb_text_color ) . '">' . get_the_title() . '</' . $cbb_title_el . '>';
         $cbb_excerpt = empty( $cbb_a['include_excerpt'] ) ? '' : '<p class="' . esc_attr( $cbb_text_color ) . '">' . get_the_excerpt() . '</p>';
 

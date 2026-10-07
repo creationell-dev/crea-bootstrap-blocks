@@ -2820,6 +2820,7 @@ msgstr "Intervall"
 msgid "Time in milliseconds this slide is shown before the next one."
 msgstr "Zeit in Millisekunden, die diese Folie steht, bevor die naechste kommt."
 
+#: blocks/progress/index.php:59
 #: includes/i18n-strings.php:628
 msgid "Progress"
 msgstr "Fortschritt"
@@ -3384,16 +3385,16 @@ msgstr "Das Backup-Verzeichnis %s existiert nicht. Bitte legen Sie es an — es 
 msgid "The backup directory %s is not writable. Fix the permissions — there is no migration run without a way back."
 msgstr "Das Backup-Verzeichnis %s ist nicht beschreibbar. Bitte korrigieren Sie die Rechte — es gibt keinen Migrationslauf ohne Rückweg."
 
-#: includes/cli/class-doctor-command.php:1321
+#: includes/cli/class-doctor-command.php:1342
 msgid "Theme block templates"
 msgstr "Block-Templates des Themes"
 
-#: includes/cli/class-doctor-command.php:1335
+#: includes/cli/class-doctor-command.php:1356
 msgid "no areoi/ block in templates/*.html or parts/*.html of the active theme"
 msgstr "kein areoi/-Block in templates/*.html oder parts/*.html des aktiven Themes"
 
 #. translators: %s: comma separated list of file paths.
-#: includes/cli/class-doctor-command.php:1346
+#: includes/cli/class-doctor-command.php:1367
 #, php-format
 msgid "These theme files carry areoi/ blocks and are NOT in the database — no migration run touches them: %s. Rename the blocks in the theme repository and roll the theme out."
 msgstr "Diese Theme-Dateien enthalten areoi/-Blöcke und liegen NICHT in der Datenbank — kein Migrationslauf fasst sie an: %s. Bitte benennen Sie die Blöcke im Theme-Repository um und rollen Sie das Theme aus."

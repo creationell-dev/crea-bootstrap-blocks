@@ -283,7 +283,52 @@
 		} );
 	}
 
+	/**
+	 * Punkt 4 (E-309, nicht im Original) — der Name des Modals.
+	 *
+	 * Das Original gibt `div.modal` ohne `aria-labelledby` aus; ein Dialog ohne
+	 * Namen wird vorgelesen als „Dialog" und sonst nichts (axe:
+	 * `aria-dialog-name`). Die Ueberschrift steht als Inhalt in
+	 * `creabb/modal-header` — der Server kennt sie beim Rendern des Modals nicht
+	 * als eigenes Element. Hier wird sie gesucht: zuerst `.modal-title` oder eine
+	 * Ueberschrift im Kopf, sonst die erste Ueberschrift im Modal. Fehlt ihr eine
+	 * ID, bekommt sie `<modal-id>-title`. Ein Modal mit eigenem Namen bleibt
+	 * unberuehrt, eines ohne Ueberschrift auch — ein Verweis ins Leere waere
+	 * schlechter als keiner.
+	 */
+	function nameModals() {
+		var HEAD = '.modal-title, .modal-header h1, .modal-header h2, .modal-header h3, .modal-header h4, .modal-header h5, .modal-header h6';
+		var ANY = 'h1, h2, h3, h4, h5, h6';
+
+		Array.prototype.slice.call( document.getElementsByClassName( 'modal' ) ).forEach( function ( modal, index ) {
+			if ( modal.getAttribute( 'aria-label' ) || modal.getAttribute( 'aria-labelledby' ) ) {
+				return;
+			}
+
+			var heading = modal.querySelector( HEAD ) || modal.querySelector( ANY );
+
+			if ( ! heading ) {
+				return;
+			}
+
+			var id = heading.getAttribute( 'id' );
+
+			if ( ! id ) {
+				id = ( modal.getAttribute( 'id' ) || 'creabb-modal-' + ( index + 1 ) ) + '-title';
+
+				if ( document.getElementById( id ) ) {
+					id += '-' + ( index + 1 );
+				}
+
+				heading.setAttribute( 'id', id );
+			}
+
+			modal.setAttribute( 'aria-labelledby', id );
+		} );
+	}
+
 	function start() {
+		nameModals();
 		initOverlays();
 		initLinkTargets();
 		initTabs();

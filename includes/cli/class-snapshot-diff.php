@@ -1019,6 +1019,15 @@ class Snapshot_Diff {
 
         unset( $left_rest['class'], $right_rest['class'] );
 
+        // ERWARTETE ABWEICHUNG 9 (E-307/E-308, seit 1.0.3): der Name, den der
+        // Nachbau dem Fortschrittsbalken und dem Ueberlagerungslink gibt. Er
+        // faellt vor dem Vergleich weg; jeder andere Unterschied bleibt.
+        $named = self::booked_name( $left_attributes, $right_attributes );
+
+        if ( null !== $named ) {
+            unset( $right_rest['aria-label'] );
+        }
+
         if ( $left_rest !== $right_rest ) {
             return [
                 self::kses_finding( $left_run, $right_run, $index )
@@ -1036,15 +1045,31 @@ class Snapshot_Diff {
             )
         );
 
+        $name_finding = null === $named ? [] : [
+            self::finding(
+                'expected',
+                'aria-name-added',
+                sprintf( '%s aria-label="%s"', $right_attributes['tag'], $named ),
+                $index
+            ),
+        ];
+
+        if ( null !== $named && $right_classes === $left_classes ) {
+            return $name_finding;
+        }
+
         if ( $without_creabb === $left_classes ) {
-            return [
-                self::finding(
-                    'expected',
-                    'class-added',
-                    implode( ' ', array_diff( $right_classes, $left_classes ) ),
-                    $index
-                ),
-            ];
+            return array_merge(
+                $name_finding,
+                [
+                    self::finding(
+                        'expected',
+                        'class-added',
+                        implode( ' ', array_diff( $right_classes, $left_classes ) ),
+                        $index
+                    ),
+                ]
+            );
         }
 
         return [
@@ -1055,6 +1080,31 @@ class Snapshot_Diff {
                 $index
             ),
         ];
+    }
+
+    /**
+     * The `aria-label` our rebuild adds to one of its two booked tags, or null.
+     *
+     * Gebucht sind genau zwei Stellen (E-307, E-308): `div[role=progressbar]`
+     * und `a.areoi-full-link`. Das Original traegt dort kein `aria-label`; hat
+     * die Vorher-Seite eines, ist eine Aenderung daran KEINE Abweichung 9.
+     *
+     * @param array{tag: string, attributes: array<string, string>} $left  Reference tag.
+     * @param array{tag: string, attributes: array<string, string>} $right Compared tag.
+     * @return string|null The added name, or null when nothing booked applies.
+     */
+    private static function booked_name( array $left, array $right ): ?string {
+        $before = $left['attributes'];
+        $after  = $right['attributes'];
+
+        if ( isset( $before['aria-label'] ) || ! isset( $after['aria-label'] ) ) {
+            return null;
+        }
+
+        $progress = 'div' === $right['tag'] && 'progressbar' === ( $after['role'] ?? '' );
+        $overlay  = 'a' === $right['tag'] && in_array( 'areoi-full-link', self::classes( $after['class'] ?? '' ), true );
+
+        return $progress || $overlay ? $after['aria-label'] : null;
     }
 
     /**
@@ -1616,6 +1666,23 @@ class Snapshot_Diff {
                 continue;
             }
 
+            // ERWARTETE ABWEICHUNG 8 (seit 1.0.3): Der Nachbau schreibt links und
+            // rechts als logische Seiten. Auf Seiten von links nach rechts ist
+            // `inline-start` genau `left` und `inline-end` genau `right`; der
+            // Vergleich fuehrt sie deshalb auf die physischen Namen zurueck.
+            // Ein anderer Wert oder die andere Seite bleibt ein Fehler.
+            $physical = self::physical_sides( $right[ $key ] );
+
+            if ( $declarations !== $right[ $key ] && $declarations === $physical ) {
+                $findings[] = self::finding(
+                    'expected',
+                    'css-logical-side',
+                    sprintf( '%s: "%s" → "%s"', (string) $key, $declarations, $right[ $key ] )
+                );
+
+                continue;
+            }
+
             if ( $declarations !== $right[ $key ] ) {
                 // Eine Regel kann auch nur SCHRUMPFEN. Erwartet ist das genau
                 // dann, wenn nichts hinzugekommen und nichts umgestellt wurde
@@ -1624,7 +1691,7 @@ class Snapshot_Diff {
                 // GEAENDERTER Wert bleibt ein Fehler — eine still veraenderte
                 // Laenge ist eine sichtbare Layoutaenderung.
                 $entries = $rejected[ (string) $key ] ?? [];
-                $dropped = self::dropped_declarations( $declarations, $right[ $key ] );
+                $dropped = self::dropped_declarations( $declarations, $physical );
 
                 if ( null !== $dropped && self::covered_by_rejection( $dropped, $entries ) ) {
                     $findings[] = self::finding(
@@ -1910,6 +1977,24 @@ class Snapshot_Diff {
      */
     private static function scalar_text( mixed $value ): string {
         return is_scalar( $value ) ? self::excerpt( (string) $value ) : gettype( $value );
+    }
+
+    /**
+     * The declarations with logical inline sides written as physical ones.
+     *
+     * `padding-inline-start` becomes `padding-left`, `margin-inline-end`
+     * becomes `margin-right` and so on — the meaning on a left-to-right page,
+     * where the original plugin's rules were taken. Values stay untouched.
+     *
+     * @param string $declarations Declarations of one rule.
+     * @return string Same declarations with physical side names.
+     */
+    private static function physical_sides( string $declarations ): string {
+        return (string) preg_replace_callback(
+            '/(^|;)(\s*)(padding|margin)-inline-(start|end)(\s*:)/',
+            static fn ( array $m ): string => $m[1] . $m[2] . $m[3] . '-' . ( 'start' === $m[4] ? 'left' : 'right' ) . $m[5],
+            $declarations
+        );
     }
 
     /**
