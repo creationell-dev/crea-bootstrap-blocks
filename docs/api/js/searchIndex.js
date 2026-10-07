@@ -1051,6 +1051,11 @@ Search.appendIndex(
             "summary": "Collects\u0020block\u0020widgets\u0020that\u0020are\u0020actually\u0020assigned\u0020to\u0020a\u0020sidebar.",
             "url": "classes/Creationell-BootstrapBlocks-Styles.html#method_widget_blocks"
         },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\Styles\u003A\u003ALOGICAL_SIDES",
+            "name": "LOGICAL_SIDES",
+            "summary": "CSS\u0020side\u0020per\u0020attribute\u0020side\u003A\u0020left\u0020and\u0020right\u0020as\u0020logical\u0020sides,\u0020so\u0020right\u002Dto\u002Dleft\u0020pages\u0020mirror\u0020them.",
+            "url": "classes/Creationell-BootstrapBlocks-Styles.html#constant_LOGICAL_SIDES"
+        },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\Styles\u003A\u003ADEFAULT_BREAKPOINTS",
             "name": "DEFAULT_BREAKPOINTS",
             "summary": "Breakpoint\u0020minimum\u0020widths\u0020of\u0020Bootstrap\u00205.3,\u0020keyed\u0020by\u0020suffix.",
@@ -1641,6 +1646,11 @@ Search.appendIndex(
             "summary": "Classifies\u0020one\u0020differing\u0020region\u0020of\u0020the\u0020markup.",
             "url": "classes/Creationell-BootstrapBlocks-CLI-Snapshot-Diff.html#method_classify_hunk"
         },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Snapshot_Diff\u003A\u003Abooked_name\u0028\u0029",
+            "name": "booked_name",
+            "summary": "The\u0020\u0060aria\u002Dlabel\u0060\u0020our\u0020rebuild\u0020adds\u0020to\u0020one\u0020of\u0020its\u0020two\u0020booked\u0020tags,\u0020or\u0020null.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Snapshot-Diff.html#method_booked_name"
+        },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Snapshot_Diff\u003A\u003Abutton_types\u0028\u0029",
             "name": "button_types",
             "summary": "Collects\u0020the\u0020\u0060type\u0060\u0020values\u0020the\u0020\u0060button\u0060\u0020blocks\u0020of\u0020a\u0020carrier\u0020hold.",
@@ -1710,6 +1720,11 @@ Search.appendIndex(
             "name": "scalar_text",
             "summary": "Renders\u0020an\u0020attribute\u0020value\u0020for\u0020a\u0020report\u0020line.",
             "url": "classes/Creationell-BootstrapBlocks-CLI-Snapshot-Diff.html#method_scalar_text"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Snapshot_Diff\u003A\u003Aphysical_sides\u0028\u0029",
+            "name": "physical_sides",
+            "summary": "The\u0020declarations\u0020with\u0020logical\u0020inline\u0020sides\u0020written\u0020as\u0020physical\u0020ones.",
+            "url": "classes/Creationell-BootstrapBlocks-CLI-Snapshot-Diff.html#method_physical_sides"
         },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\CLI\\Snapshot_Diff\u003A\u003Adeclaration_list\u0028\u0029",
             "name": "declaration_list",

@@ -1,4 +1,45 @@
-<h3 id="section">1.0.2</h3>
+<h3 id="section">1.0.3</h3>
+<p>Right-to-left pages (Arabic, Persian, Hebrew) mirror two more
+things.</p>
+<ul>
+<li><strong>Spacing set in the block settings follows the reading
+direction.</strong> Left and right padding and margin are written as
+<code>padding-inline-start</code>/<code>-inline-end</code> and
+<code>margin-inline-start</code>/<code>-inline-end</code>. On
+left-to-right pages they act exactly as before; on right-to-left pages
+“left” is the start of the line, so the spacing mirrors with the layout.
+Top and bottom are unchanged. Block attributes and the editor controls
+stay the same.</li>
+<li><strong>Button groups mirror their corners.</strong> The joined
+corners and the 1 px overlap of a horizontal button group use logical
+properties, so the first button keeps its rounded corners at the start
+of the line in both directions. Vertical groups are unchanged.</li>
+<li>No change to blocks, attributes, class names or markup.
+Left-to-right pages look the same after the update.</li>
+<li>Two edge cases mirror now: right-to-left content whose editors
+swapped left and right by hand to work around the old behaviour, and
+blocks inside an element set to <code>dir="rtl"</code> on an otherwise
+left-to-right page.</li>
+<li>The migration check <code>wp creabb snapshot diff</code> accepts the
+logical names as an expected deviation (<code>css-logical-side</code>)
+when the value and the side match the original.</li>
+</ul>
+<p>Accessible names for three elements the original leaves unnamed:</p>
+<ul>
+<li><strong>Progress bars</strong> carry
+<code>aria-label="Progress"</code> (translated).</li>
+<li><strong>The overlay link of Post Grid items</strong> carries the
+post title as its name; it covers the whole card and has no text of its
+own.</li>
+<li><strong>Modals</strong> point <code>aria-labelledby</code> to their
+heading. The front-end script sets it when the page loads; the heading
+gets an ID if it has none. Modals that already have a name, or no
+heading, are left alone.</li>
+<li>Nothing changes visibly. <code>wp creabb snapshot diff</code> books
+the two added <code>aria-label</code> attributes as an expected
+deviation (<code>aria-name-added</code>).</li>
+</ul>
+<h3 id="section-1">1.0.2</h3>
 <p>Maintenance release. Fixes a failing stylesheet request in the block
 editor.</p>
 <ul>
@@ -16,7 +57,7 @@ suite.</li>
 <li>No change to blocks, attributes, class names, markup or generated
 CSS. Updating from 1.0.1 changes nothing on existing pages.</li>
 </ul>
-<h3 id="section-1">1.0.1</h3>
+<h3 id="section-2">1.0.1</h3>
 <p>Wartungsfassung. Der erste echte Migrationslauf auf einer
 Bestandsinstanz hat zwei Dinge gefunden — eines davon
 sicherheitsrelevant.</p>
@@ -53,7 +94,7 @@ und <code>--yes</code> bei <code>cleanup</code> und
 <li>Keine Änderung an Blöcken, Attributen, Markup oder erzeugtem CSS.
 Ein Update von 1.0.0 ändert an bestehenden Seiten nichts.</li>
 </ul>
-<h3 id="section-2">1.0.0</h3>
+<h3 id="section-3">1.0.0</h3>
 <p>Erste veröffentlichte Fassung. (Eine Version 0.1.0 ist nie
 ausgeliefert worden; ihr Changelog-Eintrag ist hier aufgegangen.)</p>
 <ul>

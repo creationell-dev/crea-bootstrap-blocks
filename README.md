@@ -3,7 +3,7 @@
 **Plugin Name:** CreaBootstrapBlocks  
 **Plugin URI:** https://github.com/creationell-dev/crea-bootstrap-blocks  
 **Description:** Rückwärtskompatibler Ersatz für das stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben Attribute, dasselbe Markup, gebaut auf Blockstudio.  
-**Version:** 1.0.2  
+**Version:** 1.0.3  
 **Author:** creationell® – die Werbeagentur <marketing@creationell.de>  
 **Author URI:** https://www.creationell.de/  
 **Contributors:** creationell-dev, JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Requires Plugins:** blockstudio  
-**Stable tag:** 1.0.2  
+**Stable tag:** 1.0.3  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** crea-bootstrap-blocks  
@@ -237,7 +237,7 @@ Alle Konstanten lassen sich in der `wp-config.php` vorbelegen und haben dann Vor
 
 | Konstante | Standardwert | Zweck |
 |---|---|---|
-| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.2` | Aktuelle Plugin-Version |
+| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.3` | Aktuelle Plugin-Version |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` | `true` | Gibt zusätzlich zu `creabb-*` auch die alten `areoi-*`-Klassen aus. Darf dauerhaft `true` bleiben |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS` | `true` | Registriert zu jedem Block ein ausgeblendetes `areoi/*`-Gegenstück |
 | `CREA_BOOTSTRAP_BLOCKS_DEBUG` | `false` | Schaltet die Protokollierung des Plugins frei |
@@ -249,6 +249,38 @@ Unter `assets/vendor/bootstrap/` liegen Bootstrap und Bootstrap Icons, beide unt
 ---
 
 ## Changelog
+
+### 1.0.3
+
+Right-to-left pages (Arabic, Persian, Hebrew) mirror two more things.
+
+- **Spacing set in the block settings follows the reading direction.** Left and right
+  padding and margin are written as `padding-inline-start`/`-inline-end` and
+  `margin-inline-start`/`-inline-end`. On left-to-right pages they act exactly as before;
+  on right-to-left pages "left" is the start of the line, so the spacing mirrors with the
+  layout. Top and bottom are unchanged. Block attributes and the editor controls stay the
+  same.
+- **Button groups mirror their corners.** The joined corners and the 1 px overlap of a
+  horizontal button group use logical properties, so the first button keeps its rounded
+  corners at the start of the line in both directions. Vertical groups are unchanged.
+- No change to blocks, attributes, class names or markup. Left-to-right pages look the
+  same after the update.
+- Two edge cases mirror now: right-to-left content whose editors swapped left and right
+  by hand to work around the old behaviour, and blocks inside an element set to
+  `dir="rtl"` on an otherwise left-to-right page.
+- The migration check `wp creabb snapshot diff` accepts the logical names as an expected
+  deviation (`css-logical-side`) when the value and the side match the original.
+
+Accessible names for three elements the original leaves unnamed:
+
+- **Progress bars** carry `aria-label="Progress"` (translated).
+- **The overlay link of Post Grid items** carries the post title as its name; it covers
+  the whole card and has no text of its own.
+- **Modals** point `aria-labelledby` to their heading. The front-end script sets it when
+  the page loads; the heading gets an ID if it has none. Modals that already have a name,
+  or no heading, are left alone.
+- Nothing changes visibly. `wp creabb snapshot diff` books the two added `aria-label`
+  attributes as an expected deviation (`aria-name-added`).
 
 ### 1.0.2
 
