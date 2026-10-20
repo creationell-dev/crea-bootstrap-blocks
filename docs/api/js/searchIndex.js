@@ -811,6 +811,126 @@ Search.appendIndex(
             "summary": "PCRE\u0020findings\u0020of\u0020methods\u0020that\u0020have\u0020no\u0020findings\u0020list\u0020of\u0020their\u0020own.",
             "url": "classes/Creationell-BootstrapBlocks-Migrator.html#property_pcre_findings"
         },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater",
+            "name": "CreaBootstrapBlocksGitPluginUpdater",
+            "summary": "Class\u0020CreaBootstrapBlocksGitPluginUpdater",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method___construct"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Aget_remote_manifest\u0028\u0029",
+            "name": "get_remote_manifest",
+            "summary": "Fetch\u0020and\u0020decode\u0020the\u0020remote\u0020manifest\u0020file.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_get_remote_manifest"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Afailure_key\u0028\u0029",
+            "name": "failure_key",
+            "summary": "Transient\u0020key\u0020under\u0020which\u0020a\u0020failed\u0020manifest\u0020fetch\u0020is\u0020remembered.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_failure_key"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Aremember_fetch_failure\u0028\u0029",
+            "name": "remember_fetch_failure",
+            "summary": "Remembers\u0020a\u0020failed\u0020manifest\u0020fetch\u0020so\u0020the\u0020next\u0020call\u0020does\u0020not\u0020repeat\u0020it.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_remember_fetch_failure"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Avalidate_manifest\u0028\u0029",
+            "name": "validate_manifest",
+            "summary": "Structural\u0020check\u0020of\u0020a\u0020decoded\u0020manifest.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_validate_manifest"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Amanifest_string\u0028\u0029",
+            "name": "manifest_string",
+            "summary": "A\u0020manifest\u0020field\u0020as\u0020a\u0020string,\u0020or\u0020the\u0020fallback\u0020when\u0020the\u0020manifest\u0020carried\nsomething\u0020else\u0020\u0028array,\u0020object,\u0020number,\u0020bool,\u0020null\u0029.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_manifest_string"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Ais_https_url\u0028\u0029",
+            "name": "is_https_url",
+            "summary": "Whether\u0020a\u0020URL\u0020is\u0020usable\u0020as\u0020a\u0020package\/download\u0020source\u003A\u0020valid\u0020per\nWordPress\u0027\u0020own\u0020rules\u0020\u002Aand\u002A\u0020https.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_is_https_url"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Aplugin_info\u0028\u0029",
+            "name": "plugin_info",
+            "summary": "Provide\u0020detailed\u0020plugin\u0020info\u0020in\u0020the\u0020\u201CView\u0020Details\u201D\u0020modal.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_plugin_info"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Adefault_profile_url\u0028\u0029",
+            "name": "default_profile_url",
+            "summary": "The\u0020wordpress.org\u0020profile\u0020URL\u0020used\u0020when\u0020the\u0020manifest\u0020supplies\u0020none.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_default_profile_url"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Adefault_avatar_url\u0028\u0029",
+            "name": "default_avatar_url",
+            "summary": "The\u0020wordpress.org\u0020avatar\u0020URL\u0020used\u0020when\u0020the\u0020manifest\u0020supplies\u0020none.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_default_avatar_url"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Amanifest_url_or_default\u0028\u0029",
+            "name": "manifest_url_or_default",
+            "summary": "Returns\u0020a\u0020manifest\u002Dsupplied\u0020URL\u0020if\u0020WordPress\u0020considers\u0020it\u0020a\u0020valid\nhttp\u0028s\u0029\u0020URL,\u0020otherwise\u0020the\u0020given\u0020default.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_manifest_url_or_default"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Acheck_update\u0028\u0029",
+            "name": "check_update",
+            "summary": "Check\u0020for\u0020available\u0020plugin\u0020updates.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_check_update"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Aclear_cache\u0028\u0029",
+            "name": "clear_cache",
+            "summary": "Clear\u0020cached\u0020manifest\u0020after\u0020a\u0020successful\u0020update.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_clear_cache"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003Averify_download_checksum\u0028\u0029",
+            "name": "verify_download_checksum",
+            "summary": "Verify\u0020the\u0020package\u0020checksum\u0020and\u0020hand\u0020the\u0020verified\u0020file\u0020to\u0020the\u0020installer.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#method_verify_download_checksum"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003AMAX_MANIFEST_BYTES",
+            "name": "MAX_MANIFEST_BYTES",
+            "summary": "Largest\u0020manifest\u0020body\u0020that\u0020is\u0020accepted,\u0020in\u0020bytes.",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#constant_MAX_MANIFEST_BYTES"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003AMANIFEST_JSON_DEPTH",
+            "name": "MANIFEST_JSON_DEPTH",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#constant_MANIFEST_JSON_DEPTH"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003AFETCH_FAILURE_TTL",
+            "name": "FETCH_FAILURE_TTL",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#constant_FETCH_FAILURE_TTL"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024plugin_slug",
+            "name": "plugin_slug",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_plugin_slug"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024plugin_file",
+            "name": "plugin_file",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_plugin_file"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024current_version",
+            "name": "current_version",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_current_version"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024manifest_url",
+            "name": "manifest_url",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_manifest_url"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024cache_key",
+            "name": "cache_key",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_cache_key"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater\u003A\u003A\u0024cache_enabled",
+            "name": "cache_enabled",
+            "summary": "",
+            "url": "classes/Creationell-BootstrapBlocks-GitUpdate-CreaBootstrapBlocksGitPluginUpdater.html#property_cache_enabled"
+        },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\Previews",
             "name": "Previews",
             "summary": "Registers\u0020the\u0020inserter\u0020preview\u0020and\u0020swaps\u0020the\u0020markup\u0020while\u0020it\u0020is\u0020drawn.",
@@ -2095,6 +2215,11 @@ Search.appendIndex(
             "name": "Creationell",
             "summary": "",
             "url": "namespaces/creationell.html"
+        },                {
+            "fqsen": "\\Creationell\\BootstrapBlocks\\GitUpdate",
+            "name": "GitUpdate",
+            "summary": "",
+            "url": "namespaces/creationell-bootstrapblocks-gitupdate.html"
         },                {
             "fqsen": "\\Creationell\\BootstrapBlocks\\CLI",
             "name": "CLI",

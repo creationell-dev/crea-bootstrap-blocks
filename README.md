@@ -3,7 +3,7 @@
 **Plugin Name:** CreaBootstrapBlocks  
 **Plugin URI:** https://github.com/creationell-dev/crea-bootstrap-blocks  
 **Description:** Rückwärtskompatibler Ersatz für das stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben Attribute, dasselbe Markup, gebaut auf Blockstudio.  
-**Version:** 1.0.3  
+**Version:** 1.0.4  
 **Author:** creationell® – die Werbeagentur <marketing@creationell.de>  
 **Author URI:** https://www.creationell.de/  
 **Contributors:** creationell-dev, JPKCom  
@@ -12,11 +12,12 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Requires Plugins:** blockstudio  
-**Stable tag:** 1.0.3  
+**Stable tag:** 1.0.4  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** crea-bootstrap-blocks  
-**Domain Path:** /languages
+**Domain Path:** /languages  
+**Update URI:** https://github.com/creationell-dev/crea-bootstrap-blocks
 
 Ersetzt das am 18. Juni 2026 dauerhaft stillgelegte Plugin **All Bootstrap Blocks** ohne Datenverlust und ohne sichtbare Layoutänderung.
 
@@ -43,8 +44,7 @@ Bootstrap CSS und JavaScript kommen standardmäßig vom Theme. Optional liefert 
 - **Optionale Bootstrap-Assets** — CSS, JS-Bundle und Icons einzeln zuschaltbar, standardmäßig aus, kein CDN, kein SCSS-Compiler
 - **Agentendokumentation** — maschinenlesbarer Blockvertrag und Volltextreferenz unter `llm/`, plus lesende Fähigkeiten über die WordPress Abilities API
 - **Kein Lizenz-Gate, keine Telemetrie** — GPL-2.0-or-later, alle Funktionen dauerhaft aktiv
-
-**Geplant, noch nicht enthalten:** ein Self-Hosted-Updater, der Updates direkt aus GitHub-Releases mit SHA-256-Manifest-Verifikation bezieht.
+- **Self-Hosted-Updater** (seit 1.0.4) — Updates erscheinen wie bei jedem anderen Plugin unter Dashboard → Aktualisierungen; jedes Paket wird vor der Installation gegen die SHA-256-Prüfsumme im Update-Manifest geprüft. Installationen mit 1.0.3 oder älter brauchen einmal ein Update von Hand
 
 ---
 
@@ -237,7 +237,7 @@ Alle Konstanten lassen sich in der `wp-config.php` vorbelegen und haben dann Vor
 
 | Konstante | Standardwert | Zweck |
 |---|---|---|
-| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.3` | Aktuelle Plugin-Version |
+| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.4` | Aktuelle Plugin-Version |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` | `true` | Gibt zusätzlich zu `creabb-*` auch die alten `areoi-*`-Klassen aus. Darf dauerhaft `true` bleiben |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS` | `true` | Registriert zu jedem Block ein ausgeblendetes `areoi/*`-Gegenstück |
 | `CREA_BOOTSTRAP_BLOCKS_DEBUG` | `false` | Schaltet die Protokollierung des Plugins frei |
@@ -249,6 +249,27 @@ Unter `assets/vendor/bootstrap/` liegen Bootstrap und Bootstrap Icons, beide unt
 ---
 
 ## Changelog
+
+### 1.0.4
+
+**Updates are delivered automatically from now on.** Versions 1.0.0 to 1.0.3 contain no
+updater: the update manifest was published with every release, but nothing in the plugin
+read it, so WordPress never offered an update. 1.0.4 adds the self-hosted updater.
+
+- **Installations running 1.0.3 or older have to be updated to 1.0.4 once by hand** —
+  upload the ZIP under Plugins → Add New → Upload Plugin, or use
+  `wp plugin install <zip> --force`. From 1.0.4 on, new versions appear under
+  Dashboard → Updates like any other plugin.
+- Every package is checked against the SHA-256 checksum in the manifest before it is
+  installed; without a usable checksum, or with a package URL that is not HTTPS, nothing
+  is installed. The checked file is the one that gets installed.
+- The manifest is cached for a day, a failed fetch is remembered for five minutes. On a
+  multisite network both are kept once per network.
+- New header `Update URI: https://github.com/creationell-dev/crea-bootstrap-blocks`:
+  WordPress no longer asks wordpress.org about this plugin and will never offer a
+  package from there under the same name.
+- Uninstalling the plugin also removes the updater's cache.
+- No change to blocks, attributes, class names, markup or settings.
 
 ### 1.0.3
 
