@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T12:27:40+00:00\n"
+"POT-Creation-Date: 2026-10-20T13:25:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: crea-bootstrap-blocks\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: crea-bootstrap-blocks.php:114
+#: crea-bootstrap-blocks.php:115
 msgid "CreaBootstrapBlocks:"
 msgstr ""
 
@@ -287,6 +287,30 @@ msgstr ""
 #: includes/class-blocks.php:362
 #: includes/i18n-strings.php:51
 msgid "Bootstrap Strips"
+msgstr ""
+
+#: includes/class-plugin-updater.php:781
+msgid "Security verification failed: the update package must be downloaded over HTTPS."
+msgstr ""
+
+#: includes/class-plugin-updater.php:795
+msgid "Security verification failed: the update manifest could not be loaded, so the package cannot be verified. Please try again later."
+msgstr ""
+
+#: includes/class-plugin-updater.php:813
+msgid "Security verification failed: the update manifest carries no usable SHA-256 checksum for this package."
+msgstr ""
+
+#. translators: %s: Error message from the failed download
+#: includes/class-plugin-updater.php:828
+#, php-format
+msgid "Download failed: %s"
+msgstr ""
+
+#. translators: 1: expected SHA-256 hash, 2: calculated SHA-256 hash
+#: includes/class-plugin-updater.php:845
+#, php-format
+msgid "Security verification failed: Plugin checksum mismatch. Expected: %1$s, Got: %2$s"
 msgstr ""
 
 #: includes/class-previews.php:259

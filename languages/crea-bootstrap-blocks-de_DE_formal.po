@@ -42,7 +42,7 @@ msgstr "creationell® – die Werbeagentur"
 msgid "https://www.creationell.de/"
 msgstr "https://www.creationell.de/"
 
-#: crea-bootstrap-blocks.php:114
+#: crea-bootstrap-blocks.php:115
 msgid "CreaBootstrapBlocks:"
 msgstr "CreaBootstrapBlocks:"
 
@@ -5072,3 +5072,27 @@ msgstr "beschreibbar, außerhalb des Webbaums: %s"
 #, php-format
 msgid "The backup %s is written into a directory the web server serves. Anyone who guesses the name can download the full database. Move it out of the web root when the run is done, and delete it once the migration is accepted."
 msgstr "Das Backup %s wird in ein Verzeichnis geschrieben, das der Webserver ausliefert. Wer den Namen errät, kann die vollständige Datenbank herunterladen. Schaffen Sie es nach dem Lauf aus dem Webbaum und löschen Sie es, sobald die Migration abgenommen ist."
+
+#: includes/class-plugin-updater.php:781
+msgid "Security verification failed: the update package must be downloaded over HTTPS."
+msgstr "Sicherheitsprüfung fehlgeschlagen: Das Update-Paket muss über HTTPS heruntergeladen werden."
+
+#: includes/class-plugin-updater.php:795
+msgid "Security verification failed: the update manifest could not be loaded, so the package cannot be verified. Please try again later."
+msgstr "Sicherheitsprüfung fehlgeschlagen: Das Update-Manifest konnte nicht geladen werden, daher lässt sich das Paket nicht prüfen. Bitte versuchen Sie es später erneut."
+
+#: includes/class-plugin-updater.php:813
+msgid "Security verification failed: the update manifest carries no usable SHA-256 checksum for this package."
+msgstr "Sicherheitsprüfung fehlgeschlagen: Das Update-Manifest enthält für dieses Paket keine verwendbare SHA-256-Prüfsumme."
+
+#. translators: %s: Error message from the failed download
+#: includes/class-plugin-updater.php:828
+#, php-format
+msgid "Download failed: %s"
+msgstr "Download fehlgeschlagen: %s"
+
+#. translators: 1: expected SHA-256 hash, 2: calculated SHA-256 hash
+#: includes/class-plugin-updater.php:845
+#, php-format
+msgid "Security verification failed: Plugin checksum mismatch. Expected: %1$s, Got: %2$s"
+msgstr "Sicherheitsprüfung fehlgeschlagen: Die Prüfsumme des Plugins stimmt nicht. Erwartet: %1$s, erhalten: %2$s"

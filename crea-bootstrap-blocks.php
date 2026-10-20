@@ -3,8 +3,8 @@
  * Plugin Name: CreaBootstrapBlocks
  * Plugin URI: https://github.com/creationell-dev/crea-bootstrap-blocks
  * Description: Rückwärtskompatibler Ersatz für All Bootstrap Blocks auf Basis von Blockstudio.
- * Version: 1.0.3
- * Stable tag: 1.0.3
+ * Version: 1.0.4
+ * Stable tag: 1.0.4
  * Author: creationell® – die Werbeagentur
  * Author URI: https://www.creationell.de/
  * Requires at least: 6.9
@@ -15,6 +15,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: crea-bootstrap-blocks
  * Domain Path: /languages
+ * Update URI: https://github.com/creationell-dev/crea-bootstrap-blocks
  *
  * @package Creationell\BootstrapBlocks
  */
@@ -38,7 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
  * ausschliesslich aus der wp-config.php stammen. Ihre Standardwerte stehen in
  * crea_bootstrap_blocks_default_settings().
  */
-define( 'CREA_BOOTSTRAP_BLOCKS_VERSION', '1.0.3' );
+define( 'CREA_BOOTSTRAP_BLOCKS_VERSION', '1.0.4' );
 define( 'CREA_BOOTSTRAP_BLOCKS_FILE', __FILE__ );
 define( 'CREA_BOOTSTRAP_BLOCKS_BASENAME', plugin_basename( __FILE__ ) );
 define( 'CREA_BOOTSTRAP_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
@@ -151,6 +152,7 @@ $crea_bootstrap_blocks_includes = [
     'includes/class-assets.php',
     'includes/class-previews.php',
     'includes/class-abilities.php',
+    'includes/class-plugin-updater.php',
     'includes/cli/bootstrap.php',
     'blocks/_partials/patterns.php',
     'blocks/_partials/background.php',
@@ -167,6 +169,31 @@ foreach ( $crea_bootstrap_blocks_includes as $crea_bootstrap_blocks_include ) {
 }
 
 unset( $crea_bootstrap_blocks_include, $crea_bootstrap_blocks_path );
+
+/*
+ * --- Self-Hosted-Updater ----------------------------------------------------
+ *
+ * Das Plugin liegt nicht auf wordpress.org. Ohne diesen Block bietet keine
+ * Installation je ein Update an: Das Manifest auf gh-pages wird bei jedem
+ * Release veroeffentlicht, aber nur der Updater liest es. Er haengt bewusst
+ * NICHT an der Umgebungspruefung — eine Installation ohne Blockstudio muss
+ * ein Update genauso bekommen wie jede andere, gerade dann, wenn das Update
+ * den Fehler behebt. Der `Update URI`-Header oben sorgt dafuer, dass
+ * WordPress fuer diesen Slug nie ein Paket von wordpress.org anbietet.
+ */
+add_action(
+    'init',
+    static function (): void {
+        if ( class_exists( 'Creationell\\BootstrapBlocks\\GitUpdate\\CreaBootstrapBlocksGitPluginUpdater' ) ) {
+            new \Creationell\BootstrapBlocks\GitUpdate\CreaBootstrapBlocksGitPluginUpdater(
+                CREA_BOOTSTRAP_BLOCKS_FILE,
+                CREA_BOOTSTRAP_BLOCKS_VERSION,
+                'https://creationell-dev.github.io/crea-bootstrap-blocks/plugin_crea-bootstrap-blocks.json'
+            );
+        }
+    },
+    5
+);
 
 register_activation_hook( __FILE__, 'crea_bootstrap_blocks_activate' );
 register_deactivation_hook( __FILE__, 'crea_bootstrap_blocks_deactivate' );

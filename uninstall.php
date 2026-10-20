@@ -58,3 +58,17 @@ if ( is_multisite() ) {
 } else {
     crea_bootstrap_blocks_uninstall_site();
 }
+
+/*
+ * Der Self-Hosted-Updater haelt drei Site-Transients: das gecachte Manifest,
+ * die Fehlermarke eines gescheiterten Abrufs und die Abrufsperre. Site-
+ * Transients gehoeren dem ganzen Netzwerk (auf Multisite `wp_sitemeta`), sie
+ * werden deshalb EINMAL geloescht und nicht im Rundgang oben. Der Schluessel
+ * folgt `includes/class-plugin-updater.php`: Praefix plus md5 des
+ * Plugin-Ordnernamens — aus WP_UNINSTALL_PLUGIN gelesen, damit auch ein
+ * umbenannter Ordner seine Eintraege los wird.
+ */
+$crea_bootstrap_blocks_update_key = 'crea_bootstrap_blocks_git_update_' . md5( dirname( (string) WP_UNINSTALL_PLUGIN ) );
+delete_site_transient( $crea_bootstrap_blocks_update_key );
+delete_site_transient( $crea_bootstrap_blocks_update_key . '_fail' );
+delete_site_transient( $crea_bootstrap_blocks_update_key . '_lock' );
