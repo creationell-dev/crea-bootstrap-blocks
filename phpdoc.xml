@@ -7,7 +7,7 @@
     <paths>
         <output>docs/api</output>
     </paths>
-    <version number="1.0.4">
+    <version number="1.0.5">
         <api>
             <source dsn=".">
                 <path>crea-bootstrap-blocks.php</path>
