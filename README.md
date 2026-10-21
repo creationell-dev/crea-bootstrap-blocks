@@ -3,7 +3,7 @@
 **Plugin Name:** CreaBootstrapBlocks  
 **Plugin URI:** https://github.com/creationell-dev/crea-bootstrap-blocks  
 **Description:** Rückwärtskompatibler Ersatz für das stillgelegte Plugin All Bootstrap Blocks — dieselben Blöcke, dieselben Attribute, dasselbe Markup, gebaut auf Blockstudio.  
-**Version:** 1.0.4  
+**Version:** 1.0.5  
 **Author:** creationell® – die Werbeagentur <marketing@creationell.de>  
 **Author URI:** https://www.creationell.de/  
 **Contributors:** creationell-dev, JPKCom  
@@ -12,7 +12,7 @@
 **Tested up to:** 7.1  
 **Requires PHP:** 8.3  
 **Requires Plugins:** blockstudio  
-**Stable tag:** 1.0.4  
+**Stable tag:** 1.0.5  
 **License:** GPL-2.0-or-later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 **Text Domain:** crea-bootstrap-blocks  
@@ -237,7 +237,7 @@ Alle Konstanten lassen sich in der `wp-config.php` vorbelegen und haben dann Vor
 
 | Konstante | Standardwert | Zweck |
 |---|---|---|
-| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.4` | Aktuelle Plugin-Version |
+| `CREA_BOOTSTRAP_BLOCKS_VERSION` | `1.0.5` | Aktuelle Plugin-Version |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_CLASSES` | `true` | Gibt zusätzlich zu `creabb-*` auch die alten `areoi-*`-Klassen aus. Darf dauerhaft `true` bleiben |
 | `CREA_BOOTSTRAP_BLOCKS_LEGACY_BLOCKS` | `true` | Registriert zu jedem Block ein ausgeblendetes `areoi/*`-Gegenstück |
 | `CREA_BOOTSTRAP_BLOCKS_DEBUG` | `false` | Schaltet die Protokollierung des Plugins frei |
@@ -249,6 +249,12 @@ Unter `assets/vendor/bootstrap/` liegen Bootstrap und Bootstrap Icons, beide unt
 ---
 
 ## Changelog
+
+### 1.0.5
+
+- The plugin banners are included. Up to 1.0.4 the update manifest pointed at two banner
+  images that were never published, so the "View details" dialog showed an empty header.
+- No change to blocks, attributes, class names, markup, settings or the updater.
 
 ### 1.0.4
 
